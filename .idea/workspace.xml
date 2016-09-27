@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="847f0742-072a-4356-be96-d93f766b63dd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysql-connect.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/supplier-template.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.php" afterPath="$PROJECT_DIR$/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create-supplier-template.php" afterPath="$PROJECT_DIR$/create-supplier-template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/nustream.sql" afterPath="$PROJECT_DIR$/include/repository/nustream.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/supplier-repository.php" afterPath="$PROJECT_DIR$/include/repository/supplier-repository.php" />
     </list>
     <ignored path="NuStream.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,12 +58,12 @@
       <file leaf-file-name="create-supplier-template.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/create-supplier-template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="22" selection-end-column="58" />
+            <state relative-caret-position="340">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
-                <marker date="1474952623563" expanded="true" signature="740:3489" ph="..." />
-                <marker date="1474952623563" expanded="true" signature="762:3482" ph="..." />
-                <marker date="1474952623563" expanded="true" signature="800:3412" ph="..." />
+                <marker date="1474954006855" expanded="true" signature="713:3462" ph="..." />
+                <marker date="1474954006855" expanded="true" signature="735:3455" ph="..." />
+                <marker date="1474954006855" expanded="true" signature="773:3385" ph="..." />
               </folding>
             </state>
           </provider>
@@ -74,8 +72,8 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            <state relative-caret-position="87">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -84,14 +82,12 @@
       <file leaf-file-name="supplier-repository.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+            <state relative-caret-position="289">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
-                <marker date="1474952988306" expanded="true" signature="880:1097" ph="INSERT INTO suppliers... " />
-                <marker date="1474952988306" expanded="true" signature="880:1098" ph="INSERT INTO suppliers... " />
-                <marker date="1474952988306" expanded="true" signature="880:1110" ph="INSERT INTO suppliers... " />
-                <marker date="1474952988306" expanded="true" signature="880:1113" ph="INSERT INTO suppliers... " />
-                <marker date="1474952988306" expanded="true" signature="880:1299" ph="INSERT INTO suppliers... " />
+                <marker date="1474954264261" expanded="true" signature="822:1027" ph="INSERT INTO suppliers... " />
+                <marker date="1474954264261" expanded="true" signature="822:1028" ph="INSERT INTO suppliers... " />
+                <marker date="1474954264261" expanded="true" signature="822:1214" ph="INSERT INTO suppliers... " />
               </folding>
             </state>
           </provider>
@@ -268,7 +264,7 @@
       <workItem from="1474764770509" duration="6806000" />
       <workItem from="1474824461152" duration="4336000" />
       <workItem from="1474852559676" duration="2355000" />
-      <workItem from="1474938118994" duration="11954000" />
+      <workItem from="1474938118994" duration="13271000" />
     </task>
     <servers />
   </component>
@@ -287,7 +283,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25939000" />
+    <option name="totallyTimeSpent" value="27256000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -487,6 +483,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/include/repository/mysql-connect.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -495,36 +499,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/create-supplier-template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="22" selection-end-column="58" />
+        <state relative-caret-position="340">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <marker date="1474952623563" expanded="true" signature="740:3489" ph="..." />
-            <marker date="1474952623563" expanded="true" signature="762:3482" ph="..." />
-            <marker date="1474952623563" expanded="true" signature="800:3412" ph="..." />
+            <marker date="1474954006855" expanded="true" signature="713:3462" ph="..." />
+            <marker date="1474954006855" expanded="true" signature="735:3455" ph="..." />
+            <marker date="1474954006855" expanded="true" signature="773:3385" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        <state relative-caret-position="289">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <marker date="1474952988306" expanded="true" signature="880:1097" ph="INSERT INTO suppliers... " />
-            <marker date="1474952988306" expanded="true" signature="880:1098" ph="INSERT INTO suppliers... " />
-            <marker date="1474952988306" expanded="true" signature="880:1110" ph="INSERT INTO suppliers... " />
-            <marker date="1474952988306" expanded="true" signature="880:1113" ph="INSERT INTO suppliers... " />
-            <marker date="1474952988306" expanded="true" signature="880:1299" ph="INSERT INTO suppliers... " />
+            <marker date="1474954264261" expanded="true" signature="822:1027" ph="INSERT INTO suppliers... " />
+            <marker date="1474954264261" expanded="true" signature="822:1028" ph="INSERT INTO suppliers... " />
+            <marker date="1474954264261" expanded="true" signature="822:1214" ph="INSERT INTO suppliers... " />
           </folding>
         </state>
       </provider>

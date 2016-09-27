@@ -10,7 +10,6 @@ get_header();
 	if(isset($_POST['create_supplier']))
 	{
 		$createSupplierArray = array (
-			"supplierID" => GUID(),
 			"supplierName" => $_POST['supplierName'],
 			"HSTNumber" => $_POST['HSTNumber'],
 			"firstContactName" => $_POST['firstContactName'],

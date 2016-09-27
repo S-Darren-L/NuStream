@@ -3,7 +3,6 @@
     require_once(__DIR__ . '/mysql-connect.php');
 
     function create_supplier_repository($createSupplierArray){
-        $supplierID = $createSupplierArray['supplierID'];
         $supplierName = $createSupplierArray['supplierName'];
         $priceUnit = $createSupplierArray['priceUnit'];
         $pricePerUnit = $createSupplierArray['pricePerUnit'];
@@ -14,8 +13,8 @@
         $supportLocation = $createSupplierArray['supportLocation'];
         $HSTNumber = $createSupplierArray['HSTNumber'];
         $paymentTerm = $createSupplierArray['paymentTerm'];
-        $sql = "INSERT INTO suppliers (SupplierID, SupplierName, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, SecondContactName, SecondContactNumber, SupportLocation, HTSNumber, PaymentTerm)
-                VALUES ('$supplierID', '$supplierName', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$secondContactName', '$secondContactNumber', '$supportLocation', '$HSTNumber', '$paymentTerm')";
+        $sql = "INSERT INTO suppliers (SupplierName, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, SecondContactName, SecondContactNumber, SupportLocation, HTSNumber, PaymentTerm)
+                VALUES ('$supplierName', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$secondContactName', '$secondContactNumber', '$supportLocation', '$HSTNumber', '$paymentTerm')";
 
         global $conn;
         if ($conn->query($sql) === TRUE) {
