@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2016 at 04:17 AM
+-- Generation Time: Sep 27, 2016 at 07:12 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -79,27 +79,6 @@ CREATE TABLE `properties` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `serviceproviders`
---
-
-CREATE TABLE `serviceproviders` (
-  `ServiceProviderID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE') NOT NULL,
-  `PricePerUnit` double NOT NULL,
-  `FirstContactName` varchar(255) NOT NULL,
-  `FirstContactNumber` int(11) NOT NULL,
-  `SecondContactName` varchar(255) NOT NULL,
-  `SecondContactNumber` int(11) NOT NULL,
-  `SupportLocation` varchar(255) NOT NULL,
-  `HTSNumber` int(11) NOT NULL,
-  `PaymentTerm` enum('MONTHLY','SEMIMONTHLY','OTHER') NOT NULL,
-  `SamplePhoto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `services`
 --
 
@@ -130,6 +109,27 @@ CREATE TABLE `staffs` (
   `Tel` int(11) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `IsTeamLeader` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `SupplierID` int(11) NOT NULL,
+  `SupplierName` varchar(255) NOT NULL,
+  `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE') NOT NULL,
+  `PricePerUnit` double NOT NULL,
+  `FirstContactName` varchar(255) NOT NULL,
+  `FirstContactNumber` int(11) NOT NULL,
+  `SecondContactName` varchar(255) NOT NULL,
+  `SecondContactNumber` int(11) NOT NULL,
+  `SupportLocation` varchar(255) NOT NULL,
+  `HTSNumber` int(11) NOT NULL,
+  `PaymentTerm` enum('MONTHLY','SEMIMONTHLY','OTHER') NOT NULL,
+  `SamplePhoto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
