@@ -24,10 +24,21 @@
         return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
     }
 	
-	//Create supplier
+	// Create Supplier
     function create_supplier($createSupplierArray) {
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
-        create_supplier_repository($createSupplierArray);
+        create_supplier_request($createSupplierArray);
+    }
+
+    // Edit Supplier
+    function edit_supplier($createSupplierArray) {
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        edit_supplier_request($createSupplierArray);
+    }
+
+    function get_supplier_brief_info($supplierType){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        return get_supplier_brief_info_request($supplierType);
     }
 
 ?>

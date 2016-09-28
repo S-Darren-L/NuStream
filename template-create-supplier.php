@@ -11,6 +11,7 @@ get_header();
 	{
 		$createSupplierArray = array (
 			"supplierName" => $_POST['supplierName'],
+			"supplierType" => $_POST['supplierType'],
 			"HSTNumber" => $_POST['HSTNumber'],
 			"firstContactName" => $_POST['firstContactName'],
 			"firstContactNumber" => $_POST['firstContactNumber'],
@@ -46,15 +47,36 @@ get_header();
 				<td class="number" colspan="6"><input class="input" type="text" name="secondContactNumber"></td>
 			</tr>
 			<tr>
+				<td class="primary-title" colspan="3" rowspan="2"><a>Supplier Type</a></td>
+				<td class="small-sub-title" colspan="2"><a>Staging</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="STAGING"></td>
+				<td class="small-sub-title" colspan="2"><a>Photography</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="PHOTOGRAPHY"></td>
+				<td class="small-sub-title" colspan="2"><a>Clean up</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="CLEANUP"></td>
+				<td class="small-sub-title" colspan="2"><a>Relocation home</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="RELOCATIONHOME"></td>
+			</tr>
+			<tr>
+				<td class="small-sub-title" colspan="2"><a>Touch up</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="TOUCHUP"></td>
+				<td class="small-sub-title" colspan="2"><a>Inspection</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="INSPECTION"></td>
+				<td class="small-sub-title" colspan="2"><a>Yardwork</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="YARDWORK"></td>
+				<td class="small-sub-title" colspan="2"><a>Storage</a></td>
+				<td class="radio"><input type="radio" name="supplierType" value="STORAGE"></td>
+			</tr>
+			<tr>
 				<td class="primary-title" colspan="3"><a>Price Unit</a></td>
 				<td class="small-sub-title" colspan="2"><a>by size</a></td>
-				<td class="radio"><input type="radio" name="priceUnit"></td>
+				<td class="radio"><input type="radio" name="priceUnit" value="BYSIZE"></td>
 				<td class="small-sub-title" colspan="2"><a>by hour</a></td>
-				<td class="radio"><input type="radio" name="priceUnit"></td>
+				<td class="radio"><input type="radio" name="priceUnit" value="BYHOUR"></td>
 				<td class="small-sub-title" colspan="2"><a>by house type</a></td>
-				<td class="radio"><input type="radio" name="priceUnit"></td>
+				<td class="radio"><input type="radio" name="priceUnit" value="BYHOUSETYPE"></td>
 				<td class="small-sub-title" colspan="2"><a>by case</a></td>
-				<td class="radio"><input type="radio" name="priceUnit"></td>
+				<td class="radio"><input type="radio" name="priceUnit" value="BYCASE"></td>
 			</tr>
 			<tr>
 				<td class="primary-title" colspan="3"><a>Price Per Unit</a></td>
@@ -63,11 +85,11 @@ get_header();
 			<tr>
 				<td class="primary-title" colspan="3"><a>Payment Term</a></td>
 				<td class="large-sub-title" colspan="3"><a>monthly</a></td>
-				<td class="radio"><input type="radio" name="paymentTerm"></td>
+				<td class="radio"><input type="radio" name="paymentTerm" value="MONTHLY"></td>
 				<td class="large-sub-title" colspan="3"><a>semi-monthly</a></td>
-				<td class="radio"><input type="radio" name="paymentTerm"></td>
+				<td class="radio"><input type="radio" name="paymentTerm" value="SEMIMONTHLY"></td>
 				<td class="large-sub-title" colspan="3"><a>other</a></td>
-				<td class="radio"><input type="radio" name="paymentTerm"></td>
+				<td class="radio"><input type="radio" name="paymentTerm" value="OTHER"></td>
 			</tr>
 			<tr>
 				<td class="primary-title" colspan="3"><a>Support Location</a></td>
@@ -78,7 +100,7 @@ get_header();
 				<td class="" colspan="12"></td>
 			</tr>
 		</table>
-		<input type="submit" value="click" name="create_supplier">
+		<input type="submit" value="Create" name="create_supplier">
 	</form>
 </div>
 <?php
