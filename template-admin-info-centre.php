@@ -14,100 +14,49 @@ get_header();
 		echo 'result is null';
 	else
 		echo mysqli_num_rows($result);
-//	if(isset($_POST['create_supplier']))
-//	{
-//		$createSupplierArray = array (
-//			"supplierName" => $_POST['supplierName'],
-//			"HSTNumber" => $_POST['HSTNumber'],
-//			"firstContactName" => $_POST['firstContactName'],
-//			"firstContactNumber" => $_POST['firstContactNumber'],
-//			"secondContactName" => $_POST['secondContactName'],
-//			"secondContactNumber" => $_POST['secondContactNumber'],
-//			"priceUnit" => $_POST['priceUnit'],
-//			"pricePerUnit" => $_POST['pricePerUnit'],
-//			"paymentTerm" => $_POST['paymentTerm'],
-//			"supportLocation" => $_POST['supportLocation']);
-//
-//		edit_supplier($createSupplierArray);
-//	}
+	$result_rows = [];
+	while($row = mysqli_fetch_array($result))
+	{
+		$result_rows[] = $row;
+	}
+
+	//test
+	$js_result_array = json_encode($result_rows);
+	echo $js_result_array;
+	echo count($js_result_array);
+	echo count(json_decode($js_result_array, true));
 ?>
 <div style="overflow-x:auto;">
-	<form method="post">
-		<table class="admin-info-centre-temp-table">
-			<tr>
-				<td class="primary-title" colspan="3"><a>Supplier Name</a></td>
-				<td class="name" colspan="3"><input class="input" type="text" name="supplierName"></td>
-				<td class="primary-title" colspan="3"><a>HST Number</a></td>
-				<td class="number" colspan="6"><input class="input" type="text" name="HSTNumber"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3"><a>Contact Name 1</a></td>
-				<td class="name" colspan="3"><input class="input" type="text" name="firstContactName"></td>
-				<td class="primary-title" colspan="3"><a>Contact Number 1</a></td>
-				<td class="number" colspan="6"><input class="input" type="text" name="firstContactNumber"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3"><a>Contact Name 2</a></td>
-				<td class="name" colspan="3"><input class="input" type="text" name="secondContactName"></td>
-				<td class="primary-title" colspan="3"><a>Contact Number 2</a></td>
-				<td class="number" colspan="6"><input class="input" type="text" name="secondContactNumber"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3" rowspan="2"><a>Supplier Type</a></td>
-				<td class="small-sub-title" colspan="2"><a>Staging</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="STAGING"></td>
-				<td class="small-sub-title" colspan="2"><a>Photography</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="PHOTOGRAPHY"></td>
-				<td class="small-sub-title" colspan="2"><a>Clean up</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="CLEANUP"></td>
-				<td class="small-sub-title" colspan="2"><a>Relocation home</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="RELOCATIONHOME"></td>
-			</tr>
-			<tr>
-				<td class="small-sub-title" colspan="2"><a>Touch up</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="TOUCHUP"></td>
-				<td class="small-sub-title" colspan="2"><a>Inspection</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="INSPECTION"></td>
-				<td class="small-sub-title" colspan="2"><a>Yardwork</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="YARDWORK"></td>
-				<td class="small-sub-title" colspan="2"><a>Storage</a></td>
-				<td class="radio"><input type="radio" name="supplierType" value="STORAGE"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3"><a>Price Unit</a></td>
-				<td class="small-sub-title" colspan="2"><a>by size</a></td>
-				<td class="radio"><input type="radio" name="priceUnit" value="BYSIZE"></td>
-				<td class="small-sub-title" colspan="2"><a>by hour</a></td>
-				<td class="radio"><input type="radio" name="priceUnit" value="BYHOUR"></td>
-				<td class="small-sub-title" colspan="2"><a>by house type</a></td>
-				<td class="radio"><input type="radio" name="priceUnit" value="BYHOUSETYPE"></td>
-				<td class="small-sub-title" colspan="2"><a>by case</a></td>
-				<td class="radio"><input type="radio" name="priceUnit" value="BYCASE"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3"><a>Price Per Unit</a></td>
-				<td class="" colspan="12"><input class="input" type="text" name="pricePerUnit"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3"><a>Payment Term</a></td>
-				<td class="large-sub-title" colspan="3"><a>monthly</a></td>
-				<td class="radio"><input type="radio" name="paymentTerm" value="MONTHLY"></td>
-				<td class="large-sub-title" colspan="3"><a>semi-monthly</a></td>
-				<td class="radio"><input type="radio" name="paymentTerm" value="SEMIMONTHLY"></td>
-				<td class="large-sub-title" colspan="3"><a>other</a></td>
-				<td class="radio"><input type="radio" name="paymentTerm" value="OTHER"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3"><a>Support Location</a></td>
-				<td class="" colspan="12"><input class="input" type="text" name="supportLocation"></td>
-			</tr>
-			<tr>
-				<td class="primary-title" colspan="3"><a>Sample Photos</a></td>
-				<td class="" colspan="12"></td>
-			</tr>
-		</table>
-		<input type="submit" value="Update" name="create_supplier">
-	</form>
+	<table id="admin-info-centre-temp-table">
+		<thead>
+		<tr>
+			<th class=""><a>Supplier Name</a></th>
+			<th class=""><a>Price Per Unit</a></th>
+			<th class=""><a>Primary Contact Name</a></th>
+			<th class=""><a>Primary Contact Number</a></th>
+			<th class=""><a>Support Location</a></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table>
+	<script type="text/javascript">
+		var suppliers = [<?php echo json_encode($result_rows); ?>];
+		var suppliers_array = [];
+		for(var i in suppliers)
+			suppliers_array[i] = $.map(suppliers[i],function(v) {
+				return v;
+		alert(suppliers_array.length);
+		// Call addRow() with the ID of a table
+		addRow('admin-info-centre-temp-table', suppliers);
+	</script>
 </div>
 <?php
 get_footer();

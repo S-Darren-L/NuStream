@@ -1,6 +1,9 @@
 <?php
     // Get Project Style
 	add_action('wp_enqueue_scripts', 'nustream_resources');
+
+    // Get Project Script
+    add_action('wp_enqueue_scripts', 'nustream_scripts');
 	
 	// Navigation Menus
 	register_nav_menus(array(
@@ -11,6 +14,11 @@
     // Set Style File
     function nustream_resources(){
         wp_enqueue_style('style', get_stylesheet_uri());
+    }
+
+    // Set Script File
+    function nustream_scripts(){
+        wp_enqueue_script('script', get_template_directory_uri() . '/js/main-script.js');
     }
 
     // Generate Guid
