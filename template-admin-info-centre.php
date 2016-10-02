@@ -31,7 +31,6 @@ get_header();
 		echo '<td>', $result_rows[$i]["FirstContactName"], '</td>';
 		echo '<td>', $result_rows[$i]["FirstContactNumber"], '</td>';
 		echo '<td>', $result_rows[$i]["SupportLocation"], '</td>';
-		echo '<td>', '<input type="submit" value="View Detail" name="view_supplier_detail">' , '</td>';
 		echo '</tr>';
 		echo '</form>';
 	}

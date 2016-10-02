@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="847f0742-072a-4356-be96-d93f766b63dd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.php" afterPath="$PROJECT_DIR$/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/mysql-connect.php" afterPath="$PROJECT_DIR$/include/repository/mysql-connect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/supplier-repository.php" afterPath="$PROJECT_DIR$/include/repository/supplier-repository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main-script.js" afterPath="$PROJECT_DIR$/js/main-script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-admin-info-centre.php" afterPath="$PROJECT_DIR$/template-admin-info-centre.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-edit-supplier.php" afterPath="$PROJECT_DIR$/template-edit-supplier.php" />
     </list>
     <ignored path="NuStream.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,7 +63,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template-create-supplier.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="template-create-supplier.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template-create-supplier.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="528">
@@ -106,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template-admin-info-centre.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="template-admin-info-centre.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+            <state relative-caret-position="262">
+              <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
               <folding>
                 <element signature="e#7#52#0#PHP" expanded="true" />
               </folding>
@@ -156,11 +149,11 @@
         <option value="$PROJECT_DIR$/../../plugins/tablemaster/admin/class-tablemaster-admin.php" />
         <option value="$PROJECT_DIR$/../../plugins/tablemaster/tablemaster.php" />
         <option value="$PROJECT_DIR$/style.css" />
-        <option value="$PROJECT_DIR$/template-admin-info-centre.php" />
         <option value="$PROJECT_DIR$/template-edit-supplier.php" />
         <option value="$PROJECT_DIR$/functions.php" />
         <option value="$PROJECT_DIR$/include/repository/mysql-connect.php" />
         <option value="$PROJECT_DIR$/include/repository/supplier-repository.php" />
+        <option value="$PROJECT_DIR$/template-admin-info-centre.php" />
       </list>
     </option>
   </component>
@@ -303,7 +296,7 @@
       <workItem from="1474764770509" duration="6806000" />
       <workItem from="1474824461152" duration="4336000" />
       <workItem from="1474852559676" duration="2355000" />
-      <workItem from="1474938118994" duration="75292000" />
+      <workItem from="1474938118994" duration="75890000" />
     </task>
     <servers />
   </component>
@@ -322,7 +315,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89277000" />
+    <option name="totallyTimeSpent" value="89875000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -664,21 +657,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
-          <folding>
-            <element signature="e#7#52#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template-create-supplier.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="40" column="108" selection-start-line="40" selection-start-column="108" selection-end-line="40" selection-end-column="108" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+          <folding>
+            <element signature="e#7#52#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

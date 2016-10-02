@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2016 at 07:32 AM
+-- Generation Time: Oct 03, 2016 at 12:10 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -120,6 +120,7 @@ CREATE TABLE `staffs` (
 CREATE TABLE `suppliers` (
   `SupplierID` int(11) NOT NULL,
   `SupplierName` varchar(255) NOT NULL,
+  `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATIONHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
   `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE') NOT NULL,
   `PricePerUnit` double NOT NULL,
   `FirstContactName` varchar(255) NOT NULL,
@@ -127,10 +128,19 @@ CREATE TABLE `suppliers` (
   `SecondContactName` varchar(255) NOT NULL,
   `SecondContactNumber` int(11) NOT NULL,
   `SupportLocation` varchar(255) NOT NULL,
-  `HTSNumber` int(11) NOT NULL,
+  `HSTNumber` int(11) NOT NULL,
   `PaymentTerm` enum('MONTHLY','SEMIMONTHLY','OTHER') NOT NULL,
   `SamplePhoto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `SamplePhoto`) VALUES
+(5, 'LLK', 'INSPECTION', 'BYSIZE', 234, 'Shuyang Liu', 7654, 'Shuyang Liu', 9876, 'fgh', 1234, 'MONTHLY', ''),
+(6, 'G', 'CLEANUP', 'BYCASE', 85, 'jk', 45, 'io', 15, 'bn', 95, 'OTHER', ''),
+(7, 'HG', 'STAGING', 'BYHOUR', 962, 'DFG', 24, 'UH', 3217, 'HGJ', 852, 'SEMIMONTHLY', '');
 
 -- --------------------------------------------------------
 
@@ -162,7 +172,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
