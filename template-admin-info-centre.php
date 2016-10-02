@@ -12,52 +12,36 @@ get_header();
 	$result = get_supplier_brief_info($supplierType);
 	if($result === null)
 		echo 'result is null';
-	else
-		echo mysqli_num_rows($result);
 	$result_rows = [];
 	while($row = mysqli_fetch_array($result))
 	{
 		$result_rows[] = $row;
 	}
-
-	//test
-	$js_result_array = json_encode($result_rows);
-	echo $js_result_array;
-	echo count($js_result_array);
-	echo count(json_decode($js_result_array, true));
+	$homeURL = get_home_url();
+	echo '<h3>', $table, '</h3>';
+	echo '<table cellpadding="0" cellspacing="0" class="admin-info-centre-temp-table">';
+	echo '<tr><th class="primary-title">Supplier Name</th><th class="primary-title">Price Per Unit</th><th class="primary-title">Primary Contact Name</th><th class="primary-title">Primary Contact Number</th><th class="primary-title">Support Location</th></tr>';
+	for($i = 0; $i < count($result_rows); $i++) {
+		$supplierID = $result_rows[$i]["SupplierID"];
+//		echo '<td>', $supplierID, '</td>';
+		echo '<form method="post">';
+		echo '<tr>';
+		echo '<td >', '<a href="' . $homeURL . '/edit-supplier/?SID=' . $supplierID . '" />', $result_rows[$i]["SupplierName"], '</td>';
+		echo '<td>', $result_rows[$i]["PricePerUnit"], '</td>';
+		echo '<td>', $result_rows[$i]["FirstContactName"], '</td>';
+		echo '<td>', $result_rows[$i]["FirstContactNumber"], '</td>';
+		echo '<td>', $result_rows[$i]["SupportLocation"], '</td>';
+		echo '<td>', '<input type="submit" value="View Detail" name="view_supplier_detail">' , '</td>';
+		echo '</tr>';
+		echo '</form>';
+	}
+	echo '</table><br />';
+	if(isset($_POST['view_supplier_detail'])) {
+		echo "try";
+//		$supplierID = $_POST['SupplierID'];
+		echo $supplierID;
+	}
 ?>
-<div style="overflow-x:auto;">
-	<table id="admin-info-centre-temp-table">
-		<thead>
-		<tr>
-			<th class=""><a>Supplier Name</a></th>
-			<th class=""><a>Price Per Unit</a></th>
-			<th class=""><a>Primary Contact Name</a></th>
-			<th class=""><a>Primary Contact Number</a></th>
-			<th class=""><a>Support Location</a></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		</tbody>
-	</table>
-	<script type="text/javascript">
-		var suppliers = [<?php echo json_encode($result_rows); ?>];
-		var suppliers_array = [];
-		for(var i in suppliers)
-			suppliers_array[i] = $.map(suppliers[i],function(v) {
-				return v;
-		alert(suppliers_array.length);
-		// Call addRow() with the ID of a table
-		addRow('admin-info-centre-temp-table', suppliers);
-	</script>
-</div>
 <?php
 get_footer();
 

@@ -4,6 +4,9 @@
 
     // Get Project Script
     add_action('wp_enqueue_scripts', 'nustream_scripts');
+
+    // Get JQuery Script
+    add_action('wp_enqueue_scripts', 'jquery_scripts');
 	
 	// Navigation Menus
 	register_nav_menus(array(
@@ -19,6 +22,11 @@
     // Set Script File
     function nustream_scripts(){
         wp_enqueue_script('script', get_template_directory_uri() . '/js/main-script.js');
+    }
+
+    // Set JQuery File
+    function jquery_scripts(){
+        wp_enqueue_script('jquery');
     }
 
     // Generate Guid
@@ -38,15 +46,20 @@
         create_supplier_request($createSupplierArray);
     }
 
-    // Edit Supplier
-    function edit_supplier($createSupplierArray) {
-        require_once(__DIR__ . '/include/repository/supplier-repository.php');
-        edit_supplier_request($createSupplierArray);
-    }
-
     function get_supplier_brief_info($supplierType){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         return get_supplier_brief_info_request($supplierType);
     }
 
+    // Get Supplier Detail
+    function get_supplier_detail($supplierID){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        return get_supplier_detail_request($supplierID);
+    }
+
+    // Edit Supplier
+    function edit_supplier($updateSupplierArray) {
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        edit_supplier_request($updateSupplierArray);
+    }
 ?>
