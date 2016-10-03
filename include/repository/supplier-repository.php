@@ -36,7 +36,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = myqlii_connection();
 
-        $sql = "SELECT SupplierID, SupplierName, PricePerUnit, FirstContactName, FirstContactNumber, SupportLocation FROM suppliers";
+        $sql = "SELECT SupplierID, SupplierName, PricePerUnit, FirstContactName, FirstContactNumber, SupportLocation FROM suppliers WHERE SupplierType='$supplierType'";
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
@@ -50,7 +50,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = myqlii_connection();
 
-        $sql = "SELECT * FROM suppliers WHERE SupplierID='5'";
+        $sql = "SELECT * FROM suppliers WHERE SupplierID='$supplierID'";
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 

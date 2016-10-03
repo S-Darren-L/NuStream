@@ -69,8 +69,8 @@ get_header();
 				<td class="radio"><input type="radio" name="supplierType" <?php echo ($getSupplierArray['SupplierType']=="PHOTOGRAPHY")  ? 'checked':'';?>  value="PHOTOGRAPHY"></td>
 				<td class="small-sub-title" colspan="2"><a>Clean up</a></td>
 				<td class="radio"><input type="radio" name="supplierType" <?php echo ($getSupplierArray['SupplierType']=="CLEANUP")  ? 'checked':'';?>  value="CLEANUP"></td>
-				<td class="small-sub-title" colspan="2"><a>Relocation home</a></td>
-				<td class="radio"><input type="radio" name="supplierType" <?php echo ($getSupplierArray['SupplierType']=="RELOCATIONHOME")  ? 'checked':'';?>  value="RELOCATIONHOME"></td>
+				<td class="small-sub-title" colspan="2"><a>Relocate home</a></td>
+				<td class="radio"><input type="radio" name="supplierType" <?php echo ($getSupplierArray['SupplierType']=="RELOCATEHOME")  ? 'checked':'';?>  value="RELOCATIONHOME"></td>
 			</tr>
 			<tr>
 				<td class="small-sub-title" colspan="2"><a>Touch up</a></td>

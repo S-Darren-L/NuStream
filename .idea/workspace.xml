@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="847f0742-072a-4356-be96-d93f766b63dd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/supplier-repository.php" afterPath="$PROJECT_DIR$/include/repository/supplier-repository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-admin-info-centre.php" afterPath="$PROJECT_DIR$/template-admin-info-centre.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-create-supplier.php" afterPath="$PROJECT_DIR$/template-create-supplier.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-edit-supplier.php" afterPath="$PROJECT_DIR$/template-edit-supplier.php" />
     </list>
     <ignored path="NuStream.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,9 +70,21 @@
       <file leaf-file-name="template-create-supplier.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template-create-supplier.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="40" column="108" selection-start-line="40" selection-start-column="108" selection-end-line="40" selection-end-column="108" />
+            <state relative-caret-position="935">
+              <caret line="57" column="93" selection-start-line="57" selection-start-column="93" selection-end-line="57" selection-end-column="93" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="template-admin-info-centre.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+              <folding>
+                <marker date="1475452951903" expanded="true" signature="2062:2091" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,52 +92,40 @@
       <file leaf-file-name="template-edit-supplier.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template-edit-supplier.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+            <state relative-caret-position="374">
+              <caret line="72" column="134" selection-start-line="72" selection-start-column="134" selection-end-line="72" selection-end-column="134" />
               <folding>
                 <element signature="e#7#48#0#PHP" expanded="true" />
-                <marker date="1475429957063" expanded="true" signature="1072:6911" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="1094:6904" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="1132:6835" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="1140:1155" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="1140:1576" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="1584:2053" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="2061:2534" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="2542:3570" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="3578:4502" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="4510:5472" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="5480:5704" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="5712:6463" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="6471:6703" ph="..." />
-                <marker date="1475429957063" expanded="true" signature="6711:6824" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="1072:6907" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="1094:6900" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="1132:6831" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="1140:1155" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="1140:1576" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="1584:2053" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="2061:2534" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="2542:3566" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="3574:4498" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="4506:5468" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="5476:5700" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="5708:6459" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="6467:6699" ph="..." />
+                <marker date="1475452041068" expanded="true" signature="6707:6820" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template-admin-info-centre.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
-              <folding>
-                <element signature="e#7#52#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="supplier-repository.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="supplier-repository.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="63" column="61" selection-start-line="63" selection-start-column="61" selection-end-line="63" selection-end-column="61" />
+            <state relative-caret-position="476">
+              <caret line="38" column="168" selection-start-line="38" selection-start-column="168" selection-end-line="38" selection-end-column="168" />
               <folding>
-                <marker date="1475432315175" expanded="true" signature="806:1237" ph="INSERT INTO suppliers... " />
-                <marker date="1475432315175" expanded="true" signature="1824:1939" ph="SELECT Suppl... suppliers" />
-                <marker date="1475432315175" expanded="true" signature="2277:2318" ph="SELECT * FRO... suppliers" />
-                <marker date="1475432315175" expanded="true" signature="2277:2321" ph="SELECT * FRO... suppliers" />
-                <marker date="1475432315175" expanded="true" signature="3307:3970" ph="UPDATE suppl... " />
+                <marker date="1475452952016" expanded="true" signature="806:1237" ph="INSERT INTO suppliers... " />
+                <marker date="1475452952016" expanded="true" signature="1824:1974" ph="SELECT Suppl... suppliers" />
+                <marker date="1475452952016" expanded="true" signature="2312:2353" ph="SELECT * FRO... suppliers" />
+                <marker date="1475452952016" expanded="true" signature="2312:2366" ph="SELECT * FRO... suppliers" />
+                <marker date="1475452952016" expanded="true" signature="3352:4015" ph="UPDATE suppl... " />
               </folding>
             </state>
           </provider>
@@ -144,16 +148,17 @@
         <option value="$PROJECT_DIR$/include/enum.php" />
         <option value="$PROJECT_DIR$/include/constants.php" />
         <option value="$PROJECT_DIR$/create-supplier-template.php" />
-        <option value="$PROJECT_DIR$/template-create-supplier.php" />
         <option value="$PROJECT_DIR$/js/main-script.js" />
         <option value="$PROJECT_DIR$/../../plugins/tablemaster/admin/class-tablemaster-admin.php" />
         <option value="$PROJECT_DIR$/../../plugins/tablemaster/tablemaster.php" />
         <option value="$PROJECT_DIR$/style.css" />
-        <option value="$PROJECT_DIR$/template-edit-supplier.php" />
         <option value="$PROJECT_DIR$/functions.php" />
         <option value="$PROJECT_DIR$/include/repository/mysql-connect.php" />
-        <option value="$PROJECT_DIR$/include/repository/supplier-repository.php" />
+        <option value="$PROJECT_DIR$/template-admin-info-centre-table.php" />
+        <option value="$PROJECT_DIR$/template-create-supplier.php" />
+        <option value="$PROJECT_DIR$/template-edit-supplier.php" />
         <option value="$PROJECT_DIR$/template-admin-info-centre.php" />
+        <option value="$PROJECT_DIR$/include/repository/supplier-repository.php" />
       </list>
     </option>
   </component>
@@ -296,7 +301,7 @@
       <workItem from="1474764770509" duration="6806000" />
       <workItem from="1474824461152" duration="4336000" />
       <workItem from="1474852559676" duration="2355000" />
-      <workItem from="1474938118994" duration="75890000" />
+      <workItem from="1474938118994" duration="79941000" />
     </task>
     <servers />
   </component>
@@ -315,7 +320,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89875000" />
+    <option name="totallyTimeSpent" value="93926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -323,7 +328,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10572917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21086957" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21086957" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21086957" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -360,7 +365,7 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -595,30 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template-edit-supplier.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-          <folding>
-            <element signature="e#7#48#0#PHP" expanded="true" />
-            <marker date="1475429957063" expanded="true" signature="1072:6911" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="1094:6904" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="1132:6835" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="1140:1155" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="1140:1576" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="1584:2053" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="2061:2534" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="2542:3570" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="3578:4502" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="4510:5472" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="5480:5704" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="5712:6463" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="6471:6703" ph="..." />
-            <marker date="1475429957063" expanded="true" signature="6711:6824" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/repository/mysql-connect.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -635,20 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="63" column="61" selection-start-line="63" selection-start-column="61" selection-end-line="63" selection-end-column="61" />
-          <folding>
-            <marker date="1475432315175" expanded="true" signature="806:1237" ph="INSERT INTO suppliers... " />
-            <marker date="1475432315175" expanded="true" signature="1824:1939" ph="SELECT Suppl... suppliers" />
-            <marker date="1475432315175" expanded="true" signature="2277:2318" ph="SELECT * FRO... suppliers" />
-            <marker date="1475432315175" expanded="true" signature="2277:2321" ph="SELECT * FRO... suppliers" />
-            <marker date="1475432315175" expanded="true" signature="3307:3970" ph="UPDATE suppl... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-119">
@@ -657,20 +624,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/template-admin-info-centre-table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="53" selection-start-line="10" selection-start-column="30" selection-end-line="11" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template-edit-supplier.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="72" column="134" selection-start-line="72" selection-start-column="134" selection-end-line="72" selection-end-column="134" />
+          <folding>
+            <element signature="e#7#48#0#PHP" expanded="true" />
+            <marker date="1475452041068" expanded="true" signature="1072:6907" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="1094:6900" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="1132:6831" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="1140:1155" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="1140:1576" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="1584:2053" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="2061:2534" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="2542:3566" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="3574:4498" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="4506:5468" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="5476:5700" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="5708:6459" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="6467:6699" ph="..." />
+            <marker date="1475452041068" expanded="true" signature="6707:6820" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/template-create-supplier.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="40" column="108" selection-start-line="40" selection-start-column="108" selection-end-line="40" selection-end-column="108" />
+        <state relative-caret-position="935">
+          <caret line="57" column="93" selection-start-line="57" selection-start-column="93" selection-end-line="57" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+        <state relative-caret-position="289">
+          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
           <folding>
-            <element signature="e#7#52#0#PHP" expanded="true" />
+            <marker date="1475452951903" expanded="true" signature="2062:2091" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="38" column="168" selection-start-line="38" selection-start-column="168" selection-end-line="38" selection-end-column="168" />
+          <folding>
+            <marker date="1475452952016" expanded="true" signature="806:1237" ph="INSERT INTO suppliers... " />
+            <marker date="1475452952016" expanded="true" signature="1824:1974" ph="SELECT Suppl... suppliers" />
+            <marker date="1475452952016" expanded="true" signature="2312:2353" ph="SELECT * FRO... suppliers" />
+            <marker date="1475452952016" expanded="true" signature="2312:2366" ph="SELECT * FRO... suppliers" />
+            <marker date="1475452952016" expanded="true" signature="3352:4015" ph="UPDATE suppl... " />
           </folding>
         </state>
       </provider>

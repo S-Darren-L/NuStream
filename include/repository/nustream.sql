@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2016 at 12:10 AM
+-- Generation Time: Oct 03, 2016 at 02:02 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -120,7 +120,7 @@ CREATE TABLE `staffs` (
 CREATE TABLE `suppliers` (
   `SupplierID` int(11) NOT NULL,
   `SupplierName` varchar(255) NOT NULL,
-  `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATIONHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
+  `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
   `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE') NOT NULL,
   `PricePerUnit` double NOT NULL,
   `FirstContactName` varchar(255) NOT NULL,
