@@ -97,7 +97,9 @@ get_header();
 			</tr>
 			<tr>
 				<td class="primary-title" colspan="3"><a>Sample Photos</a></td>
-				<td class="" colspan="12"></td>
+				<td class="" colspan="12">
+					<?php echo do_shortcode('[wordpress_file_upload singlebutton="true" uploadpath="uploads%pageid%%userid%" fitmode="responsive" createpath="true" duplicatespolicy="maintain both" uniquepattern="datetimestamp" webcam="true" webcammode="take photos"]');?>
+				</td>
 			</tr>
 		</table>
 		<input type="submit" value="Create" name="create_supplier">

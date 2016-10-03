@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="847f0742-072a-4356-be96-d93f766b63dd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/supplier-repository.php" afterPath="$PROJECT_DIR$/include/repository/supplier-repository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-admin-info-centre.php" afterPath="$PROJECT_DIR$/template-admin-info-centre.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-create-supplier.php" afterPath="$PROJECT_DIR$/template-create-supplier.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-edit-supplier.php" afterPath="$PROJECT_DIR$/template-edit-supplier.php" />
     </list>
     <ignored path="NuStream.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template-create-supplier.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="template-create-supplier.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template-create-supplier.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="57" column="93" selection-start-line="57" selection-start-column="93" selection-end-line="57" selection-end-column="93" />
+            <state relative-caret-position="378">
+              <caret line="100" column="266" selection-start-line="100" selection-start-column="266" selection-end-line="100" selection-end-column="266" />
               <folding />
             </state>
           </provider>
@@ -80,8 +76,8 @@
       <file leaf-file-name="template-admin-info-centre.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+            <state relative-caret-position="238">
+              <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
               <folding>
                 <marker date="1475452951903" expanded="true" signature="2062:2091" ph="..." />
               </folding>
@@ -115,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="supplier-repository.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="supplier-repository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="38" column="168" selection-start-line="38" selection-start-column="168" selection-end-line="38" selection-end-column="168" />
+            <state relative-caret-position="119">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <marker date="1475452952016" expanded="true" signature="806:1237" ph="INSERT INTO suppliers... " />
                 <marker date="1475452952016" expanded="true" signature="1824:1974" ph="SELECT Suppl... suppliers" />
@@ -155,10 +151,10 @@
         <option value="$PROJECT_DIR$/functions.php" />
         <option value="$PROJECT_DIR$/include/repository/mysql-connect.php" />
         <option value="$PROJECT_DIR$/template-admin-info-centre-table.php" />
-        <option value="$PROJECT_DIR$/template-create-supplier.php" />
         <option value="$PROJECT_DIR$/template-edit-supplier.php" />
         <option value="$PROJECT_DIR$/template-admin-info-centre.php" />
         <option value="$PROJECT_DIR$/include/repository/supplier-repository.php" />
+        <option value="$PROJECT_DIR$/template-create-supplier.php" />
       </list>
     </option>
   </component>
@@ -301,7 +297,7 @@
       <workItem from="1474764770509" duration="6806000" />
       <workItem from="1474824461152" duration="4336000" />
       <workItem from="1474852559676" duration="2355000" />
-      <workItem from="1474938118994" duration="79941000" />
+      <workItem from="1474938118994" duration="81632000" />
     </task>
     <servers />
   </component>
@@ -320,7 +316,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93926000" />
+    <option name="totallyTimeSpent" value="95617000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -656,28 +652,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template-create-supplier.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="57" column="93" selection-start-line="57" selection-start-column="93" selection-end-line="57" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding>
-            <marker date="1475452951903" expanded="true" signature="2062:2091" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="38" column="168" selection-start-line="38" selection-start-column="168" selection-end-line="38" selection-end-column="168" />
+        <state relative-caret-position="119">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <marker date="1475452952016" expanded="true" signature="806:1237" ph="INSERT INTO suppliers... " />
             <marker date="1475452952016" expanded="true" signature="1824:1974" ph="SELECT Suppl... suppliers" />
@@ -685,6 +663,24 @@
             <marker date="1475452952016" expanded="true" signature="2312:2366" ph="SELECT * FRO... suppliers" />
             <marker date="1475452952016" expanded="true" signature="3352:4015" ph="UPDATE suppl... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template-admin-info-centre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
+          <folding>
+            <marker date="1475452951903" expanded="true" signature="2062:2091" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template-create-supplier.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="100" column="266" selection-start-line="100" selection-start-column="266" selection-end-line="100" selection-end-column="266" />
+          <folding />
         </state>
       </provider>
     </entry>
