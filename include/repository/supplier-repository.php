@@ -19,14 +19,15 @@
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = myqlii_connection();
+        $result = mysqli_query($conn, $sql);
 
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        if($result === TRUE){
+            $sql = "SELECT LAST_INSERT_ID()";
+            $result = mysqli_query($conn, $sql);
         }
 
         mysqli_close($conn);
+        return $result;
     }
 
     // Get supplier Brief Info
@@ -89,14 +90,11 @@
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = myqlii_connection();
-
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
+        $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
+
+        return $result;
     }
 
 ?>

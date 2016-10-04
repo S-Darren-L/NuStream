@@ -281,6 +281,11 @@ div.info-box p {
 	height: 100%;
 }
 
+/* Upload File Template */
+.file-upload-holder .upload-file-field{
+	border-style:solid;
+	border-width:1px;
+}
 
 
 

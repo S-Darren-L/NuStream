@@ -43,7 +43,7 @@
 	// Create Supplier
     function create_supplier($createSupplierArray) {
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
-        create_supplier_request($createSupplierArray);
+        return create_supplier_request($createSupplierArray);
     }
 
     function get_supplier_brief_info($supplierType){
@@ -60,6 +60,6 @@
     // Edit Supplier
     function edit_supplier($updateSupplierArray) {
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
-        edit_supplier_request($updateSupplierArray);
+        return edit_supplier_request($updateSupplierArray);
     }
 ?>

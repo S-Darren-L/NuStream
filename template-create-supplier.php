@@ -22,7 +22,20 @@ get_header();
 			"paymentTerm" => $_POST['paymentTerm'],
 			"supportLocation" => $_POST['supportLocation']);
 
-		create_supplier($createSupplierArray);
+		$result = create_supplier($createSupplierArray);
+
+		$result_rows = [];
+		while($row = mysqli_fetch_array($result))
+		{
+			$result_rows[] = $row;
+		}
+		$supplierID = $result_rows[0]["LAST_INSERT_ID()"];
+		$url = get_home_url() . '/upload-files/?UType=Supplier&UID=' . $supplierID;
+
+		if(!is_null($result) && $result !== false)
+		{
+			echo ("<script>window.location.assign(' . $url');</script>");
+		}
 	}
 ?>
 <div style="overflow-x:auto;">
@@ -97,12 +110,11 @@ get_header();
 			</tr>
 			<tr>
 				<td class="primary-title" colspan="3"><a>Sample Photos</a></td>
-				<td class="" colspan="12">
-					<?php echo do_shortcode('[wordpress_file_upload singlebutton="true" uploadpath="uploads%pageid%%userid%" fitmode="responsive" createpath="true" duplicatespolicy="maintain both" uniquepattern="datetimestamp" webcam="true" webcammode="take photos"]');?>
-				</td>
+				<td class="" colspan="12"></td>
 			</tr>
 		</table>
 		<input type="submit" value="Create" name="create_supplier">
+<!--<?php //echo do_shortcode('[wordpress_file_upload singlebutton="true" uploadpath="uploads/suppliers/%userid%" fitmode="responsive" createpath="true" duplicatespolicy="maintain both" uniquepattern="datetimestamp" selectbutton="Upload File" webcam="true" webcammode="take photos"]');?>-->
 	</form>
 </div>
 <?php
