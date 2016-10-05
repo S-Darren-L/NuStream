@@ -62,4 +62,16 @@
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         return edit_supplier_request($updateSupplierArray);
     }
+
+    // Set File Path And Name
+    function set_file_path_and_name($uploaderType, $uploaderID, $uploadPath, $uploadName, $uploadType){
+        require_once(__DIR__ . '/include/repository/file-repository.php');
+        return set_file_path_and_name_request($uploaderType, $uploaderID, $uploadPath, $uploadName, $uploadType);
+    }
+
+    // Get All Images
+    function download_all_images($uploadPath){
+        require_once(__DIR__ . '/include/repository/file-repository.php');
+        return download_all_images_request($uploadPath);
+    }
 ?>

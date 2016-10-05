@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2016 at 02:02 AM
+-- Generation Time: Oct 05, 2016 at 07:55 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -46,6 +46,28 @@ CREATE TABLE `caseservices` (
   `CaseID` int(11) NOT NULL,
   `ServiceID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `FilePath` varchar(255) NOT NULL,
+  `FileName` varchar(255) NOT NULL,
+  `FileType` enum('IMAGE','TXT','DOC','PDF') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`FilePath`, `FileName`, `FileType`) VALUES
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475645973_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475645987_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646219_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646305_largepMPr27a80002b7f31260.jpg', 'IMAGE');
 
 -- --------------------------------------------------------
 
@@ -130,17 +152,22 @@ CREATE TABLE `suppliers` (
   `SupportLocation` varchar(255) NOT NULL,
   `HSTNumber` int(11) NOT NULL,
   `PaymentTerm` enum('MONTHLY','SEMIMONTHLY','OTHER') NOT NULL,
-  `SamplePhoto` varchar(255) NOT NULL
+  `FilePath` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `suppliers`
 --
 
-INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `SamplePhoto`) VALUES
+INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `FilePath`) VALUES
 (5, 'LLK', 'INSPECTION', 'BYSIZE', 234, 'Shuyang Liu', 7654, 'Shuyang Liu', 9876, 'fgh', 1234, 'MONTHLY', ''),
-(6, 'G', 'CLEANUP', 'BYCASE', 85, 'jk', 45, 'io', 15, 'bn', 95, 'OTHER', ''),
-(7, 'HG', 'STAGING', 'BYHOUR', 962, 'DFG', 24, 'UH', 3217, 'HGJ', 852, 'SEMIMONTHLY', '');
+(6, 'G', 'STAGING', 'BYCASE', 85, 'jk', 45, 'io', 15, 'bn', 95, 'OTHER', ''),
+(7, 'HG', 'STAGING', 'BYHOUR', 962, 'DFG', 24, 'UH', 3217, 'HGJ', 852, 'SEMIMONTHLY', ''),
+(8, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', 65, 'fdn', 53, 'fghj', 965, 'MONTHLY', ''),
+(9, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', 65, 'fdn', 53, 'fghj', 965, 'MONTHLY', ''),
+(10, 'dfghj', 'STAGING', 'BYSIZE', 7452, 'fghjk', 96521, 'ghnm', 952, 'ghj', 751, 'MONTHLY', ''),
+(11, 'dfg', 'STAGING', 'BYSIZE', 456, 'fgh', 6789, 'gh', 2345, 'dfg', 456, 'MONTHLY', ''),
+(73, '', '', '', 0, '', 0, '', 0, '', 0, '', 'wp-content/themes/NuStream/Upload/Supplier/73/');
 
 -- --------------------------------------------------------
 
@@ -158,6 +185,12 @@ CREATE TABLE `teams` (
 --
 
 --
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD UNIQUE KEY `FileName` (`FileName`);
+
+--
 -- Indexes for table `suppliers`
 --
 ALTER TABLE `suppliers`
@@ -172,7 +205,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
