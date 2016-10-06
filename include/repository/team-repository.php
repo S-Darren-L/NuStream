@@ -6,7 +6,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "SELECT AccountID, FirstName, LastName, TeamID, IsTeamLeader FROM accounts WHERE TeamID is NULL ORDER BY FirstName";
+        $sql = "SELECT AccountID, FirstName, LastName, TeamID, IsTeamLeader FROM accounts WHERE Position='AGENT' AND TeamID is NULL ORDER BY FirstName";
         $result = mysqli_query($conn, $sql);
 
         return $result;

@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="847f0742-072a-4356-be96-d93f766b63dd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.php" afterPath="$PROJECT_DIR$/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/file-repository.php" afterPath="$PROJECT_DIR$/include/repository/file-repository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/mysql-connect.php" afterPath="$PROJECT_DIR$/include/repository/mysql-connect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/supplier-repository.php" afterPath="$PROJECT_DIR$/include/repository/supplier-repository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-admin-info-centre.php" afterPath="$PROJECT_DIR$/template-admin-info-centre.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-create-supplier.php" afterPath="$PROJECT_DIR$/template-create-supplier.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template-edit-supplier.php" afterPath="$PROJECT_DIR$/template-edit-supplier.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/repository/team-repository.php" afterPath="$PROJECT_DIR$/include/repository/team-repository.php" />
     </list>
     <ignored path="NuStream.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template-create-account.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="template-create-account.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template-create-account.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+            <state relative-caret-position="289">
+              <caret line="17" column="68" selection-start-line="16" selection-start-column="16" selection-end-line="17" selection-end-column="68" />
               <folding>
                 <element signature="e#7#42#0#PHP" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -89,8 +82,8 @@
       <file leaf-file-name="template-create-team.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template-create-team.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="48" column="75" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="75" />
+            <state relative-caret-position="272">
+              <caret line="16" column="57" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="57" />
               <folding>
                 <element signature="e#7#39#0#PHP" expanded="true" />
               </folding>
@@ -152,17 +145,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="team-repository.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="team-repository.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/include/repository/team-repository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
+            <state relative-caret-position="136">
+              <caret line="8" column="117" selection-start-line="8" selection-start-column="117" selection-end-line="8" selection-end-column="117" />
               <folding>
-                <marker date="1475733392859" expanded="true" signature="231:304" ph="INSERT INTO files... " />
-                <marker date="1475733392859" expanded="true" signature="231:317" ph="SELECT Accou... accounts" />
-                <marker date="1475733392859" expanded="true" signature="231:344" ph="SELECT Accou... accounts" />
-                <marker date="1475733392859" expanded="true" signature="746:818" ph="SELECT First... accounts" />
-                <marker date="1475733392859" expanded="true" signature="1033:1172" ph="SELECT Accou... accounts" />
+                <marker date="1475736106514" expanded="true" signature="231:304" ph="INSERT INTO files... " />
+                <marker date="1475736106514" expanded="true" signature="231:319" ph="SELECT Accou... accounts" />
+                <marker date="1475736106514" expanded="true" signature="231:338" ph="SELECT Accou... accounts" />
+                <marker date="1475736106514" expanded="true" signature="231:365" ph="SELECT Accou... accounts" />
+                <marker date="1475736106514" expanded="true" signature="767:839" ph="SELECT First... accounts" />
+                <marker date="1475736106514" expanded="true" signature="1054:1193" ph="SELECT Accou... accounts" />
               </folding>
             </state>
           </provider>
@@ -200,9 +194,9 @@
         <option value="$PROJECT_DIR$/include/repository/mysql-connect.php" />
         <option value="$PROJECT_DIR$/include/repository/file-repository.php" />
         <option value="$PROJECT_DIR$/style.css" />
-        <option value="$PROJECT_DIR$/include/repository/team-repository.php" />
         <option value="$PROJECT_DIR$/template-create-team.php" />
         <option value="$PROJECT_DIR$/template-create-account.php" />
+        <option value="$PROJECT_DIR$/include/repository/team-repository.php" />
       </list>
     </option>
   </component>
@@ -381,7 +375,7 @@
       <workItem from="1474824461152" duration="4336000" />
       <workItem from="1474852559676" duration="2355000" />
       <workItem from="1474938118994" duration="109946000" />
-      <workItem from="1475725713440" duration="9439000" />
+      <workItem from="1475725713440" duration="10363000" />
     </task>
     <servers />
   </component>
@@ -400,7 +394,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133370000" />
+    <option name="totallyTimeSpent" value="134294000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -679,14 +673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/repository/mysql-connect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/repository/supplier-repository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
@@ -697,19 +683,6 @@
             <marker date="1475732002371" expanded="true" signature="2335:2376" ph="SELECT * FRO... suppliers" />
             <marker date="1475732002371" expanded="true" signature="2335:2389" ph="SELECT * FRO... suppliers" />
             <marker date="1475732002371" expanded="true" signature="3375:4038" ph="UPDATE suppl... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/repository/file-repository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="82" selection-start-line="25" selection-start-column="82" selection-end-line="25" selection-end-column="82" />
-          <folding>
-            <marker date="1475732350361" expanded="true" signature="666:795" ph="INSERT INTO files... " />
-            <marker date="1475732350361" expanded="true" signature="885:988" ph="UPDATE ${$ta... " />
-            <marker date="1475732350361" expanded="true" signature="1174:1229" ph="SELECT FileN... files" />
-            <marker date="1475732350361" expanded="true" signature="1174:1250" ph="SELECT FileN... files" />
           </folding>
         </state>
       </provider>
@@ -742,37 +715,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/repository/team-repository.php">
+    <entry file="file://$PROJECT_DIR$/template-create-account.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
+        <state relative-caret-position="289">
+          <caret line="17" column="68" selection-start-line="16" selection-start-column="16" selection-end-line="17" selection-end-column="68" />
           <folding>
-            <marker date="1475733392859" expanded="true" signature="231:304" ph="INSERT INTO files... " />
-            <marker date="1475733392859" expanded="true" signature="231:317" ph="SELECT Accou... accounts" />
-            <marker date="1475733392859" expanded="true" signature="231:344" ph="SELECT Accou... accounts" />
-            <marker date="1475733392859" expanded="true" signature="746:818" ph="SELECT First... accounts" />
-            <marker date="1475733392859" expanded="true" signature="1033:1172" ph="SELECT Accou... accounts" />
+            <element signature="e#7#42#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/repository/mysql-connect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/repository/file-repository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="82" selection-start-line="25" selection-start-column="82" selection-end-line="25" selection-end-column="82" />
+          <folding>
+            <marker date="1475732350361" expanded="true" signature="666:795" ph="INSERT INTO files... " />
+            <marker date="1475732350361" expanded="true" signature="885:988" ph="UPDATE ${$ta... " />
+            <marker date="1475732350361" expanded="true" signature="1174:1229" ph="SELECT FileN... files" />
+            <marker date="1475732350361" expanded="true" signature="1174:1250" ph="SELECT FileN... files" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template-create-team.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="48" column="75" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="75" />
+        <state relative-caret-position="272">
+          <caret line="16" column="57" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="57" />
           <folding>
             <element signature="e#7#39#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template-create-account.php">
+    <entry file="file://$PROJECT_DIR$/include/repository/team-repository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+        <state relative-caret-position="136">
+          <caret line="8" column="117" selection-start-line="8" selection-start-column="117" selection-end-line="8" selection-end-column="117" />
           <folding>
-            <element signature="e#7#42#0#PHP" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1475736106514" expanded="true" signature="231:304" ph="INSERT INTO files... " />
+            <marker date="1475736106514" expanded="true" signature="231:319" ph="SELECT Accou... accounts" />
+            <marker date="1475736106514" expanded="true" signature="231:338" ph="SELECT Accou... accounts" />
+            <marker date="1475736106514" expanded="true" signature="231:365" ph="SELECT Accou... accounts" />
+            <marker date="1475736106514" expanded="true" signature="767:839" ph="SELECT First... accounts" />
+            <marker date="1475736106514" expanded="true" signature="1054:1193" ph="SELECT Accou... accounts" />
           </folding>
         </state>
       </provider>
