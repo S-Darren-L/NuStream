@@ -1,6 +1,6 @@
 <?php
     // Open sql connection
-    function myqlii_connection(){
+    function mysqli_connection(){
         $conn = mysqli_connect("localhost", "root", "", "nustream");
         if ($conn->connect_error) {
             die('Connect Error (' . $conn->connect_errno . ') '

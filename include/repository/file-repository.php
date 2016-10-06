@@ -18,21 +18,17 @@
                 $result = false;
         }
 
-        $sql = "INSERT INTO files (FilePath, FileName, FileType)
-                            VALUES ('$uploadPath', '$uploadName', '$uploadType')";
-
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
-        $conn = myqlii_connection();
+        $conn = mysqli_connection();
+
+        $sql = "INSERT INTO files (FilePath, FileName, FileType)
+                            VALUES ('$uploadPath', '$uploadName', '$uploadType')";
         $result = mysqli_query($conn, $sql);
 
         if($result){
             $sql = "UPDATE $table SET FilePath = '$uploadPath'
                             WHERE SupplierID = '$uploaderID'";
-
-            // Require SQL Connection
-            require_once(__DIR__ . '/mysql-connect.php');
-            $conn = myqlii_connection();
             $result = mysqli_query($conn, $sql);
         }
         return $result;
@@ -44,7 +40,7 @@
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
-        $conn = myqlii_connection();
+        $conn = mysqli_connection();
         $result = mysqli_query($conn, $sql);
 
         return $result;

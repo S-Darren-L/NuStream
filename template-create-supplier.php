@@ -1,7 +1,7 @@
 <?php
 
 /*
-Template Name: Create Supplier Layout
+Template Name: Create Supplier
 */
 
 get_header();

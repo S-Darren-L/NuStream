@@ -320,7 +320,44 @@ div.info-box p {
 	width: 100%;
 }
 
+/* Create Team Template */
+.team-temp-table {
+	border-collapse:collapse;
+	border-spacing:0;
+	width: 30%;
+}
 
+.team-temp-table td {
+	font-family:Arial, sans-serif;
+	font-size:17px;
+	padding:1px 1px;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	word-break:normal;
+	height: 100%;
+}
+
+.team-temp-table input {
+	border-style: none;
+	vertical-align: center;
+}
+
+.team-temp-table tr .title {
+	width: 40%;
+}
+
+.team-temp-table tr .content {
+	width: 60%;
+}
+
+.team-temp-table .input{
+	width: 100%;
+}
+
+.team-temp-table .drop-down{
+	width: 100%;
+}
 
 
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Template Name: Admin Info Centre Layout
+Template Name: Admin Info Centre
 */
 
 get_header();

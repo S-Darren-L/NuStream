@@ -74,4 +74,16 @@
         require_once(__DIR__ . '/include/repository/file-repository.php');
         return download_all_images_request($uploadPath);
     }
+
+    // Get All Agent Team Member Info
+    function get_all_team_member(){
+        require_once(__DIR__ . '/include/repository/team-repository.php');
+        return get_all_team_member_request();
+    }
+
+    // Create Team
+    function create_team($createTeamArray){
+        require_once(__DIR__ . '/include/repository/team-repository.php');
+        return create_team_request($createTeamArray);
+    }
 ?>
