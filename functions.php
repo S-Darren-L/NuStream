@@ -75,15 +75,51 @@
         return download_all_images_request($uploadPath);
     }
 
-    // Get All Agent Team Member Info
-    function get_all_team_member(){
-        require_once(__DIR__ . '/include/repository/team-repository.php');
-        return get_all_team_member_request();
-    }
-
     // Create Team
     function create_team($createTeamArray){
         require_once(__DIR__ . '/include/repository/team-repository.php');
         return create_team_request($createTeamArray);
+    }
+
+    // Get Team ID By Tam Leader
+    function get_team_id_by_team_leader($teamLeaderID){
+        require_once(__DIR__ . '/include/repository/team-repository.php');
+        return get_team_id_by_team_leader_request($teamLeaderID);
+    }
+
+    // Get All Agent Team Member Info
+    function get_all_team_leaders(){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return get_all_team_leaders_request();
+    }
+
+    // Create Account
+    function create_agent_account($createAccountArray){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return create_agent_account_request($createAccountArray);
+    }
+
+    // Update Account Team ID
+    function update_account_team_id($updateAccountTeamIdArray){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return update_account_team_id_request($updateAccountTeamIdArray);
+    }
+
+    // Update Account
+    function update_account($updateAccountArray){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return update_account_request($updateAccountArray);
+    }
+
+    // Get Agent Account
+    function get_agent_account($accountID){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return get_agent_account_request($accountID);
+    }
+
+    // Deactivate Account
+    function deactivate_account($deactivateAccountArray){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return deactivate_account_request($deactivateAccountArray);
     }
 ?>

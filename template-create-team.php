@@ -8,7 +8,7 @@ get_header();
 ?>
 
 <?php
-    $getAllAccountsResult = get_all_team_member();
+    $getAllAccountsResult = get_all_team_leaders();
 
     if($getAllAccountsResult === null)
         echo 'result is null';
@@ -16,7 +16,6 @@ get_header();
     $accountsResult = [];
     while($row = mysqli_fetch_array($getAllAccountsResult))
     {
-//        echo "row: " . var_dump($row) . " ";
         $accountsResult[] = $row;
     }
 

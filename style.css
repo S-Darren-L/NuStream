@@ -359,6 +359,38 @@ div.info-box p {
 	width: 100%;
 }
 
+/* Create Team Template */
+.account-temp-table {
+	border-collapse:collapse;
+	border-spacing:0;
+	width: 40%;
+}
+
+.account-temp-table td {
+	font-family:Arial, sans-serif;
+	font-size:17px;
+	padding:1px 1px;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	word-break:normal;
+	height: 100%;
+}
+
+.account-temp-table input {
+	border-style: none;
+	vertical-align: center;
+}
+
+.account-temp-table .input{
+	width: 100%;
+	height: 100%;
+}
+
+.account-temp-table .drop-down{
+	width: 100%;
+	height: 100%;
+}
 
 
 

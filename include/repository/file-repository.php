@@ -31,6 +31,8 @@
                             WHERE SupplierID = '$uploaderID'";
             $result = mysqli_query($conn, $sql);
         }
+
+        mysqli_close($conn);
         return $result;
     }
 
@@ -43,6 +45,7 @@
         $conn = mysqli_connection();
         $result = mysqli_query($conn, $sql);
 
+        mysqli_close($conn);
         return $result;
     }
 ?>

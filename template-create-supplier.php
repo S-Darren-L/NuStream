@@ -114,7 +114,6 @@ get_header();
 			</tr>
 		</table>
 		<input type="submit" value="Create" name="create_supplier">
-<!--<?php //echo do_shortcode('[wordpress_file_upload singlebutton="true" uploadpath="uploads/suppliers/%userid%" fitmode="responsive" createpath="true" duplicatespolicy="maintain both" uniquepattern="datetimestamp" selectbutton="Upload File" webcam="true" webcammode="take photos"]');?>-->
 	</form>
 </div>
 <?php
