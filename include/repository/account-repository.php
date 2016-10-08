@@ -121,6 +121,8 @@
         $password = mysqli_real_escape_string($conn, $password);
 
         $password = md5($password);
+        //temp
+        $password="";
 
         $sql = "SELECT * FROM accounts WHERE Email='$email' && Password='$password' && IsActivate=TRUE LIMIT 1";
         $result = mysqli_query($conn, $sql);
