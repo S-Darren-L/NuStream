@@ -122,4 +122,10 @@
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return deactivate_account_request($deactivateAccountArray);
     }
+
+    // Log in
+    function login($loginArray){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return login_request($loginArray);
+    }
 ?>

@@ -107,4 +107,26 @@
         mysqli_close($conn);
         return $result;
     }
+
+    // Log in
+    function login_request($loginArray){
+        $email = $loginArray['email'];
+        $password = $loginArray['password'];
+
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();;
+
+        $email = mysqli_real_escape_string($conn, $email);
+        $password = mysqli_real_escape_string($conn, $password);
+
+        $password = md5($password);
+
+        $sql = "SELECT * FROM accounts WHERE Email='$email' && Password='$password' && IsActivate=TRUE LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+
+    }
 ?>
