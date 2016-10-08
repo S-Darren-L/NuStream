@@ -8,7 +8,10 @@ get_header();
 ?>
 
 <?php
-    //temp, should get account id from session
+    // Start Session
+    session_start();
+
+//temp, should get account id from session
     $accountID = '3';
     // Init Date
     init_date($accountID);

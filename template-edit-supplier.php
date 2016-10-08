@@ -7,7 +7,10 @@ Template Name: Edit Supplier
 get_header();
 ?>
 <?php
-	// Get Supplier ID
+	// Start Session
+	session_start();
+
+// Get Supplier ID
 	$supplierID = $_GET['SID'];
 
 	// Get Supplier Detail

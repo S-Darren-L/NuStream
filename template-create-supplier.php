@@ -7,7 +7,10 @@ Template Name: Create Supplier
 get_header();
 ?>
 <?php
-	if(isset($_POST['create_supplier']))
+	// Start Session
+	session_start();
+
+if(isset($_POST['create_supplier']))
 	{
 		$createSupplierArray = array (
 			"supplierName" => $_POST['supplierName'],

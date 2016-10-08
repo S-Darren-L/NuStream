@@ -7,11 +7,37 @@ Template Name: Home Page
 ?>
 
 <?php
-    session_status();
+    // Start Session
+    session_start();
+
+    // Set Cookie Name
+    $cookieName = 'userLogin';
+
+    // Check Cookie
+    if(isset($_COOKIE[$cookieName])){
+        // Check If User Logged In
+        if(!isset($_SESSION['AccountID'])){
+            // Get Session Array From Cookie
+            $sessionArray = json_decode(stripslashes($_COOKIE[$cookieName]), true);
+
+            // Set Session
+            setSession($sessionArray);
+        }
+        // Navigate To User Home Page
+        navigateToUserHomePage();
+    }
+    else{
+        if(isset($_SESSION['AccountID'])){
+            // Navigate To User Home Page
+            navigateToUserHomePage();
+        }
+    }
+
 
     if(isset($_POST['login'])){
         $email = strip_tags($_POST['email']);
-//        $password = strip_tags($_POST['password']);
+        $password = strip_tags($_POST['password']);
+        $rememberMe = $_POST['remember_me'];
 
         $email = stripslashes($email);
         $password = stripslashes($password);
@@ -25,28 +51,62 @@ Template Name: Home Page
         $loginData = mysqli_fetch_array($loginResult);
         $isLoginFailed= is_null($loginData);
         if(!$isLoginFailed) {
-            $_SESSION['accountID'] = $row['AccountID'];
-            $_SESSION['firstName'] = $row['firstName'];
-            $_SESSION['lastName'] = $row['LastName'];
-            $_SESSION['accountID'] = $row['AccountID'];
-            $_SESSION['teamID'] = $row['TeamID'];
-            $_SESSION['accountPosition'] = 'ACCOUNTANT';
-            //temp
-//            $_SESSION['accountPosition'] = $row['AccountPosition'];
-            $_SESSION['isTeamLeader'] = $row['IsTeamLeader'];
-            if ($_SESSION['accountPosition'] === 'ADMIN') {
+            // Set Session
+            setSession($loginData);
+
+            // Set Session Array
+            $sessionArray = array(
+                "accountID" => $_SESSION['AccountID'],
+                "firstName" => $_SESSION['FirstName'],
+                "lastName" => $_SESSION['LastName'],
+                "teamID" => $_SESSION['TeamID'],
+                "accountPosition" => $_SESSION['AccountPosition'],
+                "isTeamLeader" => $_SESSION['IsTeamLeader']
+            );
+
+            // Set Cookie If Remember User
+            if($rememberMe){
+                setLoginCookie($sessionArray);
+            }
+            navigateToUserHomePage();
+        }
+    }
+
+    // Set Session
+    function setSession($sessionArray){
+        $_SESSION['AccountID'] = $sessionArray['AccountID'];
+        $_SESSION['FirstName'] = $sessionArray['FirstName'];
+        $_SESSION['LastName'] = $sessionArray['LastName'];
+        $_SESSION['TeamID'] = $sessionArray['TeamID'];
+        $_SESSION['AccountPosition'] = 'ACCOUNTANT';
+        //temp
+//            $_SESSION['AccountPosition'] = $sessionArray['AccountPosition'];
+        $_SESSION['IsTeamLeader'] = $sessionArray['IsTeamLeader'];
+    }
+
+    // Set Cookie
+    function setLoginCookie($sessionArray){
+        // Set Cookie
+        global $cookieName;
+        $cookieValue = json_encode($sessionArray);
+        $expiry = time() + 60*60*24*180;
+        $setCookieResult = setcookie($cookieName, $cookieValue, $expiry, '/', $_SERVER['SERVER_NAME'], false, false);
+    }
+
+    // Navigate
+    function navigateToUserHomePage(){
+        if ($_SESSION['AccountPosition'] === 'ADMIN') {
 //                $url = get_home_url() . '/admin-file-management/';
 //                echo("<script>window.location.assign('$url');</script>");
-            } else if ($_SESSION['accountPosition'] === 'AGENT') {
+        } else if ($_SESSION['AccountPosition'] === 'AGENT') {
 //                $url = get_home_url() . '/my-cases/';
 //                echo("<script>window.location.assign('$url');</script>");
-            }else if ($_SESSION['accountPosition'] === 'ACCOUNTANT') {
-                $url = get_home_url() . '/accountant-file-management/';
-                echo("<script>window.location.assign('$url');</script>");
-            }else if ($_SESSION['accountPosition'] === 'SUPERUSER') {
+        }else if ($_SESSION['AccountPosition'] === 'ACCOUNTANT') {
+            $url = get_home_url() . '/accountant-file-management/';
+            echo("<script>window.location.assign('$url');</script>");
+        }else if ($_SESSION['AccountPosition'] === 'SUPERUSER') {
 //                $url = get_home_url() . '/super-user-home-page/';
 //                echo("<script>window.location.assign('$url');</script>");
-            }
         }
     }
 ?>
@@ -243,7 +303,7 @@ Template Name: Home Page
             </div>
             <div class="checkbox">
                 <label>
-                    <input id="login-remember" type="checkbox" value="1">Remeber me
+                    <input id="login-remember" type="checkbox" value="1" name="remember_me">Remeber me
                 </label>
             </div>
             <input type="submit" value="Login" name="login" class="btn btn-primary btn-block">

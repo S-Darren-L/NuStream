@@ -8,7 +8,10 @@ get_header();
 ?>
 
 <?php
-    // Get Upload Type
+    // Start Session
+    session_start();
+
+// Get Upload Type
     $uploaderType = $_GET['UType'];
     $uploaderID = $_GET['UID'];
     $uploadPath = "wp-content/themes/NuStream/Upload/$uploaderType/$uploaderID/";

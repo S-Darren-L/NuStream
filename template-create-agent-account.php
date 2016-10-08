@@ -8,7 +8,10 @@ get_header();
 ?>
 
 <?php
-    $getAllAccountsResult = get_all_team_leaders();
+    // Start Session
+session_start();
+
+$getAllAccountsResult = get_all_team_leaders();
 
     if($getAllAccountsResult === null)
         echo 'result is null';
