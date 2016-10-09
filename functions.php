@@ -51,7 +51,7 @@
     //                $url = get_home_url() . '/my-cases/';
     //                echo("<script>window.location.assign('$url');</script>");
         }else if ($_SESSION['AccountPosition'] === 'ACCOUNTANT') {
-            $url = get_home_url() . '/accountant-file-management/';
+            $url = get_home_url() . '/accountant-files-management/';
             echo("<script>window.location.assign('$url');</script>");
         }else if ($_SESSION['AccountPosition'] === 'SUPERUSER') {
     //                $url = get_home_url() . '/super-user-home-page/';

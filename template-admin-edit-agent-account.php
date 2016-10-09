@@ -4,7 +4,7 @@
     session_start();
 
     /*
-    Template Name: Edit Agent Account
+    Template Name: Admin Edit Agent Account
     */
 
     get_header();

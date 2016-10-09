@@ -4,7 +4,7 @@
     session_start();
 
     /*
-    Template Name: Accountant File Management
+    Template Name: Accountant Files Management
     */
 
 ?>
@@ -12,7 +12,7 @@
 <?php
 
     // Set Navigation URL
-    $filesURL = get_home_url() . '/accountant-file-management';
+    $filesURL = get_home_url() . '/accountant-files-management';
     $infoCentreURL = get_home_url() . '/admin-info-centre';
 
     // Check Session Exist

@@ -4,7 +4,7 @@
 	session_start();
 
 	/*
-	Template Name: Edit Supplier
+	Template Name: Admin Edit Supplier
 	*/
 
 	get_header();

@@ -4,7 +4,7 @@
 	session_start();
 
 	/*
-	Template Name: Create Supplier
+	Template Name: Admin Create Supplier
 	*/
 
 	get_header();

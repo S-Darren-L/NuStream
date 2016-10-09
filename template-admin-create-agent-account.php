@@ -4,19 +4,19 @@
     session_start();
 
     /*
-    Template Name: Create Agent Account
+    Template Name: Admin Create Agent Account
     */
 
 ?>
 
 <?php
     // Set Navigation URL
-    $filesURL = get_home_url() . '/admin-info-centre/';
-    $createSupplierURL = get_home_url() . '/admin-info-centre/';
-    $updateSupplierURL = get_home_url() . '/admin-info-centre/';
-    $createMemberURL = get_home_url() . '/create-account/';
-    $memberInfoURL = get_home_url() . '/admin-info-centre/';
-    $infoCenterURL = get_home_url() . '/admin-info-centre/';
+    $filesURL = get_home_url() . '/admin-files-management/';
+    $createSupplierURL = get_home_url() . '/admin-create-supplier';
+    $updateSupplierURL = get_home_url() . '/admin-edit-supplier';
+    $createMemberURL = get_home_url() . '/admin-create-agent-account';
+    $memberInfoURL = get_home_url() . '/admin-member-info';
+    $infoCenterURL = get_home_url() . '/admin-info-centre';
 
     // Check Session Exist
     if(!isset($_SESSION['AccountID'])){
@@ -78,7 +78,7 @@
         return $data;
     }
 
-    // Create Team
+    // Create Account
     if(isset($_POST['create_account']) && date_validated() === true) {
         // Generate Password
         $password = generate_password();
@@ -125,12 +125,12 @@
             $accountID = $result_rows[0]["LAST_INSERT_ID()"];
 
             // Send User Password By Email
-            if($accountID !== null){
+            if(!is_null($accountID)){
                 $sendEmailResult = send_user_password($email, $firstName, $lastName,$password);
             }
 
             // If Is Team Leader, Create Team
-            if($isTeamLeader && $accountID !== null){
+            if($isTeamLeader && !is_null($accountID)){
                 $createTeamArray = array (
                     "teamName" => $firstName . " " . $lastName,
                     "teamLeaderID" => $accountID
@@ -146,12 +146,18 @@
             }
 
             // If Is Team Leader, Update Account
-            if($isTeamLeader && $newTeamID !== null && $accountID !== null) {
+            if($isTeamLeader && !is_null($newTeamID) && !is_null($accountID)) {
                 $updateAccountTeamIdArray = array(
                     "accountID" => $accountID,
                     "teamID" => $newTeamID
                 );
                 $updateAccountResult = update_account_team_id($updateAccountTeamIdArray);
+            }
+
+            // Navigate
+            if(!is_null($accountID)){
+                $url = get_home_url() . '/member-info';
+                echo("<script>window.location.assign('$url');</script>");
             }
         }
     }

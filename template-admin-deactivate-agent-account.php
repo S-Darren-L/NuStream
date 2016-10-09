@@ -4,7 +4,7 @@
     session_start();
 
     /*
-    Template Name: Deactivate Agent Account
+    Template Name: Admin Deactivate Agent Account
     */
 
     get_header();
