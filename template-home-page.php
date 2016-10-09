@@ -34,16 +34,11 @@
 
 
     if(isset($_POST['login'])){
-        $email = strip_tags($_POST['email']);
-        $password = strip_tags($_POST['password']);
         $rememberMe = $_POST['remember_me'];
 
-        $email = stripslashes($email);
-        $password = stripslashes($password);
-
         $loginArray = array(
-            "email" => $email,
-            "password" => "",
+            "email" => $_POST['email'],
+            "password" => $_POST['password'],
         );
 
         $loginResult = login($loginArray);

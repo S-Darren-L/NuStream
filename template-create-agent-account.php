@@ -26,10 +26,15 @@
 
     // Create Team
     if(isset($_POST['create_account'])) {
-        $isTeamLeader = $_POST['isTeamLeader'] == 'TRUE' ? true : false;
-        $teamLeaderID = $_POST['teamLeaderID'];
+        // Generate Password
+        $password = generate_password();
+        echo "random password: " . $password . " ";
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
+        $teamLeaderID = $_POST['teamLeaderID'];
+        $contactNumber = $_POST['contactNumber'];
+        $email = $_POST['email'];
+        $isTeamLeader = $_POST['isTeamLeader'] == 'TRUE' ? true : false;
 
         // If Is Not Team Leader, Get Team ID
         if(!$isTeamLeader){
@@ -37,13 +42,15 @@
             $teamID = mysqli_fetch_array($getTeamIDResult)['TeamID'];
         }
 
+
         // Create Account
         $createAccountArray = array (
+            "password" => $password,
             "firstName" => $firstName,
             "lastName" => $lastName,
             "teamID" => $teamID,
-            "contactNumber" => $_POST['contactNumber'],
-            "email" => $_POST['email'],
+            "contactNumber" => $contactNumber,
+            "email" => $email,
             "isTeamLeader" => $isTeamLeader
         );
 
@@ -54,6 +61,11 @@
             $result_rows[] = $row;
         }
         $accountID = $result_rows[0]["LAST_INSERT_ID()"];
+
+        // Send User Password By Email
+        if($accountID !== null){
+            $sendEmailResult = send_user_password($email, $firstName, $lastName,$password);
+        }
 
         // If Is Team Leader, Create Team
         if($isTeamLeader && $accountID !== null){

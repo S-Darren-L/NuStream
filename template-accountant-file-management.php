@@ -21,6 +21,8 @@
         redirectToLogin();
     }
 
+    $UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
+
     if(isset($_GET['logout'])) {
         // Destroy Session
         // Unset all of the session variables.
@@ -157,8 +159,8 @@
             <img src="img/logo1.png"/>
         </div>
         <div class="userNamePart">
-            <h4 id="userName"> Joseph Joe </h4>
-            <h8 id="position" style="font-size:10px;">Accountant</h8>
+            <h4 id="userName"><?php echo $UserName;?></h4>
+            <h8 id="position" style="font-size:10px;"><?php echo $_SESSION['AccountPosition'];?></h8>
         </div>
         <ul class="nav nav-pills nav-stacked">
 

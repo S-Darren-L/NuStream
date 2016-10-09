@@ -37,6 +37,55 @@
         }
     }
 
+    // Generate Password
+    function generate_password(){
+        $length = 8;
+        $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+        $str = '';
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        if ($max < 1) {
+            throw new Exception('$keyspace must be at least two characters long');
+        }
+        for ($i = 0; $i < $length; ++$i) {
+            $str .= $keyspace[random_int(0, $max)];
+        }
+        return $str;
+    }
+
+    // Encrypt Email
+    function encrypt_email($conn, $email){
+        $email = encrypt($conn, $email);
+        return $email;
+    }
+
+    // Encrypt Password
+    function encrypt_password($conn, $password){
+        $password = encrypt($conn, $password);
+        $password = md5($password);
+        return $password;
+    }
+
+    // Encrypt
+    function encrypt($conn, $data){
+        $data = strip_tags($data);
+        $data = stripslashes($data);
+        $data = mysqli_real_escape_string($conn, $data);
+        return $data;
+    }
+
+    // Send User Password By Email
+    function send_user_password($email, $firstName, $lastName,$password){
+        $to = $email;
+        $subject = 'NuStream Account Password';
+        $message = 'Hello ' . $firstName . " " . $lastName . ", \r\n" .
+            "You have registered with NuStream successfully. Your Password is " . $password .
+            ". To change your password, visit the following address: http://www.nustreamtoronto.com/ \r\n";
+        $headers = 'From: NuStream';
+
+        $sendEmailResult = mail($to, $subject, $message, $headers);
+        return $sendEmailResult;
+    }
+
     // Set Style File
     function nustream_resources(){
         wp_enqueue_style('style', get_stylesheet_uri());

@@ -15,6 +15,7 @@
 
     // Create Account
     function create_agent_account_request($createAccountArray){
+        $password = $createAccountArray['password'];
         $firstName = $createAccountArray['firstName'];
         $lastName = $createAccountArray['lastName'];
         $teamID = $createAccountArray['teamID'];
@@ -22,14 +23,17 @@
         $contactNumber = $createAccountArray['contactNumber'];
         $email = $createAccountArray['email'];
         $isTeamLeader = $createAccountArray['isTeamLeader'];
-
-        $sql = "INSERT INTO accounts (FirstName, LastName, TeamID, AccountPosition, ContactNumber, Email, IsTeamLeader)
-                        VALUES ('$firstName', '$lastName', '$teamID', '$accountPosition', '$contactNumber', '$email', '$isTeamLeader')";
-        echo $sql;
+        $isTeamLeader = (int)$isTeamLeader;
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
+
+        $password = encrypt_password($conn, $password);
+
+        $sql = "INSERT INTO accounts (Password, FirstName, LastName, TeamID, AccountPosition, ContactNumber, Email, IsTeamLeader)
+                        VALUES ('$password', '$firstName', '$lastName', '$teamID', '$accountPosition', '$contactNumber', '$email', '$isTeamLeader')";
+
         $result = mysqli_query($conn, $sql);
 
         if($result === TRUE){
@@ -110,19 +114,12 @@
 
     // Log in
     function login_request($loginArray){
-        $email = $loginArray['email'];
-        $password = $loginArray['password'];
-
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
-        $conn = mysqli_connection();;
+        $conn = mysqli_connection();
 
-        $email = mysqli_real_escape_string($conn, $email);
-        $password = mysqli_real_escape_string($conn, $password);
-
-        $password = md5($password);
-        //temp
-        $password="";
+        $email = encrypt_email($conn, $loginArray['email']);
+        $password = encrypt_password($conn, $loginArray['password']);
 
         $sql = "SELECT * FROM accounts WHERE Email='$email' && Password='$password' && IsActivate=TRUE LIMIT 1";
         $result = mysqli_query($conn, $sql);
