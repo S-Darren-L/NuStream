@@ -32,6 +32,7 @@
         }
     }
 
+    // Set URL
     $homeURL = get_home_url();
     $mainPath = $homeURL . "/wp-content/themes/NuStream/";
     $logoImagePath = $mainPath . "img/logo.png";

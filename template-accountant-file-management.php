@@ -10,11 +10,10 @@
 ?>
 
 <?php
-    // Set Cookie Name
-    $cookieName = 'userLogin';
 
     // Set Navigation URL
-    $infoCentreURL = get_home_url() . '/admin-info-centre/';
+    $filesURL = get_home_url() . '/accountant-file-management';
+    $infoCentreURL = get_home_url() . '/admin-info-centre';
 
     // Check Session Exist
     if(!isset($_SESSION['AccountID'])){
@@ -23,22 +22,9 @@
 
     $UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
 
+    // Logout User
     if(isset($_GET['logout'])) {
-        // Destroy Session
-        // Unset all of the session variables.
-        $_SESSION = array();
-
-        // Finally, destroy the session.
-        session_destroy();
-
-        // Destroy Cookie
-        if(isset($_COOKIE[$cookieName])){
-            $expiry = time() - 60*60*24*180;
-            $deleteCookie = setcookie($cookieName, "", $expiry, '/', $_SERVER['SERVER_NAME'], false, false);
-        }
-
-        // Redirect To Login
-        redirectToLogin();
+        logoutUser();
     }
 
 ?>
@@ -163,8 +149,7 @@
             <h8 id="position" style="font-size:10px;"><?php echo $_SESSION['AccountPosition'];?></h8>
         </div>
         <ul class="nav nav-pills nav-stacked">
-
-            <li class="active"><a href="#"  style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
+            <li class="active"><?php echo '<a href="' . $filesURL . '"  style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
             <li>><?php echo '<a href="' . $infoCentreURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Info Center</a></li>
             <li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Member Info</a></li>
             <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>

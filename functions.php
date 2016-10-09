@@ -20,6 +20,28 @@
         echo("<script>window.location.assign('$url');</script>");
     }
 
+    //
+    function logoutUser(){
+        // Set Cookie Name
+        $cookieName = 'userLogin';
+
+        // Destroy Session
+        // Unset all of the session variables.
+        $_SESSION = array();
+
+        // Finally, destroy the session.
+        session_destroy();
+
+        // Destroy Cookie
+        if(isset($_COOKIE[$cookieName])){
+            $expiry = time() - 60*60*24*180;
+            $deleteCookie = setcookie($cookieName, "", $expiry, '/', $_SERVER['SERVER_NAME'], false, false);
+        }
+
+        // Redirect To Login
+        redirectToLogin();
+    }
+
     // Navigate
     function navigateToUserHomePage(){
         if ($_SESSION['AccountPosition'] === 'ADMIN') {
