@@ -15,6 +15,7 @@
     $uploaderType = $_GET['UType'];
     $uploaderID = $_GET['UID'];
     $uploadPath = "wp-content/themes/NuStream/Upload/$uploaderType/$uploaderID/";
+    $homeURL = get_home_url();
 
     // Upload File
     if(isset($_POST['upload_button'])){
@@ -45,15 +46,15 @@
     }
 
     // Gat All Files
-    $downloadAllImagesResult = download_all_images($uploadPath);
+    $downloadAllFilesResult = download_all_files($uploadPath);
 
-    if($downloadAllImagesResult === null)
+    if($downloadAllFilesResult === null)
         echo 'result is null';
 
-    $$downloadAllImagesResult_rows = [];
-    while($row = mysqli_fetch_array($downloadAllImagesResult))
+    $$downloadAllFilesResult_rows = [];
+    while($row = mysqli_fetch_array($downloadAllFilesResult))
     {
-        $downloadAllImagesResult_rows[] = $row;
+        $downloadAllFilesResult_rows[] = $row;
     }
 ?>
 
@@ -68,14 +69,15 @@
 <div class="gallery-container">
     <div class="file-gallery cf">
         <?php
-        $homeURL = get_home_url();
-        foreach($downloadAllImagesResult_rows as $imageFileRow):
-            $filePath = $imageFileRow['FileName'];
-            $fileURL = $homeURL . "/" . $uploadPath . $filePath;
-            echo '<div class="file-gallery-item">';
+        if(!is_null($downloadAllFilesResult_rows)){
+            foreach($downloadAllFilesResult_rows as $fileRow):
+                $filePath = $fileRow['FileName'];
+                $fileURL = $homeURL . "/" . $uploadPath . $filePath;
+                echo '<div class="file-gallery-item">';
                 echo '<img src="'. $fileURL .'">';
-            echo '</div>';
-        endforeach; ?>
+                echo '</div>';
+            endforeach;}
+        ?>
     </div>
 </div>
 <?php

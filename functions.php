@@ -143,9 +143,9 @@
     }
 
     // Get All Images
-    function download_all_images($uploadPath){
+    function download_all_files($uploadPath){
         require_once(__DIR__ . '/include/repository/file-repository.php');
-        return download_all_images_request($uploadPath);
+        return download_all_files_request($uploadPath);
     }
 
     // Create Team

@@ -32,6 +32,11 @@
         }
     }
 
+    $homeURL = get_home_url();
+    $mainPath = $homeURL . "/wp-content/themes/NuStream/";
+    $logoImagePath = $mainPath . "img/logo.png";
+    $logoSImagePath = $mainPath . "img/logo-s.png";
+    $backgroundImagePath = $mainPath . "img/background.jpg";
 
     if(isset($_POST['login'])){
         $rememberMe = $_POST['remember_me'];
@@ -106,7 +111,7 @@
         margin: 0px !important;
         width:100%;
         height: 480px;
-        background-image: url("img/background.jpg") ;
+        background-image: url("<?php echo $backgroundImagePath; ?>") ;
 
     }
     .middlePart img{width:100%;}
@@ -117,7 +122,7 @@
         width: 300px;
         height: 300px;
         padding:30px;
-        margin-right: 40px;
+        margin-right: 200px;
         float:right;
         background-color: white;
     }
@@ -131,7 +136,7 @@
         position: relative;
     }
     .logo {
-        margin-left: 30px;
+        margin-left: 200px;
         margin-top: 10px;
         height: 100px;
         width: 150px;
@@ -145,6 +150,7 @@
         padding-top: 50px;
         text-align: right;
         float: right;
+        margin-right: 200px;
         letter-spacing: 1px;
         display: inline;
     }
@@ -183,11 +189,10 @@
         display: inline;
     }
     .bottomPart {
-        position:fixed;
         bottom:0px;
         left:0;
         right:0;
-        margin:0 auto;
+        margin:10px auto;
         text-align: center;
     }
 
@@ -195,7 +200,6 @@
         color: red;
         font-size: 80%;
     }
-
 
     /* ----------- iPhone 5 and 5S ----------- */
 
@@ -260,7 +264,9 @@
 <body>
 <div class="topPart row">
     <div class="logo">
-        <img src="img/logo.png"/>
+        <?php
+            echo '<img src="' . $logoImagePath . '"/>';
+        ?>
     </div>
     <div class="contact">
         <h6 style="display:inline;"><strong>Sales:</strong></h6><h4 style="display:inline;"><strong>416-333-1111</strong></h4> | <h5 style="display:inline;"><strong>Office:</strong></h5><h4 style="display:inline;"><strong>647-795-1188</strong></h4>
@@ -301,7 +307,9 @@
 </div>
 <div class="bottomPart row">
     <div class="logos">
-        <img src="img/logo-s.png">
+        <?php
+            echo '<img src="' . $logoSImagePath . '">';
+        ?>
     </div>
     <p class="copyright">@copyright @2016 Darren Liu All Rights Reserved</p>
 </div>
