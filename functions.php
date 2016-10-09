@@ -77,9 +77,10 @@
     function send_user_password($email, $firstName, $lastName,$password){
         $to = $email;
         $subject = 'NuStream Account Password';
-        $message = 'Hello ' . $firstName . " " . $lastName . ", \r\n" .
+        $message = 'Hello ' . $firstName . " " . $lastName . ", \r\n \r\n" .
             "You have registered with NuStream successfully. Your Password is " . $password .
-            ". To change your password, visit the following address: http://www.nustreamtoronto.com/ \r\n";
+            ". To change your password, visit the following address: http://www.nustreamtoronto.com/ \r\n \r\n" .
+            "sincerely,  \r\n " . "NuStream";
         $headers = 'From: NuStream';
 
         $sendEmailResult = mail($to, $subject, $message, $headers);
@@ -199,5 +200,11 @@
     function login($loginArray){
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return login_request($loginArray);
+    }
+
+    // Check if account exist
+    function is_account_exist($email){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return is_account_exist_request($email);
     }
 ?>

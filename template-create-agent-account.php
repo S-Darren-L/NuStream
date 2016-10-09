@@ -28,7 +28,6 @@
     if(isset($_POST['create_account'])) {
         // Generate Password
         $password = generate_password();
-        echo "random password: " . $password . " ";
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $teamLeaderID = $_POST['teamLeaderID'];
@@ -42,56 +41,62 @@
             $teamID = mysqli_fetch_array($getTeamIDResult)['TeamID'];
         }
 
-
-        // Create Account
-        $createAccountArray = array (
-            "password" => $password,
-            "firstName" => $firstName,
-            "lastName" => $lastName,
-            "teamID" => $teamID,
-            "contactNumber" => $contactNumber,
-            "email" => $email,
-            "isTeamLeader" => $isTeamLeader
-        );
-
-        $createAccountResult = create_agent_account($createAccountArray);
-        $result_rows = [];
-        while($row = mysqli_fetch_array($createAccountResult))
-        {
-            $result_rows[] = $row;
+        // Check if account exist
+        $isAccountExistResult = is_account_exist($email);
+        $isAccountExistResultRow = mysqli_fetch_array($isAccountExistResult);
+        if(!is_null($isAccountExistResultRow)){
+            $isAccountExist = true;
         }
-        $accountID = $result_rows[0]["LAST_INSERT_ID()"];
-
-        // Send User Password By Email
-        if($accountID !== null){
-            $sendEmailResult = send_user_password($email, $firstName, $lastName,$password);
-        }
-
-        // If Is Team Leader, Create Team
-        if($isTeamLeader && $accountID !== null){
-            $createTeamArray = array (
-                "teamName" => $firstName . " " . $lastName,
-                "teamLeaderID" => $accountID
+        else{
+            // Create Account
+            $createAccountArray = array (
+                "password" => $password,
+                "firstName" => $firstName,
+                "lastName" => $lastName,
+                "teamID" => $teamID,
+                "contactNumber" => $contactNumber,
+                "email" => $email,
+                "isTeamLeader" => $isTeamLeader
             );
 
-            $createTeamResult = create_team($createTeamArray);
+            $createAccountResult = create_agent_account($createAccountArray);
             $result_rows = [];
-            while($row = mysqli_fetch_array($createTeamResult))
+            while($row = mysqli_fetch_array($createAccountResult))
             {
                 $result_rows[] = $row;
             }
-            $newTeamID = $result_rows[0]["LAST_INSERT_ID()"];
-        }
+            $accountID = $result_rows[0]["LAST_INSERT_ID()"];
 
-        // If Is Team Leader, Update Account
-        if($isTeamLeader && $newTeamID !== null && $accountID !== null) {
-            $updateAccountTeamIdArray = array(
-                "accountID" => $accountID,
-                "teamID" => $newTeamID
-            );
-            $updateAccountResult = update_account_team_id($updateAccountTeamIdArray);
-        }
+            // Send User Password By Email
+            if($accountID !== null){
+                $sendEmailResult = send_user_password($email, $firstName, $lastName,$password);
+            }
 
+            // If Is Team Leader, Create Team
+            if($isTeamLeader && $accountID !== null){
+                $createTeamArray = array (
+                    "teamName" => $firstName . " " . $lastName,
+                    "teamLeaderID" => $accountID
+                );
+
+                $createTeamResult = create_team($createTeamArray);
+                $result_rows = [];
+                while($row = mysqli_fetch_array($createTeamResult))
+                {
+                    $result_rows[] = $row;
+                }
+                $newTeamID = $result_rows[0]["LAST_INSERT_ID()"];
+            }
+
+            // If Is Team Leader, Update Account
+            if($isTeamLeader && $newTeamID !== null && $accountID !== null) {
+                $updateAccountTeamIdArray = array(
+                    "accountID" => $accountID,
+                    "teamID" => $newTeamID
+                );
+                $updateAccountResult = update_account_team_id($updateAccountTeamIdArray);
+            }
+        }
     }
 ?>
 
@@ -151,6 +156,13 @@
             </tr>
         </table>
         <input type="submit" value="Create" name="create_account">
+        <?php
+        if($isAccountExist){
+            echo '<div class="error-message">
+                    <a>Account already exist.</a>
+                </div>';
+        }
+        ?>
     </form>
 </div>
 

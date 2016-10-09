@@ -126,6 +126,20 @@
 
         mysqli_close($conn);
         return $result;
+    }
 
+    // Check if account exist
+    function is_account_exist_request($email){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $email = encrypt_email($conn, $email);
+
+        $sql = "SELECT * FROM accounts WHERE Email='$email' LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
     }
 ?>
