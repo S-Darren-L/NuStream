@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2016 at 08:42 AM
+-- Generation Time: Oct 09, 2016 at 12:12 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -28,23 +28,26 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accounts` (
   `AccountID` int(11) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `FirstName` varchar(255) NOT NULL,
   `LastName` varchar(255) NOT NULL,
-  `TeamID` int(11) DEFAULT NULL,
-  `Position` enum('ADMIN','AGENT','ACCOUNTANT') NOT NULL,
-  `ContactNumber` int(11) NOT NULL,
+  `TeamID` int(11) NOT NULL,
+  `AccountPosition` enum('ADMIN','AGENT','ACCOUNTANT','SUPERUSER') NOT NULL,
+  `ContactNumber` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `IsTeamLeader` tinyint(1) NOT NULL
+  `IsTeamLeader` tinyint(1) NOT NULL,
+  `IsActivate` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`AccountID`, `FirstName`, `LastName`, `TeamID`, `Position`, `ContactNumber`, `Email`, `IsTeamLeader`) VALUES
-(1, 'Darren', 'Liu', NULL, 'AGENT', 753, 'dfg@sdf.com', 0),
-(2, 'Kevin', 'Guo', NULL, 'AGENT', 96521, 'rtg@dcfvh.com', 0),
-(3, 'Peter', 'Ray', NULL, 'AGENT', 85, 'dfg@rgh.com', 0);
+INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamID`, `AccountPosition`, `ContactNumber`, `Email`, `IsTeamLeader`, `IsActivate`) VALUES
+(1, '', 'Darren', 'Liu', 7, 'AGENT', '753', 'dfg@sdf.com', 1, 1),
+(2, '', 'Kevin', 'Guo', 7, 'AGENT', '96521', 'rtg@dcfvh.com', 1, 1),
+(3, '', 'Peter', 'Ray', 0, 'AGENT', '85', 'dfg@rgh.com', 0, 0),
+(19, '', 'Shuyang', 'Liu', 7, 'AGENT', '6478953986', 'gulang15@gmail.com', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -187,7 +190,6 @@ INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUni
 
 CREATE TABLE `teams` (
   `TeamID` int(11) NOT NULL,
-  `TeamName` varchar(255) NOT NULL,
   `TeamLeaderID` int(11) NOT NULL,
   `TeamLeaderName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -196,8 +198,9 @@ CREATE TABLE `teams` (
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`TeamID`, `TeamName`, `TeamLeaderID`, `TeamLeaderName`) VALUES
-(7, 'First Team', 2, 'Kevin Guo');
+INSERT INTO `teams` (`TeamID`, `TeamLeaderID`, `TeamLeaderName`) VALUES
+(7, 2, 'Kevin Guo'),
+(15, 8, 'Shuyang Liu');
 
 --
 -- Indexes for dumped tables
@@ -228,7 +231,8 @@ ALTER TABLE `suppliers`
 --
 ALTER TABLE `teams`
   ADD PRIMARY KEY (`TeamID`),
-  ADD UNIQUE KEY `TeamID` (`TeamID`);
+  ADD UNIQUE KEY `TeamID` (`TeamID`),
+  ADD UNIQUE KEY `TeamLeaderID` (`TeamLeaderID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -238,7 +242,7 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
@@ -248,7 +252,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

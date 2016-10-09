@@ -1,16 +1,16 @@
 <?php
 
-/*
-Template Name: Create Team
-*/
-
-get_header();
-?>
-
-<?php
     // Start Session
     session_start();
 
+    /*
+    Template Name: Create Team
+    */
+
+    get_header();
+?>
+
+<?php
 $getAllAccountsResult = get_all_team_leaders();
 
     if($getAllAccountsResult === null)

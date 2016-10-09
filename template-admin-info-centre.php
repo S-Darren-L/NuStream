@@ -1,15 +1,15 @@
 <?php
 
-/*
-Template Name: Admin Info Centre
-*/
-
-get_header();
-?>
-<?php
 	// Start Session
 	session_start();
 
+	/*
+	Template Name: Admin Info Centre
+	*/
+
+	get_header();
+?>
+<?php
 	// Get Supplier Type
 	$supplierType = $_GET['SType'];
 	if($supplierType === null)

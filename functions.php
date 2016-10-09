@@ -14,6 +14,29 @@
 		'footer' => __( 'Footer Menu'),
 	));
 
+    // Redirect To Login
+    function redirectToLogin(){
+        $url = get_home_url();
+        echo("<script>window.location.assign('$url');</script>");
+    }
+
+    // Navigate
+    function navigateToUserHomePage(){
+        if ($_SESSION['AccountPosition'] === 'ADMIN') {
+    //                $url = get_home_url() . '/admin-file-management/';
+    //                echo("<script>window.location.assign('$url');</script>");
+        } else if ($_SESSION['AccountPosition'] === 'AGENT') {
+    //                $url = get_home_url() . '/my-cases/';
+    //                echo("<script>window.location.assign('$url');</script>");
+        }else if ($_SESSION['AccountPosition'] === 'ACCOUNTANT') {
+            $url = get_home_url() . '/accountant-file-management/';
+            echo("<script>window.location.assign('$url');</script>");
+        }else if ($_SESSION['AccountPosition'] === 'SUPERUSER') {
+    //                $url = get_home_url() . '/super-user-home-page/';
+    //                echo("<script>window.location.assign('$url');</script>");
+        }
+    }
+
     // Set Style File
     function nustream_resources(){
         wp_enqueue_style('style', get_stylesheet_uri());

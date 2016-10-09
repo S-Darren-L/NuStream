@@ -1,16 +1,16 @@
 <?php
 
-/*
-Template Name: Load Images
-*/
-
-get_header();
-?>
-
-<?php
     // Start Session
     session_start();
 
+    /*
+    Template Name: Load Files
+    */
+
+    get_header();
+?>
+
+<?php
 // Get Upload Type
     $uploaderType = $_GET['UType'];
     $uploaderID = $_GET['UID'];

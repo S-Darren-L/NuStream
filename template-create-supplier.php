@@ -1,15 +1,15 @@
 <?php
 
-/*
-Template Name: Create Supplier
-*/
-
-get_header();
-?>
-<?php
 	// Start Session
 	session_start();
 
+	/*
+	Template Name: Create Supplier
+	*/
+
+	get_header();
+?>
+<?php
 if(isset($_POST['create_supplier']))
 	{
 		$createSupplierArray = array (

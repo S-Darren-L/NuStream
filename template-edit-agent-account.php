@@ -1,16 +1,16 @@
 <?php
 
-/*
-Template Name: Edit Agent Account
-*/
-
-get_header();
-?>
-
-<?php
     // Start Session
     session_start();
 
+    /*
+    Template Name: Edit Agent Account
+    */
+
+    get_header();
+?>
+
+<?php
 //temp, should get account id from session
     $accountID = '19';
     // Init Date

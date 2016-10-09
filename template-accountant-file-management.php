@@ -1,15 +1,15 @@
 <?php
 
-/*
-Template Name: Accountant File Management
-*/
+    // Start Session
+    session_start();
+
+    /*
+    Template Name: Accountant File Management
+    */
 
 ?>
 
 <?php
-    // Start Session
-    session_start();
-
     // Set Cookie Name
     $cookieName = 'userLogin';
 
@@ -37,12 +37,6 @@ Template Name: Accountant File Management
 
         // Redirect To Login
         redirectToLogin();
-    }
-
-    // Redirect To Login
-    function redirectToLogin(){
-        $url = get_home_url();
-        echo("<script>window.location.assign('$url');</script>");
     }
 
 ?>
@@ -179,7 +173,6 @@ Template Name: Accountant File Management
     </div>
     <div id="main">
         <div class="formPart">
-            <!-- There should be a dynamic table-->
             <table class="table table-striped" >
                 <thead style="background-color:#535353;">
                 <tr>
@@ -192,6 +185,7 @@ Template Name: Accountant File Management
                     <th>INVOICE</th>
                     <th>SELECT</th></tr>
                 </thead>
+                <!-- There should be a dynamic table body-->
                 <tbody>
                 <tr>
                     <td>n12345678</td>
@@ -201,28 +195,28 @@ Template Name: Accountant File Management
                     <td>STAGING</td>
                     <td>$3500 CAD</td>
                     <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>
-                    <td><input name="SelectButton" checked="checked" type="radio"></td>
+                    <td><input name="SelectButton" checked="checked" type="checkbox"></td>
                 </tr>
-                <tr>
-                    <td>n12345678</td>
-                    <td>JASMINE ZOU</td>
-                    <td>DAVID TAO</td>
-                    <td>2016/09/03</td>
-                    <td>STAGING</td>
-                    <td>$3500 CAD</td>
-                    <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>
-                    <td><input name="SelectButton" checked="checked" type="radio"></td>
-                </tr>
-                <tr>
-                    <td>n12345678</td>
-                    <td>JASMINE ZOU</td>
-                    <td>DAVID TAO</td>
-                    <td>2016/09/03</td>
-                    <td>STAGING</td>
-                    <td>$3500 CAD</td>
-                    <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>
-                    <td><input name="SelectButton" checked="checked" type="radio"></td>
-                </tr>
+<!--                <tr>-->
+<!--                    <td>n12345678</td>-->
+<!--                    <td>JASMINE ZOU</td>-->
+<!--                    <td>DAVID TAO</td>-->
+<!--                    <td>2016/09/03</td>-->
+<!--                    <td>STAGING</td>-->
+<!--                    <td>$3500 CAD</td>-->
+<!--                    <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>-->
+<!--                    <td><input name="SelectButton" checked="checked" type="radio"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>n12345678</td>-->
+<!--                    <td>JASMINE ZOU</td>-->
+<!--                    <td>DAVID TAO</td>-->
+<!--                    <td>2016/09/03</td>-->
+<!--                    <td>STAGING</td>-->
+<!--                    <td>$3500 CAD</td>-->
+<!--                    <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>-->
+<!--                    <td><input name="SelectButton" checked="checked" type="radio"></td>-->
+<!--                </tr>-->
                 </tbody>
             </table>
         </div>

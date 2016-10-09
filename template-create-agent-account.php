@@ -1,17 +1,17 @@
 <?php
 
-/*
-Template Name: Create Agent Account
-*/
+    // Start Session
+    session_start();
 
-get_header();
+    /*
+    Template Name: Create Agent Account
+    */
+
+    get_header();
 ?>
 
 <?php
-    // Start Session
-session_start();
-
-$getAllAccountsResult = get_all_team_leaders();
+    $getAllAccountsResult = get_all_team_leaders();
 
     if($getAllAccountsResult === null)
         echo 'result is null';

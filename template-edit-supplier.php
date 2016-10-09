@@ -1,15 +1,15 @@
 <?php
 
-/*
-Template Name: Edit Supplier
-*/
-
-get_header();
-?>
-<?php
 	// Start Session
 	session_start();
 
+	/*
+	Template Name: Edit Supplier
+	*/
+
+	get_header();
+?>
+<?php
 // Get Supplier ID
 	$supplierID = $_GET['SID'];
 

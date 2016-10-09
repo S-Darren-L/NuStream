@@ -1,15 +1,14 @@
 <?php
 
-/*
-Template Name: Home Page
-*/
-
-?>
-
-<?php
     // Start Session
     session_start();
 
+    /*
+    Template Name: Home Page
+    */
+?>
+
+<?php
     // Set Cookie Name
     $cookieName = 'userLogin';
 
@@ -93,22 +92,6 @@ Template Name: Home Page
         $setCookieResult = setcookie($cookieName, $cookieValue, $expiry, '/', $_SERVER['SERVER_NAME'], false, false);
     }
 
-    // Navigate
-    function navigateToUserHomePage(){
-        if ($_SESSION['AccountPosition'] === 'ADMIN') {
-//                $url = get_home_url() . '/admin-file-management/';
-//                echo("<script>window.location.assign('$url');</script>");
-        } else if ($_SESSION['AccountPosition'] === 'AGENT') {
-//                $url = get_home_url() . '/my-cases/';
-//                echo("<script>window.location.assign('$url');</script>");
-        }else if ($_SESSION['AccountPosition'] === 'ACCOUNTANT') {
-            $url = get_home_url() . '/accountant-file-management/';
-            echo("<script>window.location.assign('$url');</script>");
-        }else if ($_SESSION['AccountPosition'] === 'SUPERUSER') {
-//                $url = get_home_url() . '/super-user-home-page/';
-//                echo("<script>window.location.assign('$url');</script>");
-        }
-    }
 ?>
 
 <!DOCTYPE html>
