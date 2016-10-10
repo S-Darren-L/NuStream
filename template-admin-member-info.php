@@ -308,7 +308,7 @@ Template Name: Admin Member Info
                         for($i = 0; $i < count($member_info_result_rows); $i++) {
                             $accountID = $member_info_result_rows[$i]["AccountID"];
                                 echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
-                                    echo '<td>', $member_info_result_rows[$i]["FirstName"] . " " . $member_info_result_rows[$i]["LastName"], '</td>';
+                                    echo '<td>', '<a href="' . $homeURL . '/admin-edit-agent-account/?AID=' . $accountID . '" />', $member_info_result_rows[$i]["FirstName"] . " " . $member_info_result_rows[$i]["LastName"], '</td>';
                                     echo '<td>', $member_info_result_rows[$i]["TeamLeaderName"], '</td>';
                                     echo '<td>', $member_info_result_rows[$i]["ContactNumber"], '</td>';
                                     echo '<td>', $member_info_result_rows[$i]["Email"], '</td>';

@@ -65,8 +65,6 @@
     // Update Account
     function update_account_request($updateAccountArray){
         $accountID = $updateAccountArray['accountID'];
-        $firstName = $updateAccountArray['firstName'];
-        $lastName = $updateAccountArray['lastName'];
         $contactNumber = $updateAccountArray['contactNumber'];
         $email = $updateAccountArray['email'];
 
@@ -74,7 +72,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "UPDATE accounts SET FirstName = '$firstName', LastName = '$lastName', ContactNumber = '$contactNumber', IsTeamLeader = '$email'
+        $sql = "UPDATE accounts SET ContactNumber = '$contactNumber', IsTeamLeader = '$email'
                         WHERE AccountID = '$accountID'";
         $result = mysqli_query($conn, $sql);
 
