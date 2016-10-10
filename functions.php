@@ -111,27 +111,27 @@
 
     // Combine Files
     function combine_files(){
-        require_once('fpdf/fpdf.php');
-        require_once('fpdi/fpdi.php');
-
-        // Set URL
-        $homeURL = get_home_url();
-
-        $pdf = new FPDI();
-
-        $pdf->setSourceFile("C:\Users\Darren\Desktop\a.pdf");
-        $tplIdxA = $pdf->importPage(1, '/MediaBox');
-
-        $pdf->setSourceFile("C:\Users\Darren\Desktop\b.pdf");
-        $tplIdxB = $pdf->importPage(1, '/MediaBox');
-
-        $pdf->addPage();
-        // place the imported page of the first document:
-        $pdf->useTemplate($tplIdxA, 10, 10, 90);
-        // place the imported page of the snd document:
-        $pdf->useTemplate($tplIdxB, 100, 10, 90);
-
-        $pdf->Output();
+//        require_once('fpdf/fpdf.php');
+//        require_once('fpdi/fpdi.php');
+//
+//        // Set URL
+//        $homeURL = get_home_url();
+//
+//        $pdf = new FPDI();
+//
+//        $pdf->setSourceFile("C:\Users\Darren\Desktop\a.pdf");
+//        $tplIdxA = $pdf->importPage(1, '/MediaBox');
+//
+//        $pdf->setSourceFile("C:\Users\Darren\Desktop\b.pdf");
+//        $tplIdxB = $pdf->importPage(1, '/MediaBox');
+//
+//        $pdf->addPage();
+//        // place the imported page of the first document:
+//        $pdf->useTemplate($tplIdxA, 10, 10, 90);
+//        // place the imported page of the snd document:
+//        $pdf->useTemplate($tplIdxB, 100, 10, 90);
+//
+//        $pdf->Output();
 
     }
 
@@ -202,10 +202,16 @@
         return create_team_request($createTeamArray);
     }
 
-    // Get Team ID By Tam Leader
+    // Get Team ID By Team Leader
     function get_team_id_by_team_leader($teamLeaderID){
         require_once(__DIR__ . '/include/repository/team-repository.php');
         return get_team_id_by_team_leader_request($teamLeaderID);
+    }
+
+    // Get Team By Team ID
+    function get_team_by_team_id($teamID){
+        require_once(__DIR__ . '/include/repository/team-repository.php');
+        return get_team_by_team_id_request($teamID);
     }
 
     // Get All Agent Team Member Info
@@ -239,9 +245,9 @@
     }
 
     // Deactivate Account
-    function deactivate_account($deactivateAccountArray){
+    function deactivate_account_by_id($accountID){
         require_once(__DIR__ . '/include/repository/account-repository.php');
-        return deactivate_account_request($deactivateAccountArray);
+        return deactivate_account_by_id_request($accountID);
     }
 
     // Log in
@@ -254,5 +260,11 @@
     function is_account_exist($email){
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return is_account_exist_request($email);
+    }
+
+    // Get All Member Brief Info
+    function get_agent_member_brief_info($orderVariable){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return get_agent_member_brief_info_request($orderVariable);
     }
 ?>

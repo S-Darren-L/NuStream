@@ -30,6 +30,7 @@
 		echo '</tr>';
 	echo '</table><br />';
 
+	// Get All Member Brief Info
 	create_supplier_brief_table($supplierType);
 
 	function create_supplier_brief_table($supplierType){

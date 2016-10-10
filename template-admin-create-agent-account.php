@@ -394,7 +394,8 @@
             echo '<img src="' . $logo1ImagePath . '"/>';
             ?>
         </div>
-        <div class="userNamePart"><h4 id="userName"><?php echo $UserName;?></h4>
+        <div class="userNamePart">
+            <h4 id="userName"><?php echo $UserName;?></h4>
             <h8 id="position" style="font-size:10px;"><?php echo $_SESSION['AccountPosition'];?></h8>
         </div>
         <ul class="nav nav-pills nav-stacked">
@@ -466,7 +467,6 @@
                         }
                         ?>
                     </div>
-
                 </div>
             </form>
         </div>

@@ -96,15 +96,13 @@
     }
 
     // Deactivate Account
-    function deactivate_account_request($deactivateAccountArray){
-        $accountID = $deactivateAccountArray['accountID'];
-        $isActivate = $deactivateAccountArray['isActivate'];
+    function deactivate_account_by_id_request($accountID){
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "UPDATE accounts SET IsActivate = '$isActivate'
+        $sql = "UPDATE accounts SET IsActivate = FALSE 
                         WHERE AccountID = '$accountID'";
         $result = mysqli_query($conn, $sql);
 
@@ -141,5 +139,19 @@
 
         mysqli_close($conn);
         return $result;
+    }
+
+    // Get All Member Brief Info
+    function get_agent_member_brief_info_request($orderVariable){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT AccountID, FirstName, LastName, TeamID, ContactNumber, Email FROM accounts WHERE AccountPosition='AGENT' AND IsActivate=TRUE ORDER BY '$orderVariable'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+
     }
 ?>

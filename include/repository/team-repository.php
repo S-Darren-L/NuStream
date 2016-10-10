@@ -38,4 +38,17 @@
         return $result;
     }
 
+    // Get Team By Team ID
+    function get_team_by_team_id_request($teamID){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT * FROM teams WHERE TeamID='$teamID' LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
 ?>
