@@ -109,6 +109,32 @@
         return $sendEmailResult;
     }
 
+    // Combine Files
+    function combine_files(){
+        require_once('fpdf/fpdf.php');
+        require_once('fpdi/fpdi.php');
+
+        // Set URL
+        $homeURL = get_home_url();
+
+        $pdf = new FPDI();
+
+        $pdf->setSourceFile("C:\Users\Darren\Desktop\a.pdf");
+        $tplIdxA = $pdf->importPage(1, '/MediaBox');
+
+        $pdf->setSourceFile("C:\Users\Darren\Desktop\b.pdf");
+        $tplIdxB = $pdf->importPage(1, '/MediaBox');
+
+        $pdf->addPage();
+        // place the imported page of the first document:
+        $pdf->useTemplate($tplIdxA, 10, 10, 90);
+        // place the imported page of the snd document:
+        $pdf->useTemplate($tplIdxB, 100, 10, 90);
+
+        $pdf->Output();
+
+    }
+
     // Set Style File
     function nustream_resources(){
         wp_enqueue_style('style', get_stylesheet_uri());

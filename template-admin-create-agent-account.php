@@ -13,10 +13,9 @@
     // Set Navigation URL
     $filesURL = get_home_url() . '/admin-files-management/';
     $createSupplierURL = get_home_url() . '/admin-create-supplier';
-    $updateSupplierURL = get_home_url() . '/admin-edit-supplier';
     $createMemberURL = get_home_url() . '/admin-create-agent-account';
     $memberInfoURL = get_home_url() . '/admin-member-info';
-    $infoCenterURL = get_home_url() . '/admin-info-centre';
+    $supplierInfoURL = get_home_url() . '/admin-info-centre';
 
     // Check Session Exist
     if(!isset($_SESSION['AccountID'])){
@@ -400,11 +399,10 @@
         </div>
         <ul class="nav nav-pills nav-stacked">
             <li><?php echo '<a href="' . $filesURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
-            <li><?php echo '<a href="' . $createSupplierURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Create Supplier</a></li>
-            <li><?php echo '<a href="' . $updateSupplierURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-erase"></span>&nbsp;&nbsp;Update Supplier</a></li>
             <li><?php echo '<a href="' . $createMemberURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Create Member</a></li>
             <li><?php echo '<a href="' . $memberInfoURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;Member Info</a></li>
-            <li><?php echo '<a href="' . $infoCenterURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Info Center</a></li>
+            <li><?php echo '<a href="' . $createSupplierURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Create Supplier</a></li>
+            <li><?php echo '<a href="' . $supplierInfoURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Supplier Info</a></li>
             <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
         </ul>
         <div class="footer">

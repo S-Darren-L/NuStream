@@ -4,7 +4,7 @@
 	session_start();
 
 	/*
-	Template Name: Admin Info Centre
+	Template Name: Admin Supplier Info
 	*/
 
 	get_header();

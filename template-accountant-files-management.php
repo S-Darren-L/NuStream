@@ -13,7 +13,7 @@
 
     // Set Navigation URL
     $filesURL = get_home_url() . '/accountant-files-management';
-    $infoCentreURL = get_home_url() . '/admin-info-centre';
+    $supplierInfoURL = get_home_url() . '/admin-supplier-info';
 
     // Check Session Exist
     if(!isset($_SESSION['AccountID'])){
