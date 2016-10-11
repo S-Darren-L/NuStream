@@ -38,8 +38,41 @@
 	$priceUnits = get_price_units();
 	$paymentTerms = get_payment_terms();
 
+	// Validate Mandatory Fields
+	function date_validated()
+	{
+		$supplierName = $_POST['supplierName'];
+		$supplierType = $_POST['supplierType'];
+		$HSTNumber = $_POST['HSTNumber'];
+		$firstContactName = $_POST['firstContactName'];
+		$firstContactNumber = $_POST['firstContactNumber'];
+		$secondContactName = $_POST['secondContactName'];
+		$secondContactNumber = $_POST['secondContactNumber'];
+		$priceUnit = $_POST['priceUnit'];
+		$ricePerUnit = $_POST['pricePerUnit'];
+		$paymentTerm = $_POST['paymentTerm'];
+		$otherPaymentTerm = $_POST['otherPaymentTerm'];
+		$supportLocation = $_POST['supportLocation'];
+		//temp
+		$supportLocation = "location";
+
+		global $errorMessage;
+		global $isError;
+		if (empty($supplierName) || empty($supplierType) || empty($HSTNumber) || empty($firstContactName) || empty($firstContactNumber) ||
+			empty($secondContactName) || empty($secondContactNumber) || empty($priceUnit) || empty($ricePerUnit) || empty($paymentTerm) ||
+			($paymentTerm === 'OTHER' && empty($otherPaymentTerm)) || empty($supportLocation)) {
+			$errorMessage = "Mandatory fields are empty";
+			$isError = true;
+			return false;
+		} else {
+			$errorMessage = null;
+			$isError = false;
+			return true;
+		}
+	}
+
 	// Create Supplier
-	if(isset($_POST['create_supplier']))
+	if(isset($_POST['create_supplier']) && date_validated() === true)
 		{
 			$createSupplierArray = array (
 				"supplierName" => $_POST['supplierName'],
@@ -363,6 +396,11 @@
 		height: 30px;
 		width: 100px;
 	}
+
+	.error-message a{
+		color: red;
+		font-size: 80%;
+	}
 </style>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -477,6 +515,14 @@
 				</div>
 				<div class="create">
 					<input class="createButton" type="submit" value="Create" name="create_supplier">
+					<?php
+					if($isError){
+						echo '<div class="error-message"><a>';
+						global $errorMessage;
+						echo $errorMessage;
+						echo '</a></div>';
+					}
+					?>
 				</div>
 			</form>
 		</div>
