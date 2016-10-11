@@ -203,6 +203,7 @@
         return create_supplier_request($createSupplierArray);
     }
 
+    // Get Supplier Brief Info
     function get_supplier_brief_info($supplierType){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         return get_supplier_brief_info_request($supplierType);
@@ -224,6 +225,12 @@
     function init_suppliers_data($dataType){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         return init_suppliers_data_request($dataType);
+    }
+
+    // Deactivate Supplier
+    function deactivate_supplier_by_id($supplierID){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        return deactivate_supplier_by_id_request($supplierID);
     }
 
     // Set File Path And Name

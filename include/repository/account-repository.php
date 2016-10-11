@@ -95,7 +95,6 @@
 
     // Deactivate Account
     function deactivate_account_by_id_request($accountID){
-
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();

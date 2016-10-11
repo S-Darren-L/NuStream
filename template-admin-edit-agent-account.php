@@ -62,8 +62,31 @@
         }
     }
 
+    // Validate Mandatory Fields
+    function date_validated()
+    {
+        $firstName = test_input($_POST["firstName"]);
+        $lastName = test_input($_POST["lastName"]);
+        $contactNumber = test_input($_POST["contactNumber"]);
+        $email = test_input($_POST["email"]);
+        $isTeamLeader  = (int)$_POST["isTeamLeader"] == 'TRUE' ? true : false;
+        $isTeamLeader = test_input($isTeamLeader);
+
+        global $errorMessage;
+        global $isError;
+        if (empty($firstName) || empty($lastName) || empty($contactNumber) || empty($email) || empty($isTeamLeader)) {
+            $errorMessage = "Mandatory fields are empty";
+            $isError = true;
+            return false;
+        } else {
+            $errorMessage = null;
+            $isError = false;
+            return true;
+        }
+    }
+
     // Update Team
-    if(isset($_POST['update_account'])) {
+    if(isset($_POST['update_account']) && date_validated() === true) {
         $updateAccountArray = array(
             "accountID" => $accountID,
             "contactNumber" => $_POST['contactNumber'],
@@ -88,7 +111,6 @@
 
     function navigate_back(){
         global $memberInfoURL;
-        $url = get_home_url();
         echo("<script>window.location.assign('$memberInfoURL');</script>");
     }
 ?>
@@ -368,6 +390,14 @@
                     </div>
                     <div class="delete">
                         <input type="submit" value="Deactivate" name="deactivate_account">
+                        <?php
+                        if($isError){
+                            echo '<div class="error-message"><a>';
+                            global $errorMessage;
+                            echo $errorMessage;
+                            echo '</a></div>';
+                        }
+                        ?>
                     </div>
                 </div>
                 <input type="submit" value="Back" name="navigate_back">

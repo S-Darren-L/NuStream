@@ -449,9 +449,9 @@
 								<div class="dropdown">
 									<select name="supplierType">
 										<?php
-										foreach ($supplierTypes as $supplierType){
-											echo '<option value="' . $supplierType . '">', $supplierType, '</option>';
-										}
+											foreach ($supplierTypes as $supplierTypeItem){
+												echo '<option value="' . $supplierTypeItem . '">', $supplierTypeItem, '</option>';
+											}
 										?>
 									</select>
 								</div>
@@ -486,9 +486,9 @@
 								<div class="dropdown">
 									<select name="priceUnit">
 										<?php
-										foreach ($priceUnits as $priceUnit){
-											echo '<option value="' . $priceUnit . '">', $priceUnit, '</option>';
-										}
+											foreach ($priceUnits as $priceUnitItem){
+												echo '<option value="' . $priceUnitItem . '">', $priceUnitItem, '</option>';
+											}
 										?>
 									</select>
 								</div>
@@ -500,9 +500,9 @@
 								<div class="dropdown">
 									<select name="paymentTerm" id="payment-term-drop-down" onchange="paymentTermChanged()">
 										<?php
-										foreach ($paymentTerms as $paymentTerm){
-											echo '<option value="' . $paymentTerm . '">', $paymentTerm, '</option>';
-										}
+											foreach ($paymentTerms as $paymentTermItem){
+												echo '<option value="' . $paymentTermItem . '">', $paymentTermItem, '</option>';
+											}
 										?>
 									</select>
 								</div>

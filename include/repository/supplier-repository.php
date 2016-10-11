@@ -106,4 +106,18 @@
         return $result;
     }
 
+    // Deactivate Supplier
+    function deactivate_supplier_by_id_request($supplierID){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE suppliers SET IsActivate = FALSE 
+                        WHERE SupplierID = '$supplierID'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
 ?>
