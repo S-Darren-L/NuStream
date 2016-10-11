@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<style type="text/css">
+
+html, body {
+	margin:0;
+	padding:0;
+}
+
+#container {
+	margin-left: 230px;
+	_zoom: 1;
+}
+
+#nav {
+	float: left;
+	width: 230px;
+	height: 100%;
+	background: #32323a;
+	margin-left: -230px;
+	position:fixed;
+}
+
+#main {
+	height: 400px;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+	position: absolute;
+	padding: 10px;
+	pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon {
+	left: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+	padding-left: 30px;
+}
+
+a {
+	letter-spacing: 1px;
+}
+
+.logo {
+	height: 120px;
+	width: 230px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right:20px;
+	padding-bottom: 20px;
+	display: block;
+	background-color: #28282e;
+}
+
+.logo img {
+	width: 100%;
+}
+
+.nav-pills {
+	background-color: #32323a;
+	border-color: #030033;
+}
+
+.nav-pills > li > a {
+	color: #95a0aa; /*Change active text color here*/
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	color: #000;  /*Sets the text hover color on navbar*/
+}
+
+li {
+	border-bottom:1px #2a2a31 solid;
+}
+
+.footer {
+	position: absolute;
+	bottom:0px;
+	left:0; 
+	right:0; 
+	margin:0 auto; 
+	text-align: center;
+}
+
+.copyRight {
+	color:white; 
+}
+
+
+
+th {
+	color:white; 
+	font-size:11px; 
+	text-align:center;
+}
+
+.userNamePart {
+	color:white;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.formPart {
+	display: relative;
+	margin-right: 40px;
+	margin-left: 40px;
+	padding-top: 40px;
+}
+
+th {
+	color:#a9a9a9; 
+	font-size:11px; 
+	text-align:center;
+}
+
+td {
+	color:#a9a9a9; 
+}
+
+.table td {
+	font-size:10px; 
+	vertical-align: middle;
+}
+
+.table-striped {
+	width: 900px !important;
+	margin:0 auto;
+	padding-top: 0px;
+}
+
+.topNav {
+	height: 20px;
+	width: 900px;
+	margin: 10px auto;
+	background-color: #434343;
+	padding:10px 10px 25px 10px;
+	text-align: center;
+	font-size: 10px;
+}
+
+.topNav a:link {
+	text-decoration: none;
+	color:white;
+} 
+
+.topNav a:visited {
+	text-decoration: underline;
+	color:white;
+}
+
+.topNav a:hover {
+	text-decoration: underline;
+	color:white;
+}
+
+.topNav a:active {
+	text-decoration: underline;
+	color:white;
+}
+
+.topNav a {
+	padding-left: 20px;
+	padding-right: 20px;
+	letter-spacing: 0px;
+	margin-bottom: 10px;
+}
+
+.pageNum {
+	text-align: center;
+}
+
+.pageNum a:link{
+	font-size: 8px;
+	color:black;
+	text-decoration:underline;
+}
+
+.pageNum a:visited{
+	color:black;
+	text-decoration:underline;
+}
+
+.pageNum a:hover{
+	color:black;
+	text-decoration:underline;
+}
+
+.pageNum a:active{
+	color:black;
+	text-decoration:underline;
+}
+
+.table a:link {
+	text-decoration: underline;
+}
+</style>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="nav">
+			<div class="logo"><img src="img/logo1.png"/></div>
+			<div class="userNamePart"><h4 id="userName"> Joseph Joe </h4><h8 id="position" style="font-size:10px;">Agent</h8></div>
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;New Listing</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Info Center</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;My Case</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
+			</ul>
+			<div class="footer">
+				<p class="copyRight" style="font-size:10px;">@copyright @2016<br/> Darren Liu All Rights Reserved</p>
+			</div>
+		</div>
+		<div id="main">
+			<div class="formPart">
+				<div class="topNav" style="color:white;">
+					<a href="#">STAGING</a>|<a href="#">CLEAN UP</a>|<a href="#">TOUCH UP</a>|<a href="#">INSPEXTION</a>|<a href="#">VARDWORK</a>|<a href="#">STORAGE</a>|<a href="#">RELOCATION HOME</a>|<a href="#">PHOTOCRAPHY</a>
+				</div>
+				<table class="table table-striped" style="margin-top:-10px;">
+					<thead style="background-color:ffffff;">
+						<tr>
+							<th>COMPANY NAME</th>
+							<th>PRICE</th>
+							<th>CONTACT NUMBER</th>
+							<th>AREA SUPPOORT</th>
+							<th>DETAILS</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>中加清洁</td>
+							<td>$5.00/sf</td>
+							<td>647-527-0528</td>
+							<td>North York, Scarborough, Richmond Hill</td>
+							<td><a href="#">View</a></td>
+						</tr>
+						<tr>
+							<td>中加清洁</td>
+							<td>$5.00/sf</td>
+							<td>647-527-0528</td>
+							<td>North York, Scarborough, Richmond Hill</td>
+							<td><a href="#">View</a></td>
+						</tr>
+						<tr>
+							<td>中加清洁</td>
+							<td>$5.00/sf</td>
+							<td>647-527-0528</td>
+							<td>North York, Scarborough, Richmond Hill</td>
+							<td><a href="#">View</a></td>
+						</tr>	    
+					</tbody>
+				</table>
+				<div class="pageNum"><a href="#">BACK</a>&nbsp;&nbsp;&nbsp;<a href="#">NEXT</a></div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+
