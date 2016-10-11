@@ -14,19 +14,6 @@
     // Set Navigation URL
     $filesURL = get_home_url() . '/accountant-files-management';
     $supplierInfoURL = get_home_url() . '/admin-supplier-info';
-
-    // Check Session Exist
-    if(!isset($_SESSION['AccountID'])){
-        redirectToLogin();
-    }
-
-    $UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
-
-    // Logout User
-    if(isset($_GET['logout'])) {
-        logoutUser();
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -140,24 +127,9 @@
 </head>
 <body>
 <div id="container">
-    <div id="nav">
-        <div class="logo">
-            <img src="img/logo1.png"/>
-        </div>
-        <div class="userNamePart">
-            <h4 id="userName"><?php echo $UserName;?></h4>
-            <h8 id="position" style="font-size:10px;"><?php echo $_SESSION['AccountPosition'];?></h8>
-        </div>
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><?php echo '<a href="' . $filesURL . '"  style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
-            <li>><?php echo '<a href="' . $infoCentreURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Info Center</a></li>
-            <li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Member Info</a></li>
-            <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
-        </ul>
-        <div class="footer">
-            <p class="copyRight" style="font-size:10px;">@copyright @2016<br/> Darren Liu All Rights Reserved</p>
-        </div>
-    </div>
+    <?php
+        include_once(__DIR__ . '/navigation.php');
+    ?>
     <div id="main">
         <div class="formPart">
             <table class="table table-striped" >

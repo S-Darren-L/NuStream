@@ -45,8 +45,8 @@
     // Navigate
     function navigateToUserHomePage(){
         if ($_SESSION['AccountPosition'] === 'ADMIN') {
-    //                $url = get_home_url() . '/admin-file-management/';
-    //                echo("<script>window.location.assign('$url');</script>");
+            $url = get_home_url() . '/admin-file-management/';
+            echo("<script>window.location.assign('$url');</script>");
         } else if ($_SESSION['AccountPosition'] === 'AGENT') {
     //                $url = get_home_url() . '/my-cases/';
     //                echo("<script>window.location.assign('$url');</script>");

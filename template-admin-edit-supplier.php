@@ -9,30 +9,6 @@
 
 ?>
 <?php
-	// Set Navigation URL
-	$filesURL = get_home_url() . '/admin-files-management/';
-	$createSupplierURL = get_home_url() . '/admin-create-supplier';
-	$createMemberURL = get_home_url() . '/admin-create-agent-account';
-	$memberInfoURL = get_home_url() . '/admin-member-info';
-	$supplierInfoURL = get_home_url() . '/admin-supplier-info';
-
-	// Check Session Exist
-	if(!isset($_SESSION['AccountID'])){
-		redirectToLogin();
-	}
-
-	// Logout User
-	if(isset($_GET['logout'])) {
-		logoutUser();
-	}
-
-	$UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
-
-	// Set URL
-	$homeURL = get_home_url();
-	$mainPath = $homeURL . "/wp-content/themes/NuStream/";
-	$logo1ImagePath = $mainPath . "img/logo1.png";
-
 	// Get Supplier ID
 	$supplierID = $_GET['SID'];
 
@@ -147,9 +123,9 @@
 	}
 
 	function navigate_back(){
-		global $supplierInfoURL;
+		global $adminSupplierInfoURL;
 		global $supplierType;
-		$navigateBackURL = $supplierInfoURL . "/admin-supplier-info/?SType=" . $supplierType;
+		$navigateBackURL = $adminSupplierInfoURL . "/admin-supplier-info/?SType=" . $supplierType;
 		echo("<script>window.location.assign('$navigateBackURL');</script>");
 	}
 ?>
@@ -458,28 +434,9 @@
 </head>
 <body>
 <div id="container">
-	<div id="nav">
-		<div class="logo">
-			<?php
-			echo '<img src="' . $logo1ImagePath . '"/>';
-			?>
-		</div>
-		<div class="userNamePart">
-			<h4 id="userName"><?php echo $UserName;?></h4>
-			<h8 id="position" style="font-size:10px;"><?php echo $_SESSION['AccountPosition'];?></h8>
-		</div>
-		<ul class="nav nav-pills nav-stacked">
-			<li><?php echo '<a href="' . $filesURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
-			<li><?php echo '<a href="' . $createMemberURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Create Member</a></li>
-			<li><?php echo '<a href="' . $memberInfoURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;Member Info</a></li>
-			<li><?php echo '<a href="' . $createSupplierURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Create Supplier</a></li>
-			<li><?php echo '<a href="' . $supplierInfoURL . '" style="text-align:left;">'; ?>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Supplier Info</a></li>
-			<li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
-		</ul>
-		<div class="footer">
-			<p class="copyRight" style="font-size:10px;">@copyright @2016<br/> Darren Liu All Rights Reserved</p>
-		</div>
-	</div>
+	<?php
+		include_once(__DIR__ . '/navigation.php');
+	?>
 	<div id="main">
 		<div class="formPart">
 			<div class="title"><h4>UPDATE SUPPLIER</h4></div>

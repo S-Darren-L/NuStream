@@ -78,9 +78,7 @@
         $_SESSION['FirstName'] = $sessionArray['FirstName'];
         $_SESSION['LastName'] = $sessionArray['LastName'];
         $_SESSION['TeamID'] = $sessionArray['TeamID'];
-        $_SESSION['AccountPosition'] = 'ACCOUNTANT';
-        //temp
-//            $_SESSION['AccountPosition'] = $sessionArray['AccountPosition'];
+        $_SESSION['AccountPosition'] = $sessionArray['AccountPosition'];
         $_SESSION['IsTeamLeader'] = $sessionArray['IsTeamLeader'];
     }
 
