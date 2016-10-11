@@ -17,7 +17,7 @@
     $adminCreateSupplierURL = get_home_url() . '/admin-create-supplier';
     $adminCreateMemberURL = get_home_url() . '/admin-create-agent-account';
     $adminMemberInfoURL = get_home_url() . '/admin-member-info';
-    $adminSupplierInfoURL = get_home_url() . '/admin-supplier-info';
+    $adminSupplierInfoURL = get_home_url() . '/supplier-info';
 
     $UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
 

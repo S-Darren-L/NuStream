@@ -13,7 +13,7 @@
 
     // Set Navigation URL
     $filesURL = get_home_url() . '/accountant-files-management';
-    $supplierInfoURL = get_home_url() . '/admin-supplier-info';
+    $supplierInfoURL = get_home_url() . '/supplier-info';
 ?>
 
 <!DOCTYPE html>
