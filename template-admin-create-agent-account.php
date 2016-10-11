@@ -15,7 +15,7 @@
     $createSupplierURL = get_home_url() . '/admin-create-supplier';
     $createMemberURL = get_home_url() . '/admin-create-agent-account';
     $memberInfoURL = get_home_url() . '/admin-member-info';
-    $supplierInfoURL = get_home_url() . '/admin-info-centre';
+    $supplierInfoURL = get_home_url() . '/admin-supplier-info';
 
     // Check Session Exist
     if(!isset($_SESSION['AccountID'])){

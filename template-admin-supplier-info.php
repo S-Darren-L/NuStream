@@ -7,9 +7,32 @@
 	Template Name: Admin Supplier Info
 	*/
 
-	get_header();
 ?>
 <?php
+	// Set Navigation URL
+	$filesURL = get_home_url() . '/admin-files-management/';
+	$createSupplierURL = get_home_url() . '/admin-create-supplier';
+	$createMemberURL = get_home_url() . '/admin-create-agent-account';
+	$memberInfoURL = get_home_url() . '/admin-member-info';
+	$supplierInfoURL = get_home_url() . '/admin-supplier-info';
+
+	// Check Session Exist
+	if(!isset($_SESSION['AccountID'])){
+		redirectToLogin();
+	}
+
+	// Logout User
+	if(isset($_GET['logout'])) {
+		logoutUser();
+	}
+
+	$UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
+
+	// Set URL
+	$homeURL = get_home_url();
+	$mainPath = $homeURL . "/wp-content/themes/NuStream/";
+	$logo1ImagePath = $mainPath . "img/logo1.png";
+
 	// Get Supplier Type
 	$supplierType = $_GET['SType'];
 	if($supplierType === null)
@@ -59,9 +82,4 @@
 		}
 		echo '</table><br />';
 	}
-?>
-
-<?php
-get_footer();
-
 ?>
