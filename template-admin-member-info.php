@@ -13,7 +13,6 @@ Template Name: Admin Member Info
     // Init Data
     $orderVariable = 'FirstName';
     $member_info_result_rows = [];
-    get_member_info_table($orderVariable);
     $member_info_result_rows = get_member_info_table($orderVariable);
 
     // Get All Member Brief Info

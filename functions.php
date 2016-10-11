@@ -45,16 +45,16 @@
     // Navigate
     function navigateToUserHomePage(){
         if ($_SESSION['AccountPosition'] === 'ADMIN') {
-            $url = get_home_url() . '/admin-file-management/';
+            $url = get_home_url() . '/admin-file-management';
             echo("<script>window.location.assign('$url');</script>");
         } else if ($_SESSION['AccountPosition'] === 'AGENT') {
-    //                $url = get_home_url() . '/my-cases/';
-    //                echo("<script>window.location.assign('$url');</script>");
+            $url = get_home_url() . '/agent-my-cases';
+            echo("<script>window.location.assign('$url');</script>");
         }else if ($_SESSION['AccountPosition'] === 'ACCOUNTANT') {
-            $url = get_home_url() . '/accountant-files-management/';
+            $url = get_home_url() . '/accountant-files-management';
             echo("<script>window.location.assign('$url');</script>");
         }else if ($_SESSION['AccountPosition'] === 'SUPERUSER') {
-    //                $url = get_home_url() . '/super-user-home-page/';
+    //                $url = get_home_url() . '/super-user-home-page';
     //                echo("<script>window.location.assign('$url');</script>");
         }
     }
