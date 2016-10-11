@@ -13,8 +13,12 @@
         $supportLocation = $createSupplierArray['supportLocation'];
         $HSTNumber = $createSupplierArray['HSTNumber'];
         $paymentTerm = $createSupplierArray['paymentTerm'];
-        $sql = "INSERT INTO suppliers (SupplierName, SupplierType, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, SecondContactName, SecondContactNumber, SupportLocation, HSTNumber, PaymentTerm)
-                        VALUES ('$supplierName', '$supplierType', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$secondContactName', '$secondContactNumber', '$supportLocation', '$HSTNumber', '$paymentTerm')";
+        if($paymentTerm === 'OTHER')
+            $otherPaymentTerm = $createSupplierArray['otherPaymentTerm'];
+        else
+            $otherPaymentTerm = null;
+        $sql = "INSERT INTO suppliers (SupplierName, SupplierType, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, SecondContactName, SecondContactNumber, SupportLocation, HSTNumber, PaymentTerm, OtherPaymentTerm)
+                        VALUES ('$supplierName', '$supplierType', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$secondContactName', '$secondContactNumber', '$supportLocation', '$HSTNumber', '$paymentTerm', '$otherPaymentTerm')";
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
@@ -73,6 +77,10 @@
         $supportLocation = $updateSupplierArray['supportLocation'];
         $HSTNumber = $updateSupplierArray['HSTNumber'];
         $paymentTerm = $updateSupplierArray['paymentTerm'];
+        if($paymentTerm === 'OTHER')
+            $otherPaymentTerm = $updateSupplierArray['otherPaymentTerm'];
+        else
+            $otherPaymentTerm = null;
 
         $sql = "UPDATE suppliers SET SupplierName = '$supplierName', 
                     SupplierType = '$supplierType',
@@ -84,7 +92,8 @@
                     SecondContactNumber = '$secondContactNumber',
                     SupportLocation = '$supportLocation',
                     HSTNumber = '$HSTNumber',
-                    PaymentTerm = '$paymentTerm'
+                    PaymentTerm = '$paymentTerm',
+                    OtherPaymentTerm = '$otherPaymentTerm'
                     WHERE SupplierID = '$supplierID'";
 
         // Require SQL Connection
@@ -96,4 +105,5 @@
 
         return $result;
     }
+
 ?>

@@ -150,6 +150,42 @@
         wp_enqueue_script('jquery');
     }
 
+	// Get Suppliers Type
+	function get_supplier_types(){
+	    $supplierTypes = array(
+            'STAGING',
+            'PHOTOGRAPHY',
+            'CLEANUP',
+            'RELOCATEHOME',
+            'TOUCHUP',
+            'INSPECTION',
+            'YARDWORK',
+            'STORAGE'
+        );
+        return $supplierTypes;
+    }
+
+	// Get Price Unit
+	function get_price_units(){
+        $priceUnits = array(
+            'BYSIZE',
+            'BYHOUR',
+            'BYHOUSETYPE',
+            'BYCASE'
+        );
+        return $priceUnits;
+    }
+
+	// Get Payment Term
+	function get_payment_terms(){
+        $paymentTerms = array(
+            'MONTHLY',
+            'SEMIMONTHLY',
+            'OTHER'
+        );
+        return $paymentTerms;
+    }
+
     // Generate Guid
     function GUID()
     {
@@ -182,6 +218,12 @@
     function edit_supplier($updateSupplierArray) {
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         return edit_supplier_request($updateSupplierArray);
+    }
+
+    // Get Init Suppliers Data
+    function init_suppliers_data($dataType){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        return init_suppliers_data_request($dataType);
     }
 
     // Set File Path And Name

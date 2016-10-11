@@ -33,6 +33,12 @@
 	$mainPath = $homeURL . "/wp-content/themes/NuStream/";
 	$logo1ImagePath = $mainPath . "img/logo1.png";
 
+	//Init Data
+	$supplierTypes = get_supplier_types();
+	$priceUnits = get_price_units();
+	$paymentTerms = get_payment_terms();
+
+	// Create Supplier
 	if(isset($_POST['create_supplier']))
 		{
 			$createSupplierArray = array (
@@ -46,6 +52,7 @@
 				"priceUnit" => $_POST['priceUnit'],
 				"pricePerUnit" => $_POST['pricePerUnit'],
 				"paymentTerm" => $_POST['paymentTerm'],
+				"otherPaymentTerm" => $_POST['otherPaymentTerm'],
 				"supportLocation" => $_POST['supportLocation']);
 
 			$result = create_supplier($createSupplierArray);
@@ -56,14 +63,25 @@
 				$result_rows[] = $row;
 			}
 			$supplierID = $result_rows[0]["LAST_INSERT_ID()"];
-			$url = get_home_url() . '/upload-files/?UType=Supplier&UID=' . $supplierID;
+			$uploadFilesPath = get_home_url() . '/upload-files/?UType=Supplier&UID=' . $supplierID;
 
-			if(!is_null($result) && $result !== false)
-			{
-				echo ("<script>window.location.assign(' . $url');</script>");
-			}
+//			if(!is_null($result) && $result !== false)
+//			{
+//				echo ("<script>window.location.assign(' . $uploadFilesPath');</script>");
+//			}
 		}
 ?>
+
+<script type="text/javascript">
+	function paymentTermChanged() {
+		var paymentTerm = document.getElementById("payment-term-drop-down").value;
+		if(paymentTerm === "OTHER"){
+			document.getElementById("other-payment-term").disabled=false;
+		}else {
+			document.getElementById("other-payment-term").disabled = true;
+		}
+	}
+</script>
 
 <!DOCTYPE html>
 <style type="text/css">
@@ -195,7 +213,7 @@
 		background-color: #eeeeee;
 		color:#a9a9a9;
 		height: 350px;
-		width: 600px;
+		width: 680px;
 		font-size: 11px;
 	}
 
@@ -248,10 +266,6 @@
 		position:relative;
 	}
 
-	.basicInfo {
-
-	}
-
 	.supplierName {
 		width: 100px;
 		float: left;
@@ -285,8 +299,8 @@
 
 	.priceInfo {
 		display: absolute;
-		margin-left: 200px;
-		margin-top: -212px;
+		margin-left: 220px;
+		margin-top: -222px;
 		width: 200px;
 	}
 
@@ -303,6 +317,7 @@
 
 	.selectPriceUnit {
 		float: left;
+		margin-top: -3px;
 	}
 
 	.selectPriceUnit select {
@@ -311,11 +326,12 @@
 		width: 164px;
 	}
 
-	.selectPaymentTeam {
+	.selectPaymentTerm {
 		float: left;
+		margin-top: 0px;
 	}
 
-	.selectPaymentTeam select {
+	.selectPaymentTerm select {
 		border-radius: 3px;
 		height: 28px;
 		width: 164px;
@@ -325,6 +341,8 @@
 
 	.pricePerUnit {
 		margin-left: 174px;
+		margin-top: -3px;
+
 	}
 
 	.priceOthers {
@@ -335,6 +353,16 @@
 	.ba{
 		float: left;
 	}
+
+	.deleteButton {
+		border-radius: 5px;
+		background-color: #32323a;
+		border: #32323a;
+		color:#fff;
+		font-weight: 100px;
+		height: 30px;
+		width: 100px;
+	}
 </style>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -344,7 +372,8 @@
 <body>
 <div id="container">
 	<div id="nav">
-		<div class="logo"><?php
+		<div class="logo">
+			<?php
 			echo '<img src="' . $logo1ImagePath . '"/>';
 			?>
 		</div>
@@ -366,7 +395,7 @@
 	</div>
 	<div id="main">
 		<div class="formPart">
-			<div class="title"><h4>CREATE NEW SUPPLIER</h4></div>
+			<div class="title"><h4>CREATE SUPPLIER</h4></div>
 			<form method="post">
 				<div class="form-group inputPart">
 					<div class="basicInfo">
@@ -376,145 +405,81 @@
 						</div>
 						<div class="inputContent">
 							<div class="ba">
-								<input type="text" placeholder="SUPPLIER NAME*" style="font-size:11px; height:27px;" size="22" require/>
+								<input type="text" name="supplierName" placeholder="SUPPLIER NAME*" style="font-size:11px; height:27px;" size="22" require/>
 							</div>
 							<div class="selectServerType">
 								<div class="dropdown">
-									<select>
-										<option value="1">SELECTEAM</option>
-										<option value="2">ONE</option>
+									<select name="supplierType">
+										<?php
+										foreach ($supplierTypes as $supplierType){
+											echo '<option value="' . $supplierType . '">', $supplierType, '</option>';
+										}
+										?>
 									</select>
 								</div>
 							</div>
 							<div class="HSTNumber">
-								<input type="text" placeholder="HST NUMBER*" style="font-size:11px; height:27px;" size="30" require/>
+								<input type="text" name="HSTNumber" placeholder="HST NUMBER*" style="font-size:11px; height:27px;" size="30" require/>
 							</div>
 						</div>
 					</div>
 					<div class="contactAndPrice">
 						<div class="contantInfo">
-							<div class="subTitle" style="margin-top:20px;"><h5>CONTACT INFOTMATION</h5></div>
-							<input type="text" value="CONTACT PERSON 1*" style="font-size:11px; margin-bottom:10px; margin-top:10px; height:27px;" size="30" require />
-							<input type="text" value="CONTACT PERSON 1*" style="font-size:11px; margin-bottom:25px; height:27px;" size="30" require />
-							<input type="text" value="CONTACT PERSON 1*" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
-							<input type="text" value="CONTACT PERSON 1*" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
+							<div class="subTitle" style="margin-top:20px;">
+								<h5>CONTACT INFOTMATION</h5>
+								<div class="line" >
+									<hr style="height:1px; width:180px;border:none;border-top:1px solid #a9a9a9; float:left; margin:2px 5px 5px 0px;" />
+								</div>
+							</div>
+
+							<input type="text" name="firstContactName" placeholder="FIRST CONTACT NAME*" style="font-size:11px; margin-bottom:10px; margin-top:10px; height:27px;" size="30" require />
+							<input type="text" name="firstContactNumber" placeholder="FIRST CONTACT NUMBER*" style="font-size:11px; margin-bottom:25px; height:27px;" size="30" require />
+							<input type="text" name="secondContactName" placeholder="SECOND CONTACT PERSON*" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
+							<input type="text" name="secondContactNumber" placeholder="SECOND CONTACT NUMBER" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
 						</div>
 						<div class="priceInfo">
-							<div class="subTitle" style="margin-top:20px; width:400px; margin-bottom:13px;"><h5>PRICE INFOTMATION</h5></div>
+							<div class="subTitle" style="margin-top:20px; width:400px; margin-bottom:13px;">
+								<h5>PRICE INFOTMATION</h5>
+								<div class="line" >
+									<hr style="height:1px; width:370px;border:none;border-top:1px solid #a9a9a9; float:left; margin:2px 5px 2px 0px;" />
+								</div>
+							</div>
 							<div class="selectPriceUnit">
 								<div class="dropdown">
-									<select>
-										<option value="1">PRICE UNIT*</option>
-										<option value="2">CDA</option>
+									<select name="priceUnit">
+										<?php
+										foreach ($priceUnits as $priceUnit){
+											echo '<option value="' . $priceUnit . '">', $priceUnit, '</option>';
+										}
+										?>
 									</select>
 								</div>
 							</div>
 							<div class="pricePerUnit">
-								<input type="text" placeholder="PRICE PER UNIT*" style="font-size:11px; height:27px;" size="30" require/>
+								<input type="text" name="pricePerUnit" placeholder="PRICE PER UNIT*" style="font-size:11px; height:27px;" size="30" require/>
 							</div>
-							<div class="selectPaymentTeam">
+							<div class="selectPaymentTerm">
 								<div class="dropdown">
-									<select>
-										<option value="1">PAYMENT TEAM</option>
-										<option value="2">LOL</option>
+									<select name="paymentTerm" id="payment-term-drop-down" onchange="paymentTermChanged()">
+										<?php
+										foreach ($paymentTerms as $paymentTerm){
+											echo '<option value="' . $paymentTerm . '">', $paymentTerm, '</option>';
+										}
+										?>
 									</select>
 								</div>
 							</div>
 							<div class="priceOthers">
-								<input type="text" placeholder="IF OTHER PLEASE INDICATE" style="font-size:11px; height:27px;" size="30" require/>
+								<input type="text" disabled="disabled" id="other-payment-term" name="otherPaymentTerm" placeholder="OTHER PAYMENT TERM" style="font-size:11px; height:27px;" size="30"/>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="create">
-					<button class="createButton">CREATE</button>
+					<input class="createButton" type="submit" value="Create" name="create_supplier">
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 </body>
-
-
-
-<!---->
-<!---->
-<!---->
-<!--<div style="overflow-x:auto;">-->
-<!--	<form method="post">-->
-<!--		<table class="supplier-temp-table">-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Supplier Name</a></td>-->
-<!--				<td class="name" colspan="3"><input class="input" type="text" name="supplierName"></td>-->
-<!--				<td class="primary-title" colspan="3"><a>HST Number</a></td>-->
-<!--				<td class="number" colspan="6"><input class="input" type="text" name="HSTNumber"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Contact Name 1</a></td>-->
-<!--				<td class="name" colspan="3"><input class="input" type="text" name="firstContactName"></td>-->
-<!--				<td class="primary-title" colspan="3"><a>Contact Number 1</a></td>-->
-<!--				<td class="number" colspan="6"><input class="input" type="text" name="firstContactNumber"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Contact Name 2</a></td>-->
-<!--				<td class="name" colspan="3"><input class="input" type="text" name="secondContactName"></td>-->
-<!--				<td class="primary-title" colspan="3"><a>Contact Number 2</a></td>-->
-<!--				<td class="number" colspan="6"><input class="input" type="text" name="secondContactNumber"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3" rowspan="2"><a>Supplier Type</a></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Staging</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="STAGING"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Photography</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="PHOTOGRAPHY"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Clean up</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="CLEANUP"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Relocate home</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="RELOCATEHOME"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Touch up</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="TOUCHUP"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Inspection</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="INSPECTION"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Yardwork</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="YARDWORK"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>Storage</a></td>-->
-<!--				<td class="radio"><input type="radio" name="supplierType" value="STORAGE"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Price Unit</a></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>by size</a></td>-->
-<!--				<td class="radio"><input type="radio" name="priceUnit" value="BYSIZE"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>by hour</a></td>-->
-<!--				<td class="radio"><input type="radio" name="priceUnit" value="BYHOUR"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>by house type</a></td>-->
-<!--				<td class="radio"><input type="radio" name="priceUnit" value="BYHOUSETYPE"></td>-->
-<!--				<td class="small-sub-title" colspan="2"><a>by case</a></td>-->
-<!--				<td class="radio"><input type="radio" name="priceUnit" value="BYCASE"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Price Per Unit</a></td>-->
-<!--				<td class="" colspan="12"><input class="input" type="text" name="pricePerUnit"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Payment Term</a></td>-->
-<!--				<td class="large-sub-title" colspan="3"><a>monthly</a></td>-->
-<!--				<td class="radio"><input type="radio" name="paymentTerm" value="MONTHLY"></td>-->
-<!--				<td class="large-sub-title" colspan="3"><a>semi-monthly</a></td>-->
-<!--				<td class="radio"><input type="radio" name="paymentTerm" value="SEMIMONTHLY"></td>-->
-<!--				<td class="large-sub-title" colspan="3"><a>other</a></td>-->
-<!--				<td class="radio"><input type="radio" name="paymentTerm" value="OTHER"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Support Location</a></td>-->
-<!--				<td class="" colspan="12"><input class="input" type="text" name="supportLocation"></td>-->
-<!--			</tr>-->
-<!--			<tr>-->
-<!--				<td class="primary-title" colspan="3"><a>Sample Photos</a></td>-->
-<!--				<td class="" colspan="12"></td>-->
-<!--			</tr>-->
-<!--		</table>-->
-<!--		<input type="submit" value="Create" name="create_supplier">-->
-<!--	</form>-->
-<!--</div>-->

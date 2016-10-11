@@ -34,6 +34,7 @@
     $mainPath = $homeURL . "/wp-content/themes/NuStream/";
     $logo1ImagePath = $mainPath . "img/logo1.png";
 
+    // init Data
     $getAllAccountsResult = get_all_team_leaders();
 
     if($getAllAccountsResult === null)
@@ -422,11 +423,11 @@
                     </div>
                     <div class="requireTitle">CONTACT NUMBER*</div>
                     <div class="inputContent contactNum">
-                        <input class="prayer-email" type="text" name="contactNumber" id="contactNumber" placeholder="CONTACT NUMBER" style="font-size:15px;" size="45" require/>
+                        <input class="prayer-email" type="text" name="contactNumber" id="contactNumber" placeholder="CONTACT NUMBER*" style="font-size:15px;" size="45" require/>
                     </div>
                     <div class="requireTitle">EAMIL ADDRESS*</div>
                     <div class="inputContent contactEmail">
-                        <input class="prayer-email" type="email" name="email" id="emailAddress" placeholder="EAMIL ADDRESS" style="font-size:15px;" size="45" require/>
+                        <input class="prayer-email" type="email" name="email" id="emailAddress" placeholder="EAMIL ADDRESS*" style="font-size:15px;" size="45" require/>
                     </div>
                     <div class="requireTitle">ACCOUNT TYPE*</div>
                     <div class="inputContent" >
