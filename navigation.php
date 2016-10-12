@@ -61,11 +61,11 @@
             }else if($_SESSION['AccountPosition'] === 'AGENT'){
                 // AGENT Menu
                 echo '<ul class="nav nav-pills nav-stacked">
-                    <li><a href="' . $adminFilesURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;New Listing</a></li>
-                    <li><a href="' . $adminCreateMemberURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Estimation</a></li>
-                    <li><a href="' . $adminMemberInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;My Cases</a></li>
-                    <li><a href="' . $adminCreateSupplierURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Supplier Info</a></li>
-                    <li><a href="' . $adminSupplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
+                    <li><a href="' . $agentNewCaseURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;New Listing</a></li>
+                    <li><a href="' . $agentCaseEstimationURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Estimation</a></li>
+                    <li><a href="' . $agentMyCasesURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;My Cases</a></li>
+                    <li><a href="' . $agentSupplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Supplier Info</a></li>
+                    <li><a href="' . $agentSettingsURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
                     <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
                 </ul>';
 

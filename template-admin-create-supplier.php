@@ -48,8 +48,7 @@
 	}
 
 	// Create Supplier
-	if(isset($_POST['create_supplier']) && date_validated() === true)
-		{
+	if(isset($_POST['create_supplier']) && date_validated() === true){
 			$createSupplierArray = array (
 				"supplierName" => $_POST['supplierName'],
 				"supplierType" => $_POST['supplierType'],

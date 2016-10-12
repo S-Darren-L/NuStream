@@ -149,6 +149,17 @@
 
         mysqli_close($conn);
         return $result;
+    }
 
+    // Get All Team Members By Team ID
+    function get_all_team_members_by_team_id_request($teamID){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT AccountID, FirstName, LastName FROM accounts WHERE TeamID='$teamID' AND IsActivate=TRUE AND IsTeamLeader=FALSE AND AccountPosition='AGENT' ";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
     }
 ?>

@@ -186,6 +186,17 @@
         return $paymentTerms;
     }
 
+    // Get Property Type
+    function get_property_types(){
+        $propertyTypes = array(
+            'CONDO',
+            'HOUSE',
+            'SEMI',
+            'TOWNHOUSE'
+        );
+        return $propertyTypes;
+    }
+
     // Generate Guid
     function GUID()
     {
@@ -269,6 +280,12 @@
         return get_all_team_leaders_request();
     }
 
+    // Get All Team Members By Team ID
+    function get_all_team_members_by_team_id($teamID){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return get_all_team_members_by_team_id_request($teamID);
+    }
+
     // Create Account
     function create_agent_account($createAccountArray){
         require_once(__DIR__ . '/include/repository/account-repository.php');
@@ -315,5 +332,11 @@
     function get_agent_member_brief_info($orderVariable){
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return get_agent_member_brief_info_request($orderVariable);
+    }
+
+    // Create Case
+    function create_case($createCaseArray){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return create_case_request($createCaseArray);
     }
 ?>
