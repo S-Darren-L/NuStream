@@ -4,13 +4,13 @@
 	session_start();
 
 	/*
-	Template Name: Admin Supplier Info
+	Template Name: Supplier Info
 	*/
 
 ?>
 <?php
 	// Set Sub-menu URL
-	$subMenuURL = $homeURL . "/admin-supplier-info/?SType=";
+	$subMenuURL = $homeURL . "/supplier-info/?SType=";
 
 	// Get Supplier Type
 	$supplierType = $_GET['SType'];
@@ -248,7 +248,7 @@
 				?>
 			</div>
 			<table class="table table-striped" style="margin-top:-10px;">
-				<thead style="background-color:ffffff;">
+				<thead style="background-color: #ffffff;">
 				<tr>
 					<th>COMPANY NAME</th>
 					<th>PRICE</th>

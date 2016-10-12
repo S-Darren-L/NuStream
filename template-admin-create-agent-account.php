@@ -133,7 +133,7 @@
 
             // Navigate
             if(!is_null($accountID)){
-                $url = get_home_url() . '/member-info';
+                $url = get_home_url() . '/admin-member-info';
                 echo("<script>window.location.assign('$url');</script>");
             }
         }

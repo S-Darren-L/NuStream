@@ -4,24 +4,25 @@
 session_start();
 
 /*
-Template Name: Admin Files Management
+Template Name: Agent My Cases
 */
 
 ?>
 
 <!DOCTYPE html>
 <style type="text/css">
+
     html, body {
         margin:0;
         padding:0;
     }
 
-    #container {
+    #container{
         margin-left: 230px;
         _zoom: 1;
     }
 
-    #nav {
+    #nav{
         float: left;
         width: 230px;
         height: 100%;
@@ -30,7 +31,7 @@ Template Name: Admin Files Management
         position:fixed;
     }
 
-    #main {
+    #main{
         height: 400px;
     }
     /* style icon */
@@ -84,6 +85,7 @@ Template Name: Admin Files Management
     li {
         border-bottom:1px #2a2a31 solid;
     }
+
     .footer {
         position: absolute;
         bottom:0px;
@@ -115,27 +117,6 @@ Template Name: Admin Files Management
         margin-bottom: 20px;
     }
 
-    .title {
-        padding:0px;
-        margin:20px;
-    }
-    .title h4 {
-        padding:0px;
-        margin:0px;
-        width: 300px;
-        font-size: 20px;
-        color:grey;
-        font-style: bold;
-    }
-
-    .inputPart {
-        padding-top: 30px;
-        background-color: grey;
-        color:white;
-        height: 500px;
-        width: 800px;
-    }
-
     .table td {
         font-size:10px;
         vertical-align: middle;
@@ -157,10 +138,6 @@ Template Name: Admin Files Management
         border-right:3px solid transparent;
         border-top:6px solid #fff;
         display: inline-block;
-    }
-
-    .table td a:link {
-        text-decoration: underline;
     }
 
     .table th a:link{
@@ -210,34 +187,16 @@ Template Name: Admin Files Management
     }
 
     .table-striped {
-        width: 900px !important;
+        width: 850px !important;
     }
 
-    .topBar {
-        margin-bottom: 20px;
-        margin-top: 20px;
-    }
-
-    .topBar a:link {
-        text-decoration: none;
-    }
-
-    .topBar a:hover {
-        text-decoration: none;
-        /*font-weight: bold;*/
-    }
-
-    .topBar a {
-        padding-left: 10px;
-        padding-right: 10px;
-        letter-spacing: 0px;
-    }
 </style>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div id="container">
@@ -246,7 +205,6 @@ Template Name: Admin Files Management
     ?>
     <div id="main">
         <div class="formPart">
-            <div class="topBar"><a href="#">All Files</a>|<a href="#">Pending Files</a>|<a href="#">Approved Files</a></div>
             <section ng-app="app" ng-controller="MainCtrl">
                 <table  class="table table-striped">
                     <thead style="background-color:#535353;">
@@ -255,43 +213,29 @@ Template Name: Admin Files Management
                             <a href="#" ng-click="orderByField='MLSNUMBER'; reverseSort = !reverseSort">MLS NUMBER <span ng-show="orderByField == 'MLSNUMBER'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span></a>
                         </th>
                         <th>
-                            <a href="#" ng-click="orderByField='MEMBERNAME'; reverseSort = !reverseSort">MEMBER NAME <span ng-show="orderByField == 'MEMBERNAME'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
+                            <a href="#" ng-click="orderByField='STARTEDDATE'; reverseSort = !reverseSort">MSTARTED DATE <span ng-show="orderByField == 'STARTEDDATE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
                             </a>
                         </th>
                         <th>
-                            <a href="#" ng-click="orderByField='TEAMLEAD'; reverseSort = !reverseSort">TEAM LEAD <span ng-show="orderByField == 'TEAMLEAD'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
+                            <a href="#" ng-click="orderByField='PROPERTYTYPE'; reverseSort = !reverseSort">PROPERTY TYPE <span ng-show="orderByField == 'PROPERTYTYPE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
                             </a>
                         </th>
                         <th>
-                            <a href="#" ng-click="orderByField='UPLOADDATE'; reverseSort = !reverseSort">UPLOAD DATE <span ng-show="orderByField == 'UPLOADDATE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
+                            <a href="#">ADDRESS</a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='STATUS'; reverseSort = !reverseSort">STATUS <span ng-show="orderByField == 'STATUS'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
                             </a>
-                        </th>
-                        <th>
-                            <a href="#" ng-click="orderByField='SERVICETYPE'; reverseSort = !reverseSort">SERVICE TYPE <span ng-show="orderByField == 'SERVICETYPE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
-                            </a>
-                        </th>
-                        <th>
-                            <a href="#" ng-click="orderByField='PRICEBEFFORETAX'; reverseSort = !reverseSort">PRICE BEFFORE TAX <span ng-show="orderByField == 'PRICEBEFFORETAX'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
-                            </a>
-                        </th>
-                        <th>
-                            <a href="#">INVOICE</a>
-                        </th>
-                        <th>
-                            <a href="#">STATUS</a>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="info in data.infoAccountant|orderBy:orderByField:reverseSort">
+                    <tr ng-repeat="info in data.infoCase|orderBy:orderByField:reverseSort">
                         <td>{{info.MLSNUMBER}}</td>
-                        <td>{{info.MEMBERNAME}}</td>
-                        <td>{{info.TEAMLEAD}}</td>
-                        <td>{{info.UPLOADDATE}}</td>
-                        <td>{{info.SERVICETYPE}}</td>
-                        <td>${{info.PRICEBEFFORETAX}} CDA</td>
-                        <td><a href="#">VIEW</a></td>
-                        <td STYLE="color:red;">NEW</td>
+                        <td>{{info.STARTEDDATE}}</td>
+                        <td>{{info.PROPERTYTYPE}}</td>
+                        <td>{{info.ADDRESS}}</td>
+                        <td>OPEN</td>
                     </tr>
                     </tbody>
                 </table>
@@ -299,7 +243,6 @@ Template Name: Admin Files Management
             <div class="pageNum"><a href="#">BACK</a>&nbsp;&nbsp;&nbsp;<a href="#">NEXT</a></div>
         </div>
     </div>
-</div>
 </div>
 <script>
     var app = angular.module('app', []);
@@ -309,29 +252,24 @@ Template Name: Admin Files Management
         $scope.reverseSort = false;
 
         $scope.data = {
-            infoAccountant: [{
+            infoCase: [{
                 MLSNUMBER: 'N12345678',
-                MEMBERNAME: 'JASMINE ZOU',
-                TEAMLEAD:'DAVID R.TAsfawfawefO',
-                UPLOADDATE:'2016/09/01',
-                SERVICETYPE:'STAGING',
-                PRICEBEFFORETAX:3500
+                STARTEDDATE: '09/25/2016',
+                PROPERTYTYPE:'CONDO',
+                ADDRESS:'238 BONIS AVE, SCRBOROUGH, M1T 357'
             },{
-                MLSNUMBER: 'N12345679',
-                MEMBERNAME: 'ASMINE ZOU',
-                TEAMLEAD:'DAVID R.TAO',
-                UPLOADDATE:'2016/09/01',
-                SERVICETYPE:'STAGING',
-                PRICEBEFFORETAX:3500
+                MLSNUMBER: 'N12345678',
+                STARTEDDATE: '09/25/2016',
+                PROPERTYTYPE:'CONDO',
+                ADDRESS:'238 BONIS AVE, SCRBOROUGH, M1T 357'
             },{
-                MLSNUMBER: 'N12345670',
-                MEMBERNAME: 'ASMINE ZOU',
-                TEAMLEAD:'AVID R.TAO',
-                UPLOADDATE:'2016/09/01',
-                SERVICETYPE:'STAGING',
-                PRICEBEFFORETAX:3502
+                MLSNUMBER: 'N12345678',
+                STARTEDDATE: '09/25/2016',
+                PROPERTYTYPE:'CONDO',
+                ADDRESS:'238 BONIS AVE, SCRBOROUGH, M1T 357'
             }]
         };
     });
 </script>
+
 </body>

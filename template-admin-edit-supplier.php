@@ -125,7 +125,7 @@
 	function navigate_back(){
 		global $adminSupplierInfoURL;
 		global $supplierType;
-		$navigateBackURL = $adminSupplierInfoURL . "/admin-supplier-info/?SType=" . $supplierType;
+		$navigateBackURL = $adminSupplierInfoURL . "/?SType=" . $supplierType;
 		echo("<script>window.location.assign('$navigateBackURL');</script>");
 	}
 ?>

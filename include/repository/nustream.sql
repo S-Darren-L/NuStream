@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2016 at 04:02 AM
+-- Generation Time: Oct 11, 2016 at 10:22 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -31,7 +31,7 @@ CREATE TABLE `accounts` (
   `Password` varchar(255) NOT NULL,
   `FirstName` varchar(255) NOT NULL,
   `LastName` varchar(255) NOT NULL,
-  `TeamID` int(11) NOT NULL,
+  `TeamID` varchar(255) NOT NULL,
   `AccountPosition` enum('ADMIN','AGENT','ACCOUNTANT','SUPERUSER') NOT NULL,
   `ContactNumber` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
@@ -44,10 +44,10 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamID`, `AccountPosition`, `ContactNumber`, `Email`, `IsTeamLeader`, `IsActivate`) VALUES
-(1, '', 'Darren', 'Liu', 7, 'AGENT', '753', 'dfg@sdf.com', 1, 1),
-(2, '', 'Kevin', 'Guo', 7, 'AGENT', '96521', 'rtg@dcfvh.com', 1, 1),
-(3, '', 'Peter', 'Ray', 0, 'AGENT', '85', 'dfg@rgh.com', 0, 0),
-(21, 'ba2eed9386ed24e549d3608ff8d4fda1', 'Shuyang', 'Liu', 7, 'AGENT', '6478953986', 'gulang15@gmail.com', 0, 1);
+(1, '', 'Darren', 'Liu', '7', 'AGENT', '75368', 'dfg@sdf.com', 0, 1),
+(2, '', 'Kevin', 'Guo', '7', 'AGENT', '96521', 'rtg@dcfvh.com', 1, 1),
+(3, '', 'Peter', 'Ray', '0', 'AGENT', '85', 'dfg@rgh.com', 0, 1),
+(41, '13a2d47aef854249e46feb3d954a54c1', 'Shuyang', 'Liu', '7', 'ADMIN', '16478953986', 'gulang15@gmail.com', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -56,9 +56,17 @@ INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamI
 --
 
 CREATE TABLE `cases` (
-  `MLS` int(11) NOT NULL,
+  `MLS` varchar(255) NOT NULL,
   `StaffID` int(11) NOT NULL,
-  `PropertyID` int(11) NOT NULL,
+  `CoStaffID` int(11) NOT NULL,
+  `Address` varchar(255) NOT NULL,
+  `LandSize` double NOT NULL,
+  `HouseSize` double NOT NULL,
+  `PropertyType` enum('CONDO','HOUSE','SEMI','TOWNHOUSE') NOT NULL,
+  `ListingPrice` double NOT NULL,
+  `OwnerFirstName` varchar(255) NOT NULL,
+  `OwnerLastName` varchar(255) NOT NULL,
+  `Contact` varchar(255) NOT NULL,
   `StartDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` enum('OPEN','CLOSED') NOT NULL,
   `Total` double NOT NULL,
@@ -97,36 +105,8 @@ INSERT INTO `files` (`FilePath`, `FileName`, `FileType`) VALUES
 ('wp-content/themes/NuStream/Upload/Supplier/73/', '1475645987_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
 ('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646219_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
 ('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646305_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
-('wp-content/themes/NuStream/Upload/Supplier/73/', '1475732027_largepMPr27a80002b7f31260.jpg', 'IMAGE');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `owners`
---
-
-CREATE TABLE `owners` (
-  `OwnerID` int(11) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Contact` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `properties`
---
-
-CREATE TABLE `properties` (
-  `PropertyID` int(11) NOT NULL,
-  `Address` varchar(255) NOT NULL,
-  `LandSize` double NOT NULL,
-  `HouseSize` double NOT NULL,
-  `PropertyType` enum('CONDO','HOUSE','SEMI','TOWNHOUSE') NOT NULL,
-  `ListingPrice` double NOT NULL,
-  `OwnerID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475732027_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
+('wp-content/themes/NuStream/Upload///', '1476031283_largepMPr27a80002b7f31260.jpg', 'IMAGE');
 
 -- --------------------------------------------------------
 
@@ -159,12 +139,13 @@ CREATE TABLE `suppliers` (
   `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE') NOT NULL,
   `PricePerUnit` double NOT NULL,
   `FirstContactName` varchar(255) NOT NULL,
-  `FirstContactNumber` int(11) NOT NULL,
+  `FirstContactNumber` varchar(255) NOT NULL,
   `SecondContactName` varchar(255) NOT NULL,
-  `SecondContactNumber` int(11) NOT NULL,
+  `SecondContactNumber` varchar(255) NOT NULL,
   `SupportLocation` varchar(255) NOT NULL,
-  `HSTNumber` int(11) NOT NULL,
+  `HSTNumber` varchar(255) NOT NULL,
   `PaymentTerm` enum('MONTHLY','SEMIMONTHLY','OTHER') NOT NULL,
+  `OtherPaymentTerm` varchar(255) NOT NULL,
   `FilePath` varchar(255) NOT NULL,
   `IsActivate` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -173,15 +154,17 @@ CREATE TABLE `suppliers` (
 -- Dumping data for table `suppliers`
 --
 
-INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `FilePath`, `IsActivate`) VALUES
-(5, 'LLK', 'INSPECTION', 'BYSIZE', 234, 'Shuyang Liu', 7654, 'Shuyang Liu', 9876, 'fgh', 1234, 'MONTHLY', '', 1),
-(6, 'G', 'STAGING', 'BYCASE', 85, 'jk', 45, 'io', 15, 'bn', 95, 'OTHER', '', 1),
-(7, 'HG', 'STAGING', 'BYHOUR', 962, 'DFG', 24, 'UH', 3217, 'HGJ', 852, 'SEMIMONTHLY', '', 1),
-(8, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', 65, 'fdn', 53, 'fghj', 965, 'MONTHLY', '', 1),
-(9, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', 65, 'fdn', 53, 'fghj', 965, 'MONTHLY', '', 1),
-(10, 'dfghj', 'STAGING', 'BYSIZE', 7452, 'fghjk', 96521, 'ghnm', 952, 'ghj', 751, 'MONTHLY', '', 1),
-(11, 'dfg', 'STAGING', 'BYSIZE', 456, 'fgh', 6789, 'gh', 2345, 'dfg', 456, 'MONTHLY', '', 1),
-(73, '', '', '', 0, '', 0, '', 0, '', 0, '', 'wp-content/themes/NuStream/Upload/Supplier/73/', 1);
+INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `OtherPaymentTerm`, `FilePath`, `IsActivate`) VALUES
+(5, 'LLK', 'INSPECTION', 'BYSIZE', 234, 'Shuyang Liu', '7654', 'Shuyang Liu', '9876', 'fgh', '1234', 'MONTHLY', '', '', 1),
+(7, 'HG', 'STAGING', 'BYSIZE', 962, 'DFG', '24', 'UH', '3217', '', '852', 'MONTHLY', '', '', 1),
+(8, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', '65', 'fdn', '53', 'fghj', '965', 'MONTHLY', '', '', 1),
+(9, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', '65', 'fdn', '53', 'fghj', '965', 'MONTHLY', '', '', 1),
+(10, 'dfghj', 'STAGING', 'BYSIZE', 7452, 'fghjk', '96521', 'ghnm', '952', 'ghj', '751', 'MONTHLY', '', '', 1),
+(11, 'dfg', 'STAGING', 'BYSIZE', 456, 'fgh', '6789', 'gh', '2345', 'dfg', '456', 'MONTHLY', '', '', 1),
+(73, '', '', '', 0, '', '0', '', '0', '', '0', '', '', 'wp-content/themes/NuStream/Upload/Supplier/73/', 1),
+(74, 'Lghjk', 'TOUCHUP', 'BYHOUR', 85, 'ghj', '52', 'nhjk', '4', '', '54521456', 'SEMIMONTHLY', '', '', 1),
+(75, 'sdfg', 'INSPECTION', 'BYCASE', 52, 'sdfg', '85', 'Sdf', '52', '', '85', 'OTHER', 'cvg', '', 1),
+(76, 'sdf', 'STAGING', 'BYSIZE', 6, 'bv', '632', 'bvc', '32', '', '5663', 'MONTHLY', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -201,7 +184,8 @@ CREATE TABLE `teams` (
 
 INSERT INTO `teams` (`TeamID`, `TeamLeaderID`, `TeamLeaderName`) VALUES
 (7, 2, 'Kevin Guo'),
-(15, 8, 'Shuyang Liu');
+(17, 54, 'Shuyang Liu'),
+(18, 56, 'Shuyang Liu');
 
 --
 -- Indexes for dumped tables
@@ -212,7 +196,15 @@ INSERT INTO `teams` (`TeamID`, `TeamLeaderID`, `TeamLeaderName`) VALUES
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`AccountID`),
-  ADD UNIQUE KEY `AccountID` (`AccountID`);
+  ADD UNIQUE KEY `AccountID` (`AccountID`),
+  ADD UNIQUE KEY `Email` (`Email`);
+
+--
+-- Indexes for table `cases`
+--
+ALTER TABLE `cases`
+  ADD PRIMARY KEY (`MLS`),
+  ADD UNIQUE KEY `MLS` (`MLS`);
 
 --
 -- Indexes for table `files`
@@ -243,17 +235,17 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
