@@ -24,7 +24,7 @@
     $agentCaseEstimationURL = get_home_url() . '/agent-case-estimation';
     $agentMyCasesURL = get_home_url() . '/agent-my-cases';
     $agentSupplierInfoURL = get_home_url() . '/supplier-info';
-    $agentSettingsURL = get_home_url() . '/supplier-info';
+    $agentSettingsURL = get_home_url() . '/agent-settings';
 
 
     $UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
