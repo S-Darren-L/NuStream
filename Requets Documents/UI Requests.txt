@@ -17,3 +17,9 @@ Admin New Supplier & update supplier:
 	all fields need title(like new case, new member, etc.)
 Admin Member Info
 	better to add a view button for each member, insteads of use url at member name
+	deactivate user needs re-input password
+Admin Files
+	each case needs a button to go to case detail page
+Admin Case Details(similar page with Agent Case Details)
+	needs a delete case button, also need to re-input password to delete
+	
