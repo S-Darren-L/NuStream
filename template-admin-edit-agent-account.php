@@ -14,7 +14,7 @@
     $accountID = $_GET['AID'];
 
     // Init Date
-    init_date($accountID);
+    init_data($accountID);
 
     // Init Date
     function init_date($accountID){
@@ -70,7 +70,7 @@
         );
         $updateAccountResult = update_account($updateAccountArray);
         if($updateAccountResult === true){
-            init_date($accountID);
+            init_data($accountID);
         }
     }
 
@@ -311,6 +311,11 @@
         width: 100px;
     }
 
+
+    .error-message a{
+        color: red;
+        font-size: 80%;
+    }
 
 </style>
 <html>

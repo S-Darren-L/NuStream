@@ -30,6 +30,65 @@
 
         mysqli_close($conn);
         return $result;
-}
+    }
+
+    // Get Cases Brief Info
+    function get_cases_brief_info_request($agentAccountID){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT MLS, StartDate, PropertyType, Address, CaseStatus FROM cases WHERE StaffID='$agentAccountID' ORDER BY StartDate";
+
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+
+        return $result;
+    }
+
+
+    // Get Case By ID
+    function get_case_by_id_request($MLS){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT * FROM cases WHERE MLS='$MLS'";
+
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+
+        return $result;
+    }
+
+    // Update Case
+    function update_case_request($updateCaseArray){
+        $MLS = $updateCaseArray['MLS'];
+        $staffID = $updateCaseArray['staffID'];
+        $coStaffID = $updateCaseArray['coStaffID'];
+        $address = $updateCaseArray['address'];
+        $landSize = $updateCaseArray['landSize'];
+        $houseSize = $updateCaseArray['houseSize'];
+        $propertyType = $updateCaseArray['propertyType'];
+        $listingPrice = $updateCaseArray['listingPrice'];
+        $ownerName = $updateCaseArray['ownerName'];
+        $contactNumber = $updateCaseArray['contactNumber'];
+
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE cases SET StaffID = '$staffID', CoStaffID = '$coStaffID',
+                        Address = '$address', LandSize = '$landSize',
+                        HouseSize = '$houseSize', PropertyType = '$propertyType',
+                        ListingPrice = '$listingPrice', OwnerName = '$ownerName', ContactNumber = '$contactNumber'
+                        WHERE MLS = '$MLS'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
 
 ?>

@@ -48,13 +48,6 @@
         }
     }
 
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
     // Create Account
     if(isset($_POST['create_account']) && date_validated() === true) {
         // Generate Password

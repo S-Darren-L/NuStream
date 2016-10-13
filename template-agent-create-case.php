@@ -397,7 +397,7 @@ Template Name: Agent Create Case
                     </div>
                     <div class="requireTitle addressTitle">ADDRESS*</div>
                     <div class="inputContent addressInput">
-                        <input type="text" name="address" id="address" placeholder="" style="font-size:11px; height:30px;" size="70" require/>
+                        <input type="text" name="address" id="address" placeholder="ADDRESS*" style="font-size:11px; height:30px;" size="70" require/>
                     </div>
                     <div class="requireTitle houseSizeTitle">HOUSE SIZE*</div>
                     <div class="inputContent houseSizeInput">

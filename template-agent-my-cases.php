@@ -9,6 +9,24 @@ Template Name: Agent My Cases
 
 ?>
 
+<?php
+    $agentAccountID = $_SESSION['AccountID'];
+    // Get Cases Brief Info
+    $CasesBriefInfoArray = get_cases_brief_table($agentAccountID);
+
+    function get_cases_brief_table($agentAccountID){
+        $result = get_cases_brief_info($agentAccountID);
+        if($result === null)
+            echo 'result is null';
+        $result_rows = [];
+        while($row = mysqli_fetch_array($result))
+        {
+            $result_rows[] = $row;
+        }
+        return $result_rows;
+    }
+?>
+
 <!DOCTYPE html>
 <style type="text/css">
 
@@ -230,13 +248,18 @@ Template Name: Agent My Cases
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="info in data.infoCase|orderBy:orderByField:reverseSort">
-                        <td>{{info.MLSNUMBER}}</td>
-                        <td>{{info.STARTEDDATE}}</td>
-                        <td>{{info.PROPERTYTYPE}}</td>
-                        <td>{{info.ADDRESS}}</td>
-                        <td>OPEN</td>
-                    </tr>
+                    <?php
+                        for($i = 0; $i < count($CasesBriefInfoArray); $i++) {
+                            echo '<tr>';
+                                $MLS = $CasesBriefInfoArray[$i]["MLS"];
+                                echo '<td >', '<a href="' . $homeURL . '/agent-edit-case/?CID=' . $MLS . '" >', $MLS, '</a>', '</td>';
+                                echo '<td >', $CasesBriefInfoArray[$i]["StartDate"], '</td>';
+                                echo '<td>', $CasesBriefInfoArray[$i]["PropertyType"], '</td>';
+                                echo '<td>', $CasesBriefInfoArray[$i]["Address"], '</td>';
+                                echo '<td>', $CasesBriefInfoArray[$i]["CaseStatus"], '</td>';
+                            echo '</tr>';
+                        }
+                    ?>
                     </tbody>
                 </table>
             </section>

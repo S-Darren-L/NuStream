@@ -45,7 +45,7 @@
     // Navigate
     function navigateToUserHomePage(){
         if ($_SESSION['AccountPosition'] === 'ADMIN') {
-            $url = get_home_url() . '/admin-file-management';
+            $url = get_home_url() . '/admin-files-management';
             echo("<script>window.location.assign('$url');</script>");
         } else if ($_SESSION['AccountPosition'] === 'AGENT') {
             $url = get_home_url() . '/agent-my-cases';
@@ -197,6 +197,14 @@
         return $propertyTypes;
     }
 
+    // Test Input
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     // Generate Guid
     function GUID()
     {
@@ -338,5 +346,23 @@
     function create_case($createCaseArray){
         require_once(__DIR__ . '/include/repository/case-repository.php');
         return create_case_request($createCaseArray);
+    }
+
+    // Get Cases Brief Info
+    function get_cases_brief_info($agentAccountID){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return get_cases_brief_info_request($agentAccountID);
+    }
+
+    // Get Case By ID
+    function get_case_by_id($MLS){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return get_case_by_id_request($MLS);
+    }
+
+    // Update Case
+    function update_case($updateCaseArray){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return update_case_request($updateCaseArray);
     }
 ?>
