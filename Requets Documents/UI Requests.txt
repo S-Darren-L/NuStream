@@ -1,0 +1,16 @@
+Needs new pages:
+	Forget password
+	upload images(with slide show(or whatever) to display images), needs to be able to upload and delete images
+	
+	
+Agent New Listing & update listing: 
+	co-listing -> team name: text field to plain text, needs some css changes
+	co-listing -> co-member name: needs a title
+Agent Estimation:
+	estimation -> property type: needs to change to drop down list, and an estimate button
+Agent My Cases:
+	each case needs two buttons: view and edit(update)
+Admin New Supplier & update supplier:
+	all fields need title(like new case, new member, etc.)
+Admin Member Info
+	better to add a view button for each member, insteads of use url at member name

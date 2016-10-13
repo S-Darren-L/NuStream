@@ -231,7 +231,7 @@ Template Name: Agent My Cases
                             <a href="#" ng-click="orderByField='MLSNUMBER'; reverseSort = !reverseSort">MLS NUMBER <span ng-show="orderByField == 'MLSNUMBER'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span></a>
                         </th>
                         <th>
-                            <a href="#" ng-click="orderByField='STARTEDDATE'; reverseSort = !reverseSort">MSTARTED DATE <span ng-show="orderByField == 'STARTEDDATE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
+                            <a href="#" ng-click="orderByField='STARTEDDATE'; reverseSort = !reverseSort">STARTED DATE <span ng-show="orderByField == 'STARTEDDATE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
                             </a>
                         </th>
                         <th>

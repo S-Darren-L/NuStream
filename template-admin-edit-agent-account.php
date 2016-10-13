@@ -17,7 +17,7 @@
     init_data($accountID);
 
     // Init Date
-    function init_date($accountID){
+    function init_data($accountID){
         $getAgentAccountResult = get_agent_account($accountID);
         if($getAgentAccountResult !== null){
             $getAgentAccountArray = mysqli_fetch_array($getAgentAccountResult);
