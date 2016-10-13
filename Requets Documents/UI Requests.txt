@@ -10,6 +10,9 @@ Agent Estimation:
 	estimation -> property type: needs to change to drop down list, and an estimate button
 Agent My Cases:
 	each case needs two buttons: view and edit(update)
+Agent Case Details:
+	commission rate: change plain text to text field
+	needs a button to calculate finale cost and commission
 Admin New Supplier & update supplier:
 	all fields need title(like new case, new member, etc.)
 Admin Member Info
