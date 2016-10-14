@@ -13,9 +13,11 @@ Agent My Cases:
 Agent Case Details:
 	commission rate: change plain text to text field
 	needs a button to calculate finale cost and commission
+	needs a button to update/add service info button
 	supplier name fields are too short
 Admin New Supplier & update supplier:
 	all fields need title(like new case, new member, etc.)
+	needs a "support area" field
 Admin Member Info
 	better to add a view button for each member, insteads of use url at member name
 	deactivate user needs re-input password
