@@ -111,6 +111,52 @@ Template Name: Agent Case Details
         return $allServiceDetailArray;
     }
 
+    // Submit Services Info
+    if(isset($_POST['submit_service_info'])) {
+        // Staging
+        $isStagingEnabled = $_POST['stagingCheckbox'];
+        $stagingSupplierID = $_POST['stagingSelect'];
+        $oldStagingSupplierID = $allServiceDetailArray['STAGING']['ServiceSupplierID'];
+        $stagingServiceID = $allServiceDetailArray['STAGING']['ServiceID'];
+        $stagingRealCost = $_POST['stagingRealCost'];
+        if($isStagingEnabled === 'checked' && !empty($stagingSupplierID)){
+            //Before images
+            //After images
+            //Files
+            if(!is_null($stagingServiceID)){
+                if($stagingServiceID === $oldStagingSupplierID){
+                    // Update Service Info
+                    $updateStagingServiceArray = array(
+                        "serviceID" => $stagingServiceID,
+                        "serviceSupplierID" => $stagingSupplierID,
+                        "supplierType" => 'STAGING',
+                        "realCost" => $stagingRealCost
+                    );
+                    $updateStagingResult = update_service_details($updateStagingServiceArray);
+                }
+                else{
+                    // delete old service info
+                    $deleteOldServiceResult = delete_service_by_id($stagingServiceID);
+                    // then insert new service info
+                    // then update case-service info
+
+                }
+            }
+            else{
+                // Insert service Info
+                // Insert case-service info
+            }
+        }else{
+            // TODO: delete all?
+        }
+        // Touch up
+        // Clean up
+        // Yard work
+        // Inspection
+        // Storage
+        // Relocate Home
+        // Photography
+    }
 
 ?>
 <!DOCTYPE html>
@@ -487,7 +533,7 @@ Template Name: Agent Case Details
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="checkbox" name="stagingCheckbox"></td>
+                        <td><input type="checkbox" name="stagingCheckbox" value='checked'></td>
                         <td>STAGING</td>
                         <td>
                             <?php
@@ -569,7 +615,7 @@ Template Name: Agent Case Details
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="yardWorkCheckbox"></td>
-                        <td>YARDWORK</td>
+                        <td>YARD WORK</td>
                         <td>
                             <?php
                             echo '<select name="yardWorkSelect">';
@@ -724,6 +770,7 @@ Template Name: Agent Case Details
                     </div>
                     <div style="height:150px;"></div>
                 </div>
+                <input type="submit" value="Submit" name="submit_service_info">
             </form>
         </div>
     </div>

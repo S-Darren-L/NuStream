@@ -368,13 +368,95 @@
 
     // Get All Case Services ID
     function get_all_case_services_by_MLS($MLS){
-        require_once(__DIR__ . '/include/repository/case-services-repository.php');
+        require_once(__DIR__ . '/include/repository/case-service-repository.php');
         return get_all_case_services_by_MLS_request($MLS);
     }
 
     // Get Service Details
     function get_service_details_by_id($serviceID){
-        require_once(__DIR__ . '/include/repository/services-repository.php');
+        require_once(__DIR__ . '/include/repository/service-repository.php');
         return get_service_details_by_id_request($serviceID);
     }
+
+    // Update Service Details
+    function update_service_details($serviceArray){
+        require_once(__DIR__ . '/include/repository/service-repository.php');
+        return update_service_details_request($serviceArray);
+    }
+
+    // Delete Service By ID
+    function delete_service_by_id($serviceID){
+        require_once(__DIR__ . '/include/repository/service-repository.php');
+        return delete_service_by_id_request($serviceID);
+    }
+
+    // Estimate Staging Price
+    function staging_price_estimate($houseSize){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('STAGING'));
+        $servicePrice = $supplierResult['PricePerUnit'] * $houseSize;
+        if($servicePrice < $supplierResult['MinimumPrice']){
+            $servicePrice = $supplierResult['MinimumPrice'];
+        }
+        return $servicePrice;
+    }
+
+    //Estimate Photography Price
+    function photography_price_estimate(){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('PHOTOGRAPHY'));
+        $servicePrice = $supplierResult['MinimumPrice'];
+        return $servicePrice;
+    }
+
+    //Estimate Clean Up Price
+    function clean_up_price_estimate($houseSize){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('CLEANUP'));
+        $servicePrice = $supplierResult['PricePerUnit'] * $houseSize;
+        if($servicePrice < $supplierResult['MinimumPrice']) {
+            $servicePrice = $supplierResult['MinimumPrice'];
+        }
+        return $servicePrice;
+    }
+
+    //Estimate Relocate Home Price
+    function relocate_home_price_estimate(){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('RELOCATEHOME'));
+        $servicePrice = $supplierResult['MinimumPrice'];
+        return $servicePrice;
+    }
+    //Estimate Touch Up Price
+    function touch_up_price_estimate(){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('TOUCHUP'));
+        $servicePrice = $supplierResult['MinimumPrice'];
+        return $servicePrice;
+    }
+
+    //Estimate Inspection Price
+    function inspection_price_estimate(){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('INSPECTION'));
+        $servicePrice = $supplierResult['MinimumPrice'];
+        return $servicePrice;
+    }
+
+    //Estimate Yard Work Price
+    function yard_work_price_estimate(){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('YARDWORK'));
+        $servicePrice = $supplierResult['MinimumPrice'];
+        return $servicePrice;
+    }
+
+    //Estimate Storage Price
+    function storage_price_estimate(){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('STORAGE'));
+        $servicePrice = $supplierResult['MinimumPrice'];
+        return $servicePrice;
+    }
+
 ?>

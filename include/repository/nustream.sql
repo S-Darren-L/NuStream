@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2016 at 05:36 AM
+-- Generation Time: Oct 14, 2016 at 06:23 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -145,8 +145,9 @@ CREATE TABLE `suppliers` (
   `SupplierID` int(11) NOT NULL,
   `SupplierName` varchar(255) NOT NULL,
   `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
-  `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE') NOT NULL,
+  `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE','BYSIZE1000') NOT NULL,
   `PricePerUnit` double NOT NULL,
+  `MinimumPrice` double NOT NULL,
   `FirstContactName` varchar(255) NOT NULL,
   `FirstContactNumber` varchar(255) NOT NULL,
   `SecondContactName` varchar(255) NOT NULL,
@@ -156,24 +157,30 @@ CREATE TABLE `suppliers` (
   `PaymentTerm` enum('MONTHLY','SEMIMONTHLY','OTHER') NOT NULL,
   `OtherPaymentTerm` varchar(255) NOT NULL,
   `FilePath` varchar(255) NOT NULL,
-  `IsActivate` tinyint(1) NOT NULL DEFAULT '1'
+  `IsActivate` tinyint(1) NOT NULL DEFAULT '1',
+  `isDefault` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `suppliers`
 --
 
-INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `OtherPaymentTerm`, `FilePath`, `IsActivate`) VALUES
-(5, 'LLK', 'INSPECTION', 'BYSIZE', 234, 'Shuyang Liu', '7654', 'Shuyang Liu', '9876', 'fgh', '1234', 'MONTHLY', '', '', 1),
-(7, 'HG', 'STAGING', 'BYSIZE', 962, 'DFG', '24', 'UH', '3217', '', '852', 'MONTHLY', '', '', 1),
-(8, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', '65', 'fdn', '53', 'fghj', '965', 'MONTHLY', '', '', 1),
-(9, 'jhgf', 'STAGING', 'BYSIZE', 952, 'nbv', '65', 'fdn', '53', 'fghj', '965', 'MONTHLY', '', '', 1),
-(10, 'dfghj', 'STAGING', 'BYSIZE', 7452, 'fghjk', '96521', 'ghnm', '952', 'ghj', '751', 'MONTHLY', '', '', 1),
-(11, 'dfg', 'STAGING', 'BYSIZE', 456, 'fgh', '6789', 'gh', '2345', 'dfg', '456', 'MONTHLY', '', '', 1),
-(73, '', '', '', 0, '', '0', '', '0', '', '0', '', '', 'wp-content/themes/NuStream/Upload/Supplier/73/', 1),
-(74, 'Lghjk', 'TOUCHUP', 'BYHOUR', 85, 'ghj', '52', 'nhjk', '4', '', '54521456', 'SEMIMONTHLY', '', '', 1),
-(75, 'sdfg', 'INSPECTION', 'BYCASE', 52, 'sdfg', '85', 'Sdf', '52', '', '85', 'OTHER', 'cvg', '', 1),
-(76, 'sdf', 'STAGING', 'BYSIZE', 6, 'bv', '632', 'bvc', '32', '', '5663', 'MONTHLY', '', '', 1);
+INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `MinimumPrice`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `OtherPaymentTerm`, `FilePath`, `IsActivate`, `isDefault`) VALUES
+(1, 'Default Staging', 'STAGING', 'BYSIZE', 0.7, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(2, 'Default Photography', 'PHOTOGRAPHY', 'BYHOUSETYPE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(3, 'Default Clean Up', 'CLEANUP', 'BYSIZE1000', 0.7, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(4, 'Default Relocate Home', 'RELOCATEHOME', 'BYCASE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(5, 'Default Touch Up', 'TOUCHUP', 'BYCASE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(6, 'Default Inspection', 'INSPECTION', 'BYHOUSETYPE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(7, 'Default Yard Work', 'YARDWORK', 'BYCASE', 1, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(8, 'Default Stroage', 'STORAGE', 'BYCASE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(9, 'jhgf', 'STAGING', 'BYSIZE', 952, 0, 'nbv', '65', 'fdn', '53', 'fghj', '965', 'MONTHLY', '', '', 1, 0),
+(10, 'dfghj', 'STAGING', 'BYSIZE', 7452, 0, 'fghjk', '96521', 'ghnm', '952', 'ghj', '751', 'MONTHLY', '', '', 1, 0),
+(11, 'dfg', 'STAGING', 'BYSIZE', 456, 0, 'fgh', '6789', 'gh', '2345', 'dfg', '456', 'MONTHLY', '', '', 1, 0),
+(73, '', '', '', 0, 0, '', '0', '', '0', '', '0', '', '', 'wp-content/themes/NuStream/Upload/Supplier/73/', 1, 0),
+(74, 'Lghjk', 'TOUCHUP', 'BYHOUR', 85, 0, 'ghj', '52', 'nhjk', '4', '', '54521456', 'SEMIMONTHLY', '', '', 1, 0),
+(75, 'sdfg', 'INSPECTION', 'BYCASE', 52, 0, 'sdfg', '85', 'Sdf', '52', '', '85', 'OTHER', 'cvg', '', 1, 0),
+(76, 'sdf', 'STAGING', 'BYSIZE', 6, 0, 'bv', '632', 'bvc', '32', '', '5663', 'MONTHLY', '', '', 1, 0);
 
 -- --------------------------------------------------------
 

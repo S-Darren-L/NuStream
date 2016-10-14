@@ -207,7 +207,7 @@ if(isset($_POST['clear_all'])){
         color:#a9a9a9;
     }
 
-    .estimationPart {
+     .estimationPart {
         margin-left: 420px;
         background-color: #32323a;
         height: 210px;
@@ -236,6 +236,7 @@ if(isset($_POST['clear_all'])){
         width: 100px;
         font-size: 11px;
     }
+
     .estimatePart {
         margin-top: 20px;
     }
@@ -335,17 +336,13 @@ if(isset($_POST['clear_all'])){
                         <hr style="height:1px; width:240px;border:none;border-top:1px solid #fff; float:left; margin:2px 5px 5px 10px;" />	</br>
                     </div>
                     <input type="text" name="houseSize" value="" placeholder="HOUSE SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
-                    <div class="selectPropertyType">
-                        <div class="dropdown">
-                            <select name="propertyType" class="estimationAgentSelect" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;">
-                                <?php
+                    <select  name="propertyType" class="estimationAgentSelect" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;"> 
+                        <?php
                                 foreach ($propertyTypes as $propertyTypeItem){
                                     echo '<option class="estimationAgentOption" value="' . $propertyTypeItem . '">', $propertyTypeItem, '</option>';
                                 }
                                 ?>
-                            </select>
-                        </div>
-                    </div>
+                    </select>
                     <input type="text" name="landSize" value="" placeholder="LAND SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
                 </div>
                 <div class="estimateButtonPart">
