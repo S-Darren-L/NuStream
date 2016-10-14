@@ -113,10 +113,23 @@
         $conn = mysqli_connection();
 
         $sql = "UPDATE suppliers SET IsActivate = FALSE 
-                        WHERE SupplierID = '$supplierID'";
+                        WHERE SupplierID = '$supplierID' AND isDefault=FALSE ";
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
+        return $result;
+    }
+
+    // Get Default Supplier By Type
+    function get_default_supplier_by_type($supplierType){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT * FROM suppliers WHERE SupplierType='$supplierType' AND isDefault=TRUE LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
         return $result;
     }
 

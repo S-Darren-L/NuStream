@@ -13,8 +13,54 @@ Template Name: Agent Case Estimation
     // Init Data
     $propertyTypes = get_property_types();
 
+    //Estimate
+    if(isset($_POST['estimate'])){
+        $houseSize = $_POST['houseSize'];
+        $propertyType = $_POST['propertyType'];
+        $landSize = $_POST['landSize'];
 
-
+        //Estimate Staging
+        if($_POST['stagingCheckBox'] === 'checked')
+            $stagingEstimatePrice = staging_price_estimate($houseSize);
+        else
+            $stagingEstimatePrice = 0;
+        //Estimate Photography
+        if($_POST['photographyCheckBox'] === 'checked')
+            $photographyEstimatePrice = photography_price_estimate();
+        else
+            $photographyEstimatePrice = 0;
+        //Estimate Clean Up
+        if($_POST['cleanUpCheckBox'] === 'checked')
+            $cleanUpEstimatePrice = clean_up_price_estimate($houseSize);
+        else
+            $cleanUpEstimatePrice = 0;
+        //Estimate Relocate Home
+        if($_POST['relocateHomeCheckBox'] === 'checked')
+            $relocateHomeEstimatePrice = relocate_home_price_estimate();
+        else
+            $relocateHomeEstimatePrice = 0;
+        //Estimate Touch Up
+        if($_POST['touchUpCheckBox'] === 'checked')
+            $touchUpEstimatePrice = touch_up_price_estimate();
+        else
+            $touchUpEstimatePrice = 0;
+        //Estimate Inspection
+        if($_POST['inspectionCheckBox'] === 'checked')
+            $inspectionEstimatePrice = inspection_price_estimate();
+        else
+            $inspectionEstimatePrice = 0;
+        //Estimate Yard Work
+        if($_POST['yardWordCheckBox'] === 'checked')
+            $yardWorkEstimatePrice = yard_work_price_estimate();
+        else
+            $yardWorkEstimatePrice = 0;
+        //Estimate Storage
+        if($_POST['storageCheckBox'] === 'checked')
+            $storageEstimatePrice = storage_price_estimate();
+        else
+            $storageEstimatePrice = 0;
+        $totalCost = $stagingEstimatePrice + $photographyEstimatePrice + $cleanUpEstimatePrice + $relocateHomeEstimatePrice + $touchUpEstimatePrice + $inspectionEstimatePrice + $yardWorkEstimatePrice + $storageEstimatePrice;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -203,51 +249,51 @@ Template Name: Agent Case Estimation
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
+                                <td><input type="checkbox" name="stagingCheckBox" value="checked"></td>
                                 <td>STAGING</td>
-                                <td style="text-align:center;">$355</td>
+                                <td style="text-align:center;"<?php echo $stagingEstimatePrice;?></td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
+                                <td><input type="checkbox" name="touchUpCheckBox" value="checked"></td>
                                 <td>TOUCH UP</td>
-                                <td style="text-align:center;">$355</td>
+                                <td style="text-align:center;"><?php echo $touchUpEstimatePrice;?></td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
-                                <td>CLEARN UP</td>
-                                <td style="text-align:center;">$355</td>
+                                <td><input type="checkbox" name="cleanUpCheckBox" value="checked"></td>
+                                <td>CLEAN UP</td>
+                                <td style="text-align:center;"><?php echo $cleanUpEstimatePrice;?></td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
-                                <td>YARDWORK</td>
-                                <td style="text-align:center;">$355</td>
+                                <td><input type="checkbox" name="yardWordCheckBox" value="checked"></td>
+                                <td>YARD WORK</td>
+                                <td style="text-align:center;"><?php echo $yardWorkEstimatePrice;?></td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
+                                <td><input type="checkbox" name="inspectionCheckBox" value="checked"></td>
                                 <td>INSPECTION</td>
-                                <td style="text-align:center;">$355</td>
+                                <td style="text-align:center;"><?php echo $inspectionEstimatePrice;?></td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
-                                <td>STORGAE</td>
-                                <td style="text-align:center;">$355</td>
+                                <td><input type="checkbox" name="storageCheckBox" value="checked"></td>
+                                <td>STORAGE</td>
+                                <td style="text-align:center;"><?php echo $storageEstimatePrice;?></td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
-                                <td>RELOCATION HOME</td>
-                                <td style="text-align:center;">$355</td>
+                                <td><input type="checkbox" name="relocateHomeCheckBox" value="checked"></td>
+                                <td>RELOCATE HOME</td>
+                                <td style="text-align:center;"><?php echo $relocateHomeEstimatePrice;?></td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" value="checked"></td>
+                                <td><input type="checkbox" name="photographyCheckBox" value="checked"></td>
                                 <td>PHOTOGRAPHY</td>
-                                <td style="text-align:center;">$355</td>
+                                <td style="text-align:center;"><?php echo $photographyEstimatePrice;?></td>
                             </tr>
                             </tbody>
                         </table>
                         <div class="line" >
                             <hr style="height:1px; width:300px;border:none;border-top:2px solid #a9a9a9; float:left; margin:2px 5px 5px 15px;" />	</br>
                         </div>
-                        <h4 style="margin-left:20px;color:#a9a9a9; font-size:15px;">Total Cost:  $5000.00</h4>
+                        <h4 style="margin-left:20px;color:#a9a9a9; font-size:15px;">Total Cost:  <?php echo $totalCost; ?></h4>
                 </div>
                 <div class="estimationPart">
                     <h4 style="padding:10px 0 0 10px;">ESTIMATION</h4>
@@ -266,12 +312,11 @@ Template Name: Agent Case Estimation
                             </select>
                         </div>
                     </div>
-<!--                    <input type="text" name="propertyType" value="" placeholder="PROPERTY TYPE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />-->
                     <input type="text" name="landSize" value="" placeholder="LAND SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
                 </div>
                 <div class="clearAll">
-                    <input value="ESTIMATE" class="clearAllButton" name="estimate">
-                    <input value="CLEAR ALL" class="clearAllButton" name="clear_all">
+                    <input type="submit" value="ESTIMATE" class="clearAllButton" name="estimate">
+                    <input type="submit" value="CLEAR ALL" class="clearAllButton" name="clear_all">
                 </div>
             </form>
         </div>
