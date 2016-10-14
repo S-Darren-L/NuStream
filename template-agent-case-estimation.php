@@ -53,6 +53,22 @@ Template Name: Agent Case Estimation
             $storageEstimatePrice = storage_price_estimate();
         $totalCost = $stagingEstimatePrice + $photographyEstimatePrice + $cleanUpEstimatePrice + $relocateHomeEstimatePrice + $touchUpEstimatePrice + $inspectionEstimatePrice + $yardWorkEstimatePrice + $storageEstimatePrice;
     }
+
+if(isset($_POST['clear_all'])){
+    $stagingEstimatePrice = 0;
+    $photographyEstimatePrice = 0;
+    $cleanUpEstimatePrice = 0;
+    $touchUpEstimatePrice = 0;
+    $relocateHomeEstimatePrice = 0;
+    $inspectionEstimatePrice = 0;
+    $yardWorkEstimatePrice = 0;
+    $storageEstimatePrice = 0;
+    $totalCost = 0;
+    $houseSize = 0;
+    $propertyType = null;
+    $landSize = 0;
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -337,7 +353,7 @@ Template Name: Agent Case Estimation
                         <input type="submit" value="ESTIMATE" class="estimateButton" name="estimate">
                     </div>
                     <div class="clearAllPart">
-                        <input type="reset" value="CLEAR ALL" class="clearAllButton" name="clear_all">
+                        <input type="submit" value="CLEAR ALL" class="clearAllButton" name="clear_all">
                     </div>
             </form>
         </div>
