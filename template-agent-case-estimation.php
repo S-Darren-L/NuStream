@@ -9,6 +9,14 @@ Template Name: Agent Case Estimation
 
 ?>
 
+<?php
+    // Init Data
+    $propertyTypes = get_property_types();
+
+
+
+?>
+
 <!DOCTYPE html>
 <style type="text/css">
 
@@ -211,58 +219,67 @@ Template Name: Agent Case Estimation
     ?>
     <div id="main">
         <div class="formPart">
-            <div class="tablePart">
-                <table>
-                    <table class="table table-style">
-                        <thead style="background-color:#fffeff">
-                        <th></th>
-                        <th>SERVERTYPE</th>
-                        <th>ESTIMATE COST</th>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>STAGING</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>TOUCH UP</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>CLEARN UP</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>YARDWORK</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>INSPECTION</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>STORGAE</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>RELOCATION HOME</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value=""></td>
-                            <td>PHOTOGRAPHY</td>
-                            <td style="text-align:center;">$355</td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <form method="post">
+                <div class="tablePart">
+                    <table>
+                        <table class="table table-style">
+                            <thead style="background-color:#fffeff">
+                            <th></th>
+                            <th>SERVERTYPE</th>
+                            <th>ESTIMATE COST</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>STAGING</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>TOUCH UP</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>CLEARN UP</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>YARDWORK</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>INSPECTION</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>STORGAE</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>RELOCATION HOME</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="checked"></td>
+                                <td>PHOTOGRAPHY</td>
+                                <td style="text-align:center;">$355</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="line" >
+                            <hr style="height:1px; width:300px;border:none;border-top:2px solid #a9a9a9; float:left; margin:2px 5px 5px 15px;" />	</br>
+                        </div>
+                        <h4 style="margin-left:20px;color:#a9a9a9; font-size:15px;">Total Cost:  $5000.00</h4>
+                </div>
+                <div class="estimationPart">
+                    <h4 style="padding:10px 0 0 10px;">ESTIMATION</h4>
                     <div class="line" >
+<<<<<<< HEAD
                         <hr style="height:1px; width:300px;border:none;border-top:2px solid #a9a9a9; float:left; margin:2px 5px 5px 15px;" />   </br>
                     </div>
                     <h4 style="margin-left:20px;color:#a9a9a9; font-size:15px;">Total Cost:  $5000.00</h4>
@@ -289,6 +306,30 @@ Template Name: Agent Case Estimation
                     <button class="clearAllButton">CLEAR ALL</button>
                 </div>
             </div>
+=======
+                        <hr style="height:1px; width:240px;border:none;border-top:1px solid #fff; float:left; margin:2px 5px 5px 10px;" />	</br>
+                    </div>
+                    <input type="text" name="houseSize" value="" placeholder="HOUSE SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
+                    <div class="selectPropertyType">
+                        <div class="dropdown">
+                            <select name="propertyType">
+                                <?php
+                                foreach ($propertyTypes as $propertyTypeItem){
+                                    echo '<option value="' . $propertyTypeItem . '">', $propertyTypeItem, '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+<!--                    <input type="text" name="propertyType" value="" placeholder="PROPERTY TYPE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />-->
+                    <input type="text" name="landSize" value="" placeholder="LAND SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
+                </div>
+                <div class="clearAll">
+                    <input value="ESTIMATE" class="clearAllButton" name="estimate">
+                    <input value="CLEAR ALL" class="clearAllButton" name="clear_all">
+                </div>
+            </form>
+>>>>>>> 288321350e374a0f567aeeba8547e6116d234752
         </div>
     </div>
 </div>
