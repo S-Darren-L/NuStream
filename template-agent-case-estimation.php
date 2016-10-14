@@ -12,7 +12,15 @@ Template Name: Agent Case Estimation
 <?php
     // Init Data
     $propertyTypes = get_property_types();
-
+    $stagingEstimatePrice = 0;
+    $photographyEstimatePrice = 0;
+    $cleanUpEstimatePrice = 0;
+    $touchUpEstimatePrice = 0;
+    $relocateHomeEstimatePrice = 0;
+    $inspectionEstimatePrice = 0;
+    $yardWorkEstimatePrice = 0;
+    $storageEstimatePrice = 0;
+    $totalCost = 0;
     //Estimate
     if(isset($_POST['estimate'])){
         $houseSize = $_POST['houseSize'];
@@ -22,43 +30,27 @@ Template Name: Agent Case Estimation
         //Estimate Staging
         if($_POST['stagingCheckBox'] === 'checked')
             $stagingEstimatePrice = staging_price_estimate($houseSize);
-        else
-            $stagingEstimatePrice = 0;
         //Estimate Photography
         if($_POST['photographyCheckBox'] === 'checked')
             $photographyEstimatePrice = photography_price_estimate();
-        else
-            $photographyEstimatePrice = 0;
         //Estimate Clean Up
         if($_POST['cleanUpCheckBox'] === 'checked')
             $cleanUpEstimatePrice = clean_up_price_estimate($houseSize);
-        else
-            $cleanUpEstimatePrice = 0;
         //Estimate Relocate Home
         if($_POST['relocateHomeCheckBox'] === 'checked')
             $relocateHomeEstimatePrice = relocate_home_price_estimate();
-        else
-            $relocateHomeEstimatePrice = 0;
         //Estimate Touch Up
         if($_POST['touchUpCheckBox'] === 'checked')
             $touchUpEstimatePrice = touch_up_price_estimate();
-        else
-            $touchUpEstimatePrice = 0;
         //Estimate Inspection
         if($_POST['inspectionCheckBox'] === 'checked')
             $inspectionEstimatePrice = inspection_price_estimate();
-        else
-            $inspectionEstimatePrice = 0;
         //Estimate Yard Work
         if($_POST['yardWordCheckBox'] === 'checked')
             $yardWorkEstimatePrice = yard_work_price_estimate();
-        else
-            $yardWorkEstimatePrice = 0;
         //Estimate Storage
         if($_POST['storageCheckBox'] === 'checked')
             $storageEstimatePrice = storage_price_estimate();
-        else
-            $storageEstimatePrice = 0;
         $totalCost = $stagingEstimatePrice + $photographyEstimatePrice + $cleanUpEstimatePrice + $relocateHomeEstimatePrice + $touchUpEstimatePrice + $inspectionEstimatePrice + $yardWorkEstimatePrice + $storageEstimatePrice;
     }
 ?>
@@ -228,7 +220,6 @@ Template Name: Agent Case Estimation
         width: 100px;
         font-size: 11px;
     }
-
     .estimatePart {
         margin-top: 20px;
     }
@@ -278,7 +269,7 @@ Template Name: Agent Case Estimation
                             <tr>
                                 <td><input type="checkbox" name="stagingCheckBox" value="checked"></td>
                                 <td>STAGING</td>
-                                <td style="text-align:center;"<?php echo $stagingEstimatePrice;?></td>
+                                <td style="text-align:center;"><?php echo $stagingEstimatePrice;?></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="touchUpCheckBox" value="checked"></td>
@@ -325,43 +316,15 @@ Template Name: Agent Case Estimation
                 <div class="estimationPart">
                     <h4 style="padding:10px 0 0 10px;">ESTIMATION</h4>
                     <div class="line" >
-<<<<<<< HEAD
-                        <hr style="height:1px; width:300px;border:none;border-top:2px solid #a9a9a9; float:left; margin:2px 5px 5px 15px;" />   </br>
-                    </div>
-                    <h4 style="margin-left:20px;color:#a9a9a9; font-size:15px;">Total Cost:  $5000.00</h4>
-            </div>
-            <div class="estimationPart">
-                <h4 style="padding:10px 0 0 10px;">ESTIMATION</h4>
-                <div class="line" >
-                    <hr style="height:1px; width:240px;border:none;border-top:1px solid #fff; float:left; margin:2px 5px 5px 10px;" />  </br>
-                </div>
-                <input type="text" value="" placeholder="HOUSE SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
-                <!-- <input type="text" value="" placeholder="PROPERTY TYPE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require /> -->
-                <select class="estimationAgentSelect" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;"> 
-                    <option class="estimationAgentOption">PROPERTY TYPE*</option> 
-                    <option class="estimationAgentOption">ONE</option> 
-                    <option class="estimationAgentOption">TWO</option>
-                </select>
-                <input type="text" value="" placeholder="LAND SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
-            </div>
-            <div class="estimateButtonPart">
-                <div class="estimatePart">
-                    <button class="estimateButton">ESTIMATE</button>
-                </div>
-                <div class="clearAllPart">
-                    <button class="clearAllButton">CLEAR ALL</button>
-                </div>
-            </div>
-=======
                         <hr style="height:1px; width:240px;border:none;border-top:1px solid #fff; float:left; margin:2px 5px 5px 10px;" />	</br>
                     </div>
                     <input type="text" name="houseSize" value="" placeholder="HOUSE SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
                     <div class="selectPropertyType">
                         <div class="dropdown">
-                            <select name="propertyType">
+                            <select name="propertyType" class="estimationAgentSelect" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;">
                                 <?php
                                 foreach ($propertyTypes as $propertyTypeItem){
-                                    echo '<option value="' . $propertyTypeItem . '">', $propertyTypeItem, '</option>';
+                                    echo '<option class="estimationAgentOption" value="' . $propertyTypeItem . '">', $propertyTypeItem, '</option>';
                                 }
                                 ?>
                             </select>
@@ -369,12 +332,14 @@ Template Name: Agent Case Estimation
                     </div>
                     <input type="text" name="landSize" value="" placeholder="LAND SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
                 </div>
-                <div class="clearAll">
-                    <input type="submit" value="ESTIMATE" class="clearAllButton" name="estimate">
-                    <input type="submit" value="CLEAR ALL" class="clearAllButton" name="clear_all">
-                </div>
+                <div class="estimateButtonPart">
+                    <div class="estimatePart">
+                        <input type="submit" value="ESTIMATE" class="estimateButton" name="estimate">
+                    </div>
+                    <div class="clearAllPart">
+                        <input type="reset" value="CLEAR ALL" class="clearAllButton" name="clear_all">
+                    </div>
             </form>
->>>>>>> 288321350e374a0f567aeeba8547e6116d234752
         </div>
     </div>
 </div>
