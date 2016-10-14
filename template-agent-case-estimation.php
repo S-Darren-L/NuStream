@@ -154,11 +154,14 @@ Template Name: Agent Case Estimation
         border-radius: 2px;
     }
 
-    .clearAll {
-        float:left;
-        padding-left: 20px;
-        margin-left: 10px;
-        margin-top: 20px;
+    .estimateButtonPart {
+        display: absolute;
+        margin-left: 440px;
+    }
+
+    .clearAllPart {
+        padding-left: 120px;
+        margin-top: -30px;
     }
 
     .clearAllButton {
@@ -170,6 +173,30 @@ Template Name: Agent Case Estimation
         height: 30px;
         width: 100px;
         font-size: 11px;
+    }
+
+    .estimatePart {
+        margin-top: 20px;
+    }
+
+    .estimateButton {
+        border-radius: 5px;
+        background-color: #32323a;
+        border: #32323a;
+        color:#fff;
+        font-weight: bold;
+        height: 30px;
+        width: 100px;
+        font-size: 11px;
+    }
+
+    .estimationAgentSelect {
+        color:#a9a9a9! important;
+        width: 185px;
+    }
+
+    .estimationAgentOption {
+        height:30px;
     }
 </style>
 <head>
@@ -236,21 +263,31 @@ Template Name: Agent Case Estimation
                         </tbody>
                     </table>
                     <div class="line" >
-                        <hr style="height:1px; width:300px;border:none;border-top:2px solid #a9a9a9; float:left; margin:2px 5px 5px 15px;" />	</br>
+                        <hr style="height:1px; width:300px;border:none;border-top:2px solid #a9a9a9; float:left; margin:2px 5px 5px 15px;" />   </br>
                     </div>
                     <h4 style="margin-left:20px;color:#a9a9a9; font-size:15px;">Total Cost:  $5000.00</h4>
             </div>
             <div class="estimationPart">
                 <h4 style="padding:10px 0 0 10px;">ESTIMATION</h4>
                 <div class="line" >
-                    <hr style="height:1px; width:240px;border:none;border-top:1px solid #fff; float:left; margin:2px 5px 5px 10px;" />	</br>
+                    <hr style="height:1px; width:240px;border:none;border-top:1px solid #fff; float:left; margin:2px 5px 5px 10px;" />  </br>
                 </div>
                 <input type="text" value="" placeholder="HOUSE SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
-                <input type="text" value="" placeholder="PROPERTY TYPE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
+                <!-- <input type="text" value="" placeholder="PROPERTY TYPE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require /> -->
+                <select class="estimationAgentSelect" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;"> 
+                    <option class="estimationAgentOption">PROPERTY TYPE*</option> 
+                    <option class="estimationAgentOption">ONE</option> 
+                    <option class="estimationAgentOption">TWO</option>
+                </select>
                 <input type="text" value="" placeholder="LAND SIZE*" style="font-size:11px; margin:0 0 15px 10px; height:30px; border-radius:2px; border:1px #fff solid;" size="30" require />
             </div>
-            <div class="clearAll">
-                <button class="clearAllButton">CLEAR ALL</button>
+            <div class="estimateButtonPart">
+                <div class="estimatePart">
+                    <button class="estimateButton">ESTIMATE</button>
+                </div>
+                <div class="clearAllPart">
+                    <button class="clearAllButton">CLEAR ALL</button>
+                </div>
             </div>
         </div>
     </div>
