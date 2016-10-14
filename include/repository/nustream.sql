@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2016 at 10:22 PM
+-- Generation Time: Oct 14, 2016 at 05:36 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -47,7 +47,8 @@ INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamI
 (1, '', 'Darren', 'Liu', '7', 'AGENT', '75368', 'dfg@sdf.com', 0, 1),
 (2, '', 'Kevin', 'Guo', '7', 'AGENT', '96521', 'rtg@dcfvh.com', 1, 1),
 (3, '', 'Peter', 'Ray', '0', 'AGENT', '85', 'dfg@rgh.com', 0, 1),
-(41, '13a2d47aef854249e46feb3d954a54c1', 'Shuyang', 'Liu', '7', 'ADMIN', '16478953986', 'gulang15@gmail.com', 0, 1);
+(41, '13a2d47aef854249e46feb3d954a54c1', 'Shuyang', 'Liu', '7', 'ADMIN', '16478953986', 'gulang15@gmail.com', 0, 1),
+(57, '307487ad13756cabf44dc5784d40f77d', 'Darren', 'Liu', '19', 'AGENT', '6478953986', 'gulang15a@gmail.com', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -64,14 +65,21 @@ CREATE TABLE `cases` (
   `HouseSize` double NOT NULL,
   `PropertyType` enum('CONDO','HOUSE','SEMI','TOWNHOUSE') NOT NULL,
   `ListingPrice` double NOT NULL,
-  `OwnerFirstName` varchar(255) NOT NULL,
-  `OwnerLastName` varchar(255) NOT NULL,
-  `Contact` varchar(255) NOT NULL,
+  `OwnerName` varchar(255) NOT NULL,
+  `ContactNumber` varchar(255) NOT NULL,
   `StartDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` enum('OPEN','CLOSED') NOT NULL,
+  `CaseStatus` enum('OPEN','FIRMDEAL','CLOSED') NOT NULL,
   `Total` double NOT NULL,
   `Images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cases`
+--
+
+INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `HouseSize`, `PropertyType`, `ListingPrice`, `OwnerName`, `ContactNumber`, `StartDate`, `CaseStatus`, `Total`, `Images`) VALUES
+('456', 57, 57, 'fg', 456, 456, 'CONDO', 345, 'fgh', '645', '2016-10-13 02:47:29', 'OPEN', 0, ''),
+('56', 57, 57, 'cghj', 789, 5, 'CONDO', 678, 'fgh', '56', '2016-10-13 02:56:29', 'OPEN', 0, '');
 
 -- --------------------------------------------------------
 
@@ -80,7 +88,7 @@ CREATE TABLE `cases` (
 --
 
 CREATE TABLE `caseservices` (
-  `CaseID` int(11) NOT NULL,
+  `MLS` varchar(255) NOT NULL,
   `ServiceID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -93,20 +101,21 @@ CREATE TABLE `caseservices` (
 CREATE TABLE `files` (
   `FilePath` varchar(255) NOT NULL,
   `FileName` varchar(255) NOT NULL,
-  `FileType` enum('IMAGE','TXT','DOC','PDF') NOT NULL
+  `FileType` enum('IMAGE','TXT','DOC','PDF') NOT NULL,
+  `FileStatus` enum('New','Pending','Approved') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`FilePath`, `FileName`, `FileType`) VALUES
-('wp-content/themes/NuStream/Upload/Supplier/73/', '1475645973_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
-('wp-content/themes/NuStream/Upload/Supplier/73/', '1475645987_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
-('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646219_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
-('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646305_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
-('wp-content/themes/NuStream/Upload/Supplier/73/', '1475732027_largepMPr27a80002b7f31260.jpg', 'IMAGE'),
-('wp-content/themes/NuStream/Upload///', '1476031283_largepMPr27a80002b7f31260.jpg', 'IMAGE');
+INSERT INTO `files` (`FilePath`, `FileName`, `FileType`, `FileStatus`) VALUES
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475645973_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475645987_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646219_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646305_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload/Supplier/73/', '1475732027_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload///', '1476031283_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New');
 
 -- --------------------------------------------------------
 
@@ -116,12 +125,12 @@ INSERT INTO `files` (`FilePath`, `FileName`, `FileType`) VALUES
 
 CREATE TABLE `services` (
   `ServiceID` int(11) NOT NULL,
-  `ServiceProviderID` int(11) NOT NULL,
+  `ServiceSupplierID` int(11) NOT NULL,
+  `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
   `EstimateCose` double NOT NULL,
   `RealCost` double NOT NULL,
   `InvoiceID` int(11) NOT NULL,
-  `InvoiceApprovement` enum('NEW','PENDING','APPROVED') NOT NULL,
-  `Status` enum('OPEN','DONE') NOT NULL,
+  `InvoiceStatus` enum('NEW','PENDING','APPROVED') NOT NULL,
   `BeforeImage` varchar(255) NOT NULL,
   `AfterImage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -185,7 +194,8 @@ CREATE TABLE `teams` (
 INSERT INTO `teams` (`TeamID`, `TeamLeaderID`, `TeamLeaderName`) VALUES
 (7, 2, 'Kevin Guo'),
 (17, 54, 'Shuyang Liu'),
-(18, 56, 'Shuyang Liu');
+(18, 56, 'Shuyang Liu'),
+(19, 57, 'Darren Liu');
 
 --
 -- Indexes for dumped tables
@@ -235,17 +245,17 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -29,7 +29,6 @@ Template Name: Agent Edit Case
         {
             $teamMembers[] = $row;
         }
-        echo var_dump($teamMembers);
     }
     else{
         $isCoListingDisabled = true;

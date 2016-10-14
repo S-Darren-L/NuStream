@@ -365,4 +365,16 @@
         require_once(__DIR__ . '/include/repository/case-repository.php');
         return update_case_request($updateCaseArray);
     }
+
+    // Get All Case Services ID
+    function get_all_case_services_by_MLS($MLS){
+        require_once(__DIR__ . '/include/repository/case-services-repository.php');
+        return get_all_case_services_by_MLS_request($MLS);
+    }
+
+    // Get Service Details
+    function get_service_details_by_id($serviceID){
+        require_once(__DIR__ . '/include/repository/services-repository.php');
+        return get_service_details_by_id_request($serviceID);
+    }
 ?>

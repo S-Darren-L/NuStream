@@ -9,6 +9,110 @@ Template Name: Agent Case Details
 
 ?>
 
+<?php
+    // Get Case ID
+    $MLS = $_GET['CID'];
+
+    // Init Date
+    // Get Case Basic Details
+    get_case_basic_details($MLS);
+
+    // Get All Suppliers Brief Info
+    $allSuppliersArray = array(); // supplier table
+    $allSuppliersArray = get_all_suppliers_brief_info();
+
+    // Get All Case Services ID
+    $servicesArray = array();
+    $servicesArray = get_all_case_service($MLS);
+
+    // Get Each Service Details
+    $allServiceDetailArray = array(); // services table
+    if(!is_null($servicesArray)){
+        $allServiceDetailArray = get_each_service_details($servicesArray);
+    }
+
+    // Get Team Data
+    $teamID = $_SESSION['TeamID'];
+    $staffID = $_SESSION['AccountID'];
+    $teamResult = mysqli_fetch_array(get_team_by_team_id($teamID));
+    $teamLeaderID = $teamResult['TeamLeaderID'];
+    $teamLeaderName = $teamResult['TeamLeaderName'];
+
+    // Get Case Basic Details
+    function get_case_basic_details($MLS){
+        $getCaseResult = get_case_by_id($MLS);
+        if($getCaseResult !== null){
+            $getCaseArray = mysqli_fetch_array($getCaseResult);
+            global $coStaffID;
+            global $address;
+            global $landSize;
+            global $houseSize;
+            global $propertyType;
+            global $listingPrice;
+            global $ownerName;
+            global $contactNumber;
+            global $coStaffName;
+
+            $coStaffID = $getCaseArray['CoStaffID'];
+            $address = $getCaseArray['Address'];
+            $landSize = $getCaseArray['LandSize'];
+            $houseSize = $getCaseArray['HouseSize'];
+            $propertyType = $getCaseArray['PropertyType'];
+            $listingPrice = $getCaseArray['ListingPrice'];
+            $ownerName = $getCaseArray['OwnerName'];
+            $contactNumber = $getCaseArray['ContactNumber'];
+        }
+        else{
+            echo die("Cannot find account");
+        }
+        $getCoStaffResult = get_agent_account($coStaffID);
+        if($getCoStaffResult !== null){
+            $coStaffArray = mysqli_fetch_array($getCoStaffResult);
+            $coStaffName = $coStaffArray['FirstName'] . " " . $coStaffArray['LastName'];
+        }
+    }
+
+    // Get All Suppliers Brief Info
+    function get_all_suppliers_brief_info(){
+        $supplierTypes = get_supplier_types();
+        foreach ($supplierTypes as $supplierType){
+            $supplierResult = get_supplier_brief_info($supplierType);
+
+            if($supplierResult === null)
+                echo 'result is null';
+            $supplierArray = array();
+            while($row = mysqli_fetch_array($supplierResult))
+            {
+                $supplierArray[] = $row;
+            }
+            $allSuppliersArray[$supplierType] = $supplierArray;
+        }
+        return $allSuppliersArray;
+    }
+
+    // Get All Case Services ID
+    function get_all_case_service($MLS){
+        $allServicesResult = get_all_case_services_by_MLS($MLS);
+
+        while($row = mysqli_fetch_array($allServicesResult))
+        {
+            $servicesArray[] = $row;
+        }
+        return $servicesArray;
+    }
+
+    // Get Each Service Details
+    function get_each_service_details($servicesArray){
+        foreach ($servicesArray as $service){
+            $serviceDetailsResult = get_service_details_by_id($service['ServiceID']);
+            $serviceDetailsArray = mysqli_fetch_array($serviceDetailsResult);
+            $allServiceDetailArray[$serviceDetailsArray['SupplierType']] = $serviceDetailsArray;
+        }
+        return $allServiceDetailArray;
+    }
+
+
+?>
 <!DOCTYPE html>
 <style type="text/css">
     html, body {
@@ -319,178 +423,308 @@ Template Name: Agent Case Details
     ?>
     <div id="main">
         <div class="formPart">
-            <div class="houseInfo">
-                <div class="houseImg"><img src="img/house.jpg"></div>
-                <div class="houseTable">
-                    <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
-                    <table class="table table-striped">
-                        <tbody>
-                        <tr>
-                            <td>MLS#</td>
-                            <td>N32326234</td>
-                        </tr>
-                        <tr>
-                            <td>ADDRESS</td>
-                            <td>17 Inverary, Toronto Ontario M1T2W6</td>
-                        </tr>
-                        <tr>
-                            <td>PROPERTY TYPE</td>
-                            <td>PROPERTY TYPE</td>
-                        </tr>
-                        <tr>
-                            <td>LAND SIZE (LOT)</td>
-                            <td>LAND SIZE (LOT)</td>
-                        </tr>
-                        <tr>
-                            <td>HOUSE SIZE(SQF)</td>
-                            <td>HOUSE SIZE(SQF)</td>
-                        </tr>
-                        <tr>
-                            <td>LISTING PRICE</td>
-                            <td>LISTING PRICE</td>
-                        </tr>
-                        <tr>
-                            <td>OWNER'S NAME</td>
-                            <td>OWNER'S NAME</td>
-                        </tr>
-                        <tr>
-                            <td>TEAM MEMBER'S NAME</td>
-                            <td>TEAM MEMBER'S NAME</td>
-                        </tr>
-                        <tr>
-                            <td>COMMISSION RATE</td>
-                            <td>2.25%</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div style="width:300px; padding:0px 0px 0px 10px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">SERVICES INFO</h5></div>
-            <table class="table table-striped">
-                <thead style="background-color:#fffeff;">
-                <tr>
-                    <th></th>
-                    <th>SERIVE TYPE</th>
-                    <th>PROVIDER</th>
-                    <th>ESTIMATE COST</th>
-                    <th>REAL COST</th>
-                    <th>BEFORE</th>
-                    <th>AFTER</th>
-                    <th>INVOICE</th>
-                    <th>STATUS</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>STAGING</td>
-                    <td>SAFE LOCS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td>BENDING</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>TOUCH UP</td>
-                    <td>ABSCADS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td>APPROVED</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>CLEARN UP</td>
-                    <td>ABSCADS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td>NONE</td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td>NONE</td>
-                    <td>BENDING</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>YARDWORK</td>
-                    <td>ABSCADS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td style="text-align:center;">-</td>
-                    <td><a href="#">UPLOAD<a></td>
-                    <td>NONE</td>
-                    <td>APPROVED</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>INSPECTION</td>
-                    <td>ABSCADS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td style="text-align:center;">-</td>
-                    <td><a href="#">VIEW<a></td>
-                    <td style="text-align:center;">-</td>
-                    <td>APPROVED</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>STORAGR</td>
-                    <td>ABSCADS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td style="text-align:center;">-</td>
-                    <td style="text-align:center;">-</td>
-                    <td><a href="#">VIEW<a></td>
-                    <td>BENDING</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>RELOCATION HOME</td>
-                    <td>ABSCADS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="#">VIEW<a></td>
-                    <td>APPROVED</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>PHOTOGRAPHY</td>
-                    <td>ABSCADS</td>
-                    <td style="text-align:center;">$360</td>
-                    <td>$3900</td>
-                    <td style="text-align:center;">-</td>
-                    <td style="text-align:center;">-</td>
-                    <td style="text-align:center;">-</td>
-                    <td style="text-align:center;">-</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="financial" style="display:block; float:left; margin-left:20px;">
-                <div class="line" style="float:left;">
-                    <hr style="height:1px; width:500px;border:none;border-top:2px solid #a9a9a9; float:left;" />
-                </div>
-                <div class="total">
-                    <h5>Total Cost: $5000.00</h5>
-                    <h5>Final Commission: $15000.00</h5>
-                </div>
-                <div class="selectTeamPart">
-                    <div class="selectTeam">
-                        <div class="dropdown">
-                            <select>
-                                <option value="1">SELECT TEAM</option>
-                                <option value="2">ONE</option>
-                            </select>
-                        </div>
+            <form method="post">
+                <div class="houseInfo">
+                    <div class="houseImg"><img src="img/house.jpg"></div>
+                    <div class="houseTable">
+                        <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <td>MLS#</td>
+                                <td><?php echo $MLS;?></td>
+                            </tr>
+                            <tr>
+                                <td>ADDRESS</td>
+                                <td><?php echo $address;?></td>
+                            </tr>
+                            <tr>
+                                <td>PROPERTY TYPE</td>
+                                <td><?php echo $propertyType;?></td>
+                            </tr>
+                            <tr>
+                                <td>LAND SIZE (LOT)</td>
+                                <td><?php echo $landSize;?></td>
+                            </tr>
+                            <tr>
+                                <td>HOUSE SIZE(SQF)</td>
+                                <td><?php echo $houseSize;?></td>
+                            </tr>
+                            <tr>
+                                <td>LISTING PRICE</td>
+                                <td><?php echo $listingPrice;?></td>
+                            </tr>
+                            <tr>
+                                <td>OWNER'S NAME</td>
+                                <td><?php echo $ownerName;?></td>
+                            </tr>
+                            <tr>
+                                <td>TEAM MEMBER'S NAME</td>
+                                <td><?php echo $coStaffName;?></td>
+                            </tr>
+                            <tr>
+                                <td>COMMISSION RATE</td>
+                                <td>2.25%</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div style="height:150px;"></div>
-            </div>
+                <div style="width:300px; padding:0px 0px 0px 10px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">SERVICES INFO</h5></div>
+                <table class="table table-striped">
+                    <thead style="background-color:#fffeff;">
+                    <tr>
+                        <th></th>
+                        <th>SERVICE TYPE</th>
+                        <th>PROVIDER</th>
+                        <th>ESTIMATE COST</th>
+                        <th>REAL COST</th>
+                        <th>BEFORE</th>
+                        <th>AFTER</th>
+                        <th>INVOICE</th>
+                        <th>STATUS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="checkbox" name="stagingCheckbox"></td>
+                        <td>STAGING</td>
+                        <td>
+                            <?php
+                                echo '<select name="stagingSelect">';
+                                if(is_null($allServiceDetailArray['STAGING']['ServiceSupplierID']))
+                                    $isDefaultSelected = 'selected';
+                                echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                                foreach ($allSuppliersArray['STAGING'] as $stagingSupplierItem){
+                                    if(!is_null($allServiceDetailArray['STAGING']['ServiceSupplierID']) && $allServiceDetailArray['STAGING']['ServiceSupplierID'] === $stagingSupplierItem['SupplierID']){
+                                        $isSelected = 'selected';
+                                    }else {
+                                        $isSelected = null;
+                                    }
+                                    echo '<option value="' . $stagingSupplierItem['SupplierID'] . '" $isSelected >', $stagingSupplierItem['SupplierName'], '</option>';
+                                }
+                                echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="stagingRealCost" value="' . $allServiceDetailArray['STAGING']['RealCost'] . '"/>'; ?></td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td><?php echo $allServiceDetailArray['STAGING']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="touchUpCheckbox"></td>
+                        <td>TOUCH UP</td>
+                        <td>
+                            <?php
+                            echo '<select name="touchUpSelect">';
+                            if(is_null($allServiceDetailArray['TOUCHUP']['ServiceSupplierID']))
+                                $isDefaultSelected = 'selected';
+                            echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                            foreach ($allSuppliersArray['TOUCHUP'] as $touchUpSupplierItem){
+                                if(!is_null($allServiceDetailArray['TOUCHUP']['ServiceSupplierID']) && $allServiceDetailArray['TOUCHUP']['ServiceSupplierID'] === $touchUpSupplierItem['SupplierID']){
+                                    $isSelected = 'selected';
+                                }else {
+                                    $isSelected = null;
+                                }
+                                echo '<option value="' . $touchUpSupplierItem['SupplierID'] . '" $isSelected>', $touchUpSupplierItem['SupplierName'], '</option>';
+                            }
+                            echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="touchUpRealCost" value="' . $allServiceDetailArray['TOUCHUP']['RealCost'] . '"/>'; ?></td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td><?php echo $allServiceDetailArray['TOUCHUP']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="cleanUpCheckbox"></td>
+                        <td>CLEAN UP</td>
+                        <td>
+                            <?php
+                            echo '<select name="cleanUpSelect">';
+                            if(is_null($allServiceDetailArray['CLEANUP']['ServiceSupplierID']))
+                                $isDefaultSelected = 'selected';
+                            echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                            foreach ($allSuppliersArray['CLEANUP'] as $cleanUpSupplierItem){
+                                if(!is_null($allServiceDetailArray['CLEANUP']['ServiceSupplierID']) && $allServiceDetailArray['CLEANUP']['ServiceSupplierID'] === $cleanUpSupplierItem['SupplierID']){
+                                    $isSelected = 'selected';
+                                }else {
+                                    $isSelected = null;
+                                }
+                                echo '<option value="' . $cleanUpSupplierItem['SupplierID'] . '" $isSelected >', $cleanUpSupplierItem['SupplierName'], '</option>';
+                            }
+                            echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="cleanUpRealCost" value="' . $allServiceDetailArray['CLEANUP']['RealCost'] . '"/>'; ?></td>
+                        <td>NONE</td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td>NONE</td>
+                        <td><?php echo $allServiceDetailArray['CLEANUP']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="yardWorkCheckbox"></td>
+                        <td>YARDWORK</td>
+                        <td>
+                            <?php
+                            echo '<select name="yardWorkSelect">';
+                            if(is_null($allServiceDetailArray['YARDWORK']['ServiceSupplierID']))
+                                $isDefaultSelected = 'selected';
+                            echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                            foreach ($allSuppliersArray['YARDWORK'] as $yardWorkSupplierItem){
+                                if(!is_null($allServiceDetailArray['YARDWORK']['ServiceSupplierID']) && $allServiceDetailArray['YARDWORK']['ServiceSupplierID'] === $yardWorkSupplierItem['SupplierID']){
+                                    $isSelected = 'selected';
+                                }else {
+                                    $isSelected = null;
+                                }
+                                echo '<option value="' . $yardWorkSupplierItem['SupplierID'] . '" $isSelected>', $yardWorkSupplierItem['SupplierName'], '</option>';
+                            }
+                            echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="yardWorkRealCost" value="' . $allServiceDetailArray['YARDWORK']['RealCost'] . '"/>'; ?></td>
+                        <td style="text-align:center;">-</td>
+                        <td><a href="#">UPLOAD<a></td>
+                        <td>NONE</td>
+                        <td><?php echo $allServiceDetailArray['YARDWORK']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="inspectionCheckbox"></td>
+                        <td>INSPECTION</td>
+                        <td>
+                            <?php
+                            echo '<select name="inspectionSelect">';
+                            if(is_null($allServiceDetailArray['INSPECTION']['ServiceSupplierID']))
+                                $isDefaultSelected = 'selected';
+                            echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                            foreach ($allSuppliersArray['INSPECTION'] as $inspectionSupplierItem){
+                                if(!is_null($allServiceDetailArray['INSPECTION']['ServiceSupplierID']) && $allServiceDetailArray['INSPECTION']['ServiceSupplierID'] === $inspectionSupplierItem['SupplierID']){
+                                    $isSelected = 'selected';
+                                }else {
+                                    $isSelected = null;
+                                }
+                                echo '<option value="' . $inspectionSupplierItem['SupplierID'] . '" $isSelected>', $inspectionSupplierItem['SupplierName'], '</option>';
+                            }
+                            echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="inspectionRealCost" value="' . $allServiceDetailArray['INSPECTION']['RealCost'] . '"/>'; ?></td>
+                        <td style="text-align:center;">-</td>
+                        <td><a href="#">VIEW<a></td>
+                        <td style="text-align:center;">-</td>
+                        <td><?php echo $allServiceDetailArray['INSPECTION']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="storageCheckbox"></td>
+                        <td>STORAGE</td>
+                        <td>
+                            <?php
+                            echo '<select name="storageSelect">';
+                            if(is_null($allServiceDetailArray['STORAGE']['ServiceSupplierID']))
+                                $isDefaultSelected = 'selected';
+                            echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                            foreach ($allSuppliersArray['STORAGE'] as $storageSupplierItem){
+                                if(!is_null($allServiceDetailArray['STORAGE']['ServiceSupplierID']) && $allServiceDetailArray['STORAGE']['ServiceSupplierID'] === $storageSupplierItem['SupplierID']){
+                                    $isSelected = 'selected';
+                                }else {
+                                    $isSelected = null;
+                                }
+                                echo '<option value="' . $storageSupplierItem['SupplierID'] . '" $isSelected>', $storageSupplierItem['SupplierName'], '</option>';
+                            }
+                            echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="storageRealCost" value="' . $allServiceDetailArray['STORAGE']['RealCost'] . '"/>'; ?></td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:center;">-</td>
+                        <td><a href="#">VIEW<a></td>
+                        <td><?php echo $allServiceDetailArray['STORAGE']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="relocateHomeCheckbox"></td>
+                        <td>RELOCATE HOME</td>
+                        <td>
+                            <?php
+                            echo '<select name="relocateHomeSelect">';
+                            if(is_null($allServiceDetailArray['RELOCATEHOME']['ServiceSupplierID']))
+                                $isDefaultSelected = 'selected';
+                            echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                            foreach ($allSuppliersArray['RELOCATEHOME'] as $relocateHomeSupplierItem){
+                                if(!is_null($allServiceDetailArray['RELOCATEHOME']['ServiceSupplierID']) && $allServiceDetailArray['RELOCATEHOME']['ServiceSupplierID'] === $relocateHomeSupplierItem['SupplierID']){
+                                    $isSelected = 'selected';
+                                }else {
+                                    $isSelected = null;
+                                }
+                                echo '<option value="' . $relocateHomeSupplierItem['SupplierID'] . '" $isSelected>', $relocateHomeSupplierItem['SupplierName'], '</option>';
+                            }
+                            echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="relocateHomeRealCost" value="' . $allServiceDetailArray['RELOCATEHOME']['RealCost'] . '"/>'; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="#">VIEW<a></td>
+                        <td><?php echo $allServiceDetailArray['RELOCATEHOME']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="photographyCheckbox"></td>
+                        <td>PHOTOGRAPHY</td>
+                        <td>
+                            <?php
+                            echo '<select name="photographySelect">';
+                            if(is_null($allServiceDetailArray['PHOTOGRAPHY']['ServiceSupplierID']))
+                                $isDefaultSelected = 'selected';
+                            echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
+                            foreach ($allSuppliersArray['PHOTOGRAPHY'] as $photographySupplierItem){
+                                if(!is_null($allServiceDetailArray['PHOTOGRAPHY']['ServiceSupplierID']) && $allServiceDetailArray['PHOTOGRAPHY']['ServiceSupplierID'] === $photographySupplierItem['SupplierID']){
+                                    $isSelected = 'selected';
+                                }else {
+                                    $isSelected = null;
+                                }
+                                echo '<option value="' . $photographySupplierItem['SupplierID'] . '" $isSelected>', $photographySupplierItem['SupplierName'], '</option>';
+                            }
+                            echo '</select>';
+                            ?>
+                        </td>
+                        <td style="text-align:center;">$360</td>
+                        <td><?php echo '<input type="text" name="photographyRealCost" value="' . $allServiceDetailArray['PHOTOGRAPHY']['RealCost'] . '"/>'; ?></td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:center;">-</td>
+                        <td><?php echo $allServiceDetailArray['PHOTOGRAPHY']['InvoiceStatus'] ?? '-'; ?></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="financial" style="display:block; float:left; margin-left:20px;">
+                    <div class="line" style="float:left;">
+                        <hr style="height:1px; width:500px;border:none;border-top:2px solid #a9a9a9; float:left;" />
+                    </div>
+                    <div class="total">
+                        <h5>Total Cost: $5000.00</h5>
+                        <h5>Final Commission: $15000.00</h5>
+                    </div>
+                    <div class="selectTeamPart">
+                        <div class="selectTeam">
+                            <div class="dropdown">
+                                <select>
+                                    <option value="1">SELECT TEAM</option>
+                                    <option value="2">ONE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height:150px;"></div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

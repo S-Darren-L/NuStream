@@ -11,9 +11,6 @@
 
 <?php
 
-    // Set Navigation URL
-    $filesURL = get_home_url() . '/accountant-files-management';
-    $supplierInfoURL = get_home_url() . '/supplier-info';
 ?>
 
 <!DOCTYPE html>
@@ -138,9 +135,9 @@
                     <th>MLS NUMBER</th>
                     <th>MEMBER NAME</th>
                     <th>TEAM LEAD</th>
-                    <th>UPLOAD DATAE</th>
+                    <th>UPLOAD DATE</th>
                     <th>SERVICE TYPE</th>
-                    <th>PRICE BEFFORE TAX</th>
+                    <th>PRICE BEFORE TAX</th>
                     <th>INVOICE</th>
                     <th>SELECT</th></tr>
                 </thead>

@@ -9,6 +9,17 @@ Template Name: Admin Files Management
 
 ?>
 
+<?php
+    // Set Sub-menu URL
+    $subMenuURL = $homeURL . "/admin-files-management/?FType=";
+    // Get View File Type
+        $viewFileType = $_GET['FType'];
+        if($viewFileType === null)
+            $supplierType = '*';
+
+    // Get Files
+?>
+
 <!DOCTYPE html>
 <style type="text/css">
     html, body {
@@ -246,7 +257,11 @@ Template Name: Admin Files Management
     ?>
     <div id="main">
         <div class="formPart">
-            <div class="topBar"><a href="#">All Files</a>|<a href="#">Pending Files</a>|<a href="#">Approved Files</a></div>
+            <div class="topBar">
+                <?php
+                    echo '<a href="' . $subMenuURL . "*" . '">All Files</a>|<a href="' . $subMenuURL . "Pending" . '">Pending Files</a>|<a href="' . $subMenuURL . "Approved" . '">Approved Files</a>';
+                ?>
+            </div>
             <section ng-app="app" ng-controller="MainCtrl">
                 <table  class="table table-striped">
                     <thead style="background-color:#535353;">

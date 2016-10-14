@@ -13,6 +13,7 @@ Agent My Cases:
 Agent Case Details:
 	commission rate: change plain text to text field
 	needs a button to calculate finale cost and commission
+	supplier name fields are too short
 Admin New Supplier & update supplier:
 	all fields need title(like new case, new member, etc.)
 Admin Member Info
