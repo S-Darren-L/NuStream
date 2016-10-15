@@ -171,7 +171,8 @@
             'BYSIZE',
             'BYHOUR',
             'BYHOUSETYPE',
-            'BYCASE'
+            'BYCASE',
+            'BYSIZE1000'
         );
         return $priceUnits;
     }
@@ -402,10 +403,19 @@
     }
 
     //Estimate Photography Price
-    function photography_price_estimate(){
+    function photography_price_estimate($propertyType){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('PHOTOGRAPHY'));
-        $servicePrice = $supplierResult['MinimumPrice'];
+        if($propertyType === 'CONDO')
+            $servicePrice = $supplierResult['PricePerCondo'];
+        else if($propertyType === 'HOUSE')
+            $servicePrice = $supplierResult['PricePerHouse'];
+        else if($propertyType === 'SEMI')
+            $servicePrice = $supplierResult['PricePerSemi'];
+        else if($propertyType === 'TOWNHOUSE')
+            $servicePrice = $supplierResult['PricePerTownhouse'];
+        else
+            $servicePrice = 0;
         return $servicePrice;
     }
 
@@ -424,7 +434,7 @@
     function relocate_home_price_estimate(){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('RELOCATEHOME'));
-        $servicePrice = $supplierResult['MinimumPrice'];
+        $servicePrice = $supplierResult['PricePerCase'];
         return $servicePrice;
     }
     //Estimate Touch Up Price
@@ -436,10 +446,19 @@
     }
 
     //Estimate Inspection Price
-    function inspection_price_estimate(){
+    function inspection_price_estimate($propertyType){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('INSPECTION'));
-        $servicePrice = $supplierResult['MinimumPrice'];
+        if($propertyType === 'CONDO')
+            $servicePrice = $supplierResult['PricePerCondo'];
+        else if($propertyType === 'HOUSE')
+            $servicePrice = $supplierResult['PricePerHouse'];
+        else if($propertyType === 'SEMI')
+            $servicePrice = $supplierResult['PricePerSemi'];
+        else if($propertyType === 'TOWNHOUSE')
+            $servicePrice = $supplierResult['PricePerTownhouse'];
+        else
+            $servicePrice = 0;
         return $servicePrice;
     }
 
@@ -447,7 +466,7 @@
     function yard_work_price_estimate(){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('YARDWORK'));
-        $servicePrice = $supplierResult['MinimumPrice'];
+        $servicePrice = $supplierResult['PricePerCase'];
         return $servicePrice;
     }
 
@@ -455,7 +474,7 @@
     function storage_price_estimate(){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');
         $supplierResult = mysqli_fetch_array(get_default_supplier_by_type('STORAGE'));
-        $servicePrice = $supplierResult['MinimumPrice'];
+        $servicePrice = $supplierResult['PricePerCase'];
         return $servicePrice;
     }
 

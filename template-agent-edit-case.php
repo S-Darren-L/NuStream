@@ -433,7 +433,7 @@ Template Name: Agent Edit Case
                                 foreach ($propertyTypes as $propertyTypeItem){
                                     global $propertyType;
                                     $isSelected = $propertyTypeItem === $propertyType ? 'selected' : null;
-                                    echo '<option value="' . $propertyTypeItem . '" selected="' . $isSelected . '">', $propertyTypeItem, '</option>';
+                                    echo '<option value="' . $propertyTypeItem . '" ' . $isSelected . '>', $propertyTypeItem, '</option>';
                                 }
                                 ?>
                             </select>
@@ -471,7 +471,7 @@ Template Name: Agent Edit Case
                                 global $coStaffID;
                                 $isSelected = $teamMemberItem['AccountID'] === $coStaffID ? 'selected' : null;
                                 $teamMemberName = $teamMemberItem['FirstName'] . " " . $teamMemberItem['LastName'];
-                                echo '<option value="' . $teamMemberItem['AccountID'] . '" selected="' . $isSelected . '">', $teamMemberName, '</option>';
+                                echo '<option value="' . $teamMemberItem['AccountID'] . '" ' . $isSelected . '>', $teamMemberName, '</option>';
                             }
                             echo '</select>';
                             ?>
