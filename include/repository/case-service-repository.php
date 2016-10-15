@@ -12,4 +12,22 @@
         mysqli_close($conn);
         return $result;
     }
+
+    // Create Case Service
+    function create_case_service_details_request($caseCaseServiceArray){
+        $MLS = $caseCaseServiceArray['MLS'];
+        $serviceID = $caseCaseServiceArray['serviceID'];
+        $serviceSupplierType = $caseCaseServiceArray['serviceSupplierType'];
+
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "INSERT INTO caseservices (MLS, ServiceID, ServiceSupplierType)
+                        VALUES ('$MLS', '$serviceID', '$serviceSupplierType')";
+
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
 ?>
