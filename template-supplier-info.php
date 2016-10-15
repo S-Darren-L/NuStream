@@ -10,7 +10,7 @@
 ?>
 <?php
 	// Set Sub-menu URL
-	$subMenuURL = get_home_url . "/supplier-info/?SType=";
+	$subMenuURL = get_home_url() . "/supplier-info/?SType=";
 
 	// Get Supplier Type
 	$supplierType = $_GET['SType'];
@@ -268,7 +268,7 @@
 							echo '<td>', $supplerBriefInfoArray[$i]["FirstContactName"], '</td>';
 							echo '<td>', $supplerBriefInfoArray[$i]["FirstContactNumber"], '</td>';
 							echo '<td>', $supplerBriefInfoArray[$i]["SupportLocation"], '</td>';
-							echo '<td>', '<a href="' . get_home_url . '/admin-edit-supplier/?SID=' . $supplierID . '" >VIEW</a>', '</td>';
+							echo '<td>', '<a href="' . get_home_url() . '/admin-edit-supplier/?SID=' . $supplierID . '" >VIEW</a>', '</td>';
 						echo '</tr>';
 					}
 				?>
