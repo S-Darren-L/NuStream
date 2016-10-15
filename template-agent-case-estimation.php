@@ -33,28 +33,28 @@ Template Name: Agent Case Estimation
 
         //Estimate Staging
         if($isStagingChecked === 'checked')
-            $stagingEstimatePrice = staging_price_estimate($houseSize);
+            $stagingEstimatePrice = default_staging_price_estimate($houseSize);
         //Estimate Photography
         if($isPhotographyChecked === 'checked')
-            $photographyEstimatePrice = photography_price_estimate($propertyType);
+            $photographyEstimatePrice = default_photography_price_estimate($propertyType);
         //Estimate Clean Up
         if($isCleanUpChecked === 'checked')
-            $cleanUpEstimatePrice = clean_up_price_estimate($houseSize);
+            $cleanUpEstimatePrice = default_clean_up_price_estimate($houseSize);
         //Estimate Relocate Home
         if($isRelocateHomeChecked === 'checked')
-            $relocateHomeEstimatePrice = relocate_home_price_estimate();
+            $relocateHomeEstimatePrice = default_relocate_home_price_estimate();
         //Estimate Touch Up
         if($isTouchUpChecked === 'checked')
-            $touchUpEstimatePrice = touch_up_price_estimate();
+            $touchUpEstimatePrice = default_touch_up_price_estimate();
         //Estimate Inspection
         if($isInspectionChecked === 'checked')
-            $inspectionEstimatePrice = inspection_price_estimate($propertyType);
+            $inspectionEstimatePrice = default_inspection_price_estimate($propertyType);
         //Estimate Yard Work
         if($isYardWordChecked === 'checked')
-            $yardWorkEstimatePrice = yard_work_price_estimate();
+            $yardWorkEstimatePrice = default_yard_work_price_estimate();
         //Estimate Storage
         if($isStorageChecked === 'checked')
-            $storageEstimatePrice = storage_price_estimate();
+            $storageEstimatePrice = default_storage_price_estimate();
         // Total Cost
         $totalCost = $stagingEstimatePrice + $photographyEstimatePrice + $cleanUpEstimatePrice + $relocateHomeEstimatePrice + $touchUpEstimatePrice + $inspectionEstimatePrice + $yardWorkEstimatePrice + $storageEstimatePrice;
 

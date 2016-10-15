@@ -30,4 +30,17 @@
         return $result;
     }
 
+    // Delete Case Service By ID
+    function delete_case_service_by_id_request($serviceID){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "DELETE FROM caseservices WHERE ServiceID = '$serviceID'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
 ?>

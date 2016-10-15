@@ -55,7 +55,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "SELECT * FROM suppliers WHERE SupplierID='$supplierID' AND IsActivate=TRUE";
+        $sql = "SELECT * FROM suppliers WHERE SupplierID='$supplierID' AND IsActivate=TRUE LIMIT 1";
         $result = mysqli_query($conn, $sql);
         mysqli_close($conn);
 
