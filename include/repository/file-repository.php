@@ -37,7 +37,7 @@
     }
 
     // Get All Images
-    function download_all_files_request($uploadPath){
+    function download_all_files_by_path_request($uploadPath){
         $sql = "SELECT FileName FROM files WHERE FilePath='$uploadPath' AND FileType='IMAGE'";
 
         // Require SQL Connection

@@ -25,6 +25,9 @@
     $agentMyCasesURL = get_home_url() . '/agent-my-cases';
     $agentSupplierInfoURL = get_home_url() . '/supplier-info';
     $agentSettingsURL = get_home_url() . '/agent-settings';
+    // Superuser URL
+    $superuserNewAccountURL = get_home_url() . '/superuser-create-account';
+    $superuserMemberInfoURL = get_home_url() . '/superuser-member-info';
 
 
     $UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
@@ -74,6 +77,11 @@
 
             }else if($_SESSION['AccountPosition'] === 'SUPERUSER'){
                 // SUPERUSER Menu
+                echo '<ul class="nav nav-pills nav-stacked">
+                    <li><a href="' . $superuserNewAccountURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;New Member</a></li>
+                    <li><a href="' . $superuserMemberInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Member Info</a></li>
+                    <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
+                </ul>';
 
             }else{
                 // Navigate To Login

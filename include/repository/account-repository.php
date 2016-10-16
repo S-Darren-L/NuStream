@@ -45,6 +45,41 @@
         return $result;
     }
 
+
+    // Superuser Create Account
+    function superuser_create_account_request($createAccountArray){
+        $password = $createAccountArray['password'];
+        $firstName = $createAccountArray['firstName'];
+        $lastName = $createAccountArray['lastName'];
+        $contactNumber = $createAccountArray['contactNumber'];
+        $email = $createAccountArray['email'];
+        $isAdmin = $createAccountArray['isAdmin'];
+
+        if($isAdmin === true)
+            $accountPosition = 'ADMIN';
+        else
+            $accountPosition = 'ACCOUNTANT';
+
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $password = encrypt_password($conn, $password);
+
+        $sql = "INSERT INTO accounts (Password, FirstName, LastName, AccountPosition, ContactNumber, Email)
+                        VALUES ('$password', '$firstName', '$lastName', '$accountPosition', '$contactNumber', '$email')";
+
+        $result = mysqli_query($conn, $sql);
+
+        if($result === TRUE){
+            $sql = "SELECT LAST_INSERT_ID()";
+            $result = mysqli_query($conn, $sql);
+        }
+
+        mysqli_close($conn);
+        return $result;
+    }
+
     // Update Account Team ID
     function update_account_team_id_request($updateAccountTeamIdArray){
         $accountID = $updateAccountTeamIdArray['accountID'];
@@ -82,6 +117,19 @@
 
     // Get Agent Account
     function get_agent_account_request($accountID){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT * FROM accounts WHERE AccountID='$accountID'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
+    // Get Admin Or Accountant Account
+    function get_admin_or_accountant_account_request($accountID){
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
@@ -145,6 +193,20 @@
         $conn = mysqli_connection();
 
         $sql = "SELECT AccountID, FirstName, LastName, TeamID, ContactNumber, Email FROM accounts WHERE AccountPosition='AGENT' AND IsActivate=TRUE ORDER BY '$orderVariable'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
+
+    // Get Admin And Account Member Brief Info
+    function get_admin_and_account_member_brief_info_request($orderVariable){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT AccountID, FirstName, LastName, ContactNumber, Email FROM accounts WHERE (AccountPosition='ADMIN' OR AccountPosition='ACCOUNTANT') AND IsActivate=TRUE ORDER BY '$orderVariable'";
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);

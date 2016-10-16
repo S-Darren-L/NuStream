@@ -444,9 +444,9 @@
     }
 
     // Get All Images
-    function download_all_files($uploadPath){
+    function download_all_files_by_path($uploadPath){
         require_once(__DIR__ . '/include/repository/file-repository.php');
-        return download_all_files_request($uploadPath);
+        return download_all_files_by_path_request($uploadPath);
     }
 
     // Create Team
@@ -485,6 +485,12 @@
         return create_agent_account_request($createAccountArray);
     }
 
+    // Superuser Create Account
+    function superuser_create_account($createAccountArray){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return superuser_create_account_request($createAccountArray);
+    }
+
     // Update Account Team ID
     function update_account_team_id($updateAccountTeamIdArray){
         require_once(__DIR__ . '/include/repository/account-repository.php');
@@ -501,6 +507,12 @@
     function get_agent_account($accountID){
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return get_agent_account_request($accountID);
+    }
+
+    // Get Admin Or Accountant Account
+    function get_admin_or_accountant_account($accountID){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return get_admin_or_accountant_account_request($accountID);
     }
 
     // Deactivate Account
@@ -525,6 +537,12 @@
     function get_agent_member_brief_info($orderVariable){
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return get_agent_member_brief_info_request($orderVariable);
+    }
+
+    // Get Admin And Account Member Brief Info
+    function get_admin_and_account_member_brief_info($orderVariable){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return get_admin_and_account_member_brief_info_request($orderVariable);
     }
 
     // Create Case

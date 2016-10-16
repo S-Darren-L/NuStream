@@ -4,7 +4,7 @@
     session_start();
 
     /*
-    Template Name: Admin Edit Agent Account
+    Template Name: Superuser Edit Account
     */
 
 ?>
@@ -18,7 +18,7 @@
 
     // Init Date
     function init_data($accountID){
-        $getAgentAccountResult = get_agent_account($accountID);
+        $getAgentAccountResult = get_admin_or_accountant_account($accountID);
         if($getAgentAccountResult !== null){
             $getAgentAccountArray = mysqli_fetch_array($getAgentAccountResult);
             global $accountID;
@@ -46,7 +46,7 @@
 
         global $errorMessage;
         global $isError;
-        if (empty($contactNumber) || empty($email)) {
+        if ( empty($contactNumber) || empty($email)) {
             $errorMessage = "Mandatory fields are empty";
             $isError = true;
             return false;
@@ -57,7 +57,7 @@
         }
     }
 
-    // Update Team
+    // Update Account
     if(isset($_POST['update_account']) && date_validated() === true) {
         $updateAccountArray = array(
             "accountID" => $accountID,
@@ -68,7 +68,7 @@
 
         // Navigate
         if($updateAccountResult === true){
-            $url = get_home_url() . '/admin-member-info';
+            $url = get_home_url() . '/superuser-member-info';
             echo("<script>window.location.assign('$url');</script>");
         }
     }

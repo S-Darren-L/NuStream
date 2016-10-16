@@ -1,93 +1,91 @@
 <?php
 
-    // Start Session
-    session_start();
+// Start Session
+session_start();
 
-    /*
-    Template Name: Admin Edit Agent Account
-    */
+/*
+Template Name: Superuser Create Account
+*/
 
 ?>
 
 <?php
-    // Get Supplier ID
-    $accountID = $_GET['AID'];
 
-    // Init Date
-    init_data($accountID);
+// init Data
 
-    // Init Date
-    function init_data($accountID){
-        $getAgentAccountResult = get_agent_account($accountID);
-        if($getAgentAccountResult !== null){
-            $getAgentAccountArray = mysqli_fetch_array($getAgentAccountResult);
-            global $accountID;
-            global $firstName;
-            global $lastName;
-            global $contactNumber;
-            global $email;
+// Validate Mandatory Fields
+function date_validated()
+{
+    $firstName = test_input($_POST["firstName"]);
+    $lastName = test_input($_POST["lastName"]);
+    $contactNumber = test_input($_POST["contactNumber"]);
+    $email = test_input($_POST["email"]);
+    $isAdmin  = (int)$_POST["isAdmin"] == 'TRUE' ? true : false;
+    $isAdmin = test_input($isAdmin);
 
-            $accountID = $getAgentAccountArray['AccountID'];
-            $firstName = $getAgentAccountArray['FirstName'];
-            $lastName = $getAgentAccountArray['LastName'];
-            $contactNumber = $getAgentAccountArray['ContactNumber'];
-            $email = $getAgentAccountArray['Email'];
-        }
-        else{
-            echo die("Cannot find account");
-        }
+    global $errorMessage;
+    global $isError;
+    if (empty($firstName) || empty($lastName) || empty($contactNumber) || empty($email) || empty($isAdmin)) {
+        $errorMessage = "Mandatory fields are empty";
+        $isError = true;
+        return false;
+    } else {
+        $errorMessage = null;
+        $isError = false;
+        return true;
     }
+}
 
-    // Validate Mandatory Fields
-    function date_validated()
-    {
-        $contactNumber = test_input($_POST["contactNumber"]);
-        $email = test_input($_POST["email"]);
+// Create Account
+if(isset($_POST['create_account']) && date_validated() === true) {
+    // Generate Password
+    $password = generate_password();
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $contactNumber = $_POST['contactNumber'];
+    $email = $_POST['email'];
+    $isAdmin = $_POST['isAdmin'] == 'TRUE' ? true : false;
 
-        global $errorMessage;
-        global $isError;
-        if (empty($contactNumber) || empty($email)) {
-            $errorMessage = "Mandatory fields are empty";
-            $isError = true;
-            return false;
-        } else {
-            $errorMessage = null;
-            $isError = false;
-            return true;
-        }
+    // Check if account exist
+    $isAccountExistResult = is_account_exist($email);
+    $isAccountExistResultRow = mysqli_fetch_array($isAccountExistResult);
+    if(!is_null($isAccountExistResultRow)){
+        $errorMessage = "Email already exist";
+        $isError = true;
     }
-
-    // Update Team
-    if(isset($_POST['update_account']) && date_validated() === true) {
-        $updateAccountArray = array(
-            "accountID" => $accountID,
-            "contactNumber" => $_POST['contactNumber'],
-            "email" => $_POST['email']
+    else{
+        $errorMessage = null;
+        $isError = false;
+        // Create Account
+        $createAccountArray = array (
+            "password" => $password,
+            "firstName" => $firstName,
+            "lastName" => $lastName,
+            "contactNumber" => $contactNumber,
+            "email" => $email,
+            "isAdmin" => $isAdmin
         );
-        $updateAccountResult = update_account($updateAccountArray);
+
+        $createAccountResult = superuser_create_account($createAccountArray);
+        $result_rows = [];
+        while($row = mysqli_fetch_array($createAccountResult))
+        {
+            $result_rows[] = $row;
+        }
+        $accountID = $result_rows[0]["LAST_INSERT_ID()"];
+
+        // Send User Password By Email
+        if(!is_null($accountID)){
+            $sendEmailResult = send_user_password($email, $firstName, $lastName,$password);
+        }
 
         // Navigate
-        if($updateAccountResult === true){
-            $url = get_home_url() . '/admin-member-info';
+        if(!is_null($accountID)){
+            $url = get_home_url() . '/superuser-member-info';
             echo("<script>window.location.assign('$url');</script>");
         }
     }
-
-    // Deactivate Account
-    if(isset($_POST['deactivate_account'])){
-        $deactivateResult = deactivate_account_by_id($accountID);
-        navigate_back();
-    }
-
-    // Navigate Back
-    if(isset($_POST['navigate_back'])){
-        navigate_back();
-    }
-
-    function navigate_back(){
-        global $adminMemberInfoURL;
-        echo("<script>window.location.assign('$adminMemberInfoURL');</script>");
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -248,7 +246,7 @@
         float: left;
         clear: none;
         display: block;
-        padding: 5px 20px 0 3px;
+        padding: 5px 4em 0 3px;
     }
 
     input[type=radio],
@@ -264,27 +262,27 @@
     .selectTeam {
         float: left;
         clear: none;
-        margin: 0px 0 0 2px;
+        margin: 2px 0 0 2px;
     }
 
     .dropdown {
         height: 40px;
-        width: 70px;
+        width: 50px;
     }
 
     select {
         border-radius: 3px;
         height: 30px;
-        width: 110px;
+        width: 80px;
     }
 
-    .update {
+    .create {
         float:left;
         padding-left: 20px;
         margin-left: 0px;
     }
 
-    .updateButton {
+    .createButton {
         border-radius: 5px;
         background-color: #32323a;
         border: #32323a;
@@ -293,64 +291,53 @@
         height: 30px;
         width: 100px;
     }
-
-    .delete{
-        float:left;
-        padding-left: 20px;
-        margin-left: 0px;
-    }
-
-    .deleteButton {
-        border-radius: 5px;
-        background-color: #32323a;
-        border: #32323a;
-        color:#fff;
-        font-weight: 100px;
-        height: 30px;
-        width: 100px;
-    }
-
 
     .error-message a{
         color: red;
-        font-size: 80%;
+        font-size: 100%;
     }
-
 </style>
-<html>
 <head>
-    <title>Edit Account Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div id="container">
     <?php
-        include_once(__DIR__ . '/navigation.php');
+    include_once(__DIR__ . '/navigation.php');
     ?>
     <div id="main">
         <div class="formPart">
-            <div class="title"><h4>EDIT ACCOUNT</h4></div>
+            <div class="title"><h4>CREATE NEW ACCOUNT</h4></div>
             <form method="post">
                 <div class="form-group inputPart">
                     <div class="requireTitle">MEMBER NAME</div>
                     <div class="inputContent">
-                        <input class="prayer-first-name" type="text" disabled="disabled" name="firstName" value="<?php echo $firstName; ?>" id="firstName" placeholder=" FIRST NAME*" style="font-size:11px; height:30px;" size="26" require/>
-                        <input class="prayer-email" type="text" disabled="disabled" name="lastName" value="<?php  echo $lastName; ?>" id="lastName" placeholder=" LAST NAME*" style="font-size:11px; height:30px;" size="27" require/>
+                        <input class="prayer-first-name" type="text" name="firstName" id="firstName" placeholder=" FIRST NAME*" style="font-size:15px;" require/>
+                        <input class="prayer-email" type="text" name="lastName" id="lastNmae" placeholder=" LAST NAME*" style="font-size:15px;" require/>
                     </div>
                     <div class="requireTitle">CONTACT NUMBER*</div>
                     <div class="inputContent contactNum">
-                        <input class="prayer-email" type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" id="contactNumber" placeholder="CONTACT NUMBER" style="font-size:11px; height:30px;" size="59" require/>
+                        <input class="prayer-email" type="text" name="contactNumber" id="contactNumber" placeholder="CONTACT NUMBER*" style="font-size:15px;" size="45" require/>
                     </div>
                     <div class="requireTitle">EAMIL ADDRESS*</div>
                     <div class="inputContent contactEmail">
-                        <input class="prayer-email" type="email" name="email" value="<?php echo $email; ?>" id="emailAddress" placeholder="EAMIL ADDRESS" style="font-size:11px; height:30px;" size="59" require/>
+                        <input class="prayer-email" type="email" name="email" id="emailAddress" placeholder="EAMIL ADDRESS*" style="font-size:15px;" size="45" require/>
                     </div>
-                    <div class="update">
-                        <input type="submit" value="Update" name="update_account">
+                    <div class="requireTitle">ACCOUNT TYPE*</div>
+                    <div class="inputContent" >
+                        <fieldset>
+                            <div class="radioButtonPart">
+                                <input type="radio" class="radio" name="isAdmin" value="TRUE" checked="checked" style="margin-top:5px;" />
+                                <label for="teamLeader" style="font-weight:100 !important; ">ADMIN</label>
+                                <input type="radio" class="radio" name="isAdmin" value="FALSE" style="margin-top:5px;" />
+                                <label for="teamLeader" style="font-weight:100 !important;">ACCOUNTANT</label>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div class="delete">
-                        <input type="submit" value="Deactivate" name="deactivate_account">
+                    <div class="create">
+                        <input class="createButton" type="submit" value="Create" name="create_account">
                         <?php
                         if($isError){
                             echo '<div class="error-message"><a>';
@@ -361,9 +348,8 @@
                         ?>
                     </div>
                 </div>
-                <input type="submit" value="Back" name="navigate_back">
             </form>
         </div>
     </div>
+</div>
 </body>
-</html>
