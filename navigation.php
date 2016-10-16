@@ -13,18 +13,18 @@
     }
 
     // Set Navigation URL
+    // General URL
+    $settingsURL = get_home_url() . '/settings';
+    $supplierInfoURL = get_home_url() . '/supplier-info';
     // Admin URL
     $adminFilesURL = get_home_url() . '/admin-files-management';
     $adminCreateSupplierURL = get_home_url() . '/admin-create-supplier';
     $adminCreateMemberURL = get_home_url() . '/admin-create-agent-account';
     $adminMemberInfoURL = get_home_url() . '/admin-member-info';
-    $adminSupplierInfoURL = get_home_url() . '/supplier-info';
     // Agent URl
     $agentNewCaseURL = get_home_url() . '/agent-create-case';
     $agentCaseEstimationURL = get_home_url() . '/agent-case-estimation';
     $agentMyCasesURL = get_home_url() . '/agent-my-cases';
-    $agentSupplierInfoURL = get_home_url() . '/supplier-info';
-    $agentSettingsURL = get_home_url() . '/agent-settings';
     // Superuser URL
     $superuserNewAccountURL = get_home_url() . '/superuser-create-account';
     $superuserMemberInfoURL = get_home_url() . '/superuser-member-info';
@@ -58,7 +58,8 @@
                     <li><a href="' . $adminCreateMemberURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Create Member</a></li>
                     <li><a href="' . $adminMemberInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;Member Info</a></li>
                     <li><a href="' . $adminCreateSupplierURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Create Supplier</a></li>
-                    <li><a href="' . $adminSupplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Supplier Info</a></li>
+                    <li><a href="' . $supplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Supplier Info</a></li>
+                    <li><a href="' . $settingsURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
                     <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
                 </ul>';
             }else if($_SESSION['AccountPosition'] === 'AGENT'){
@@ -67,8 +68,8 @@
                     <li><a href="' . $agentNewCaseURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;New Listing</a></li>
                     <li><a href="' . $agentCaseEstimationURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Estimation</a></li>
                     <li><a href="' . $agentMyCasesURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;My Cases</a></li>
-                    <li><a href="' . $agentSupplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Supplier Info</a></li>
-                    <li><a href="' . $agentSettingsURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
+                    <li><a href="' . $supplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Supplier Info</a></li>
+                    <li><a href="' . $settingsURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
                     <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
                 </ul>';
 
@@ -78,8 +79,9 @@
             }else if($_SESSION['AccountPosition'] === 'SUPERUSER'){
                 // SUPERUSER Menu
                 echo '<ul class="nav nav-pills nav-stacked">
-                    <li><a href="' . $superuserNewAccountURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;New Member</a></li>
-                    <li><a href="' . $superuserMemberInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Member Info</a></li>
+                    <li><a href="' . $superuserNewAccountURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;New Member</a></li>
+                    <li><a href="' . $superuserMemberInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;Member Info</a></li>
+                    <li><a href="' . $settingsURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
                     <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
                 </ul>';
 

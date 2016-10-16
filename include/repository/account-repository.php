@@ -164,7 +164,38 @@
         $email = encrypt_email($conn, $loginArray['email']);
         $password = encrypt_password($conn, $loginArray['password']);
 
-        $sql = "SELECT * FROM accounts WHERE Email='$email' && Password='$password' && IsActivate=TRUE LIMIT 1";
+        $sql = "SELECT * FROM accounts WHERE Email='$email' AND Password='$password' && IsActivate=TRUE LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
+    // Check Password
+    function check_password_request($accountID, $password){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $password = encrypt_password($conn, $password);
+
+        $sql = "SELECT * FROM accounts WHERE AccountID='$accountID' AND Password='$password' && IsActivate=TRUE LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
+    // Reset Password
+    function reset_member_password_request($accountID, $password){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $password = encrypt_password($conn, $password);
+
+        $sql = "UPDATE accounts SET Password = '$password' 
+                        WHERE AccountID = '$accountID'";
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
@@ -224,4 +255,33 @@
 
         mysqli_close($conn);
     }
+
+    // Update Account Email
+    function update_account_email_request($accountID, $email){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE accounts SET Email = '$email' 
+                        WHERE AccountID = '$accountID'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
+    // Update Account Contact Number
+    function update_contact_number_request($accountID, $contactNumber){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE accounts SET ContactNumber = '$contactNumber' 
+                        WHERE AccountID = '$accountID'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
 ?>

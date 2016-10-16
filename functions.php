@@ -527,6 +527,18 @@
         return login_request($loginArray);
     }
 
+    // Check Password
+    function check_password($accountID, $password){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return check_password_request($accountID, $password);
+    }
+
+    // Reset Password
+    function reset_member_password($accountID, $password){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return reset_member_password_request($accountID, $password);
+    }
+
     // Check if account exist
     function is_account_exist($email){
         require_once(__DIR__ . '/include/repository/account-repository.php');
@@ -543,6 +555,18 @@
     function get_admin_and_account_member_brief_info($orderVariable){
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return get_admin_and_account_member_brief_info_request($orderVariable);
+    }
+
+    // Update Account Email
+    function update_account_email($accountID, $email){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return update_account_email_request($accountID, $email);
+    }
+
+    // Update Account Contact Number
+    function update_contact_number($accountID, $contactNumber){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return update_contact_number_request($accountID, $contactNumber);
     }
 
     // Create Case
