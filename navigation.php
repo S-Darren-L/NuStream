@@ -25,6 +25,8 @@
     $agentNewCaseURL = get_home_url() . '/agent-create-case';
     $agentCaseEstimationURL = get_home_url() . '/agent-case-estimation';
     $agentMyCasesURL = get_home_url() . '/agent-my-cases';
+    // Accountant URL
+    $accountantFilesURL = get_home_url() . '/accountant-files-management';
     // Superuser URL
     $superuserNewAccountURL = get_home_url() . '/superuser-create-account';
     $superuserMemberInfoURL = get_home_url() . '/superuser-member-info';
@@ -75,6 +77,12 @@
 
             }else if($_SESSION['AccountPosition'] === 'ACCOUNTANT'){
                 // ACCOUNTANT Menu
+                echo '<ul class="nav nav-pills nav-stacked">
+                    <li><a href="' . $accountantFilesURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
+                    <li><a href="' . $supplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Supplier Info</a></li>
+                    <li><a href="' . $settingsURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
+                    <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
+                </ul>';
 
             }else if($_SESSION['AccountPosition'] === 'SUPERUSER'){
                 // SUPERUSER Menu
