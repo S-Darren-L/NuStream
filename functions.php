@@ -111,28 +111,212 @@
 
     // Combine Files
     function combine_files(){
-//        require_once('fpdf/fpdf.php');
-//        require_once('fpdi/fpdi.php');
-//
-//        // Set URL
-//        $homeURL = get_home_url();
-//
-//        $pdf = new FPDI();
-//
-//        $pdf->setSourceFile("C:\Users\Darren\Desktop\a.pdf");
-//        $tplIdxA = $pdf->importPage(1, '/MediaBox');
-//
-//        $pdf->setSourceFile("C:\Users\Darren\Desktop\b.pdf");
-//        $tplIdxB = $pdf->importPage(1, '/MediaBox');
-//
-//        $pdf->addPage();
-//        // place the imported page of the first document:
-//        $pdf->useTemplate($tplIdxA, 10, 10, 90);
-//        // place the imported page of the snd document:
-//        $pdf->useTemplate($tplIdxB, 100, 10, 90);
-//
+        require_once('fpdf/fpdf.php');
+        require_once('fpdi/fpdi.php');
+
+        // Set URL
+        $homeURL = get_home_url();
+
+        $pdf = new FPDI();
+
+        $pdf->setSourceFile("C:\Users\Darren\Desktop\a.pdf");
+        $tplIdxA = $pdf->importPage(1, '/MediaBox');
+
+        $pdf->setSourceFile("C:\Users\Darren\Desktop\b.pdf");
+        $tplIdxB = $pdf->importPage(1, '/MediaBox');
+
+        $pdf->addPage();
+        // place the imported page of the first document:
+        $pdf->useTemplate($tplIdxA,0,0,200,280);
+        $pdf->addPage();
+        // place the imported page of the snd document:
+        $pdf->useTemplate($tplIdxB,0,0,200,280);
+
+        $uploadPath = "wp-content/themes/NuStream/Upload/";
+        $filename = $uploadPath . "test.pdf";
+        $pdf->Output($filename,'F');
 //        $pdf->Output();
 
+    }
+
+    // Combine PDF Array
+    function combine_pdf_array($reportInvoicesArray){
+        require_once('fpdf/fpdf.php');
+        require_once('fpdi/fpdi.php');
+
+        $pdf = new FPDI();
+        foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
+            $pdf->setSourceFile($reportInvoiceFile);
+            $tplIdxA = $pdf->importPage(1, '/MediaBox');
+            $pdf->addPage();
+            // place the imported page of the first document:
+            $pdf->useTemplate($tplIdxA,0,0,200,280);
+        }
+        $uploadPath = "wp-content/themes/NuStream/Upload/";
+        $filename = $uploadPath . "combine file array.pdf";
+        $pdf->Output($filename,'F');
+        return $filename;
+    }
+
+    // Convert Image To PDF
+    function convert_image_to_pdf($image){
+        require_once('fpdf/fpdf.php');
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->Image($image,10,10,180,280);
+        $uploadPath = "wp-content/themes/NuStream/Upload/";
+        $filename = $uploadPath . rand(10000, 99999) . rand(10000, 99999) . ".pdf";
+        $pdf->Output($filename,'F');
+        return $filename;
+    }
+
+    // Generate Case Report
+    function generate_case_report($reportFromArray, $reportInvoicesArray){
+        // Generate Case Report Form
+        $reportFormFile = generate_case_report_from($reportFromArray);
+//        $reportInvoicesFile = combine_case_report_invoices($reportInvoicesArray);
+//        $finalReportFile = combine_files($reportFormFile, $reportInvoicesFile);
+    }
+
+    // Generate Case Report Form
+    function generate_case_report_from($reportFromArray){
+        $MLS = $reportFromArray['MLS'];
+        $address = $reportFromArray['address'];
+        $teamLeader = $reportFromArray['teamLeader'];
+        $teamMember = $reportFromArray['teamMember'];
+        $sellerName = $reportFromArray['sellerName'];
+        $propertyType = $reportFromArray['propertyType'];
+        $stagingSupplier = $reportFromArray['stagingSupplier'];
+        $stagingContact = $reportFromArray['stagingContact'];
+        $stagingFinalPrice = $reportFromArray['stagingFinalPrice'];
+        $cleanUpSupplier = $reportFromArray['cleanUpSupplier'];
+        $cleanUpContact = $reportFromArray['cleanUpContact'];
+        $cleanUpFinalPrice = $reportFromArray['cleanUpFinalPrice'];
+        $touchUpSupplier = $reportFromArray['touchUpSupplier'];
+        $touchUpContact = $reportFromArray['touchUpContact'];
+        $touchUpFinalPrice = $reportFromArray['touchUpFinalPrice'];
+        $inspectionSupplier = $reportFromArray['inspectionSupplier'];
+        $inspectionContact = $reportFromArray['inspectionContact'];
+        $inspectionFinalPrice = $reportFromArray['inspectionFinalPrice'];
+        $yardWorkSupplier = $reportFromArray['yardWorkSupplier'];
+        $yardWorkContact = $reportFromArray['yardWorkContact'];
+        $yardWorkFinalPrice = $reportFromArray['yardWorkFinalPrice'];
+        $storageSupplier = $reportFromArray['storageSupplier'];
+        $storageContact = $reportFromArray['storageContact'];
+        $storageFinalPrice = $reportFromArray['storageFinalPrice'];
+        $relocateHomeSupplier = $reportFromArray['relocateHomeSupplier'];
+        $relocateHomeContact = $reportFromArray['relocateHomeContact'];
+        $relocateHomeFinalPrice = $reportFromArray['relocateHomeFinalPrice'];
+        $giftPackageSupplier = $reportFromArray['giftPackageSupplier'];
+        $giftPackageContact = $reportFromArray['giftPackageContact'];
+        $giftPackageFinalPrice = $reportFromArray['giftPackageFinalPrice'];
+        $company = $reportFromArray['company'];
+        $photoGraphicPrice = $reportFromArray['photoGraphicPrice'];
+        $openHouseBrochurePrice = $reportFromArray['openHouseBrochurePrice'];
+
+        require_once('tcpdf/tcpdf.php');
+
+// create new PDF document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+// set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Nicola Asuni');
+        $pdf->SetTitle('TCPDF Example 001');
+        $pdf->SetSubject('TCPDF Tutorial');
+        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+// set default header data
+        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
+        $pdf->setFooterData(array(0,64,0), array(0,64,128));
+
+// set header and footer fonts
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+// set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+// set margins
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+// set some language-dependent strings (optional)
+        if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+        }
+
+// ---------------------------------------------------------
+
+// set default font subsetting mode
+        $pdf->setFontSubsetting(true);
+
+// Set font
+// dejavusans is a UTF-8 Unicode font, if you only need to
+// print standard ASCII chars, you can use core fonts like
+// helvetica or times to reduce file size.
+        $pdf->SetFont('dejavusans', '', 8, '', true);
+
+// Add a page
+// This method has several options, check the source code documentation for more information.
+        $pdf->AddPage();
+
+// set text shadow effect
+        $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
+
+// Set some content to print
+        $html = <<<EOD
+<h1>Welcome to <a href="http://www.tcpdf.org" style="text-decoration:none;background-color:#CC0000;color:black;">&nbsp;<span style="color:black;">TC</span><span style="color:white;">PDF</span>&nbsp;</a>!</h1>
+<i>This is the first example of TCPDF library.</i>
+<p>This text is printed using the <i>writeHTMLCell()</i> method but you can also use: <i>Multicell(), writeHTML(), Write(), Cell() and Text()</i>.</p>
+<p>Please check the source code documentation and other examples for further information.</p>
+<p style="color:#CC0000;">TO IMPROVE AND EXPAND TCPDF I NEED YOUR SUPPORT, PLEASE <a href="http://sourceforge.net/donate/index.php?group_id=128076">MAKE A DONATION!</a></p>
+EOD;
+
+// Print text using writeHTMLCell()
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+
+// ---------------------------------------------------------
+
+// Close and output PDF document
+// This method has several options, check the source code documentation for more information.
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload/";
+        $filename = $uploadPath . "generatedPDF.pdf";
+        ob_clean();
+        $pdf->Output($filename,'F');
+    }
+
+    // Combine Case Report Invoices
+    function combine_case_report_invoices($reportInvoicesArray){
+        foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
+            $reportInvoiceFile = strtolower($reportInvoiceFile);
+            $allowedImagesType =  array('png' ,'jpg');
+            $allowedFilesType ='pdf';
+            $ext = pathinfo($reportInvoiceFile, PATHINFO_EXTENSION);
+            if(in_array($ext, $allowedImagesType)){
+                // Convert Image to PDF
+                $reportInvoiceFile = convert_image_to_pdf($reportInvoiceFile);
+//                echo $reportInvoiceFile;
+                $reportInvoicesArray[$reportInvoiceKey] = $reportInvoiceFile;
+            }else if($ext === $allowedFilesType){
+                // Is PDF File, Do Nothing
+            }else{
+                // TODO: File Type Is Not Supported
+            }
+        }
+        try {
+            $reportInvoicesFile = combine_pdf_array($reportInvoicesArray);
+        }catch(Exception $e) {
+            echo "Unable combine all PDFs, some file types are not supported";
+        }
     }
 
     // Set Style File
@@ -572,7 +756,37 @@
     // Create Case
     function create_case($createCaseArray){
         require_once(__DIR__ . '/include/repository/case-repository.php');
-        return create_case_request($createCaseArray);
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        $MLS = $createCaseArray['MLSNumber'];
+        $createCaseResult = create_case_request($createCaseArray);
+        if($createCaseResult === true){
+            //Create All Services
+            foreach (get_supplier_types() as $supplierType){
+                $supplierResult = mysqli_fetch_array(get_default_supplier_by_type($supplierType));
+                $supplierID = $supplierResult['SupplierID'];
+                // Insert Service
+                $createServiceArray = array(
+                    "serviceSupplierID" => $supplierID,
+                    "supplierType" => $supplierType
+                );
+                $createServiceResult = create_service_details($createServiceArray);
+                $result_rows = [];
+                while($row = mysqli_fetch_array($createServiceResult))
+                {
+                    $result_rows[] = $row;
+                }
+                $serviceID = $result_rows[0]["LAST_INSERT_ID()"];
+
+                // Insert Case-Service
+                $caseCaseServiceArray = array(
+                    "MLS" => $MLS,
+                    "serviceID" => $serviceID,
+                    "serviceSupplierType" => $supplierType
+                );
+                $createCaseServiceResult = create_case_service_details($caseCaseServiceArray);
+            }
+        }
+        return $createCaseResult;
     }
 
     // Get Cases Brief Info

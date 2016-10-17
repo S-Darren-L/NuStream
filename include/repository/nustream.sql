@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2016 at 06:23 PM
+-- Generation Time: Oct 17, 2016 at 07:17 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -44,11 +44,11 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamID`, `AccountPosition`, `ContactNumber`, `Email`, `IsTeamLeader`, `IsActivate`) VALUES
-(1, '', 'Darren', 'Liu', '7', 'AGENT', '75368', 'dfg@sdf.com', 0, 1),
+(1, '', 'Darren', 'Liu', '7', 'AGENT', '7536890', 'dfg@sdf.com', 0, 1),
 (2, '', 'Kevin', 'Guo', '7', 'AGENT', '96521', 'rtg@dcfvh.com', 1, 1),
 (3, '', 'Peter', 'Ray', '0', 'AGENT', '85', 'dfg@rgh.com', 0, 1),
 (41, '13a2d47aef854249e46feb3d954a54c1', 'Shuyang', 'Liu', '7', 'ADMIN', '16478953986', 'gulang15@gmail.com', 0, 1),
-(57, '307487ad13756cabf44dc5784d40f77d', 'Darren', 'Liu', '19', 'AGENT', '6478953986', 'gulang15a@gmail.com', 1, 1);
+(57, '827ccb0eea8a706c4c34a16891f84e7b', 'Darren', 'Liu', '19', 'AGENT', '6478953986', 'gulang15a@gmail.com', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ CREATE TABLE `cases` (
   `ContactNumber` varchar(255) NOT NULL,
   `StartDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `CaseStatus` enum('OPEN','FIRMDEAL','CLOSED') NOT NULL,
-  `Total` double NOT NULL,
+  `FinialPrice` double NOT NULL,
   `Images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -77,9 +77,10 @@ CREATE TABLE `cases` (
 -- Dumping data for table `cases`
 --
 
-INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `HouseSize`, `PropertyType`, `ListingPrice`, `OwnerName`, `ContactNumber`, `StartDate`, `CaseStatus`, `Total`, `Images`) VALUES
+INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `HouseSize`, `PropertyType`, `ListingPrice`, `OwnerName`, `ContactNumber`, `StartDate`, `CaseStatus`, `FinialPrice`, `Images`) VALUES
+('2345', 57, 57, 'sdfgh', 2345, 2345, 'CONDO', 2345, 'dfgv', '3456', '2016-10-17 04:53:27', 'OPEN', 0, ''),
 ('456', 57, 57, 'fg', 456, 456, 'CONDO', 345, 'fgh', '645', '2016-10-13 02:47:29', 'OPEN', 0, ''),
-('56', 57, 57, 'cghj', 789, 5, 'CONDO', 678, 'fgh', '56', '2016-10-13 02:56:29', 'OPEN', 0, '');
+('87654', 57, 57, 'jhgf', 876, 876, 'CONDO', 876, 'kjh', '765', '2016-10-17 05:15:30', 'OPEN', 0, '');
 
 -- --------------------------------------------------------
 
@@ -89,8 +90,24 @@ INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `Hous
 
 CREATE TABLE `caseservices` (
   `MLS` varchar(255) NOT NULL,
-  `ServiceID` int(11) NOT NULL
+  `ServiceID` int(11) NOT NULL,
+  `ServiceSupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `caseservices`
+--
+
+INSERT INTO `caseservices` (`MLS`, `ServiceID`, `ServiceSupplierType`) VALUES
+('456', 9, 'STAGING'),
+('87654', 58, 'STAGING'),
+('87654', 59, 'PHOTOGRAPHY'),
+('87654', 60, 'CLEANUP'),
+('87654', 61, 'RELOCATEHOME'),
+('87654', 62, 'TOUCHUP'),
+('87654', 63, 'INSPECTION'),
+('87654', 64, 'YARDWORK'),
+('87654', 65, 'STORAGE');
 
 -- --------------------------------------------------------
 
@@ -131,9 +148,25 @@ CREATE TABLE `services` (
   `RealCost` double NOT NULL,
   `InvoiceID` int(11) NOT NULL,
   `InvoiceStatus` enum('NEW','PENDING','APPROVED') NOT NULL,
-  `BeforeImage` varchar(255) NOT NULL,
-  `AfterImage` varchar(255) NOT NULL
+  `BeforeImagePath` varchar(255) NOT NULL,
+  `AfterImagePath` varchar(255) NOT NULL,
+  `IsActivate` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`ServiceID`, `ServiceSupplierID`, `SupplierType`, `EstimateCose`, `RealCost`, `InvoiceID`, `InvoiceStatus`, `BeforeImagePath`, `AfterImagePath`, `IsActivate`) VALUES
+(9, 10, 'STAGING', 0, 1500, 0, 'NEW', '', '', 1),
+(58, 1, 'STAGING', 0, 0, 0, 'NEW', '', '', 0),
+(59, 2, 'PHOTOGRAPHY', 0, 0, 0, 'NEW', '', '', 0),
+(60, 3, 'CLEANUP', 0, 0, 0, 'NEW', '', '', 0),
+(61, 4, 'RELOCATEHOME', 0, 0, 0, 'NEW', '', '', 0),
+(62, 5, 'TOUCHUP', 0, 0, 0, 'NEW', '', '', 0),
+(63, 6, 'INSPECTION', 0, 0, 0, 'NEW', '', '', 0),
+(64, 7, 'YARDWORK', 0, 0, 0, 'NEW', '', '', 0),
+(65, 8, 'STORAGE', 0, 0, 0, 'NEW', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -146,8 +179,14 @@ CREATE TABLE `suppliers` (
   `SupplierName` varchar(255) NOT NULL,
   `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
   `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE','BYSIZE1000') NOT NULL,
-  `PricePerUnit` double NOT NULL,
-  `MinimumPrice` double NOT NULL,
+  `PricePerUnit` double NOT NULL DEFAULT '0',
+  `PricePer1000Unit` double NOT NULL DEFAULT '0',
+  `MinimumPrice` double NOT NULL DEFAULT '0',
+  `PricePerCase` double NOT NULL DEFAULT '0',
+  `PricePerCondo` double NOT NULL DEFAULT '0',
+  `PricePerHouse` double NOT NULL DEFAULT '0',
+  `PricePerSemi` double NOT NULL DEFAULT '0',
+  `PricePerTownhouse` double NOT NULL DEFAULT '0',
   `FirstContactName` varchar(255) NOT NULL,
   `FirstContactNumber` varchar(255) NOT NULL,
   `SecondContactName` varchar(255) NOT NULL,
@@ -165,22 +204,22 @@ CREATE TABLE `suppliers` (
 -- Dumping data for table `suppliers`
 --
 
-INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `MinimumPrice`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `OtherPaymentTerm`, `FilePath`, `IsActivate`, `isDefault`) VALUES
-(1, 'Default Staging', 'STAGING', 'BYSIZE', 0.7, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(2, 'Default Photography', 'PHOTOGRAPHY', 'BYHOUSETYPE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(3, 'Default Clean Up', 'CLEANUP', 'BYSIZE1000', 0.7, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(4, 'Default Relocate Home', 'RELOCATEHOME', 'BYCASE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(5, 'Default Touch Up', 'TOUCHUP', 'BYCASE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(6, 'Default Inspection', 'INSPECTION', 'BYHOUSETYPE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(7, 'Default Yard Work', 'YARDWORK', 'BYCASE', 1, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(8, 'Default Stroage', 'STORAGE', 'BYCASE', 0, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
-(9, 'jhgf', 'STAGING', 'BYSIZE', 952, 0, 'nbv', '65', 'fdn', '53', 'fghj', '965', 'MONTHLY', '', '', 1, 0),
-(10, 'dfghj', 'STAGING', 'BYSIZE', 7452, 0, 'fghjk', '96521', 'ghnm', '952', 'ghj', '751', 'MONTHLY', '', '', 1, 0),
-(11, 'dfg', 'STAGING', 'BYSIZE', 456, 0, 'fgh', '6789', 'gh', '2345', 'dfg', '456', 'MONTHLY', '', '', 1, 0),
-(73, '', '', '', 0, 0, '', '0', '', '0', '', '0', '', '', 'wp-content/themes/NuStream/Upload/Supplier/73/', 1, 0),
-(74, 'Lghjk', 'TOUCHUP', 'BYHOUR', 85, 0, 'ghj', '52', 'nhjk', '4', '', '54521456', 'SEMIMONTHLY', '', '', 1, 0),
-(75, 'sdfg', 'INSPECTION', 'BYCASE', 52, 0, 'sdfg', '85', 'Sdf', '52', '', '85', 'OTHER', 'cvg', '', 1, 0),
-(76, 'sdf', 'STAGING', 'BYSIZE', 6, 0, 'bv', '632', 'bvc', '32', '', '5663', 'MONTHLY', '', '', 1, 0);
+INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUnit`, `PricePerUnit`, `PricePer1000Unit`, `MinimumPrice`, `PricePerCase`, `PricePerCondo`, `PricePerHouse`, `PricePerSemi`, `PricePerTownhouse`, `FirstContactName`, `FirstContactNumber`, `SecondContactName`, `SecondContactNumber`, `SupportLocation`, `HSTNumber`, `PaymentTerm`, `OtherPaymentTerm`, `FilePath`, `IsActivate`, `isDefault`) VALUES
+(1, 'Default Staging', 'STAGING', 'BYSIZE', 0.7, 0, 1000, 0, 0, 0, 0, 0, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(2, 'Default Photography', 'PHOTOGRAPHY', 'BYHOUSETYPE', 0, 0, 0, 0, 1100, 1800, 1500, 1300, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(3, 'Default Clean Up', 'CLEANUP', 'BYSIZE1000', 0, 0.7, 900, 0, 0, 0, 0, 0, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(4, 'Default Relocate Home', 'RELOCATEHOME', 'BYCASE', 0, 0, 0, 950, 0, 0, 0, 0, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(5, 'Default Touch Up', 'TOUCHUP', 'BYCASE', 0, 0, 0, 1250, 0, 0, 0, 0, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(6, 'Default Inspection', 'INSPECTION', 'BYHOUSETYPE', 0, 0, 0, 0, 700, 1600, 1400, 1000, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(7, 'Default Yard Work', 'YARDWORK', 'BYCASE', 1, 0, 0, 1450, 0, 0, 0, 0, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(8, 'Default Stroage', 'STORAGE', 'BYCASE', 0, 0, 0, 800, 0, 0, 0, 0, '', '', '', '', '', '', 'MONTHLY', '', '', 1, 1),
+(9, 'jhgf', 'STAGING', 'BYSIZE', 1, 0, 1000, 0, 0, 0, 0, 0, 'nbv', '65', 'fdn', '53', 'fghj', '965', 'SEMIMONTHLY', '', '', 1, 0),
+(10, 'dfghj', 'STAGING', 'BYSIZE', 7452, 0, 0, 0, 0, 0, 0, 0, 'fghjk', '96521', 'ghnm', '952', 'ghj', '751', 'MONTHLY', '', '', 1, 0),
+(11, 'dfg', 'STAGING', 'BYSIZE', 456, 0, 0, 0, 0, 0, 0, 0, 'fgh', '6789', 'gh', '2345', 'dfg', '456', 'MONTHLY', '', '', 1, 0),
+(73, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '', '0', '', '0', '', '0', '', '', 'wp-content/themes/NuStream/Upload/Supplier/73/', 1, 0),
+(74, 'Lghjk', 'TOUCHUP', 'BYHOUR', 85, 0, 0, 0, 0, 0, 0, 0, 'ghj', '52', 'nhjk', '4', '', '54521456', 'SEMIMONTHLY', '', '', 1, 0),
+(75, 'sdfg', 'INSPECTION', 'BYCASE', 52, 0, 0, 0, 0, 0, 0, 0, 'sdfg', '85', 'Sdf', '52', '', '85', 'OTHER', 'cvg', '', 1, 0),
+(76, 'sdf', 'STAGING', 'BYSIZE', 6, 0, 0, 0, 0, 0, 0, 0, 'bv', '632', 'bvc', '32', '', '5663', 'MONTHLY', '', '', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -224,10 +263,23 @@ ALTER TABLE `cases`
   ADD UNIQUE KEY `MLS` (`MLS`);
 
 --
+-- Indexes for table `caseservices`
+--
+ALTER TABLE `caseservices`
+  ADD UNIQUE KEY `ServiceID` (`ServiceID`);
+
+--
 -- Indexes for table `files`
 --
 ALTER TABLE `files`
   ADD UNIQUE KEY `FileName` (`FileName`);
+
+--
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`ServiceID`),
+  ADD UNIQUE KEY `ServiceID` (`ServiceID`);
 
 --
 -- Indexes for table `suppliers`
@@ -252,7 +304,12 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `ServiceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --

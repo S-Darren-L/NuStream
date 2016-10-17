@@ -23,11 +23,6 @@
 
         $result = mysqli_query($conn, $sql);
 
-        if($result === TRUE){
-            $sql = "SELECT LAST_INSERT_ID()";
-            $result = mysqli_query($conn, $sql);
-        }
-
         mysqli_close($conn);
         return $result;
     }

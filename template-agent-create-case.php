@@ -80,13 +80,6 @@ Template Name: Agent Create Case
             "contactNumber" => $_POST['contactNumber']);
 
         $result = create_case($createCaseArray);
-
-        $result_rows = [];
-        while($row = mysqli_fetch_array($result))
-        {
-            $result_rows[] = $row;
-        }
-        $caseID = $result_rows[0]["LAST_INSERT_ID()"];
 //        $uploadFilesPath = get_home_url() . '/upload-files/?UType=Supplier&UID=' . $supplierID;
 
     }

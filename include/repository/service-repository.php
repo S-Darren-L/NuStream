@@ -49,14 +49,13 @@
     function create_service_details_request($createServiceArray){
         $supplierID = $createServiceArray['serviceSupplierID'];
         $supplierType = $createServiceArray['supplierType'];
-        $realCost = $createServiceArray['realCost'];
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "INSERT INTO services (ServiceSupplierID, SupplierType, RealCost)
-                        VALUES ('$supplierID', '$supplierType', '$realCost')";
+        $sql = "INSERT INTO services (ServiceSupplierID, SupplierType)
+                        VALUES ('$supplierID', '$supplierType')";
 
         $result = mysqli_query($conn, $sql);
 
