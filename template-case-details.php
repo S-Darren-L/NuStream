@@ -12,33 +12,37 @@ Template Name: Agent Case Details
 <?php
     // Get Case ID
     $MLS = $_GET['CID'];
+    $uploadPath = get_home_url() . "/wp-content/themes/NuStream/Upload/Services/";
 
     // Init Date
     // Get Case Basic Details
-    get_case_basic_details($MLS);
+    $caseDetailsArray = array();
+    $caseDetailsArray = get_case_basic_details($MLS);
 
     // Get All Suppliers Brief Info
     $allSuppliersArray = array(); // supplier table
     $allSuppliersArray = get_all_suppliers_brief_info();
 
-    // Get All Case Services ID
-    $caseServicesArray = array();
-    $caseServicesArray = get_all_case_service($MLS);
-
-    // Set Is Each Service Enabled
-    set_is_service_enabled($caseServicesArray);
-
-    // Get Each Service Details
-    $allServiceDetailArray = array(); // services table
-    if(!is_null($caseServicesArray)){
-        $allServiceDetailArray = get_each_service_details($caseServicesArray);
-    }
+    // Get All Services Info
+    $stagingServiceArray = array();
+    $stagingServiceArray = get_service_detail($caseDetailsArray['StagingID']);
+    $touchUpServiceArray = array();
+    $touchUpServiceArray = get_service_detail($caseDetailsArray['TouchUpID']);
+    $cleanUpServiceArray = array();
+    $cleanUpServiceArray = get_service_detail($caseDetailsArray['CleanUpID']);
+    $yardWorkServiceArray = array();
+    $yardWorkServiceArray = get_service_detail($caseDetailsArray['YardWorkID']);
+    $inspectionServiceArray = array();
+    $inspectionServiceArray = get_service_detail($caseDetailsArray['InspectionID']);
+    $storageServiceArray = array();
+    $storageServiceArray = get_service_detail($caseDetailsArray['StorageID']);
+    $relocateHomeServiceArray = array();
+    $relocateHomeServiceArray = get_service_detail($caseDetailsArray['RelocateHomeID']);
+    $photographyServiceArray = array();
+    $photographyServiceArray = get_service_detail($caseDetailsArray['PhotographyID']);
 
     // Get Estimate Service Price
     get_estimate_service_price();
-
-    // Set Is Supplier Changeable
-    set_is_supplier_changeable();
 
     // Get Team Data
     $teamID = $_SESSION['TeamID'];
@@ -51,36 +55,18 @@ Template Name: Agent Case Details
     function get_case_basic_details($MLS){
         $getCaseResult = get_case_by_id($MLS);
         if($getCaseResult !== null){
-            $getCaseArray = mysqli_fetch_array($getCaseResult);
-            global $coStaffID;
-            global $address;
-            global $landSize;
-            global $houseSize;
-            global $propertyType;
-            global $listingPrice;
-            global $ownerName;
-            global $contactNumber;
-            global $coStaffName;
-
-            $coStaffID = $getCaseArray['CoStaffID'];
-            $address = $getCaseArray['Address'];
-            $landSize = $getCaseArray['LandSize'];
-            $houseSize = $getCaseArray['HouseSize'];
-            $propertyType = $getCaseArray['PropertyType'];
-            $listingPrice = $getCaseArray['ListingPrice'];
-            $ownerName = $getCaseArray['OwnerName'];
-            $contactNumber = $getCaseArray['ContactNumber'];
+            $caseDetailsArray = mysqli_fetch_array($getCaseResult);
         }
         else{
             echo die("Cannot find account");
         }
-        $getCoStaffResult = get_agent_account($coStaffID);
+        $getCoStaffResult = get_agent_account($caseDetailsArray['CoStaffID']);
         if($getCoStaffResult !== null){
             $coStaffArray = mysqli_fetch_array($getCoStaffResult);
-            $coStaffName = $coStaffArray['FirstName'] . " " . $coStaffArray['LastName'];
+            $caseDetailsArray['CoStaffName'] = $coStaffArray['FirstName'] . " " . $coStaffArray['LastName'];
         }
+        return $caseDetailsArray;
     }
-
     // Get All Suppliers Brief Info
     function get_all_suppliers_brief_info(){
         $supplierTypes = get_supplier_types();
@@ -99,49 +85,13 @@ Template Name: Agent Case Details
         return $allSuppliersArray;
     }
 
-    // Get All Case Services ID
-    function get_all_case_service($MLS){
-        $allServicesResult = get_all_case_services_by_MLS($MLS);
-
-        while($row = mysqli_fetch_array($allServicesResult))
-        {
-            $servicesArray[] = $row;
-        }
-        return $servicesArray;
-    }
-
-    // Set IS Each Service Enabled
-    function set_is_service_enabled($caseServicesArray){
-        global $isStagingChecked;
-        global $isTouchUpChecked;
-        global $isCleanUpChecked;
-        global $isYardWordChecked;
-        global $isInspectionChecked;
-        global $isStorageChecked;
-        global $isRelocateHomeChecked;
-        global $isPhotographyChecked;
-
-        if(!is_null($caseServicesArray)){
-            foreach ($caseServicesArray as $caseService){
-                if($caseService['ServiceSupplierType'] === 'STAGING'){
-                    $isStagingChecked = 'checked';
-                } else if($caseService['ServiceSupplierType'] === 'TOUCHUP'){
-                    $isTouchUpChecked = 'checked';
-                }else if($caseService['ServiceSupplierType'] === 'CLEANUP'){
-                    $isCleanUpChecked = 'checked';
-                }else if($caseService['ServiceSupplierType'] === 'YARDWORK'){
-                    $isYardWordChecked = 'checked';
-                }else if($caseService['ServiceSupplierType'] === 'INSPECTION'){
-                    $isInspectionChecked = 'checked';
-                }else if($caseService['ServiceSupplierType'] === 'STORAGE'){
-                    $isStorageChecked = 'checked';
-                }else if($caseService['ServiceSupplierType'] === 'RELOCATEHOME'){
-                    $isRelocateHomeChecked = 'checked';
-                }else if($caseService['ServiceSupplierType'] === 'PHOTOGRAPHY'){
-                    $isPhotographyChecked = 'checked';
-                }
-            }
-        }
+    // Get Service Details By ID
+    function get_service_detail($serviceID){
+        $serviceDetailsResult = get_service_details_by_id($serviceID);
+        $serviceDetailsArray = mysqli_fetch_array($serviceDetailsResult);
+        $serviceDetailsArray['IsChecked'] = $serviceDetailsArray['IsActivate'] === '1' ? 'checked' : null;
+        $serviceDetailsArray['IsDisabled'] = $serviceDetailsArray['InvoiceStatus'] === 'APPROVED' ? 'disabled' : null;
+        return $serviceDetailsArray;
     }
 
     // Get Estimate Service Price
@@ -175,86 +125,68 @@ Template Name: Agent Case Details
 
         global $houseSize;
         global $propertyType;
-        global $allServiceDetailArray;
+
+        global $stagingServiceArray;
+        global $touchUpServiceArray;
+        global $cleanUpServiceArray;
+        global $yardWorkServiceArray;
+        global $inspectionServiceArray;
+        global $storageServiceArray;
+        global $relocateHomeServiceArray;
+        global $photographyServiceArray;
 
         if($isStagingChecked === 'checked'){
-            $stagingEstimatePrice = staging_price_estimate_by_id($houseSize, $allServiceDetailArray['STAGING']['ServiceID']);
+            $stagingEstimatePrice = staging_price_estimate_by_id($houseSize, $stagingServiceArray['ServiceID']);
         }
         if($isTouchUpChecked === 'checked'){
-            $touchUpEstimatePrice = touch_up_price_estimate_by_id($allServiceDetailArray['TOUCHUP']['ServiceID']);
+            $touchUpEstimatePrice = touch_up_price_estimate_by_id($touchUpServiceArray['ServiceID']);
         }
         if($isCleanUpChecked === 'checked'){
-            $cleanUpEstimatePrice = clean_up_price_estimate_by_id($houseSize, $allServiceDetailArray['CLEANUP']['ServiceID']);
+            $cleanUpEstimatePrice = clean_up_price_estimate_by_id($houseSize, $cleanUpServiceArray['ServiceID']);
         }
         if($isYardWordChecked === 'checked'){
-            $yardWordEstimatePrice = yard_work_price_estimate_by_id($allServiceDetailArray['YARDWORK']['ServiceID']);
+            $yardWordEstimatePrice = yard_work_price_estimate_by_id($yardWorkServiceArray['ServiceID']);
         }
         if($isInspectionChecked === 'checked'){
-            $inspectionEstimatePrice = inspection_price_estimate_by_id($propertyType, $allServiceDetailArray['INSPECTION']['ServiceID']);
+            $inspectionEstimatePrice = inspection_price_estimate_by_id($propertyType, $inspectionServiceArray['ServiceID']);
         }
         if($isStorageChecked === 'checked'){
-            $storageEstimatePrice = storage_price_estimate_by_id($allServiceDetailArray['STORAGE']['ServiceID']);
+            $storageEstimatePrice = storage_price_estimate_by_id($storageServiceArray['ServiceID']);
         }
         if($isRelocateHomeChecked === 'checked'){
-            $relocateHomeEstimatePrice = relocate_home_price_estimate_by_id($allServiceDetailArray['RELOCATEHOME']['ServiceID']);
+            $relocateHomeEstimatePrice = relocate_home_price_estimate_by_id($relocateHomeServiceArray['ServiceID']);
         }
         if($isPhotographyChecked === 'checked'){
-            $photographyEstimatePrice = photography_price_estimate_by_id($propertyType, $allServiceDetailArray['PHOTOGRAPHY']['ServiceID']);
+            $photographyEstimatePrice = photography_price_estimate_by_id($propertyType, $photographyServiceArray['ServiceID']);
         }
 
     }
 
-    // Get Each Service Details
-    function get_each_service_details($caseServicesArray){
-        foreach ($caseServicesArray as $caseService){
-            $serviceDetailsResult = get_service_details_by_id($caseService['ServiceID']);
-            $serviceDetailsArray = mysqli_fetch_array($serviceDetailsResult);
-            $allServiceDetailArray[$serviceDetailsArray['SupplierType']] = $serviceDetailsArray;
-        }
-        return $allServiceDetailArray;
-    }
+    // Staging Service Before Images
+//    if(isset($_POST['get_staging_before_images'])){
+//        echo "test";
+//        // Image Path For Downloading Old Images
+//        $imagesPath = $uploadPath . $allServiceDetailArray['STAGING']['ServiceID'] . "/Before/";
+//        $imagesArray = download_all_files_by_path($imagesPath);
+////        $supplierType = 'STAGING';
+//    }
 
-    // Set Is Supplier Changeable
-    function set_is_supplier_changeable(){
-        global $allServiceDetailArray;
-
-        global $isChangeStagingDisabled;
-        global $isChangePhotographyDisabled;
-        global $isChangeCleanUpDisabled;
-        global $isChangeRelocateHomeDisabled;
-        global $isChangeTouchUpDisabled;
-        global $isChangeInspectionDisabled;
-        global $isChangeYardWorkDisabled;
-        global $isChangeStorageDisabled;
-
-        if($allServiceDetailArray['STAGING']['InvoiceStatus'] === 'APPROVED'){
-            $isChangeStagingDisabled = 'disabled';
-        }
-        if($allServiceDetailArray['PHOTOGRAPHY']['InvoiceStatus'] === 'APPROVED'){
-            $isChangePhotographyDisabled = 'disabled';
-        }
-        if($allServiceDetailArray['CLEANUP']['InvoiceStatus'] === 'APPROVED'){
-            $isChangeCleanUpDisabled = 'disabled';
-        }
-        if($allServiceDetailArray['RELOCATEHOME']['InvoiceStatus'] === 'APPROVED'){
-            $isChangeRelocateHomeDisabled = 'disabled';
-        }
-        if($allServiceDetailArray['TOUCHUP']['InvoiceStatus'] === 'APPROVED'){
-            $isChangeTouchUpDisabled = 'disabled';
-        }
-        if($allServiceDetailArray['INSPECTION']['InvoiceStatus'] === 'APPROVED'){
-            $isChangeInspectionDisabled = 'disabled';
-        }
-        if($allServiceDetailArray['YARDWORK']['InvoiceStatus'] === 'APPROVED'){
-            $isChangeYardWorkDisabled = 'disabled';
-        }
-        if($allServiceDetailArray['STORAGE']['InvoiceStatus'] === 'APPROVED'){
-            $isChangeStorageDisabled = 'disabled';
-        }
-    }
+    // Download All Files
+//    function download_all_files($imagesPath){
+//        $downloadAllFilesResult = download_all_files_by_path($imagesPath);
+//        if($downloadAllFilesResult === null)
+//            echo 'result is null';
+//
+//        $downloadAllFilesResult_rows = [];
+//        while($row = mysqli_fetch_array($downloadAllFilesResult))
+//        {
+//            $downloadAllFilesResult_rows[] = $row;
+//        }
+//        return $downloadAllFilesResult_rows;
+//    }
 
     // Submit Services Info
-    if(isset($_POST['submit_service_info'])) {
+    if(isset($_GET['submit_service_info'])) {
         // Staging
         $isStagingEnabled = $_POST['stagingCheckbox'];
         $stagingSupplierID = $_POST['stagingSelect'];
@@ -274,7 +206,7 @@ Template Name: Agent Case Details
                 else{
                     // Update Service With New Supplier
                     // Delete Old Service Info And Case-service Info
-                    $deleteOldServiceResult = delete_service_and_case_service_by_id($stagingServiceID);
+                    $deleteOldServiceResult = delete_service_by_id($stagingServiceID);
                     // Insert Service Info And Case-service Info
                     $createStagingResult = create_service($MLS, $stagingSupplierID, 'STAGING', $stagingRealCost);
                 }
@@ -285,7 +217,7 @@ Template Name: Agent Case Details
             }
         }else{
             // Delete Service Info And Case-service Info
-            $deleteOldServiceResult = delete_service_and_case_service_by_id($stagingServiceID);
+            $deleteOldServiceResult = delete_service_by_id($stagingServiceID);
         }
         // Touch up
         // Clean up
@@ -310,30 +242,6 @@ Template Name: Agent Case Details
         return $updateServiceResult;
     }
 
-    // Create service Info
-    function create_service($MLS, $supplierID, $supplierType, $realCost){
-        // Insert Service
-        $createServiceArray = array(
-            "serviceSupplierID" => $supplierID,
-            "supplierType" => $supplierType,
-            "realCost" => $realCost
-        );
-        $createServiceResult = create_service_details($createServiceArray);
-        $result_rows = [];
-        while($row = mysqli_fetch_array($createServiceResult))
-        {
-            $result_rows[] = $row;
-        }
-        $serviceID = $result_rows[0]["LAST_INSERT_ID()"];
-
-        // Insert Case-Service
-        $caseCaseServiceArray = array(
-            "MLS" => $MLS,
-            "serviceID" => $serviceID,
-            "serviceSupplierType" => $supplierType
-        );
-        $createCaseServiceResult = create_case_service_details($caseCaseServiceArray);
-    }
 
 ?>
 <!DOCTYPE html>
@@ -638,6 +546,7 @@ Template Name: Agent Case Details
     <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="container">
@@ -646,7 +555,7 @@ Template Name: Agent Case Details
     ?>
     <div id="main">
         <div class="formPart">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
                 <div class="houseInfo">
                     <div class="houseImg"><img src="img/house.jpg"></div>
                     <div class="houseTable">
@@ -655,39 +564,39 @@ Template Name: Agent Case Details
                             <tbody>
                             <tr>
                                 <td>MLS#</td>
-                                <td><?php echo $MLS;?></td>
+                                <td><?php echo $caseDetailsArray['MLS'];?></td>
                             </tr>
                             <tr>
                                 <td>ADDRESS</td>
-                                <td><?php echo $address;?></td>
+                                <td><?php echo $caseDetailsArray['Address'];?></td>
                             </tr>
                             <tr>
                                 <td>PROPERTY TYPE</td>
-                                <td><?php echo $propertyType;?></td>
+                                <td><?php echo $caseDetailsArray['PropertyType'];?></td>
                             </tr>
                             <tr>
                                 <td>LAND SIZE (LOT)</td>
-                                <td><?php echo $landSize;?></td>
+                                <td><?php echo $caseDetailsArray['LandSize'];?></td>
                             </tr>
                             <tr>
                                 <td>HOUSE SIZE(SQF)</td>
-                                <td><?php echo $houseSize;?></td>
+                                <td><?php echo $caseDetailsArray['HouseSize'];?></td>
                             </tr>
                             <tr>
                                 <td>LISTING PRICE</td>
-                                <td><?php echo $listingPrice;?></td>
+                                <td><?php echo $caseDetailsArray['ListingPrice'];?></td>
                             </tr>
                             <tr>
                                 <td>OWNER'S NAME</td>
-                                <td><?php echo $ownerName;?></td>
+                                <td><?php echo $caseDetailsArray['OwnerName'];?></td>
                             </tr>
                             <tr>
                                 <td>TEAM MEMBER'S NAME</td>
-                                <td><?php echo $coStaffName;?></td>
+                                <td><?php echo $caseDetailsArray['CoStaffName'];?></td>
                             </tr>
                             <tr>
                                 <td>COMMISSION RATE</td>
-                                <td>2.25%</td>
+                                <td><?php echo $caseDetailsArray['CommissionRate'] . "%";?></td>
                             </tr>
                             </tbody>
                         </table>
@@ -710,16 +619,16 @@ Template Name: Agent Case Details
                     </thead>
                     <tbody>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="stagingCheckbox" value="checked" ' . $isStagingChecked . ' ' . $isChangeStagingDisabled . ' >'; ?></td>
+                        <td><?php echo '<input type="checkbox" name="stagingCheckbox" value="checked" ' . $stagingServiceArray['IsChecked'] . ' ' . $stagingServiceArray['IsDisabled'] . ' >'; ?></td>
                         <td>STAGING</td>
                         <td>
                             <?php
-                                echo '<select name="stagingSelect" ' . $isChangeStagingDisabled . '>';
-                                if(is_null($allServiceDetailArray['STAGING']['ServiceSupplierID']))
+                                echo '<select name="stagingSelect" ' . $stagingServiceArray['IsDisabled'] . '>';
+                                if(is_null($stagingServiceArray['ServiceSupplierID']))
                                     $isDefaultSelected = 'selected';
                                 echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                                 foreach ($allSuppliersArray['STAGING'] as $stagingSupplierItem){
-                                    if(!is_null($allServiceDetailArray['STAGING']['ServiceSupplierID']) && $allServiceDetailArray['STAGING']['ServiceSupplierID'] === $stagingSupplierItem['SupplierID']){
+                                    if(!is_null($stagingServiceArray['ServiceSupplierID']) && $stagingServiceArray['ServiceSupplierID'] === $stagingSupplierItem['SupplierID']){
                                         $isSelected = 'selected';
                                     }else {
                                         $isSelected = null;
@@ -730,23 +639,23 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $stagingEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="stagingRealCost" value="' . $allServiceDetailArray['STAGING']['RealCost'] . '"/>'; ?></td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td><?php echo $allServiceDetailArray['STAGING']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo '<input type="text" name="stagingRealCost" value="' . $stagingServiceArray['RealCost'] . '"/>'; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><?php echo $stagingServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="touchUpCheckbox" value="checked" ' . $isTouchUpChecked . ' ' . $isChangeTouchUpDisabled . '>'; ?></td>
+                        <td><?php echo '<input type="checkbox" name="touchUpCheckbox" value="checked" ' . $touchUpServiceArray['IsChecked'] . ' ' . $touchUpServiceArray['IsDisabled'] . '>'; ?></td>
                         <td>TOUCH UP</td>
                         <td>
                             <?php
-                            echo '<select name="touchUpSelect" ' . $isChangeTouchUpDisabled . '>';
-                            if(is_null($allServiceDetailArray['TOUCHUP']['ServiceSupplierID']))
+                            echo '<select name="touchUpSelect" ' . $touchUpServiceArray['IsDisabled'] . '>';
+                            if(is_null($touchUpServiceArray['ServiceSupplierID']))
                                 $isDefaultSelected = 'selected';
                             echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                             foreach ($allSuppliersArray['TOUCHUP'] as $touchUpSupplierItem){
-                                if(!is_null($allServiceDetailArray['TOUCHUP']['ServiceSupplierID']) && $allServiceDetailArray['TOUCHUP']['ServiceSupplierID'] === $touchUpSupplierItem['SupplierID']){
+                                if(!is_null($touchUpServiceArray['ServiceSupplierID']) && $touchUpServiceArray['ServiceSupplierID'] === $touchUpSupplierItem['SupplierID']){
                                     $isSelected = 'selected';
                                 }else {
                                     $isSelected = null;
@@ -757,23 +666,23 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $touchUpEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="touchUpRealCost" value="' . $allServiceDetailArray['TOUCHUP']['RealCost'] . '"/>'; ?></td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td><?php echo $allServiceDetailArray['TOUCHUP']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo '<input type="text" name="touchUpRealCost" value="' . $touchUpServiceArray['RealCost'] . '"/>'; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><?php echo $touchUpServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="cleanUpCheckbox" value="checked" ' . $isCleanUpChecked . ' ' . $isChangeCleanUpDisabled . '>'; ?></td>
+                        <td><?php echo '<input type="checkbox" name="cleanUpCheckbox" value="checked" ' . $cleanUpServiceArray['IsChecked'] . ' ' . $cleanUpServiceArray['IsDisabled'] . '>'; ?></td>
                         <td>CLEAN UP</td>
                         <td>
                             <?php
-                            echo '<select name="cleanUpSelect" ' . $isChangeCleanUpDisabled . '>';
-                            if(is_null($allServiceDetailArray['CLEANUP']['ServiceSupplierID']))
+                            echo '<select name="cleanUpSelect" ' . $cleanUpServiceArray['IsDisabled'] . '>';
+                            if(is_null($cleanUpServiceArray['ServiceSupplierID']))
                                 $isDefaultSelected = 'selected';
                             echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                             foreach ($allSuppliersArray['CLEANUP'] as $cleanUpSupplierItem){
-                                if(!is_null($allServiceDetailArray['CLEANUP']['ServiceSupplierID']) && $allServiceDetailArray['CLEANUP']['ServiceSupplierID'] === $cleanUpSupplierItem['SupplierID']){
+                                if(!is_null($cleanUpServiceArray['ServiceSupplierID']) && $cleanUpServiceArray['ServiceSupplierID'] === $cleanUpSupplierItem['SupplierID']){
                                     $isSelected = 'selected';
                                 }else {
                                     $isSelected = null;
@@ -784,23 +693,23 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $cleanUpEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="cleanUpRealCost" value="' . $allServiceDetailArray['CLEANUP']['RealCost'] . '"/>'; ?></td>
+                        <td><?php echo '<input type="text" name="cleanUpRealCost" value="' . $cleanUpServiceArray['RealCost'] . '"/>'; ?></td>
                         <td>NONE</td>
                         <td><a href="#">UPLOAD<a></td>
                         <td>NONE</td>
-                        <td><?php echo $allServiceDetailArray['CLEANUP']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $cleanUpServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="yardWorkCheckbox" value="checked" ' . $isYardWordChecked . ' ' . $isChangeYardWorkDisabled . '>'; ?></td>
+                        <td><?php echo '<input type="checkbox" name="yardWorkCheckbox" value="checked" ' . $yardWorkServiceArray['IsChecked'] . ' ' . $yardWorkServiceArray['IsDisabled'] . '>'; ?></td>
                         <td>YARD WORK</td>
                         <td>
                             <?php
-                            echo '<select name="yardWorkSelect" ' . $isChangeYardWorkDisabled . '>';
-                            if(is_null($allServiceDetailArray['YARDWORK']['ServiceSupplierID']))
+                            echo '<select name="yardWorkSelect" ' . $yardWorkServiceArray['IsDisabled'] . '>';
+                            if(is_null($yardWorkServiceArray['ServiceSupplierID']))
                                 $isDefaultSelected = 'selected';
                             echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                             foreach ($allSuppliersArray['YARDWORK'] as $yardWorkSupplierItem){
-                                if(!is_null($allServiceDetailArray['YARDWORK']['ServiceSupplierID']) && $allServiceDetailArray['YARDWORK']['ServiceSupplierID'] === $yardWorkSupplierItem['SupplierID']){
+                                if(!is_null($yardWorkServiceArray['ServiceSupplierID']) && $yardWorkServiceArray['ServiceSupplierID'] === $yardWorkSupplierItem['SupplierID']){
                                     $isSelected = 'selected';
                                 }else {
                                     $isSelected = null;
@@ -811,23 +720,23 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $yardWordEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="yardWorkRealCost" value="' . $allServiceDetailArray['YARDWORK']['RealCost'] . '"/>'; ?></td>
+                        <td><?php echo '<input type="text" name="yardWorkRealCost" value="' . $yardWorkServiceArray['RealCost'] . '"/>'; ?></td>
                         <td style="text-align:center;">-</td>
                         <td><a href="#">UPLOAD<a></td>
                         <td>NONE</td>
-                        <td><?php echo $allServiceDetailArray['YARDWORK']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $yardWorkServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="inspectionCheckbox" value="checked" ' . $isInspectionChecked . ' ' . $isChangeInspectionDisabled . '>'; ?></td>
+                        <td><?php echo '<input type="checkbox" name="inspectionCheckbox" value="checked" ' . $inspectionServiceArray['IsChecked'] . ' ' . $inspectionServiceArray['IsDisabled'] . '>'; ?></td>
                         <td>INSPECTION</td>
                         <td>
                             <?php
-                            echo '<select name="inspectionSelect" ' . $isChangeInspectionDisabled . '>';
-                            if(is_null($allServiceDetailArray['INSPECTION']['ServiceSupplierID']))
+                            echo '<select name="inspectionSelect" ' . $inspectionServiceArray['IsDisabled'] . '>';
+                            if(is_null($inspectionServiceArray['ServiceSupplierID']))
                                 $isDefaultSelected = 'selected';
                             echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                             foreach ($allSuppliersArray['INSPECTION'] as $inspectionSupplierItem){
-                                if(!is_null($allServiceDetailArray['INSPECTION']['ServiceSupplierID']) && $allServiceDetailArray['INSPECTION']['ServiceSupplierID'] === $inspectionSupplierItem['SupplierID']){
+                                if(!is_null($inspectionServiceArray['ServiceSupplierID']) && $inspectionServiceArray['ServiceSupplierID'] === $inspectionSupplierItem['SupplierID']){
                                     $isSelected = 'selected';
                                 }else {
                                     $isSelected = null;
@@ -838,23 +747,23 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $inspectionEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="inspectionRealCost" value="' . $allServiceDetailArray['INSPECTION']['RealCost'] . '"/>'; ?></td>
+                        <td><?php echo '<input type="text" name="inspectionRealCost" value="' . $inspectionServiceArray['RealCost'] . '"/>'; ?></td>
                         <td style="text-align:center;">-</td>
                         <td><a href="#">VIEW<a></td>
                         <td style="text-align:center;">-</td>
-                        <td><?php echo $allServiceDetailArray['INSPECTION']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $inspectionServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="storageCheckbox" value="checked" ' . $isStorageChecked . ' ' . $isChangeStorageDisabled . '>' ;?></td>
+                        <td><?php echo '<input type="checkbox" name="storageCheckbox" value="checked" ' . $storageServiceArray['IsChecked'] . ' ' . $storageServiceArray['IsDisabled'] . '>' ;?></td>
                         <td>STORAGE</td>
                         <td>
                             <?php
-                            echo '<select name="storageSelect" ' . $isChangeStorageDisabled . '>';
-                            if(is_null($allServiceDetailArray['STORAGE']['ServiceSupplierID']))
+                            echo '<select name="storageSelect" ' . $storageServiceArray['IsDisabled'] . '>';
+                            if(is_null($storageServiceArray['ServiceSupplierID']))
                                 $isDefaultSelected = 'selected';
                             echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                             foreach ($allSuppliersArray['STORAGE'] as $storageSupplierItem){
-                                if(!is_null($allServiceDetailArray['STORAGE']['ServiceSupplierID']) && $allServiceDetailArray['STORAGE']['ServiceSupplierID'] === $storageSupplierItem['SupplierID']){
+                                if(!is_null($storageServiceArray['ServiceSupplierID']) && $storageServiceArray['ServiceSupplierID'] === $storageSupplierItem['SupplierID']){
                                     $isSelected = 'selected';
                                 }else {
                                     $isSelected = null;
@@ -865,23 +774,23 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $stagingEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="storageRealCost" value="' . $allServiceDetailArray['STORAGE']['RealCost'] . '"/>'; ?></td>
+                        <td><?php echo '<input type="text" name="storageRealCost" value="' . $storageServiceArray['RealCost'] . '"/>'; ?></td>
                         <td style="text-align:center;">-</td>
                         <td style="text-align:center;">-</td>
                         <td><a href="#">VIEW<a></td>
-                        <td><?php echo $allServiceDetailArray['STORAGE']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $storageServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="relocateHomeCheckbox" value="checked" ' . $isRelocateHomeChecked . ' ' . $isChangeRelocateHomeDisabled .'>'; ?></td>
+                        <td><?php echo '<input type="checkbox" name="relocateHomeCheckbox" value="checked" ' . $relocateHomeServiceArray['IsChecked'] . ' ' . $relocateHomeServiceArray['IsDisabled'] .'>'; ?></td>
                         <td>RELOCATE HOME</td>
                         <td>
                             <?php
-                            echo '<select name="relocateHomeSelect" ' . $isChangeRelocateHomeDisabled . '>';
-                            if(is_null($allServiceDetailArray['RELOCATEHOME']['ServiceSupplierID']))
+                            echo '<select name="relocateHomeSelect" ' . $relocateHomeServiceArray['IsDisabled'] . '>';
+                            if(is_null($relocateHomeServiceArray['ServiceSupplierID']))
                                 $isDefaultSelected = 'selected';
                             echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                             foreach ($allSuppliersArray['RELOCATEHOME'] as $relocateHomeSupplierItem){
-                                if(!is_null($allServiceDetailArray['RELOCATEHOME']['ServiceSupplierID']) && $allServiceDetailArray['RELOCATEHOME']['ServiceSupplierID'] === $relocateHomeSupplierItem['SupplierID']){
+                                if(!is_null($relocateHomeServiceArray['ServiceSupplierID']) && $relocateHomeServiceArray['ServiceSupplierID'] === $relocateHomeSupplierItem['SupplierID']){
                                     $isSelected = 'selected';
                                 }else {
                                     $isSelected = null;
@@ -892,23 +801,23 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $relocateHomeEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="relocateHomeRealCost" value="' . $allServiceDetailArray['RELOCATEHOME']['RealCost'] . '"/>'; ?></td>
+                        <td><?php echo '<input type="text" name="relocateHomeRealCost" value="' . $relocateHomeServiceArray['RealCost'] . '"/>'; ?></td>
                         <td></td>
                         <td></td>
                         <td><a href="#">VIEW<a></td>
-                        <td><?php echo $allServiceDetailArray['RELOCATEHOME']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $relocateHomeServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo '<input type="checkbox" name="photographyCheckbox" value="checked" ' . $isPhotographyChecked . ' ' . $isChangePhotographyDisabled . '>'; ?></td>
+                        <td><?php echo '<input type="checkbox" name="photographyCheckbox" value="checked" ' . $photographyServiceArray['IsChecked'] . ' ' . $photographyServiceArray['IsDisabled'] . '>'; ?></td>
                         <td>PHOTOGRAPHY</td>
                         <td>
                             <?php
-                            echo '<select name="photographySelect" ' . $isChangePhotographyDisabled . '>';
-                            if(is_null($allServiceDetailArray['PHOTOGRAPHY']['ServiceSupplierID']))
+                            echo '<select name="photographySelect" ' . $photographyServiceArray['IsDisabled'] . '>';
+                            if(is_null($photographyServiceArray['ServiceSupplierID']))
                                 $isDefaultSelected = 'selected';
                             echo '<option selected="' . $isDefaultSelected . '" value="">- supplier -</option>';
                             foreach ($allSuppliersArray['PHOTOGRAPHY'] as $photographySupplierItem){
-                                if(!is_null($allServiceDetailArray['PHOTOGRAPHY']['ServiceSupplierID']) && $allServiceDetailArray['PHOTOGRAPHY']['ServiceSupplierID'] === $photographySupplierItem['SupplierID']){
+                                if(!is_null($photographyServiceArray['ServiceSupplierID']) && $photographyServiceArray['ServiceSupplierID'] === $photographySupplierItem['SupplierID']){
                                     $isSelected = 'selected';
                                 }else {
                                     $isSelected = null;
@@ -919,11 +828,11 @@ Template Name: Agent Case Details
                             ?>
                         </td>
                         <td style="text-align:center;"><?php echo $photographyEstimatePrice; ?></td>
-                        <td><?php echo '<input type="text" name="photographyRealCost" value="' . $allServiceDetailArray['PHOTOGRAPHY']['RealCost'] . '"/>'; ?></td>
+                        <td><?php echo '<input type="text" name="photographyRealCost" value="' . $photographyServiceArray['RealCost'] . '"/>'; ?></td>
                         <td style="text-align:center;">-</td>
                         <td style="text-align:center;">-</td>
                         <td style="text-align:center;">-</td>
-                        <td><?php echo $allServiceDetailArray['PHOTOGRAPHY']['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $photographyServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     </tbody>
                 </table>
