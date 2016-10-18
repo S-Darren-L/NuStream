@@ -41,20 +41,21 @@ Template Name: Agent Create Case
     {
         global $isCoListingDisabled;
         global $teamLeaderID;
-        $MLSNumber = $_POST['MLSNumber'];
-        $propertyType = $_POST['propertyType'];
-        $address = $_POST['address'];
-        $houseSize = $_POST['houseSize'];
-        $landSize = $_POST['landSize'];
-        $listingPrice = $_POST['listingPrice'];
-        $coStaffID = $isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID'];
-        $ownerName = $_POST['ownerName'];
-        $contactNumber = $_POST['contactNumber'];
+        $MLSNumber = test_input($_POST['MLSNumber']);
+        $propertyType = test_input($_POST['propertyType']);
+        $address = test_input($_POST['address']);
+        $houseSize =test_input($_POST['houseSize']);
+        $landSize = test_input($_POST['landSize']);
+        $listingPrice = test_input($_POST['listingPrice']);
+        $coStaffID = test_input($isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID']);
+        $ownerName = test_input($_POST['ownerName']);
+        $contactNumber = test_input($_POST['contactNumber']);
+        $commissionRate = test_input($_POST['commissionRate']);
 
         global $errorMessage;
         global $isError;
         if (empty($MLSNumber) || empty($propertyType) || empty($address) || empty($houseSize) || empty($landSize) ||
-            empty($listingPrice) || empty($coStaffID) || empty($ownerName) || empty($contactNumber)) {
+            empty($listingPrice) || empty($coStaffID) || empty($ownerName) || empty($contactNumber) || empty($commissionRate)) {
             $errorMessage = "Mandatory fields are empty";
             $isError = true;
             return false;
@@ -77,10 +78,20 @@ Template Name: Agent Create Case
             "propertyType" => $_POST['propertyType'],
             "listingPrice" => $_POST['listingPrice'],
             "ownerName" => $_POST['ownerName'],
-            "contactNumber" => $_POST['contactNumber']);
+            "contactNumber" => $_POST['contactNumber'],
+            "commissionRate" => $_POST['commissionRate']);
 
-        $result = create_case($createCaseArray);
+        // Check If MLS Exist
+        $isMLSExistResult = is_MLS_exist($_POST['MLSNumber']);
+        $isMLSExistResultRow = mysqli_fetch_array($isMLSExistResult);
+        if(!is_null($isMLSExistResultRow)){
+            $errorMessage = "MLS already exist";
+            $isError = true;
+        }
+        else{
+            $result = create_case($createCaseArray);
 //        $uploadFilesPath = get_home_url() . '/upload-files/?UType=Supplier&UID=' . $supplierID;
+        }
 
     }
 ?>
@@ -394,15 +405,15 @@ Template Name: Agent Create Case
                     </div>
                     <div class="requireTitle houseSizeTitle">HOUSE SIZE*</div>
                     <div class="inputContent houseSizeInput">
-                        <input type="text" name="houseSize" id="houseSize" placeholder="HOUSE SIZE*" style="font-size:11px; height:30px;" size="20" require/>
+                        <input type="number" step="any" name="houseSize" id="houseSize" placeholder="HOUSE SIZE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle landSizeTitle">LAND SIZE*</div>
                     <div class="inputContent landSizeInput">
-                        <input type="text" name="landSize" id="landSize" placeholder="LAND SIZE*" style="font-size:11px; height:30px;" size="23" require/>
+                        <input type="number" step="any" name="landSize" id="landSize" placeholder="LAND SIZE*" style="font-size:11px; height:30px;" size="23" require/>
                     </div>
                     <div class="requireTitle listingPriceTitle">LISTING PRICE*</div>
                     <div class="inputContent listingPriceInput">
-                        <input type="text" name="listingPrice" id="listingPrice" placeholder="LISTING PRICE*" style="font-size:11px; height:30px;" size="20" require/>
+                        <input type="number" step="any" name="listingPrice" id="listingPrice" placeholder="LISTING PRICE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle coListingTitle">CO-LISTING*</div>
                     <div class="selectTeam">
@@ -427,6 +438,10 @@ Template Name: Agent Create Case
                     <div class="requireTitle contactNumberTitle">CONTACT NUMBER*</div>
                     <div class="inputContent contactNumberInput">
                         <input type="text" name="contactNumber" id="contactNumber" placeholder="CONTACT NUMBER*" style="font-size:11px; height:30px;" size="20" require/>
+                    </div>
+                    <div class="requireTitle contactNumberTitle">COMMISSION RATE*</div>
+                    <div class="inputContent contactNumberInput">
+                        <input type="number" step="any" name="commissionRate" id="commissionRate" placeholder="COMMISSION RATE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
                     <div class="inputContent ">

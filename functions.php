@@ -622,9 +622,9 @@ EOD;
     }
 
     // Set File Path And Name
-    function set_file_path_and_name($uploaderType, $uploaderID, $uploadPath, $uploadName, $uploadType){
+    function set_file_path_and_name($uploaderType, $uploaderID, $uploadPath, $uploadName){
         require_once(__DIR__ . '/include/repository/file-repository.php');
-        return set_file_path_and_name_request($uploaderType, $uploaderID, $uploadPath, $uploadName, $uploadType);
+        return set_file_path_and_name_request($uploaderType, $uploaderID, $uploadPath, $uploadName);
     }
 
     // Get All Images
@@ -777,16 +777,22 @@ EOD;
                 }
                 $serviceID = $result_rows[0]["LAST_INSERT_ID()"];
 
-                // Insert Case-Service
-                $caseCaseServiceArray = array(
+                // Update Case Service ID
+                $updateCaseServiceIDArray = array(
                     "MLS" => $MLS,
                     "serviceID" => $serviceID,
                     "serviceSupplierType" => $supplierType
                 );
-                $createCaseServiceResult = create_case_service_details($caseCaseServiceArray);
+                $createCaseServiceResult = update_case_service_id($updateCaseServiceIDArray);
             }
         }
         return $createCaseResult;
+    }
+
+    // Check If MLS Exist
+    function is_MLS_exist($MLS){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return is_MLS_exist_request($MLS);
     }
 
     // Get Cases Brief Info
@@ -807,16 +813,10 @@ EOD;
         return update_case_request($updateCaseArray);
     }
 
-    // Get All Case Services ID
-    function get_all_case_services_by_MLS($MLS){
-        require_once(__DIR__ . '/include/repository/case-service-repository.php');
-        return get_all_case_services_by_MLS_request($MLS);
-    }
-
-    // Create Case Service
-    function create_case_service_details($caseCaseServiceArray){
-        require_once(__DIR__ . '/include/repository/case-service-repository.php');
-        return create_case_service_details_request($caseCaseServiceArray);
+    // Update Case Service ID
+    function update_case_service_id($updateCaseServiceIDArray){
+        require_once(__DIR__ . '/include/repository/service-repository.php');
+        return update_case_service_id_request($updateCaseServiceIDArray);
     }
 
     // Get Service Details
@@ -832,13 +832,10 @@ EOD;
     }
 
     // Delete Service By ID
-    function delete_service_and_case_service_by_id($serviceID){
+    function delete_service_by_id($serviceID){
         // Delete Service By ID
         require_once(__DIR__ . '/include/repository/service-repository.php');
-        $deleteServiceResult = delete_service_by_id_request($serviceID);
-        // Delete Case Service By ID
-        require_once(__DIR__ . '/include/repository/case-service-repository.php');
-        return delete_case_service_by_id_request($serviceID);
+        return delete_service_by_id_request($serviceID);
     }
 
     // Create Service Details

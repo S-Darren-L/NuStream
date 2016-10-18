@@ -52,6 +52,7 @@ Template Name: Agent Edit Case
             global $listingPrice;
             global $ownerName;
             global $contactNumber;
+            global $commissionRate;
 
             $coStaffID = $getCaseArray['CoStaffID'];
             $address = $getCaseArray['Address'];
@@ -61,6 +62,7 @@ Template Name: Agent Edit Case
             $listingPrice = $getCaseArray['ListingPrice'];
             $ownerName = $getCaseArray['OwnerName'];
             $contactNumber = $getCaseArray['ContactNumber'];
+            $commissionRate = $getCaseArray['CommissionRate'];
         }
         else{
             echo die("Cannot find account");
@@ -78,10 +80,11 @@ Template Name: Agent Edit Case
         $listingPrice = test_input($_POST['listingPrice']);
         $ownerName = test_input($_POST['ownerName']);
         $contactNumber = test_input($_POST['contactNumber']);
+        $commissionRate = test_input($_POST['commissionRate']);
 
         global $errorMessage;
         global $isError;
-        if ((empty($coStaffID) && $_SESSION['IsTeamLeader'] === true) || empty($address) || empty($landSize) || empty($houseSize) || empty($propertyType) || empty($listingPrice) || empty($ownerName) || empty($contactNumber)) {
+        if ((empty($coStaffID) && $_SESSION['IsTeamLeader'] === true) || empty($address) || empty($landSize) || empty($houseSize) || empty($propertyType) || empty($listingPrice) || empty($ownerName) || empty($contactNumber) || empty($commissionRate)) {
             $errorMessage = "Mandatory fields are empty";
             $isError = true;
             return false;
@@ -104,7 +107,8 @@ Template Name: Agent Edit Case
             "propertyType" => $_POST['propertyType'],
             "listingPrice" => $_POST['listingPrice'],
             "ownerName" => $_POST['ownerName'],
-            "contactNumber" => $_POST['contactNumber']
+            "contactNumber" => $_POST['contactNumber'],
+            "commissionRate" => $_POST['commissionRate']
         );
         $updateCaseResult = update_case($updateCaseArray);
         if($updateCaseResult === true){
@@ -445,15 +449,15 @@ Template Name: Agent Edit Case
                     </div>
                     <div class="requireTitle houseSizeTitle">HOUSE SIZE*</div>
                     <div class="inputContent houseSizeInput">
-                        <input type="text" name="houseSize" value="<?php echo $houseSize; ?>" id="houseSize" placeholder="HOUSE SIZE*" style="font-size:11px; height:30px;" size="20" require/>
+                        <input type="number" step="any" name="houseSize" value="<?php echo $houseSize; ?>" id="houseSize" placeholder="HOUSE SIZE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle landSizeTitle">LAND SIZE*</div>
                     <div class="inputContent landSizeInput">
-                        <input type="text" name="landSize" value="<?php echo $landSize; ?>" id="landSize" placeholder="LAND SIZE*" style="font-size:11px; height:30px;" size="23" require/>
+                        <input type="number" step="any" name="landSize" value="<?php echo $landSize; ?>" id="landSize" placeholder="LAND SIZE*" style="font-size:11px; height:30px;" size="23" require/>
                     </div>
                     <div class="requireTitle listingPriceTitle">LISTING PRICE*</div>
                     <div class="inputContent listingPriceInput">
-                        <input type="text" name="listingPrice" value="<?php echo $listingPrice; ?>" id="listingPrice" placeholder="LISTING PRICE*" style="font-size:11px; height:30px;" size="20" require/>
+                        <input type="number" step="any" name="listingPrice" value="<?php echo $listingPrice; ?>" id="listingPrice" placeholder="LISTING PRICE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle coListingTitle">CO-LISTING*</div>
                     <div class="selectTeam">
@@ -480,6 +484,10 @@ Template Name: Agent Edit Case
                     <div class="requireTitle contactNumberTitle">CONTACT NUMBER*</div>
                     <div class="inputContent contactNumberInput">
                         <input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" id="contactNumber" placeholder="CONTACT NUMBER*" style="font-size:11px; height:30px;" size="20" require/>
+                    </div>
+                    <div class="requireTitle contactNumberTitle">COMMISSION RATE*</div>
+                    <div class="inputContent contactNumberInput">
+                        <input type="number" step="any" value="<?php echo $commissionRate; ?>" name="commissionRate" id="commissionRate" placeholder="COMMISSION RATE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
                     <div class="inputContent ">

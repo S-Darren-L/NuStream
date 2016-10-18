@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2016 at 07:17 AM
+-- Generation Time: Oct 18, 2016 at 03:21 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -70,44 +70,26 @@ CREATE TABLE `cases` (
   `StartDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `CaseStatus` enum('OPEN','FIRMDEAL','CLOSED') NOT NULL,
   `FinialPrice` double NOT NULL,
-  `Images` varchar(255) NOT NULL
+  `CommissionRate` double NOT NULL,
+  `Images` varchar(255) NOT NULL,
+  `StagingID` int(11) NOT NULL,
+  `TouchUpID` int(11) NOT NULL,
+  `CleanUpID` int(11) NOT NULL,
+  `YardWorkID` int(11) NOT NULL,
+  `InspectionID` int(11) NOT NULL,
+  `StorageID` int(11) NOT NULL,
+  `RelocateHomeID` int(11) NOT NULL,
+  `PhotographyID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cases`
 --
 
-INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `HouseSize`, `PropertyType`, `ListingPrice`, `OwnerName`, `ContactNumber`, `StartDate`, `CaseStatus`, `FinialPrice`, `Images`) VALUES
-('2345', 57, 57, 'sdfgh', 2345, 2345, 'CONDO', 2345, 'dfgv', '3456', '2016-10-17 04:53:27', 'OPEN', 0, ''),
-('456', 57, 57, 'fg', 456, 456, 'CONDO', 345, 'fgh', '645', '2016-10-13 02:47:29', 'OPEN', 0, ''),
-('87654', 57, 57, 'jhgf', 876, 876, 'CONDO', 876, 'kjh', '765', '2016-10-17 05:15:30', 'OPEN', 0, '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `caseservices`
---
-
-CREATE TABLE `caseservices` (
-  `MLS` varchar(255) NOT NULL,
-  `ServiceID` int(11) NOT NULL,
-  `ServiceSupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `caseservices`
---
-
-INSERT INTO `caseservices` (`MLS`, `ServiceID`, `ServiceSupplierType`) VALUES
-('456', 9, 'STAGING'),
-('87654', 58, 'STAGING'),
-('87654', 59, 'PHOTOGRAPHY'),
-('87654', 60, 'CLEANUP'),
-('87654', 61, 'RELOCATEHOME'),
-('87654', 62, 'TOUCHUP'),
-('87654', 63, 'INSPECTION'),
-('87654', 64, 'YARDWORK'),
-('87654', 65, 'STORAGE');
+INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `HouseSize`, `PropertyType`, `ListingPrice`, `OwnerName`, `ContactNumber`, `StartDate`, `CaseStatus`, `FinialPrice`, `CommissionRate`, `Images`, `StagingID`, `TouchUpID`, `CleanUpID`, `YardWorkID`, `InspectionID`, `StorageID`, `RelocateHomeID`, `PhotographyID`) VALUES
+('2345', 57, 57, 'sdfgh', 2345, 2345, 'CONDO', 2345, 'dfgv', '3456', '2016-10-17 04:53:27', 'OPEN', 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0),
+('456', 57, 57, 'fg', 456, 456, 'CONDO', 345, 'fgh', '645', '2016-10-13 02:47:29', 'OPEN', 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0),
+('6543', 57, 0, 'dfg', 765, 3456, 'CONDO', 3456, 'sdf', '654', '2016-10-18 01:17:04', 'OPEN', 0, 0.2, '', 82, 86, 84, 88, 87, 89, 85, 83);
 
 -- --------------------------------------------------------
 
@@ -132,7 +114,12 @@ INSERT INTO `files` (`FilePath`, `FileName`, `FileType`, `FileStatus`) VALUES
 ('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646219_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
 ('wp-content/themes/NuStream/Upload/Supplier/73/', '1475646305_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
 ('wp-content/themes/NuStream/Upload/Supplier/73/', '1475732027_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
-('wp-content/themes/NuStream/Upload///', '1476031283_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New');
+('wp-content/themes/NuStream/Upload///', '1476031283_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload///', '1476742417_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload///', '1476742579_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload/', '1476743005_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload/', '1476743104_largepMPr27a80002b7f31260.jpg', 'IMAGE', 'New'),
+('wp-content/themes/NuStream/Upload/', '1476743146_a.pdf', 'IMAGE', 'New');
 
 -- --------------------------------------------------------
 
@@ -159,14 +146,14 @@ CREATE TABLE `services` (
 
 INSERT INTO `services` (`ServiceID`, `ServiceSupplierID`, `SupplierType`, `EstimateCose`, `RealCost`, `InvoiceID`, `InvoiceStatus`, `BeforeImagePath`, `AfterImagePath`, `IsActivate`) VALUES
 (9, 10, 'STAGING', 0, 1500, 0, 'NEW', '', '', 1),
-(58, 1, 'STAGING', 0, 0, 0, 'NEW', '', '', 0),
-(59, 2, 'PHOTOGRAPHY', 0, 0, 0, 'NEW', '', '', 0),
-(60, 3, 'CLEANUP', 0, 0, 0, 'NEW', '', '', 0),
-(61, 4, 'RELOCATEHOME', 0, 0, 0, 'NEW', '', '', 0),
-(62, 5, 'TOUCHUP', 0, 0, 0, 'NEW', '', '', 0),
-(63, 6, 'INSPECTION', 0, 0, 0, 'NEW', '', '', 0),
-(64, 7, 'YARDWORK', 0, 0, 0, 'NEW', '', '', 0),
-(65, 8, 'STORAGE', 0, 0, 0, 'NEW', '', '', 0);
+(82, 1, 'STAGING', 0, 0, 0, 'NEW', '', '', 0),
+(83, 2, 'PHOTOGRAPHY', 0, 0, 0, 'NEW', '', '', 0),
+(84, 3, 'CLEANUP', 0, 0, 0, 'NEW', '', '', 0),
+(85, 4, 'RELOCATEHOME', 0, 0, 0, 'NEW', '', '', 0),
+(86, 5, 'TOUCHUP', 0, 0, 0, 'NEW', '', '', 0),
+(87, 6, 'INSPECTION', 0, 0, 0, 'NEW', '', '', 0),
+(88, 7, 'YARDWORK', 0, 0, 0, 'NEW', '', '', 0),
+(89, 8, 'STORAGE', 0, 0, 0, 'NEW', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -263,12 +250,6 @@ ALTER TABLE `cases`
   ADD UNIQUE KEY `MLS` (`MLS`);
 
 --
--- Indexes for table `caseservices`
---
-ALTER TABLE `caseservices`
-  ADD UNIQUE KEY `ServiceID` (`ServiceID`);
-
---
 -- Indexes for table `files`
 --
 ALTER TABLE `files`
@@ -309,7 +290,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `ServiceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `ServiceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
