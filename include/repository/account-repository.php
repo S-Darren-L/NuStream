@@ -59,7 +59,7 @@
         $sql = "UPDATE accounts SET Password = '$password'
                         WHERE AccountID = '$accountID'";
         $result = mysqli_query($conn, $sql);
-        
+
         mysqli_close($conn);
         return $result;
     }

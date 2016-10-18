@@ -123,34 +123,30 @@
         return $sendEmailResult;
     }
 
-    // Combine Files
-    function combine_files(){
-        require_once('fpdf/fpdf.php');
-        require_once('fpdi/fpdi.php');
-
-        // Set URL
-        $homeURL = get_home_url();
-
-        $pdf = new FPDI();
-
-        $pdf->setSourceFile("C:\Users\Darren\Desktop\a.pdf");
-        $tplIdxA = $pdf->importPage(1, '/MediaBox');
-
-        $pdf->setSourceFile("C:\Users\Darren\Desktop\b.pdf");
-        $tplIdxB = $pdf->importPage(1, '/MediaBox');
-
-        $pdf->addPage();
-        // place the imported page of the first document:
-        $pdf->useTemplate($tplIdxA,0,0,200,280);
-        $pdf->addPage();
-        // place the imported page of the snd document:
-        $pdf->useTemplate($tplIdxB,0,0,200,280);
-
-        $uploadPath = "wp-content/themes/NuStream/Upload/";
-        $filename = $uploadPath . "test.pdf";
-        $pdf->Output($filename,'F');
-//        $pdf->Output();
-
+    // Combine Case Report Invoices
+    function combine_case_report_invoices($reportInvoicesArray){
+        foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
+            $reportInvoiceFile = strtolower($reportInvoiceFile);
+            $allowedImagesType =  array('png' ,'jpg');
+            $allowedFilesType ='pdf';
+            $ext = pathinfo($reportInvoiceFile, PATHINFO_EXTENSION);
+            if(in_array($ext, $allowedImagesType)){
+                // Convert Image to PDF
+                $reportInvoiceFile = convert_image_to_pdf($reportInvoiceFile);
+    //                echo $reportInvoiceFile;
+                $reportInvoicesArray[$reportInvoiceKey] = $reportInvoiceFile;
+            }else if($ext === $allowedFilesType){
+                // Is PDF File, Do Nothing
+            }else{
+                // TODO: File Type Is Not Supported
+            }
+        }
+        try {
+            $reportInvoicesFile = combine_pdf_array($reportInvoicesArray);
+        }catch(Exception $e) {
+            echo "Unable combine all PDFs, some file types are not supported";
+        }
+        return $reportInvoicesFile;
     }
 
     // Combine PDF Array
@@ -166,8 +162,8 @@
             // place the imported page of the first document:
             $pdf->useTemplate($tplIdxA,0,0,200,280);
         }
-        $uploadPath = "wp-content/themes/NuStream/Upload/";
-        $filename = $uploadPath . "combine file array.pdf";
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR;
+        $filename = $uploadPath . "combine_file_array.pdf";
         $pdf->Output($filename,'F');
         return $filename;
     }
@@ -188,8 +184,9 @@
     function generate_case_report($reportFromArray, $reportInvoicesArray){
         // Generate Case Report Form
         $reportFormFile = generate_case_report_from($reportFromArray);
-//        $reportInvoicesFile = combine_case_report_invoices($reportInvoicesArray);
-//        $finalReportFile = combine_files($reportFormFile, $reportInvoicesFile);
+        $reportInvoicesArray['reportFormFile'] = $reportFormFile;
+        echo var_dump($reportInvoicesArray);
+        $reportInvoicesFile = combine_case_report_invoices($reportInvoicesArray);
     }
 
     // Generate Case Report Form
@@ -201,48 +198,43 @@
         $sellerName = $reportFromArray['sellerName'];
         $propertyType = $reportFromArray['propertyType'];
         $stagingSupplier = $reportFromArray['stagingSupplier'];
-        $stagingContact = $reportFromArray['stagingContact'];
         $stagingFinalPrice = $reportFromArray['stagingFinalPrice'];
         $cleanUpSupplier = $reportFromArray['cleanUpSupplier'];
-        $cleanUpContact = $reportFromArray['cleanUpContact'];
         $cleanUpFinalPrice = $reportFromArray['cleanUpFinalPrice'];
         $touchUpSupplier = $reportFromArray['touchUpSupplier'];
-        $touchUpContact = $reportFromArray['touchUpContact'];
         $touchUpFinalPrice = $reportFromArray['touchUpFinalPrice'];
         $inspectionSupplier = $reportFromArray['inspectionSupplier'];
-        $inspectionContact = $reportFromArray['inspectionContact'];
         $inspectionFinalPrice = $reportFromArray['inspectionFinalPrice'];
         $yardWorkSupplier = $reportFromArray['yardWorkSupplier'];
-        $yardWorkContact = $reportFromArray['yardWorkContact'];
         $yardWorkFinalPrice = $reportFromArray['yardWorkFinalPrice'];
         $storageSupplier = $reportFromArray['storageSupplier'];
-        $storageContact = $reportFromArray['storageContact'];
         $storageFinalPrice = $reportFromArray['storageFinalPrice'];
         $relocateHomeSupplier = $reportFromArray['relocateHomeSupplier'];
-        $relocateHomeContact = $reportFromArray['relocateHomeContact'];
         $relocateHomeFinalPrice = $reportFromArray['relocateHomeFinalPrice'];
-        $giftPackageSupplier = $reportFromArray['giftPackageSupplier'];
-        $giftPackageContact = $reportFromArray['giftPackageContact'];
-        $giftPackageFinalPrice = $reportFromArray['giftPackageFinalPrice'];
-        $company = $reportFromArray['company'];
-        $photoGraphicPrice = $reportFromArray['photoGraphicPrice'];
-        $openHouseBrochurePrice = $reportFromArray['openHouseBrochurePrice'];
+        $totalCost = $reportFromArray['totalCost'];
+
+        // Set URL
+        $homeURL = get_home_url();
+        $mainPath = $homeURL . "/wp-content/themes/NuStream/";
+        $tableImagePath = $mainPath . "img/tablePageTitle.jpg";
 
         require_once('tcpdf/tcpdf.php');
 
 // create new PDF document
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $custom_layout = array(350, 300);
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, $custom_layout, true, 'UTF-8', false);
 
 // set document information
-        $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Nicola Asuni');
-        $pdf->SetTitle('TCPDF Example 001');
-        $pdf->SetSubject('TCPDF Tutorial');
-        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+//        $pdf->SetCreator(PDF_CREATOR);
+//        $pdf->SetAuthor('Nicola Asuni');
+//        $pdf->SetTitle('TCPDF Example 001');
+//        $pdf->SetSubject('TCPDF Tutorial');
+//        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // set default header data
-        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
-        $pdf->setFooterData(array(0,64,0), array(0,64,128));
+//        $pdf->SetHeaderData($tableImagePath, PDF_HEADER_LOGO_WIDTH, '', '', array(0,64,255), array(0,64,128));
+//        $pdf->setFooterData(array(0,64,0), array(0,64,128));
 
 // set header and footer fonts
         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -260,7 +252,7 @@
         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
-        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+//        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
         if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
@@ -277,7 +269,7 @@
 // dejavusans is a UTF-8 Unicode font, if you only need to
 // print standard ASCII chars, you can use core fonts like
 // helvetica or times to reduce file size.
-        $pdf->SetFont('dejavusans', '', 8, '', true);
+        $pdf->SetFont('aealarabiya', '', 6, '', false);
 
 // Add a page
 // This method has several options, check the source code documentation for more information.
@@ -288,49 +280,129 @@
 
 // Set some content to print
         $html = <<<EOD
-<h1>Welcome to <a href="http://www.tcpdf.org" style="text-decoration:none;background-color:#CC0000;color:black;">&nbsp;<span style="color:black;">TC</span><span style="color:white;">PDF</span>&nbsp;</a>!</h1>
-<i>This is the first example of TCPDF library.</i>
-<p>This text is printed using the <i>writeHTMLCell()</i> method but you can also use: <i>Multicell(), writeHTML(), Write(), Cell() and Text()</i>.</p>
-<p>Please check the source code documentation and other examples for further information.</p>
-<p style="color:#CC0000;">TO IMPROVE AND EXPAND TCPDF I NEED YOUR SUPPORT, PLEASE <a href="http://sourceforge.net/donate/index.php?group_id=128076">MAKE A DONATION!</a></p>
+<!DOCTYPE html>
+<style>
+	.title {
+		width:800px;
+		margin:0 auto;
+	}
+	.title img {
+		width: 100%;
+	}
+
+	.tablePart table {
+		text-align: center;
+		border:1px #000 solid;
+		width:800px;
+		margin:0 auto;
+	}
+</style>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	</head>
+	<body>
+		<!--<div class="title"><img src="$tableImagePath"></div>-->
+		<div class="tablePart">
+			<table border="1">
+				<tr>
+					<th colspan="12" style="text-align: center;">Part 1: Basic information</th>
+				</tr>
+				<tr>
+					<td style="width:67px;" colspan="1">MLS#</td>
+					<td style="width:733px;" colspan="11">$MLS</td>
+				</tr>
+				<tr>
+					<td style="width:67px;" colspan="1">Address</td>
+					<td style="width:733px;" colspan="11">$address</td>
+				</tr>
+				<tr>
+					<td style="width:134px;" colspan="2">Team&nbsp;Leader</td>
+					<td style="width:266px;" colspan="4">$teamLeader</td>
+					<td style="width:134px;" colspan="2">Team&nbsp;Member</td>
+					<td style="width:266px;" colspan="4">$teamMember</td>
+				</tr>
+				<tr>
+					<td tyle="width:134px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Propety&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td style="width:266px;" colspan="4">$propertyType</td>
+					<td ctyle="width:134px;" colspan="2">Selling Listing Rate</td>
+					<td style="width:266px;" colspan="4">$stagingFinalPrice</td>
+				</tr>
+				<tr>
+					<td tyle="width:134px;" colspan="2">Listing&nbsp;Price</td>
+					<td style="width:266px;" colspan="4"></td>
+					<td style="width:400px;" colspan="6"></td>
+				</tr>
+				<tr>
+					<th colspan="12" style="text-align: center;">Part 2:Group Expense</th>
+				</tr>
+				<tr style=" font-weight:bold;">
+					<td colspan="4">Item</td>
+					<td colspan="4">Supplier</td>
+					<td colspan="4">Price</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left;">Staging Service </td>
+					<td colspan="4">$stagingSupplier</td>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left;">Clean up service</td>
+					<td colspan="4">$cleanUpSupplier</td>
+					<td colspan="4">$cleanUpFinalPrice</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left;">Touch up service</td>
+					<td colspan="4">$touchUpSupplier</td>
+					<td colspan="4">$touchUpFinalPrice</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left;">Inspection</td>
+					<td colspan="4">$inspectionSupplier</td>
+					<td colspan="4">$inspectionFinalPrice</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left;">Yardwork</td>
+					<td colspan="4">$yardWorkSupplier</td>
+					<td colspan="4">$yardWorkFinalPrice</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left;">Storage</td>
+					<td colspan="4">$storageSupplier</td>
+					<td colspan="4">$storageFinalPrice</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left;">Relocation home </td>
+					<td colspan="4">$relocateHomeSupplier</td>
+					<td colspan="4">$relocateHomeFinalPrice</td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:left; font-weight:bold;">Total Cost</td>
+					<td colspan="8">$totalCost</td>
+				</tr>
+			</table>
+		</div>
+
+	</body>
+</html>
 EOD;
 
 // Print text using writeHTMLCell()
-        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+        $pdf->writeHTMLCell(100,280,10,10, $html, 0, 1, 0, true, '', true);
 
 // ---------------------------------------------------------
 
 // Close and output PDF document
 // This method has several options, check the source code documentation for more information.
-        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload/";
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR;
         $filename = $uploadPath . "generatedPDF.pdf";
         ob_clean();
         $pdf->Output($filename,'F');
-    }
-
-    // Combine Case Report Invoices
-    function combine_case_report_invoices($reportInvoicesArray){
-        foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
-            $reportInvoiceFile = strtolower($reportInvoiceFile);
-            $allowedImagesType =  array('png' ,'jpg');
-            $allowedFilesType ='pdf';
-            $ext = pathinfo($reportInvoiceFile, PATHINFO_EXTENSION);
-            if(in_array($ext, $allowedImagesType)){
-                // Convert Image to PDF
-                $reportInvoiceFile = convert_image_to_pdf($reportInvoiceFile);
-//                echo $reportInvoiceFile;
-                $reportInvoicesArray[$reportInvoiceKey] = $reportInvoiceFile;
-            }else if($ext === $allowedFilesType){
-                // Is PDF File, Do Nothing
-            }else{
-                // TODO: File Type Is Not Supported
-            }
-        }
-        try {
-            $reportInvoicesFile = combine_pdf_array($reportInvoicesArray);
-        }catch(Exception $e) {
-            echo "Unable combine all PDFs, some file types are not supported";
-        }
+        return $filename;
     }
 
     // Set Style File
