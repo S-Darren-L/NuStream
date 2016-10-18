@@ -45,6 +45,24 @@
         return $result;
     }
 
+    // Forget Password
+    function forget_password_request($forgetPasswordArray){
+        $accountID = $forgetPasswordArray['accountID'];
+        $password = $forgetPasswordArray['password'];
+
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $password = encrypt_password($conn, $password);
+
+        $sql = "UPDATE accounts SET Password = '$password'
+                        WHERE AccountID = '$accountID'";
+        $result = mysqli_query($conn, $sql);
+        
+        mysqli_close($conn);
+        return $result;
+    }
 
     // Superuser Create Account
     function superuser_create_account_request($createAccountArray){

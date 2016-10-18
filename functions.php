@@ -100,7 +100,21 @@
         $to = $email;
         $subject = 'NuStream Account Password';
         $message = 'Hello ' . $firstName . " " . $lastName . ", \r\n \r\n" .
-            "You have registered with NuStream successfully. Your Password is " . $password .
+            "You have registered with NuStream successfully. Your password is " . $password .
+            ". To change your password, visit the following address: http://www.nustreamtoronto.com/ \r\n \r\n" .
+            "sincerely,  \r\n " . "NuStream";
+        $headers = 'From: NuStream';
+
+        $sendEmailResult = mail($to, $subject, $message, $headers);
+        return $sendEmailResult;
+    }
+
+    // Send User New Password By Email
+    function send_user_new_password($email, $firstName, $lastName,$password){
+        $to = $email;
+        $subject = 'NuStream New Password';
+        $message = 'Hello ' . $firstName . " " . $lastName . ", \r\n \r\n" .
+            "Your new password is " . $password .
             ". To change your password, visit the following address: http://www.nustreamtoronto.com/ \r\n \r\n" .
             "sincerely,  \r\n " . "NuStream";
         $headers = 'From: NuStream';
@@ -667,6 +681,12 @@ EOD;
     function create_agent_account($createAccountArray){
         require_once(__DIR__ . '/include/repository/account-repository.php');
         return create_agent_account_request($createAccountArray);
+    }
+
+    // Forget Password
+    function forget_password($forgetPasswordArray){
+        require_once(__DIR__ . '/include/repository/account-repository.php');
+        return forget_password_request($forgetPasswordArray);
     }
 
     // Superuser Create Account
