@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2016 at 03:21 AM
+-- Generation Time: Oct 19, 2016 at 08:16 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -44,7 +44,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamID`, `AccountPosition`, `ContactNumber`, `Email`, `IsTeamLeader`, `IsActivate`) VALUES
-(1, '', 'Darren', 'Liu', '7', 'AGENT', '7536890', 'dfg@sdf.com', 0, 1),
+(1, '8cfa204204895ba965dc0baf48a1d8a5', 'Darren', 'Liu', '7', 'AGENT', '7536890', 'dfg@sdf.com', 0, 1),
 (2, '', 'Kevin', 'Guo', '7', 'AGENT', '96521', 'rtg@dcfvh.com', 1, 1),
 (3, '', 'Peter', 'Ray', '0', 'AGENT', '85', 'dfg@rgh.com', 0, 1),
 (41, '13a2d47aef854249e46feb3d954a54c1', 'Shuyang', 'Liu', '7', 'ADMIN', '16478953986', 'gulang15@gmail.com', 0, 1),
@@ -89,7 +89,7 @@ CREATE TABLE `cases` (
 INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `HouseSize`, `PropertyType`, `ListingPrice`, `OwnerName`, `ContactNumber`, `StartDate`, `CaseStatus`, `FinialPrice`, `CommissionRate`, `Images`, `StagingID`, `TouchUpID`, `CleanUpID`, `YardWorkID`, `InspectionID`, `StorageID`, `RelocateHomeID`, `PhotographyID`) VALUES
 ('2345', 57, 57, 'sdfgh', 2345, 2345, 'CONDO', 2345, 'dfgv', '3456', '2016-10-17 04:53:27', 'OPEN', 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0),
 ('456', 57, 57, 'fg', 456, 456, 'CONDO', 345, 'fgh', '645', '2016-10-13 02:47:29', 'OPEN', 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0),
-('6543', 57, 0, 'dfg', 765, 3456, 'CONDO', 3456, 'sdf', '654', '2016-10-18 01:17:04', 'OPEN', 0, 0.2, '', 82, 86, 84, 88, 87, 89, 85, 83);
+('6543', 57, 3, 'dfg', 765, 3456, 'CONDO', 545600, 'sdf', '654', '2016-10-19 01:19:20', 'FIRMDEAL', 0, 2.2, '', 82, 86, 84, 88, 87, 89, 85, 83);
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,7 @@ CREATE TABLE `services` (
   `ServiceID` int(11) NOT NULL,
   `ServiceSupplierID` int(11) NOT NULL,
   `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
-  `EstimateCose` double NOT NULL,
+  `StartDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `RealCost` double NOT NULL,
   `InvoiceID` int(11) NOT NULL,
   `InvoiceStatus` enum('NEW','PENDING','APPROVED') NOT NULL,
@@ -144,16 +144,15 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`ServiceID`, `ServiceSupplierID`, `SupplierType`, `EstimateCose`, `RealCost`, `InvoiceID`, `InvoiceStatus`, `BeforeImagePath`, `AfterImagePath`, `IsActivate`) VALUES
-(9, 10, 'STAGING', 0, 1500, 0, 'NEW', '', '', 1),
-(82, 1, 'STAGING', 0, 0, 0, 'NEW', '', '', 0),
-(83, 2, 'PHOTOGRAPHY', 0, 0, 0, 'NEW', '', '', 0),
-(84, 3, 'CLEANUP', 0, 0, 0, 'NEW', '', '', 0),
-(85, 4, 'RELOCATEHOME', 0, 0, 0, 'NEW', '', '', 0),
-(86, 5, 'TOUCHUP', 0, 0, 0, 'NEW', '', '', 0),
-(87, 6, 'INSPECTION', 0, 0, 0, 'NEW', '', '', 0),
-(88, 7, 'YARDWORK', 0, 0, 0, 'NEW', '', '', 0),
-(89, 8, 'STORAGE', 0, 0, 0, 'NEW', '', '', 0);
+INSERT INTO `services` (`ServiceID`, `ServiceSupplierID`, `SupplierType`, `StartDate`, `RealCost`, `InvoiceID`, `InvoiceStatus`, `BeforeImagePath`, `AfterImagePath`, `IsActivate`) VALUES
+(82, 1, 'STAGING', '0000-00-00 00:00:00', 1500, 0, 'NEW', '', '', 1),
+(83, 0, 'PHOTOGRAPHY', '0000-00-00 00:00:00', 0, 0, 'NEW', '', '', 0),
+(84, 0, 'CLEANUP', '0000-00-00 00:00:00', 0, 0, 'NEW', '', '', 0),
+(85, 0, 'RELOCATEHOME', '0000-00-00 00:00:00', 0, 0, 'NEW', '', '', 0),
+(86, 74, 'TOUCHUP', '0000-00-00 00:00:00', 1200, 0, 'PENDING', '', '', 1),
+(87, 0, 'INSPECTION', '0000-00-00 00:00:00', 0, 0, 'NEW', '', '', 0),
+(88, 0, 'YARDWORK', '0000-00-00 00:00:00', 0, 0, 'NEW', '', '', 0),
+(89, 0, 'STORAGE', '0000-00-00 00:00:00', 0, 0, 'NEW', '', '', 0);
 
 -- --------------------------------------------------------
 
