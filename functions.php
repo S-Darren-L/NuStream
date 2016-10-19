@@ -914,6 +914,12 @@ EOD;
         return update_case_request($updateCaseArray);
     }
 
+    // Get Case By Service Type And ID
+    function get_case_by_service_type_and_id($serviceType, $serviceID){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return get_case_by_service_type_and_id_request($serviceType, $serviceID);
+    }
+
     // Update Case Service ID
     function update_case_service_id($updateCaseServiceIDArray){
         require_once(__DIR__ . '/include/repository/service-repository.php');
@@ -945,5 +951,10 @@ EOD;
         return create_service_details_request($createServiceArray);
     }
 
+    // Get All Services By Status
+    function get_all_services_by_status($serviceStatus){
+        require_once(__DIR__ . '/include/repository/service-repository.php');
+        return get_all_services_by_status_request($serviceStatus);
+    }
 
 ?>

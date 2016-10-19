@@ -137,4 +137,37 @@
         return $result;
     }
 
+    // Get Case By Service Type And ID
+    function get_case_by_service_type_and_id_request($serviceType, $serviceID){
+        if($serviceType === 'STAGING'){
+            $serviceIDKey = 'StagingID';
+        }else if($serviceType === 'TOUCHUP'){
+            $serviceIDKey = 'TouchUpID';
+        }else if($serviceType === 'CLEANUP'){
+            $serviceIDKey = 'CleanUpID';
+        }else if($serviceType === 'YARDWORK'){
+            $serviceIDKey = 'YardWorkID';
+        }else if($serviceType === 'INSPECTION'){
+            $serviceIDKey = 'InspectionID';
+        }else if($serviceType === 'STORAGE'){
+            $serviceIDKey = 'StorageID';
+        }else if($serviceType === 'RELOCATEHOME'){
+            $serviceIDKey = 'RelocateHomeID';
+        }else if($serviceType === 'PHOTOGRAPHY'){
+            $serviceIDKey = 'PhotographyID';
+        }
+
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT * FROM cases WHERE $serviceIDKey='$serviceID' LIMIT 1";
+
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+
+        return $result;
+    }
+
 ?>

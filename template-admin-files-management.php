@@ -11,13 +11,31 @@ Template Name: Admin Files Management
 
 <?php
     // Set Sub-menu URL
-    $subMenuURL = $homeURL . "/admin-files-management/?FType=";
+    $subMenuURL = get_home_url() . "/admin-files-management/?FType=";
     // Get View File Type
-        $viewFileType = $_GET['FType'];
-        if($viewFileType === null)
-            $supplierType = '*';
+    $serviceStatus = $_GET['FType'];
+    if(empty($serviceStatus)){
+        $serviceStatus = '';
+    }
+    // Init
+    $allServices = array();
+    $allServices = get_all_services($serviceStatus);
 
-    // Get Files
+    // Get All Services By Status
+    function get_all_services($serviceStatus){
+        $allServicesResult = get_all_services_by_status($serviceStatus);
+        while($service = mysqli_fetch_array($allServicesResult))
+        {
+            $caseResult = mysqli_fetch_array(get_case_by_service_type_and_id($service['SupplierType'], $service['ServiceID']));
+            $service['MLS'] = $caseResult['MLS'];
+            $accountResult = mysqli_fetch_array(get_agent_account($caseResult['StaffID']));
+            $service['MemberName'] = $accountResult['FirstName'] . $accountResult['LastName'];
+            $teamResult = mysqli_fetch_array(get_team_by_team_id($accountResult['TeamID']));
+            $service['TeamLeaderName'] = $teamResult['TeamLeaderName'];
+            $allServices[] = $service;
+        }
+        return $allServices;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -259,7 +277,7 @@ Template Name: Admin Files Management
         <div class="formPart">
             <div class="topBar">
                 <?php
-                    echo '<a href="' . $subMenuURL . "*" . '">All Files</a>|<a href="' . $subMenuURL . "Pending" . '">Pending Files</a>|<a href="' . $subMenuURL . "Approved" . '">Approved Files</a>';
+                    echo '<a href="' . $subMenuURL . '' . '">All Files</a>|<a href="' . $subMenuURL . "Pending" . '">Pending Files</a>|<a href="' . $subMenuURL . "Approved" . '">Approved Files</a>';
                 ?>
             </div>
             <section ng-app="app" ng-controller="MainCtrl">
@@ -298,16 +316,21 @@ Template Name: Admin Files Management
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="info in data.infoAccountant|orderBy:orderByField:reverseSort">
-                        <td>{{info.MLSNUMBER}}</td>
-                        <td>{{info.MEMBERNAME}}</td>
-                        <td>{{info.TEAMLEAD}}</td>
-                        <td>{{info.UPLOADDATE}}</td>
-                        <td>{{info.SERVICETYPE}}</td>
-                        <td>${{info.PRICEBEFFORETAX}} CDA</td>
-                        <td><a href="#">VIEW</a></td>
-                        <td STYLE="color:red;">NEW</td>
-                    </tr>
+                    <form method="post">
+                        <?php
+                        for($i = 0; $i < count($allServices); $i++) {
+                            echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
+                            echo '<td>', '<a href="' . $homeURL . '/admin-case-details/?CID=' . $allServices[$i]['MLS'] . '" />', $allServices[$i]['MLS'], '</td>';
+                            echo '<td>', $allServices[$i]['MemberName'], '</td>';
+                            echo '<td>', $allServices[$i]['TeamLeaderName'], '</td>';
+                            echo '<td>', $allServices[$i]['StartDate'], '</td>';
+                            echo '<td>', $allServices[$i]['SupplierType'], '</td>';
+                            echo '<td>', $allServices[$i]['RealCost'], '</td>';
+                            echo '<td>', '<a href="#">DOWNLOAD</a>', '</td>';
+                            echo '<td>', $allServices[$i]['InvoiceStatus'], '</td>';
+                        }
+                        ?>
+                    </form>
                     </tbody>
                 </table>
             </section>
@@ -316,37 +339,5 @@ Template Name: Admin Files Management
     </div>
 </div>
 </div>
-<script>
-    var app = angular.module('app', []);
 
-    app.controller('MainCtrl', function($scope) {
-        $scope.orderByField = 'MLSNUMBER';
-        $scope.reverseSort = false;
-
-        $scope.data = {
-            infoAccountant: [{
-                MLSNUMBER: 'N12345678',
-                MEMBERNAME: 'JASMINE ZOU',
-                TEAMLEAD:'DAVID R.TAsfawfawefO',
-                UPLOADDATE:'2016/09/01',
-                SERVICETYPE:'STAGING',
-                PRICEBEFFORETAX:3500
-            },{
-                MLSNUMBER: 'N12345679',
-                MEMBERNAME: 'ASMINE ZOU',
-                TEAMLEAD:'DAVID R.TAO',
-                UPLOADDATE:'2016/09/01',
-                SERVICETYPE:'STAGING',
-                PRICEBEFFORETAX:3500
-            },{
-                MLSNUMBER: 'N12345670',
-                MEMBERNAME: 'ASMINE ZOU',
-                TEAMLEAD:'AVID R.TAO',
-                UPLOADDATE:'2016/09/01',
-                SERVICETYPE:'STAGING',
-                PRICEBEFFORETAX:3502
-            }]
-        };
-    });
-</script>
 </body>

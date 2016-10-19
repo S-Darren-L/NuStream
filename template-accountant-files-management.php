@@ -11,6 +11,27 @@
 
 <?php
 
+    // Init
+    $serviceStatus = '';
+    $allServices = array();
+    $allServices = get_all_services($serviceStatus);
+
+    // Get All Services By Status
+    function get_all_services($serviceStatus){
+        $allServicesResult = get_all_services_by_status($serviceStatus);
+        while($service = mysqli_fetch_array($allServicesResult))
+        {
+            $caseResult = mysqli_fetch_array(get_case_by_service_type_and_id($service['SupplierType'], $service['ServiceID']));
+            $service['MLS'] = $caseResult['MLS'];
+            $accountResult = mysqli_fetch_array(get_agent_account($caseResult['StaffID']));
+            $service['MemberName'] = $accountResult['FirstName'] . $accountResult['LastName'];
+            $teamResult = mysqli_fetch_array(get_team_by_team_id($accountResult['TeamID']));
+            $service['TeamLeaderName'] = $teamResult['TeamLeaderName'];
+            $allServices[] = $service;
+        }
+        return $allServices;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -143,36 +164,19 @@
                 </thead>
                 <!-- There should be a dynamic table body-->
                 <tbody>
-                <tr>
-                    <td>n12345678</td>
-                    <td>JASMINE ZOU</td>
-                    <td>DAVID TAO</td>
-                    <td>2016/09/03</td>
-                    <td>STAGING</td>
-                    <td>$3500 CAD</td>
-                    <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>
-                    <td><input name="SelectButton" checked="checked" type="checkbox"></td>
-                </tr>
-<!--                <tr>-->
-<!--                    <td>n12345678</td>-->
-<!--                    <td>JASMINE ZOU</td>-->
-<!--                    <td>DAVID TAO</td>-->
-<!--                    <td>2016/09/03</td>-->
-<!--                    <td>STAGING</td>-->
-<!--                    <td>$3500 CAD</td>-->
-<!--                    <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>-->
-<!--                    <td><input name="SelectButton" checked="checked" type="radio"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>n12345678</td>-->
-<!--                    <td>JASMINE ZOU</td>-->
-<!--                    <td>DAVID TAO</td>-->
-<!--                    <td>2016/09/03</td>-->
-<!--                    <td>STAGING</td>-->
-<!--                    <td>$3500 CAD</td>-->
-<!--                    <td><a href="#">DOWNLOAD</a> <a href="#">VIEW</a></td>-->
-<!--                    <td><input name="SelectButton" checked="checked" type="radio"></td>-->
-<!--                </tr>-->
+                <?php
+                    for($i = 0; $i < count($allServices); $i++) {
+                        echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
+                        echo '<td>', $allServices[$i]['MLS'], '</td>';
+                        echo '<td>', $allServices[$i]['MemberName'], '</td>';
+                        echo '<td>', $allServices[$i]['TeamLeaderName'], '</td>';
+                        echo '<td>', $allServices[$i]['StartDate'], '</td>';
+                        echo '<td>', $allServices[$i]['SupplierType'], '</td>';
+                        echo '<td>', $allServices[$i]['RealCost'], '</td>';
+                        echo '<td>', '<a href="#">DOWNLOAD</a>', '</td>';
+                        echo '<td>', '<input name="select_for_download" checked="checked" type="checkbox">', '</td>';
+                    }
+                ?>
                 </tbody>
             </table>
         </div>

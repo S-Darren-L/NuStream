@@ -139,7 +139,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "SELECT * FROM accounts WHERE AccountID='$accountID'";
+        $sql = "SELECT * FROM accounts WHERE AccountID='$accountID' AND IsActivate = '1' LIMIT 1";
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
