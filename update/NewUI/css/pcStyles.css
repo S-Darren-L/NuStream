@@ -407,7 +407,7 @@
 .FAImage {
     float:left;
     height: 70px;
-    width: 100px;
+    width: 130px;
     border: 1px blue dashed;
     margin:0 25px;
 
@@ -514,7 +514,7 @@
 
 .FASubTitleStoageInvoice {
     margin-left: 10px;
-    width: 150px;
+    width: 70px;
     float: left;
     padding-top: 5px;
 }
@@ -557,4 +557,61 @@
     font-size: 12px;
     margin-left: 23px; 
     border-bottom:1px #eeeeee solid;
+}
+
+
+/*----------------------------------------File Upload Agent---------------------------------------*/
+
+.FUASaveButton {
+    height: 25px;
+    width: 80px;
+    background-color: #32323a;
+    color:#fff;
+    font-size: 12px;
+    float:left;
+    border:1px solid #32323a;
+    margin-left: 20px;
+    border-radius: 3px;
+}
+
+.FUAChooseFileButton {
+    border-radius: 3px;
+    height: 17px;
+    width: 130px;
+    margin:0 25px;
+    font-size: 9px;
+}
+
+.TouchUpButtonStyle {
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.inspectionButtonStyle {
+    margin-left: 120px; 
+}
+
+.inspectionStyle {
+    margin-left: 0px;
+}
+
+.FUSixContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 60px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.storageButtonStyle {
+    margin-left: 215px;
+}
+
+.storageInputFileStyle {
+    float: left;
+    margin-left: 0px;
+    margin-top: 5px;
 }
