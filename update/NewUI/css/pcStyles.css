@@ -1,0 +1,560 @@
+    /*------------------------------------nav bar css---------------------------------*/
+    html, body {
+        margin:0;
+        padding:0;
+        background-color: #eeeeee !important;
+        font-family: Arial!important;
+    }
+
+    #container {
+        margin-left: 230px;
+        _zoom: 1;
+    }
+
+    #nav {
+        float: left;
+        width: 230px;
+        height: 100%;
+        background: #32323a;
+        margin-left: -230px;
+        position:fixed;
+        margin-top: -89px;
+    }
+
+    #main {
+        height: 400px;
+    }
+
+    /* style icon */
+    .inner-addon .glyphicon {
+        position: absolute;
+        padding: 10px;
+        pointer-events: none;
+    }
+
+    /* align icon */
+    .left-addon .glyphicon {
+        left: 0px;
+    }
+
+    /* add padding  */
+    .left-addon input {
+        padding-left: 30px;
+    }
+
+    a {
+        letter-spacing: 1px;
+    }
+
+    .logo {
+        height: 120px;
+        width: 230px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right:20px;
+        padding-bottom: 20px;
+        display: block;
+        background-color: #28282e;
+    }
+
+    .logo img {
+        width: 100%;
+    }
+
+    .nav-pills {
+        background-color: #32323a;
+        border-color: #030033;
+    }
+
+    .nav-pills > li > a {
+        color: #95a0aa; /*Change active text color here*/
+    }
+
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+        color: #000;  /*Sets the text hover color on navbar*/
+    }
+
+    li {
+        border-bottom:1px #2a2a31 solid;
+    }
+
+    .footer {
+        position: absolute;
+        bottom:0px;
+        left:0;
+        right:0;
+        margin:0 auto;
+        text-align: center;
+    }
+
+    .copyRight {
+        color:white;
+    }
+
+    .formPart {
+    }
+
+    th {
+        color:white;
+        font-size:11px;
+        text-align:center;
+    }
+
+    .userNamePart {
+        color:white;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /*--------------------------template css for all page----------------------*/
+
+    .title {
+        padding:5px 0 5px 0;
+        margin-top:89px;
+        margin-left: 23px;
+        background-color: #fff;
+        border-left:5px #0068b7 solid;
+        border-bottom:1px #eeeeee solid;
+        width: 600px;
+    }
+    .titleSize {
+        font-size: 20px;
+        margin:0px;
+        padding-left:23px;
+    }
+
+    .contentPart {
+        padding-top: 20px;
+        background-color: #fff;
+        color:#a9a9a9;
+        height: 400px;
+        width: 600px;
+        font-size: 12px;
+        margin-left: 23px; 
+    }
+
+
+    /*--------------------------template-agent-create-case----------------------*/
+
+    .inputPart {
+        padding-top: 20px;
+        background-color: #fff;
+        color:#a9a9a9;
+        height: 400px;
+        width: 600px;
+        font-size: 12px;
+        margin-left: 23px;
+    }
+
+    .oneLineDiv {
+        display: relative;
+        height: 45px;
+        padding: 0px;
+        margin: 0px;
+        vertical-align:middle;
+        padding:10px 0 0 0;
+    }
+
+    .requireTitle {
+        height: 30px;
+        padding-left:23px;
+        float:left;
+        vertical-align: middle;
+        line-height: 30px;
+        display: absolute;
+    }
+
+    .inputContent {
+        display: absolute;
+        padding:0 0 0 143px;
+        margin:0px; 
+        width: 150px;
+    }
+
+    .secondTitle {
+        margin:-30px 0 0 280px;
+
+    }
+
+    .secondInput {
+        margin: -30px 0 0 415px;
+    }
+
+    input {
+        border-radius: 3px;
+        border:1px #a9a9a9 solid;
+        width: 150px;
+        height: 30px;
+    }
+
+    fieldset {
+        overflow: hidden
+    }
+
+    .dropdown {
+        height: 30px;
+        width: 150px;
+    }
+
+    select {
+        border-radius: 3px;
+        height: 30px;
+        width: 150px;
+    }
+
+    .createButton {
+        border-radius: 5px;
+        background-color: #32323a;
+        border: #32323a;
+        color:#fff;
+        font-weight: 100px;
+        height: 30px;
+        width: 150px;
+    }
+
+    .PropertyType select {
+        border-radius: 3px;
+        height: 30px;
+        width: 150px;
+    }
+
+    .coListingTitle {
+        margin-top: -60px;
+        margin-left: 290px;
+    }
+
+    .photoUploadButton {
+        font-size: 11px;
+        color:#a9a9a9;
+        background-color: #fff;
+        border:1px #a9a9a9 solid;
+        width: 150px;
+        height: 30px;
+        border-radius: 3px;
+    }
+
+    .error-message a{
+        color: red;
+        font-size: 80%;
+    }
+
+
+    /*------------------------------------table page css--------------------------------------*/
+.tablePageTitle {
+    width:800px;
+    margin:0 auto;
+}
+.title img {
+    width: 100%;
+}
+
+.tablePart table {
+    text-align: center;
+    border:1px #000 solid;
+    width:800px;
+    margin:0 auto;
+}
+
+/*------------------------------------File Approvement Admin css--------------------------------------*/
+
+.FAFContentPart {
+    padding-top: 20px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 240px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+/*File Approvement Page First Title*/
+.FAFTitle {
+    padding:5px 0 5px 0;
+    margin-top:89px;
+    margin-left: 23px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 750px;   
+}
+
+.FANormalTitle {
+    padding:5px 0 5px 0;
+    margin-top:10px;
+    margin-left: 23px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 750px; 
+}
+
+.FASContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 270px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+.table-striped {
+    width: 775px !important;
+    padding-left:20px;
+    margin-left: 20px;
+}
+
+.table-striped th{
+    font-size: 10px;
+    color:#a9a9a9;
+}
+
+.table-striped td{
+    color:#a9a9a9;
+}
+
+.houseInfo .table-striped tr {
+    font-size: 10px;
+    color:#a9a9a9;
+}
+
+.houseInfo .table-striped th {
+    font-size: 10px;
+    color:#a9a9a9;
+}
+
+.houseInfo .table-striped td {
+    padding-top:2px !important; 
+    padding-bottom:2px !important;
+}
+
+.houseInfo .table-striped {
+/*  margin-top: 0px;
+    margin-left: 0px;*/
+    width: 400px !important;
+    height: 200px !important;  
+    color: #a9a9a9;
+}
+
+.houseInfo {
+    width: 100%; 
+    overflow: hidden;
+    padding-left: 20px;
+    background-color: #fff;
+}
+
+.houseImg {
+    height: 200px;
+    width: 300px;
+    float: left;
+    /*padding-top:25px;*/
+}
+
+.houseImg img {
+    width: 100%;
+}
+
+.houseTable {
+    width: 300px;
+    margin-left: 300px;
+}
+
+
+
+.FAFSubTitle {
+    font-weight:bold;
+    padding-left: 23px;
+    float: left;
+    padding-top: 5px;
+    width: 100px;
+}
+
+.FASubTitleUpload {
+    margin-left: 10px;
+    width: 100px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASelectType {
+    height: 30px;
+    width: 80px;  
+    margin-left: 360px; 
+
+}
+
+.FASelectType select {
+    border-radius: 3px;
+    height: 30px;
+    width: 80px;
+}
+
+.FASCPSLine {
+    float:left;
+    height: 100px;
+    width: 750px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.FASSubTitle {
+    font-weight:bold;
+    padding-left: 23px;
+    float: left;
+    padding-top: 5px;
+    color:#a9a9a9;
+}
+.FAImage {
+    float:left;
+    height: 70px;
+    width: 100px;
+    border: 1px blue dashed;
+    margin:0 25px;
+
+}
+
+.FAtable {
+    float:left;
+}
+
+
+.FAtable td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.FASCPTLine {
+    float:left;
+    height: 100px;
+    width: 750px;
+    margin-top: 10px;
+    margin-left: 20px;   
+}
+
+.FATContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 270px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FAFoContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 270px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FAImageTouchUp {
+    float:left;
+    height: 70px;
+    width: 80px;
+    border: 1px blue dashed;
+    margin:0 10px;
+}
+
+.FAImageYardWork {
+    float:left;
+    height: 80px;
+    width: 170px;
+    border: 1px blue dashed;
+    margin:0 25px;
+}
+
+.FASubTitleInsoection {
+    margin-left: 10px;
+    width: 150px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASubTitleInvoice {
+    margin-left: 20px;
+    width: 150px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASelectTypeInspection {
+    height: 30px;
+    width: 80px;  
+    margin-left: 145px; 
+}
+
+.FAFiContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 280px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FASixContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 50px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FASubTitleStoageInvoice {
+    margin-left: 10px;
+    width: 150px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASelectTypeStorage {
+    height: 30px;
+    width: 80px;  
+    margin-left: 315px; 
+}
+
+.approveButton {
+    height: 30px;
+    width: 120px;
+    background-color: #32323a;
+    color:#fff;
+    font-size: 12px;
+    float:left;
+    border:1px solid #32323a;
+    margin-left: 20px;
+    border-radius: 3px;
+}
+
+.submitChangeButton {
+    height: 30px;
+    width: 120px;
+    background-color: #32323a;
+    color:#fff;
+    font-size: 12px;
+    border:1px solid #32323a;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.FASevenContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 60px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
