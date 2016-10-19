@@ -133,7 +133,6 @@
             if(in_array($ext, $allowedImagesType)){
                 // Convert Image to PDF
                 $reportInvoiceFile = convert_image_to_pdf($reportInvoiceFile);
-    //                echo $reportInvoiceFile;
                 $reportInvoicesArray[$reportInvoiceKey] = $reportInvoiceFile;
             }else if($ext === $allowedFilesType){
                 // Is PDF File, Do Nothing
@@ -185,7 +184,7 @@
         // Generate Case Report Form
         $reportFormFile = generate_case_report_from($reportFromArray);
         $reportInvoicesArray['reportFormFile'] = $reportFormFile;
-        echo var_dump($reportInvoicesArray);
+
         $reportInvoicesFile = combine_case_report_invoices($reportInvoicesArray);
     }
 
@@ -466,6 +465,16 @@ EOD;
             'TOWNHOUSE'
         );
         return $propertyTypes;
+    }
+
+    // Get Case Statuses
+    function get_case_statuses(){
+        $caseStatuses = array(
+            'OPEN',
+            'FIRMDEAL',
+            'CLOSED'
+        );
+        return $caseStatuses;
     }
 
     // Test Input

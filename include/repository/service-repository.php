@@ -17,15 +17,16 @@
     function update_service_details_request($serviceArray){
         $serviceID = $serviceArray['serviceID'];
         $serviceSupplierID = $serviceArray['serviceSupplierID'];
-        $supplierType = $serviceArray['supplierType'];
         $realCost = $serviceArray['realCost'];
+        $isActive = $serviceArray['isActive'];
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "UPDATE services SET ServiceSupplierID = '$serviceSupplierID', SupplierType = '$supplierType', RealCost = '$realCost'
+        $sql = "UPDATE services SET ServiceSupplierID = '$serviceSupplierID', RealCost = '$realCost', IsActivate = '$isActive'
                         WHERE ServiceID = '$serviceID'";
+
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
@@ -38,7 +39,8 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "DELETE FROM services WHERE ServiceID = '$serviceID'";
+        $sql = "UPDATE services SET ServiceSupplierID = '', RealCost = '', IsActivate = '0'
+                        WHERE ServiceID = '$serviceID'";
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
@@ -67,5 +69,6 @@
         mysqli_close($conn);
         return $result;
     }
+
 
 ?>
