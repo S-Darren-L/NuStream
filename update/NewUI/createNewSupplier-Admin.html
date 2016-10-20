@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/pcStyles.css">
+</head>
+<body>
+	<div id="container">
+		<div id="nav">
+			<div class="logo"><img src="img/logo1.png"/></div>
+			<div class="userNamePart"><h4 id="userName"> Joseph Joe </h4><h8 id="position" style="font-size:10px;">Team Leader</h8></div>
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Create Supplier</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-erase"></span>&nbsp;&nbsp;Supplier Update</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Create Member</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;Member Info</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Info Center</a></li>
+				<li><a href="#" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
+			</ul>
+			<div class="footer">
+				<p class="copyRight" style="font-size:10px;">@copyright @2016<br/> Darren Liu All Rights Reserved</p>
+			</div>
+		</div>
+		<div id="main">
+			<div class="formPart">
+				<div class="CNSTitle"><p class="titleSize">CREATE NEW SUPPLIER</h4></div>
+				<div class="form-group CNSInputPart">
+					<div class="CNSOneLineDiv">
+						<div class="subTitle"><h5>BASIC INFOTMATION</h5></div>
+						<div class="CNSSuppliceNamePart">SUPPLIER NAME *<br/>
+							<input type="text" class="CNSSuppliceName" require/>
+						</div>
+						<div class="CNSSelectServerType">SERVICE TYPE *<br/>
+							<select>
+								<option value="1">SELECTEAM</option>
+								<option value="2">ONE</option>
+							</select>
+						</div>
+						<div class="CNSHSTNumberPart">HST NUMBER *<br/>
+							<input type="text" class="CNSHSTNumber" require/>
+						</div>	
+					</div>
+					<div class="CNSOneLineDiv">
+						<div class="CNSContantInfo">
+							<div class="subTitle">
+								<h5>CONTACT INFOTMATION</h5>
+							</div>
+							CONTACT PERSON 1 *<br/>
+							<input class="CNSContactInput" type="text" require />
+							<br/>CONTACT NUMBER *<br/>
+							<input class="CNSContactInput" type="text" require /><br/>
+							<br/>SUPPORT AREA *<br/>
+							<input class="CNSContactInput" type="text" require />
+							<br/>CONTACT NUMBER *<br/>
+							<input class="CNSContactInput" type="text" require />
+						</div>
+						<div class="CNSPriceInfo">
+							<div class="subTitle"><h5>PRICE INFOTMATION</h5></div>
+							<div class="CNSSelectPriceUnit">PRICE UNIT *<br/>
+								<select class="CNSPriceUnitSelect">
+									<option value="1">PRICE UNIT*</option>
+									<option value="2">CDA</option>
+								</select>
+								<br/>MINIMUM PAYMENT<br/>
+								<input type="text" class="CNSMinimumPaymentInput" require/>
+								<br/><br/>PAYMENT TEAM *
+								<select class="CNSPriceUnitSelect">
+									<option value="1">PAYMENT TEAM</option>
+									<option value="2">LOL</option>
+								</select>
+							</div>
+							<div class="CNSPricePerUnit">PRICE PER UNIT *
+								<input type="text" class="CNSPricePerUintInput" require/>
+								<div class="CNSSpace"></div>
+								IF OTHER PLEASE INDICATE
+								<input type="text" class="CNSPricePerUintInput"require/><br/><br/>
+								<button class="CNSCreateButton">CREATE</button>	
+							</div>
+						</div>
+					</div>		
+				</div>		
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+
+

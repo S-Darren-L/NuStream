@@ -615,3 +615,198 @@
     margin-left: 0px;
     margin-top: 5px;
 }
+
+
+
+/*----------------------------------create member admin-------------------------------------------*/
+.CMAInputPart {
+        padding-top: 20px;
+        background-color: #fff;
+        color:#a9a9a9;
+        height: 350px;
+        width: 600px;
+        font-size: 12px;
+        margin-left: 23px;
+    }
+
+.CMACreate {
+    float:left;
+    padding-left: 20px;
+    margin-top: 30px;
+}
+
+.CMACreateButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+}
+
+.CMAOneLineDiv {
+    display: relative;
+    height: 75px;
+    padding: 0px;
+    margin: 0px;
+    vertical-align:middle;
+    padding:10px 0 0 0;
+    font-size: 12px;
+}
+
+.CMAInput {
+    font-size:12px;
+    width: 200px;
+}
+
+.CMARadioButtonPart {
+    float: left;
+    clear: none;
+}
+
+.CMASelectPart {
+    margin:-30px 0 0 280px;
+    width: 200px;
+}
+
+.CMASelect {
+    width: 200px;
+}
+
+input.CMARadioButton {
+    height: 15px;
+    width: 15px;
+    padding-top: 5px !important;
+}
+
+
+/*-------------------------------create new supplier admin--------------------*/
+.CNSTitle {
+        padding:5px 0 5px 0;
+        margin-top:89px;
+        margin-left: 23px;
+        background-color: #fff;
+        border-left:5px #0068b7 solid;
+        border-bottom:1px #eeeeee solid;
+        width: 650px;
+    }
+
+.CNSInputPart {
+    padding-top: 20px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 390px;
+    width: 650px;
+    font-size: 12px;
+    margin-left: 23px;
+}
+
+.CNSOneLineDiv {
+    display: relative;
+    height: 90px;
+    margin: 0px;
+    vertical-align:middle;
+    padding:10px 0 0 0;
+    font-size: 12px;
+    margin-left: 23px;
+}
+
+.subTitle h5{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color:#808080;
+    margin-left: 0px;
+}
+
+.CNSSuppliceNamePart {
+    width: 120px; 
+    float: left;
+}
+
+.CNSSuppliceName {
+    font-size:12px; 
+    height:30px;
+    width: 120px;
+}
+
+.CNSSelectServerType {
+    margin-left: 20px;
+    float: left;
+}
+
+.CNSSelectServerType select {
+    border-radius: 3px; 
+    height: 30px;
+    width: 210px;
+}
+
+.CNSHSTNumberPart {
+    margin-left: 20px;
+    float: left;
+}
+
+.CNSHSTNumber {
+    height: 30px;
+    width: 170px;
+}
+
+.CNSContantInfo {
+    margin-left: 0px;
+    width: 210px;
+    float:left;
+}
+
+.CNSPriceInfo {
+    display: relative;
+    float: left;
+    margin-left: 20px;
+    width: 350px;
+}
+
+.CNSContactInput {
+    height: 30px;
+    width: 210px;
+}
+
+.CNSSelectPriceUnit {
+    width: 120px;
+    float: left;
+}
+
+.CNSPriceUnitSelect {
+    height: 30px;
+    width: 120px;
+}
+
+.CNSPricePerUintInput {
+    height: 30px;
+    width: 170px;
+}
+
+.CNSPricePerUnit {
+    float: left;
+    margin-left: 20px;
+    width: 180px;
+}
+
+.CNSMinimumPaymentInput {
+    width: 120px;
+    height: 30px;
+}
+
+.CNSSpace {
+    height: 63px;
+}
+
+.CNSCreateButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 120px;
+    margin-left: 50px;
+}
+
