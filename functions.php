@@ -717,15 +717,27 @@ EOD;
     }
 
     // Set File Path And Name
-    function set_file_path_and_name($uploaderType, $uploaderID, $uploadPath, $uploadName){
+    function set_file_path_and_name($uploadPath, $uploadName){
         require_once(__DIR__ . '/include/repository/file-repository.php');
-        return set_file_path_and_name_request($uploaderType, $uploaderID, $uploadPath, $uploadName);
+        return set_file_path_and_name_request($uploadPath, $uploadName);
     }
 
     // Get All Images
     function download_all_files_by_path($uploadPath){
         require_once(__DIR__ . '/include/repository/file-repository.php');
         return download_all_files_by_path_request($uploadPath);
+    }
+
+    // Get File
+    function download_file_by_path($uploadPath){
+        require_once(__DIR__ . '/include/repository/file-repository.php');
+        return download_file_by_path_request($uploadPath);
+    }
+
+    // Remove FIle By Name
+    function remove_file_by_name($fileName){
+        require_once(__DIR__ . '/include/repository/file-repository.php');
+        return remove_file_by_name_request($fileName);
     }
 
     // Create Team
@@ -955,6 +967,18 @@ EOD;
     function get_all_services_by_status($serviceStatus){
         require_once(__DIR__ . '/include/repository/service-repository.php');
         return get_all_services_by_status_request($serviceStatus);
+    }
+
+    // Update Service Invoice
+    function update_service_invoice($serviceID, $uploadPath){
+        require_once(__DIR__ . '/include/repository/service-repository.php');
+        return update_service_invoice_request($serviceID, $uploadPath);
+    }
+
+    // Update Service Image
+    function update_service_image($serviceID, $uploadPath){
+        require_once(__DIR__ . '/include/repository/service-repository.php');
+        return update_service_image_request($serviceID, $uploadPath);
     }
 
 ?>

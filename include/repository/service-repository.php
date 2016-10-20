@@ -86,4 +86,31 @@
         return $result;
     }
 
+    // Update Service Invoice
+    function update_service_invoice_request($serviceID, $uploadPath){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE services SET InvoicePath = '$uploadPath'
+                        WHERE ServiceID = '$serviceID'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
+    // Update Service Image
+    function update_service_image_request($serviceID, $uploadPath){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE services SET ImagePath = '$uploadPath', RealCost = '', IsActivate = '0'
+                        WHERE ServiceID = '$serviceID'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
 ?>
