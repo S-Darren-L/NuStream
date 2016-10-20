@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<style type="text/css">
+
+</style>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/pcStyles.css">
+</head>
+<body>
+<div id="container">
+    <div id="nav">
+            <div class="logo">
+                <img src="' . $logo1ImagePath . '"/>
+            </div>
+            <div class="userNamePart">
+                <h4 id="userName">';
+                    echo $UserName;
+                echo '</h4>
+                <h8 id="position" style="font-size:10px;">';
+                    echo $_SESSION['AccountPosition'];
+                echo '</h8>
+            </div>';
+            if($_SESSION['AccountPosition'] === 'ADMIN'){
+                // Admin Menu
+                echo '<ul class="nav nav-pills nav-stacked">
+                    <li><a href="' . $adminFilesURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
+                    <li><a href="' . $adminCreateMemberURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Create Member</a></li>
+                    <li><a href="' . $adminMemberInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;Member Info</a></li>
+                    <li><a href="' . $adminCreateSupplierURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Create Supplier</a></li>
+                    <li><a href="' . $adminSupplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Supplier Info</a></li>
+                    <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
+                </ul>';
+            }else if($_SESSION['AccountPosition'] === 'AGENT'){
+                // AGENT Menu
+                echo '<ul class="nav nav-pills nav-stacked">
+                    <li><a href="' . $agentNewCaseURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;New Listing</a></li>
+                    <li><a href="' . $agentCaseEstimationURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Estimation</a></li>
+                    <li><a href="' . $agentMyCasesURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;My Cases</a></li>
+                    <li><a href="' . $agentSupplierInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Supplier Info</a></li>
+                    <li><a href="' . $agentSettingsURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Settings</a></li>
+                    <li><a href="?logout" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a></li>
+                </ul>';
+
+            }else if($_SESSION['AccountPosition'] === 'ACCOUNTANT'){
+                // ACCOUNTANT Menu
+
+            }else if($_SESSION['AccountPosition'] === 'SUPERUSER'){
+                // SUPERUSER Menu
+
+            }else{
+                // Navigate To Login
+                redirectToLogin();
+            }
+             echo '<div class="footer">
+                <p class="copyRight" style="font-size:10px;">copyright© 2016<br/> Darren Liu All Rights Reserved</p>
+             </div>
+        </div>
+    <div id="main">
+        <div class="formPart">
+            <div class="title"><p class="titleSize">NEW LISTING</p></div>
+            <form method="post">
+                <div class="form-group inputPart">
+                    <div class="oneLineDiv">
+                        <div class="requireTitle mlsNumberTitle">MLS NUMBER* </div>
+                        <div class="inputContent">
+                            <input type="text" name="MLSNumber" id="MLSNumber" placeholder="&nbsp;&nbsp;MLS NUMBER*" style="font-size:11px; height:30px;" size="20" require/>
+                        </div>
+                        <div class="requireTitle secondTitle">PROPERTY TYPE*</div>
+                        <div class="selectPropertyType secondInput">
+                            <div class="dropdown">
+                                <select name="propertyType">
+                                    <?php
+                                    foreach ($propertyTypes as $propertyTypeItem){
+                                        echo '<option value="' . $propertyTypeItem . '">', $propertyTypeItem, '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oneLineDiv">
+                        <div class="requireTitle addressTitle">ADDRESS*</div>
+                        <div class="inputContent addressInput">
+                            <input type="text" name="address" id="address" placeholder="&nbsp;&nbsp;ADDRESS*" style="font-size:11px; height:30px;" size="70" require/>
+                        </div>
+                    </div>
+                    <div class="oneLineDiv">
+                        <div class="requireTitle houseSizeTitle">HOUSE SIZE*</div>
+                        <div class="inputContent houseSizeInput">
+                            <input type="text" name="houseSize" id="houseSize" placeholder="&nbsp;&nbsp;HOUSE SIZE*" style="font-size:11px; height:30px;" size="20" require/>
+                        </div>
+                        <div class="requireTitle secondTitle landSizeTitle">LAND SIZE*</div>
+                        <div class=" landSizeInput secondInput">
+                            <input type="text" name="landSize" id="landSize" placeholder="&nbsp;&nbsp;LAND SIZE*" style="font-size:11px; height:30px;" size="23" require/>
+                        </div>
+                    </div>
+                    <div class="oneLineDiv">
+                        <div class="requireTitle listingPriceTitle">LISTING PRICE*</div>
+                        <div class="inputContent listingPriceInput">
+                            <input type="text" name="listingPrice" id="listingPrice" placeholder="&nbsp;&nbsp;LISTING PRICE*" style="font-size:11px; height:30px;" size="20" require/>
+                        </div>
+                        <div class="requireTitle secondTitle">TEAM</div>
+                        <div class="showLeaderName">
+                            <a style="font-size:11px; height:30px;" size="20" require><?php echo $teamLeaderName;?></a>
+                        </div>
+                    </div>
+                    <div class="oneLineDiv">
+                        <div class="requireTitle owenweNameTitle">OWNER'S NAME*</div>
+                        <div class="inputContent owenweNameInput">
+                            <input type="text" name="ownerName" id="ownerName" placeholder="&nbsp;&nbsp;OWNER'S NAME*" style="font-size:11px; height:30px;" size="20" require/>
+                        </div>
+                        <div class="selectTeamMember secondInput">
+                            <div class="dropdown" >
+                                <?php
+                                    echo '<select name="coStaffID" disabled="' . (int)$isCoListingDisabled . '">';
+                                        foreach ($teamMembers as $teamMemberItem){
+                                            $teamMemberName = $teamMemberItem['FirstName'] . " " . $teamMemberItem['LastName'];
+                                            echo '<option value="' . $teamMemberItem['AccountID'] . '" selected="' . $isSelected . '">', $teamMemberName, '</option>';
+                                        }
+                                    echo '</select>';
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oneLineDiv">
+                        <div class="requireTitle contactNumberTitle">CONTACT NUMBER*</div>
+                        <div class="inputContent contactNumberInput">
+                            <input type="text" name="contactNumber" id="contactNumber" placeholder="&nbsp;&nbsp;CONTACT NUMBER*" style="font-size:11px; height:30px;" size="20" require/>
+                        </div>
+                    </div>
+                    <div class="oneLineDiv">
+                        <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
+                        <div class="inputContent ">
+                            <button class="photoUploadButton">UPLOAD</button>
+                        </div>
+                        <div class=" secondInput create">
+                            <input class="createButton" type="submit" value="Create" name="create_case">
+                            <?php
+                            if($isError){
+                                echo '<div class="error-message"><a>';
+                                global $errorMessage;
+                                echo $errorMessage;
+                                echo '</a></div>';
+                                }
+                            ?>
+                        </div>
+                    </div>  
+                </div>             
+            </form>
+        </div>
+    </div>
+</div>
+</body>
