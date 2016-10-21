@@ -113,4 +113,18 @@
         mysqli_close($conn);
         return $result;
     }
+
+    // Update Service Status
+    function update_service_status_request($serviceID, $invoiceStatus){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE services SET InvoiceStatus = '$invoiceStatus'
+                        WHERE ServiceID = '$serviceID' AND IsActivate='1'";
+        $result = mysqli_query($conn, $sql);
+echo $sql;
+        mysqli_close($conn);
+        return $result;
+    }
 ?>

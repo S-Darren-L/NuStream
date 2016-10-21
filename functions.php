@@ -477,6 +477,16 @@ EOD;
         return $caseStatuses;
     }
 
+    // Get Invoice Statuses
+    function get_invoice_statuses(){
+        $invoiceStatuses = array(
+            'NEW',
+            'PENDING',
+            'APPROVED'
+        );
+        return $invoiceStatuses;
+    }
+
     // Test Input
     function test_input($data) {
         $data = trim($data);
@@ -979,6 +989,12 @@ EOD;
     function update_service_image($serviceID, $uploadPath){
         require_once(__DIR__ . '/include/repository/service-repository.php');
         return update_service_image_request($serviceID, $uploadPath);
+    }
+
+    // Update Service Status
+    function update_service_status($serviceID, $invoiceStatus){
+        require_once(__DIR__ . '/include/repository/service-repository.php');
+        return update_service_status_request($serviceID, $invoiceStatus);
     }
 
 ?>

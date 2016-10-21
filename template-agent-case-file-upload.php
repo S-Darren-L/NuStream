@@ -113,26 +113,19 @@ Template Name: Agent Case File Upload
     }
     function get_touch_up_files(){
         $uploadPath = "wp-content/themes/NuStream/Upload/TouchUp/";
-        $beforeImagesResult = download_all_files_by_path($uploadPath . "Before/");
-
-        $beforeImages = [];
-        while($row = mysqli_fetch_array($beforeImagesResult))
-        {
-            $beforeImages[] = $row;
-        }
-
-        $afterImagesResult = download_all_files_by_path($uploadPath . "After/");
-
-        $afterImages = [];
-        while($row = mysqli_fetch_array($afterImagesResult))
-        {
-            $afterImages[] = $row;
-        }
 
         $touchUpImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
-            "BeforeImages" => $beforeImages,
-            "AfterImages" => $afterImages,
+            "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "1/")),
+            "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "2/")),
+            "Before3" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "3/")),
+            "Before4" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "4/")),
+            "Before5" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "5/")),
+            "After1" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "1/")),
+            "After2" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "2/")),
+            "After3" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "3/")),
+            "After4" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "4/")),
+            "After5" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "5/"))
         );
         return $touchUpImageFilesArray;
     }
@@ -291,24 +284,24 @@ Template Name: Agent Case File Upload
             upload_file($uploadPath . "Before/" . "LivingRoom/", $beforeLivingRoomUploadTmp, $beforeLivingRoomUploadName);
         }
         if(!empty($beforeKitchenUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeDinningRoom']["FileName"]);
-            upload_file($uploadPath . "Before/" . "DinningRoom/", $beforeKitchenUploadTmp, $beforeKitchenUploadName);
+            remove_file($cleanUpImageFilesArray['BeforeKitchen']["FileName"]);
+            upload_file($uploadPath . "Before/" . "Kitchen/", $beforeKitchenUploadTmp, $beforeKitchenUploadName);
         }
         if(!empty($beforeWashRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeMasterRoom']["FileName"]);
-            upload_file($uploadPath . "Before/" . "MasterRoom/", $beforeWashRoomUploadTmp, $beforeWashRoomUploadName);
+            remove_file($cleanUpImageFilesArray['BeforeWashRoom']["FileName"]);
+            upload_file($uploadPath . "Before/" . "WashRoom/", $beforeWashRoomUploadTmp, $beforeWashRoomUploadName);
         }
         if(!empty($afterLivingRoomUploadTmp)){
             remove_file($cleanUpImageFilesArray['AfterLivingRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "LivingRoom/", $afterLivingRoomUploadTmp, $afterLivingRoomUploadName);
         }
         if(!empty($afterKitchenRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['AfterDinningRoom']["FileName"]);
-            upload_file($uploadPath . "After/" . "DinningRoom/", $afterKitchenRoomUploadTmp, $afterKitchenRoomUploadName);
+            remove_file($cleanUpImageFilesArray['AfterKitchen']["FileName"]);
+            upload_file($uploadPath . "After/" . "Kitchen/", $afterKitchenRoomUploadTmp, $afterKitchenRoomUploadName);
         }
         if(!empty($afterWashRoomUploadTmp)) {
-            remove_file($cleanUpImageFilesArray['AfterMasterRoom']["FileName"]);
-            upload_file($uploadPath . "After/" . "MasterRoom/", $afterWashRoomUploadTmp, $afterWashRoomUploadName);
+            remove_file($cleanUpImageFilesArray['AfterWashRoom']["FileName"]);
+            upload_file($uploadPath . "After/" . "WashRoom/", $afterWashRoomUploadTmp, $afterWashRoomUploadName);
         }
 
         $updateServiceInvoiceResult = update_service_invoice($serviceID, $uploadPath);
@@ -324,9 +317,79 @@ Template Name: Agent Case File Upload
         $invoiceUploadTmp = $_FILES['upload_touch_up_invoice']['tmp_name'];
         $invoiceUploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_touch_up_invoice']['name']);
 
+        $before1UploadTmp = $_FILES['upload_touch_up_before_1']['tmp_name'];
+        $before1UploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_touch_up_before_1']['name']);
+
+        $before2UploadTmp = $_FILES['upload_touch_up_before_2']['tmp_name'];
+        $before2UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_2']['name']);
+
+        $before3UploadTmp = $_FILES['upload_touch_up_before_3']['tmp_name'];
+        $before3UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_3']['name']);
+
+        $after4UploadTmp = $_FILES['upload_touch_up_before_4']['tmp_name'];
+        $after4UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_4']['name']);
+
+        $after5UploadTmp = $_FILES['upload_touch_up_before_5']['tmp_name'];
+        $after5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_5']['name']);
+
+        $after1UploadTmp = $_FILES['upload_touch_up_after_1']['tmp_name'];
+        $after1UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_1']['name']);
+
+        $before2UploadTmp = $_FILES['upload_touch_up_after_2']['tmp_name'];
+        $before2UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_2']['name']);
+
+        $after3UploadTmp = $_FILES['upload_touch_up_after_3']['tmp_name'];
+        $after3UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_3']['name']);
+
+        $after4UploadTmp = $_FILES['upload_touch_up_after_4']['tmp_name'];
+        $after4UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_4']['name']);
+
+        $after5UploadTmp = $_FILES['upload_touch_up_after_5']['tmp_name'];
+        $after5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_5']['name']);
+
         if(!empty($invoiceUploadTmp)){
             remove_file($touchUpImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
+        }
+        if(!empty($before1UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before1']["FileName"]);
+            upload_file($uploadPath . "Before/" . "1/", $before1UploadTmp, $before1UploadName);
+        }
+        if(!empty($before2UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before2']["FileName"]);
+            upload_file($uploadPath . "Before/" . "2/", $before2UploadTmp, $before2UploadName);
+        }
+        if(!empty($before3UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before3']["FileName"]);
+            upload_file($uploadPath . "Before/" . "3/", $before3UploadTmp, $before3UploadName);
+        }
+        if(!empty($after4UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before4']["FileName"]);
+            upload_file($uploadPath . "After/" . "4/", $after4UploadTmp, $after4UploadName);
+        }
+        if(!empty($after5UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before5']["FileName"]);
+            upload_file($uploadPath . "After/" . "5/", $after5UploadTmp, $after5UploadName);
+        }
+        if(!empty($after1UploadTmp)) {
+            remove_file($touchUpImageFilesArray['After1']["FileName"]);
+            upload_file($uploadPath . "After/" . "1/", $after1UploadTmp, $after1UploadName);
+        }
+        if(!empty($before2UploadTmp)){
+            remove_file($touchUpImageFilesArray['After2']["FileName"]);
+            upload_file($uploadPath . "Before/" . "2/", $before2UploadTmp, $before2UploadName);
+        }
+        if(!empty($after3UploadTmp)){
+            remove_file($touchUpImageFilesArray['After3']["FileName"]);
+            upload_file($uploadPath . "After/" . "3/", $after3UploadTmp, $after3UploadName);
+        }
+        if(!empty($after4UploadTmp)){
+            remove_file($touchUpImageFilesArray['After4']["FileName"]);
+            upload_file($uploadPath . "After/" . "4/", $after4UploadTmp, $after4UploadName);
+        }
+        if(!empty($after5UploadTmp)) {
+            remove_file($touchUpImageFilesArray['After5']["FileName"]);
+            upload_file($uploadPath . "After/" . "5/", $after5UploadTmp, $after5UploadName);
         }
 
         $updateServiceInvoiceResult = update_service_invoice($serviceID, $uploadPath);
@@ -1201,7 +1264,7 @@ Template Name: Agent Case File Upload
                                 <td>BEFORE</td>
                                 <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">'; ?></td>
                                 <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">'; ?></td>
-                                <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeMasterRoom']["FileName"] . '" class="FAImage">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">'; ?></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -1216,8 +1279,8 @@ Template Name: Agent Case File Upload
                             <tr>
                                 <td>AFTER&nbsp;&nbsp;&nbsp;</td>
                                 <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">'; ?></td>
-                                <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterDinningRoom']["FileName"] . '" class="FAImage">'; ?></td>
-                                <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterMasterRoom']["FileName"] . '" class="FAImage">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">'; ?></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -1247,31 +1310,40 @@ Template Name: Agent Case File Upload
                     <div class="FASCPSLine">
                         <table class="FAtable">
                             <tr>
-                                <td><p style="margin-left:-68px; margin-bottom:5px;">BEFORE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                    <input type="file" name="upload_touch_up_before" class="FUAChooseFileButton TouchUpButtonStyle">
-                                </td>
-                                <?php
-//                                    foreach ()
-                                ?>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
+                                <td>BEFORE</td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before5']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="file" name="upload_touch_up_before_1" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_before_2" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_before_3" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_before_4" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_before_5" class="FUAChooseFileButton"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="FASCPTLine">
                         <table class="FAtable">
                             <tr>
-                                <td><p style="margin-left:-68px; margin-bottom:5px;">AFTER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                    <input type="file" name="upload_touch_up_after" class="FUAChooseFileButton TouchUpButtonStyle">
-                                </td>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
-                                <td><img class="FAImageTouchUp"></td>
+                                <td>BEFORE</td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                                <td><?php echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After5']["FileName"] . '" class="FAImageTouchUp">'; ?></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="file" name="upload_touch_up_after_1" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_after_2" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_after_3" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_after_4" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_after_5" class="FUAChooseFileButton"></td>
                             </tr>
                         </table>
                     </div>
