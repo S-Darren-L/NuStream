@@ -125,7 +125,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "UPDATE accounts SET ContactNumber = '$contactNumber', IsTeamLeader = '$email'
+        $sql = "UPDATE accounts SET ContactNumber = '$contactNumber', Email = '$email'
                         WHERE AccountID = '$accountID'";
         $result = mysqli_query($conn, $sql);
 

@@ -38,7 +38,7 @@
     $logoImagePath = $mainPath . "img/logo.png";
     $logoSImagePath = $mainPath . "img/logo-s.png";
     $backgroundImagePath = $mainPath . "img/background.jpg";
-    $forgetPasswordPath = $mainPath . "/forget-password";
+    $forgetPasswordPath = $homeURL . "/forget-password";
 
     if(isset($_POST['login'])){
         $rememberMe = $_POST['remember_me'];
