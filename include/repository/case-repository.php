@@ -170,4 +170,19 @@
         return $result;
     }
 
+    // Update Case Status And Final Price
+    function update_case_status_and_final_price_request($MLS, $totalCost, $caseStatus){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "UPDATE cases SET FinalPrice = '$totalCost', CaseStatus = '$caseStatus'
+                        WHERE MLS = '$MLS'";
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+
+    }
+
 ?>

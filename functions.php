@@ -960,6 +960,12 @@ EOD;
         return get_case_by_service_type_and_id_request($serviceType, $serviceID);
     }
 
+    // Update Case Status And Final Price
+    function update_case_status_and_final_price($MLS, $totalCost, $caseStatus){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return update_case_status_and_final_price_request($MLS, $totalCost, $caseStatus);
+    }
+
     // Update Case Service ID
     function update_case_service_id($updateCaseServiceIDArray){
         require_once(__DIR__ . '/include/repository/service-repository.php');

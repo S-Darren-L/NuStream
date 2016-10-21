@@ -97,10 +97,13 @@ Template Name: Agent Case Details
         global $isRefreshPage;
         $serviceDetailsResult = get_service_details_by_id($serviceID);
         $serviceDetailsArray = mysqli_fetch_array($serviceDetailsResult);
-        $isActive = $isRefreshPage === "1" ? $_SESSION['CaseEstimate'][$serviceID]['isServiceChecked'] : $serviceDetailsArray['IsActivate'];
+        $isActive = $isRefreshPage === 'true' ? $_SESSION['CaseEstimate'][$serviceID]['isServiceChecked'] : $serviceDetailsArray['IsActivate'];
+        if($isActive === 'checked'){
+            $isActive = '1';
+        }
         $serviceDetailsArray['IsChecked'] = $isActive === '1' ? 'checked' : null;
         $serviceDetailsArray['IsDisabled'] = $serviceDetailsArray['InvoiceStatus'] === 'APPROVED' ? 'disabled' : null;
-        if($isRefreshPage === '1'){
+        if($isRefreshPage === 'true'){
             $serviceDetailsArray['ServiceSupplierID'] = $_SESSION['CaseEstimate'][$serviceID]['supplierID'];
             $serviceDetailsArray['RealCost'] = $_SESSION['CaseEstimate'][$serviceID]['serviceRealCost'];
         }
@@ -296,6 +299,7 @@ Template Name: Agent Case Details
 
     // Submit Services Info
     if(isset($_POST['submit_service_info'])) {
+        global $totalCost;
         // Staging
         $isStagingEnabled = $_POST['stagingCheckbox'] === 'checked' ? '1' : '0';
         $stagingSupplierID = $_POST['stagingSelect'];
@@ -345,7 +349,10 @@ Template Name: Agent Case Details
         $photographyRealCost = $_POST['photographyRealCost'];
         update_service_info($isPhotographyEnabled, $photographySupplierID, $photographyServiceID, $photographyRealCost);
 
-        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF = 1');
+        // Update Case Status And Final Price
+        update_case_status_and_final_price($MLS, $totalCost, $_POST['case_status']);
+
+        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
         exit;
     }
 
@@ -353,7 +360,7 @@ Template Name: Agent Case Details
     if(isset($_POST['estimate'])){
         save_session();
         get_estimate_service_price();
-        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=1');
+        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
         exit;
     }
 
