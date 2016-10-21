@@ -7,9 +7,6 @@ session_start();
 Template Name: Agent My Cases
 */
 
-?>
-
-<?php
     $agentAccountID = $_SESSION['AccountID'];
     // Get Cases Brief Info
     $CasesBriefInfoArray = get_cases_brief_table($agentAccountID);

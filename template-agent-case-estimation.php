@@ -7,9 +7,6 @@ session_start();
 Template Name: Agent Case Estimation
 */
 
-?>
-
-<?php
     // Init Data
 
     $isNewPage = $_REQUEST['NEW'];

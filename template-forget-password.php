@@ -4,9 +4,6 @@
 Template Name: Forget Password
 */
 
-?>
-
-<?php
     // Reset Password
     if(isset($_POST['reset_password'])) {
         $email = $_POST['email'];

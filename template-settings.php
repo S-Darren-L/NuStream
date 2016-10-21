@@ -7,9 +7,6 @@ session_start();
 Template Name: Settings
 */
 
-?>
-
-<?php
     // Init Date
     $accountID = $_SESSION['AccountID'];
 

@@ -7,9 +7,7 @@ session_start();
 Template Name: Superuser Member Info
 */
 
-?>
 
-<?php
     // Init Data
     $orderVariable = 'FirstName';
     $member_info_result_rows = [];

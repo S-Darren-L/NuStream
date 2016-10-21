@@ -7,8 +7,6 @@
 	Template Name: Supplier Info
 	*/
 
-?>
-<?php
 	// Set Sub-menu URL
 	$subMenuURL = get_home_url() . "/supplier-info/?SType=";
 

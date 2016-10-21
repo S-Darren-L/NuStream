@@ -7,9 +7,6 @@
     Template Name: Superuser Edit Account
     */
 
-?>
-
-<?php
     // Get Supplier ID
     $accountID = $_GET['AID'];
 

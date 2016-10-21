@@ -7,9 +7,6 @@
     Template Name: Accountant Files Management
     */
 
-?>
-
-<?php
 
     // Init
     $serviceStatus = '';

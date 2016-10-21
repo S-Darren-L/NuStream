@@ -7,8 +7,6 @@
 	Template Name: Admin Create Supplier
 	*/
 
-?>
-<?php
 	//Init Data
 	$supplierTypes = get_supplier_types();
 	$priceUnits = get_price_units();

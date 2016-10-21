@@ -7,13 +7,11 @@ session_start();
 Template Name: Admin Member Info
 */
 
-?>
-
-<?php
     // Init Data
     $orderVariable = 'FirstName';
     $member_info_result_rows = [];
     $member_info_result_rows = get_member_info_table($orderVariable);
+    $pagePath = get_home_url() . 'admin-member-info';
 
     // Get All Member Brief Info
     function get_member_info_table($orderVariable){

@@ -7,9 +7,6 @@ session_start();
 Template Name: Agent Edit Case
 */
 
-?>
-
-<?php
     // Get Case ID
     $MLS = $_GET['CID'];
 

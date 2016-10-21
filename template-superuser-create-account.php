@@ -7,9 +7,6 @@ session_start();
 Template Name: Superuser Create Account
 */
 
-?>
-
-<?php
 
 // init Data
 

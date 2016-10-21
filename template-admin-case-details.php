@@ -7,8 +7,6 @@ session_start();
 Template Name: Admin Case Details
 */
 
-?>
-<?php
     // Get Case ID
     $MLS = $_GET['CID'];
     $isRefreshPage = $_GET['RF'];

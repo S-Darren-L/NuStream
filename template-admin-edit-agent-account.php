@@ -7,9 +7,6 @@
     Template Name: Admin Edit Agent Account
     */
 
-?>
-
-<?php
     // Get Supplier ID
     $accountID = $_GET['AID'];
 

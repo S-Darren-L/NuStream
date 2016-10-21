@@ -6,9 +6,7 @@
     /*
     Template Name: Home Page
     */
-?>
 
-<?php
     // Set Cookie Name
     $cookieName = 'userLogin';
 

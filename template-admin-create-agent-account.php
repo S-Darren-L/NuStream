@@ -7,9 +7,6 @@
     Template Name: Admin Create Agent Account
     */
 
-?>
-
-<?php
 
     // init Data
     $getAllAccountsResult = get_all_team_leaders();

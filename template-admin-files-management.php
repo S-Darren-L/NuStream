@@ -7,9 +7,6 @@ session_start();
 Template Name: Admin Files Management
 */
 
-?>
-
-<?php
     // Set Sub-menu URL
     $subMenuURL = get_home_url() . "/admin-files-management/?FType=";
     // Get View File Type

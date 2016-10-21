@@ -7,9 +7,6 @@ session_start();
 Template Name: Agent Create Case
 */
 
-?>
-
-<?php
     // Init Date
     $propertyTypes = get_property_types();
     $teamID = $_SESSION['TeamID'];

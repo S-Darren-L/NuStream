@@ -7,8 +7,6 @@
 	Template Name: Admin Edit Supplier
 	*/
 
-?>
-<?php
 	// Get Supplier ID
 	$supplierID = $_GET['SID'];
 
