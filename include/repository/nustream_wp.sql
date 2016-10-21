@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.0.10.14
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 21, 2016 at 05:03 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Host: localhost:3306
+-- Generation Time: Oct 20, 2016 at 09:20 PM
+-- Server version: 5.6.30-cll-lve
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `nustream`
+-- Database: `nustream_wp`
 --
 
 -- --------------------------------------------------------
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `accounts`
 --
 
-CREATE TABLE `accounts` (
-  `AccountID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `accounts` (
+  `AccountID` int(11) NOT NULL AUTO_INCREMENT,
   `Password` varchar(255) NOT NULL,
   `FirstName` varchar(255) NOT NULL,
   `LastName` varchar(255) NOT NULL,
@@ -36,8 +36,11 @@ CREATE TABLE `accounts` (
   `ContactNumber` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `IsTeamLeader` tinyint(1) NOT NULL,
-  `IsActivate` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `IsActivate` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`AccountID`),
+  UNIQUE KEY `AccountID` (`AccountID`),
+  UNIQUE KEY `Email` (`Email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `accounts`
@@ -47,8 +50,9 @@ INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamI
 (1, '8cfa204204895ba965dc0baf48a1d8a5', 'Darren', 'Liu', '7', 'AGENT', '7536890', 'dfg@sdf.com', 0, 1),
 (2, '', 'Kevin', 'Guo', '7', 'AGENT', '96521', 'rtg@dcfvh.com', 1, 1),
 (3, '', 'Peter', 'Ray', '0', 'AGENT', '85', 'dfg@rgh.com', 0, 1),
-(41, '13a2d47aef854249e46feb3d954a54c1', 'Shuyang', 'Liu', '7', 'ADMIN', '16478953986', 'gulang15@gmail.com', 0, 1),
-(57, '827ccb0eea8a706c4c34a16891f84e7b', 'Darren', 'Liu', '19', 'AGENT', '6478953986', 'gulang15a@gmail.com', 1, 1);
+(41, '827ccb0eea8a706c4c34a16891f84e7b', 'Shuyang', 'Liu', '7', 'ADMIN', '16478953986', 'gulang15b@gmail.com', 0, 1),
+(57, '827ccb0eea8a706c4c34a16891f84e7b', 'Darren', 'Liu', '19', 'AGENT', '6478953986', 'gulang15a@gmail.com', 1, 1),
+(58, '827ccb0eea8a706c4c34a16891f84e7b', 'John', 'Rai', '19', 'ACCOUNTANT', '6478953986', 'gulang15@gmail.com', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -56,7 +60,7 @@ INSERT INTO `accounts` (`AccountID`, `Password`, `FirstName`, `LastName`, `TeamI
 -- Table structure for table `cases`
 --
 
-CREATE TABLE `cases` (
+CREATE TABLE IF NOT EXISTS `cases` (
   `MLS` varchar(255) NOT NULL,
   `StaffID` int(11) NOT NULL,
   `CoStaffID` int(11) NOT NULL,
@@ -79,7 +83,9 @@ CREATE TABLE `cases` (
   `InspectionID` int(11) NOT NULL,
   `StorageID` int(11) NOT NULL,
   `RelocateHomeID` int(11) NOT NULL,
-  `PhotographyID` int(11) NOT NULL
+  `PhotographyID` int(11) NOT NULL,
+  PRIMARY KEY (`MLS`),
+  UNIQUE KEY `MLS` (`MLS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -97,10 +103,11 @@ INSERT INTO `cases` (`MLS`, `StaffID`, `CoStaffID`, `Address`, `LandSize`, `Hous
 -- Table structure for table `files`
 --
 
-CREATE TABLE `files` (
+CREATE TABLE IF NOT EXISTS `files` (
   `FilePath` varchar(255) NOT NULL,
   `FileName` varchar(255) NOT NULL,
-  `FileStatus` enum('New','Pending','Approved') NOT NULL
+  `FileStatus` enum('New','Pending','Approved') NOT NULL,
+  UNIQUE KEY `FileName` (`FileName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -122,8 +129,8 @@ INSERT INTO `files` (`FilePath`, `FileName`, `FileStatus`) VALUES
 -- Table structure for table `services`
 --
 
-CREATE TABLE `services` (
-  `ServiceID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `services` (
+  `ServiceID` int(11) NOT NULL AUTO_INCREMENT,
   `ServiceSupplierID` int(11) NOT NULL,
   `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
   `StartDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -132,8 +139,10 @@ CREATE TABLE `services` (
   `InvoiceStatus` enum('NEW','PENDING','APPROVED') NOT NULL,
   `InvoicePath` varchar(255) NOT NULL,
   `ImagePath` varchar(255) NOT NULL,
-  `IsActivate` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `IsActivate` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ServiceID`),
+  UNIQUE KEY `ServiceID` (`ServiceID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
 
 --
 -- Dumping data for table `services`
@@ -155,8 +164,8 @@ INSERT INTO `services` (`ServiceID`, `ServiceSupplierID`, `SupplierType`, `Start
 -- Table structure for table `suppliers`
 --
 
-CREATE TABLE `suppliers` (
-  `SupplierID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `suppliers` (
+  `SupplierID` int(11) NOT NULL AUTO_INCREMENT,
   `SupplierName` varchar(255) NOT NULL,
   `SupplierType` enum('STAGING','PHOTOGRAPHY','CLEANUP','RELOCATEHOME','TOUCHUP','INSPECTION','YARDWORK','STORAGE') NOT NULL,
   `PriceUnit` enum('BYSIZE','BYHOUR','BYHOUSETYPE','BYCASE','BYSIZE1000') NOT NULL,
@@ -178,8 +187,10 @@ CREATE TABLE `suppliers` (
   `OtherPaymentTerm` varchar(255) NOT NULL,
   `FilePath` varchar(255) NOT NULL,
   `IsActivate` tinyint(1) NOT NULL DEFAULT '1',
-  `isDefault` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `isDefault` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`SupplierID`),
+  UNIQUE KEY `SupplierID` (`SupplierID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
 
 --
 -- Dumping data for table `suppliers`
@@ -208,11 +219,14 @@ INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `SupplierType`, `PriceUni
 -- Table structure for table `teams`
 --
 
-CREATE TABLE `teams` (
-  `TeamID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `teams` (
+  `TeamID` int(11) NOT NULL AUTO_INCREMENT,
   `TeamLeaderID` int(11) NOT NULL,
-  `TeamLeaderName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `TeamLeaderName` varchar(255) NOT NULL,
+  PRIMARY KEY (`TeamID`),
+  UNIQUE KEY `TeamID` (`TeamID`),
+  UNIQUE KEY `TeamLeaderID` (`TeamLeaderID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `teams`
@@ -224,77 +238,6 @@ INSERT INTO `teams` (`TeamID`, `TeamLeaderID`, `TeamLeaderName`) VALUES
 (18, 56, 'Shuyang Liu'),
 (19, 57, 'Darren Liu');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `accounts`
---
-ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`AccountID`),
-  ADD UNIQUE KEY `AccountID` (`AccountID`),
-  ADD UNIQUE KEY `Email` (`Email`);
-
---
--- Indexes for table `cases`
---
-ALTER TABLE `cases`
-  ADD PRIMARY KEY (`MLS`),
-  ADD UNIQUE KEY `MLS` (`MLS`);
-
---
--- Indexes for table `files`
---
-ALTER TABLE `files`
-  ADD UNIQUE KEY `FileName` (`FileName`);
-
---
--- Indexes for table `services`
---
-ALTER TABLE `services`
-  ADD PRIMARY KEY (`ServiceID`),
-  ADD UNIQUE KEY `ServiceID` (`ServiceID`);
-
---
--- Indexes for table `suppliers`
---
-ALTER TABLE `suppliers`
-  ADD PRIMARY KEY (`SupplierID`),
-  ADD UNIQUE KEY `SupplierID` (`SupplierID`);
-
---
--- Indexes for table `teams`
---
-ALTER TABLE `teams`
-  ADD PRIMARY KEY (`TeamID`),
-  ADD UNIQUE KEY `TeamID` (`TeamID`),
-  ADD UNIQUE KEY `TeamLeaderID` (`TeamLeaderID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `accounts`
---
-ALTER TABLE `accounts`
-  MODIFY `AccountID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
---
--- AUTO_INCREMENT for table `services`
---
-ALTER TABLE `services`
-  MODIFY `ServiceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
---
--- AUTO_INCREMENT for table `suppliers`
---
-ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
---
--- AUTO_INCREMENT for table `teams`
---
-ALTER TABLE `teams`
-  MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
