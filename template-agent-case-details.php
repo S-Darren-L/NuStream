@@ -13,7 +13,9 @@ Template Name: Agent Case Details
     // Get Case ID
     $MLS = $_GET['CID'];
     $isRefreshPage = $_GET['RF'];
+    $uploadPageURL = get_home_url() . '/agent-case-file-upload/?CID=' . $MLS;
     $uploadPath = get_home_url() . "/wp-content/themes/NuStream/Upload/Services/";
+    $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
 
     // Init Date
     // Get Case Statuses
@@ -96,7 +98,7 @@ Template Name: Agent Case Details
         $serviceDetailsResult = get_service_details_by_id($serviceID);
         $serviceDetailsArray = mysqli_fetch_array($serviceDetailsResult);
         $isActive = $isRefreshPage === "1" ? $_SESSION['CaseEstimate'][$serviceID]['isServiceChecked'] : $serviceDetailsArray['IsActivate'];
-        $serviceDetailsArray['IsChecked'] = $isActive === 'checked' ? 'checked' : null;
+        $serviceDetailsArray['IsChecked'] = $isActive === '1' ? 'checked' : null;
         $serviceDetailsArray['IsDisabled'] = $serviceDetailsArray['InvoiceStatus'] === 'APPROVED' ? 'disabled' : null;
         if($isRefreshPage === '1'){
             $serviceDetailsArray['ServiceSupplierID'] = $_SESSION['CaseEstimate'][$serviceID]['supplierID'];
@@ -695,14 +697,14 @@ Template Name: Agent Case Details
         <div class="formPart">
             <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
                 <div class="houseInfo">
-                    <div class="houseImg"><img src="img/house.jpg"></div>
+                    <div class="houseImg"><?php echo '<img src="' . $houseImageURL . '">'; ?></div>
                     <div class="houseTable">
                         <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
                         <table class="table table-striped">
                             <tbody>
                             <tr>
                                 <td>MLS#</td>
-                                <td><?php echo $caseDetailsArray['MLS'];?></td>
+                                <td><?php echo '<a href="' . $uploadPageURL . '">', $caseDetailsArray['MLS'], '</a>';?></td>
                             </tr>
                             <tr>
                                 <td>ADDRESS</td>
@@ -749,9 +751,6 @@ Template Name: Agent Case Details
                         <th>PROVIDER</th>
                         <th>ESTIMATE COST</th>
                         <th>REAL COST</th>
-                        <th>BEFORE</th>
-                        <th>AFTER</th>
-                        <th>INVOICE</th>
                         <th>STATUS</th>
                     </tr>
                     </thead>
@@ -777,9 +776,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $stagingEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="stagingRealCost" value="' . $stagingServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td><?php echo $stagingServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
@@ -803,9 +799,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $touchUpEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="touchUpRealCost" value="' . $touchUpServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td><?php echo $touchUpServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
@@ -829,9 +822,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $cleanUpEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="cleanUpRealCost" value="' . $cleanUpServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td>NONE</td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td>NONE</td>
                         <td><?php echo $cleanUpServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
@@ -855,9 +845,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $yardWordEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="yardWorkRealCost" value="' . $yardWorkServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td style="text-align:center;">-</td>
-                        <td><a href="#">UPLOAD<a></td>
-                        <td>NONE</td>
                         <td><?php echo $yardWorkServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
@@ -881,9 +868,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $inspectionEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="inspectionRealCost" value="' . $inspectionServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td style="text-align:center;">-</td>
-                        <td><a href="#">VIEW<a></td>
-                        <td style="text-align:center;">-</td>
                         <td><?php echo $inspectionServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
@@ -907,9 +891,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $storageEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="storageRealCost" value="' . $storageServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td style="text-align:center;">-</td>
-                        <td style="text-align:center;">-</td>
-                        <td><a href="#">VIEW<a></td>
                         <td><?php echo $storageServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
@@ -933,9 +914,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $relocateHomeEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="relocateHomeRealCost" value="' . $relocateHomeServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="#">VIEW<a></td>
                         <td><?php echo $relocateHomeServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     <tr>
@@ -959,9 +937,6 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $photographyEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="photographyRealCost" value="' . $photographyServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td style="text-align:center;">-</td>
-                        <td style="text-align:center;">-</td>
-                        <td style="text-align:center;">-</td>
                         <td><?php echo $photographyServiceArray['InvoiceStatus'] ?? '-'; ?></td>
                     </tr>
                     </tbody>

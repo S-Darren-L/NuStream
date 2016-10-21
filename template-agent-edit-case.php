@@ -489,10 +489,10 @@ Template Name: Agent Edit Case
                     <div class="inputContent contactNumberInput">
                         <input type="number" step="any" value="<?php echo $commissionRate; ?>" name="commissionRate" id="commissionRate" placeholder="COMMISSION RATE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
-                    <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
-                    <div class="inputContent ">
-                        <button class="photoUploadButton">UPLOAD</button>
-                    </div>
+<!--                    <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>-->
+<!--                    <div class="inputContent ">-->
+<!--                        <button class="photoUploadButton">UPLOAD</button>-->
+<!--                    </div>-->
                 </div>
                 <div class="create">
                     <input class="createButton" type="submit" value="Update" name="update_case">

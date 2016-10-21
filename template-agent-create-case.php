@@ -443,10 +443,10 @@ Template Name: Agent Create Case
                     <div class="inputContent contactNumberInput">
                         <input type="number" step="any" name="commissionRate" id="commissionRate" placeholder="COMMISSION RATE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
-                    <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
-                    <div class="inputContent ">
-                        <button class="photoUploadButton">UPLOAD</button>
-                    </div>
+<!--                    <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>-->
+<!--                    <div class="inputContent ">-->
+<!--                        <button class="photoUploadButton">UPLOAD</button>-->
+<!--                    </div>-->
                 </div>
                 <div class="create">
                     <input class="createButton" type="submit" value="Create" name="create_case">

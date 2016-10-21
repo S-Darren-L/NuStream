@@ -12,7 +12,7 @@ Template Name: Admin Case Details
     // Get Case ID
     $MLS = $_GET['CID'];
     $isRefreshPage = $_GET['RF'];
-    $uploadBasePath = get_home_url() . "/wp-content/themes/NuStream/Upload/";
+    $uploadBasePath = "wp-content/themes/NuStream/Upload/case/" . $MLS;
     $PageURL = get_home_url() . '/admin-case-details';
     $invoiceStatuses = get_invoice_statuses();
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
@@ -87,7 +87,8 @@ Template Name: Admin Case Details
 
     // Get All Files
     function get_staging_files(){
-        $uploadPath = "wp-content/themes/NuStream/Upload/Staging/";
+        global $uploadBasePath;
+        $uploadPath = $uploadBasePath . "/Staging/";
         $stagingImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
             "BeforeLivingRoom" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "LivingRoom/")),
@@ -100,7 +101,8 @@ Template Name: Admin Case Details
         return $stagingImageFilesArray;
     }
     function get_clean_up_files(){
-        $uploadPath = "wp-content/themes/NuStream/Upload/CleanUp/";
+        global $uploadBasePath;
+        $uploadPath = $uploadBasePath . "/CleanUp/";
         $cleanUpImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
             "BeforeLivingRoom" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "LivingRoom/")),
@@ -113,8 +115,8 @@ Template Name: Admin Case Details
         return $cleanUpImageFilesArray;
     }
     function get_touch_up_files(){
-        $uploadPath = "wp-content/themes/NuStream/Upload/TouchUp/";
-
+        global $uploadBasePath;
+        $uploadPath = $uploadBasePath . "/TouchUp/";
         $touchUpImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
             "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "1/")),
@@ -131,7 +133,8 @@ Template Name: Admin Case Details
         return $touchUpImageFilesArray;
     }
     function get_yard_work_files(){
-        $uploadPath = "wp-content/themes/NuStream/Upload/YardWork/";
+        global $uploadBasePath;
+        $uploadPath = $uploadBasePath . "/YardWork/";
         $yardWorkImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
             "BeforeFrontYard" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "FrontYard/")),
@@ -142,7 +145,8 @@ Template Name: Admin Case Details
         return $yardWorkImageFilesArray;
     }
     function get_inspection_files(){
-        $uploadPath = "wp-content/themes/NuStream/Upload/Inspection/";
+        global $uploadBasePath;
+        $uploadPath = $uploadBasePath . "/Inspection/";
         $inspectionImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
             "Report" => mysqli_fetch_array(download_file_by_path($uploadPath . "Report/"))
@@ -150,14 +154,16 @@ Template Name: Admin Case Details
         return $inspectionImageFilesArray;
     }
     function get_storage_files(){
-        $uploadPath = "wp-content/themes/NuStream/Upload/Storage/";
+        global $uploadBasePath;
+        $uploadPath = $uploadBasePath . "/Storage/";
         $storageImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/"))
         );
         return $storageImageFilesArray;
     }
     function get_relocate_home_files(){
-        $uploadPath = "wp-content/themes/NuStream/Upload/RelocateHome/";
+        global $uploadBasePath;
+        $uploadPath = $uploadBasePath . "/RelocateHome/";
         $relocateHomeImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/"))
         );

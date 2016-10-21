@@ -245,6 +245,10 @@ Template Name: Agent My Cases
                             <a href="#" ng-click="orderByField='STATUS'; reverseSort = !reverseSort">STATUS <span ng-show="orderByField == 'STATUS'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
                             </a>
                         </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='STATUS'; reverseSort = !reverseSort">View Detail <span ng-show="orderByField == 'STATUS'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>
+                            </a>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -257,6 +261,7 @@ Template Name: Agent My Cases
                                 echo '<td>', $CasesBriefInfoArray[$i]["PropertyType"], '</td>';
                                 echo '<td>', $CasesBriefInfoArray[$i]["Address"], '</td>';
                                 echo '<td>', $CasesBriefInfoArray[$i]["CaseStatus"], '</td>';
+                            echo '<td >', '<a href="' . $homeURL . '/agent-case-details/?CID=' . $MLS . '" >', "View", '</a>', '</td>';
                             echo '</tr>';
                         }
                     ?>
