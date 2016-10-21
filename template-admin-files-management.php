@@ -23,7 +23,7 @@ Template Name: Admin Files Management
 
     // Get All Services By Status
     function get_all_services($serviceStatus){
-        $allServicesResult = get_all_services_by_status($serviceStatus);
+        $allServicesResult = get_all_services_with_file_by_status($serviceStatus);
         while($service = mysqli_fetch_array($allServicesResult))
         {
             $caseResult = mysqli_fetch_array(get_case_by_service_type_and_id($service['SupplierType'], $service['ServiceID']));
@@ -32,9 +32,17 @@ Template Name: Admin Files Management
             $service['MemberName'] = $accountResult['FirstName'] . $accountResult['LastName'];
             $teamResult = mysqli_fetch_array(get_team_by_team_id($accountResult['TeamID']));
             $service['TeamLeaderName'] = $teamResult['TeamLeaderName'];
+            if($serviceStatus !== 'Report'){
+                $service['File'] = mysqli_fetch_array(download_file_by_path($service['InvoicePath']))['FileName'];
+            }
             $allServices[] = $service;
         }
         return $allServices;
+    }
+
+    // Download FIle
+    if(isset($_GET['File'])){
+        download_file($_GET['File']);
     }
 ?>
 
@@ -326,7 +334,7 @@ Template Name: Admin Files Management
                             echo '<td>', $allServices[$i]['StartDate'], '</td>';
                             echo '<td>', $allServices[$i]['SupplierType'], '</td>';
                             echo '<td>', $allServices[$i]['RealCost'], '</td>';
-                            echo '<td>', '<a href="#">DOWNLOAD</a>', '</td>';
+                            echo '<td>', '<a href="' . $subMenuURL . $serviceStatus . '&File=' . $allServices[$i]["File"] . '">DOWNLOAD</a>', '</td>';
                             echo '<td>', $allServices[$i]['InvoiceStatus'], '</td>';
                         }
                         ?>

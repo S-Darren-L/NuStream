@@ -71,15 +71,15 @@
     }
 
     // Get All Services By Status
-    function get_all_services_by_status_request($serviceStatus){
+    function get_all_services_with_file_by_status_request($serviceStatus){
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
         if($serviceStatus === '')
-            $sql = "SELECT * FROM services WHERE IsActivate='1' ORDER BY StartDate DESC ";
+            $sql = "SELECT * FROM services WHERE IsActivate='1' AND InvoicePath!='' ORDER BY StartDate DESC ";
         else
-            $sql = "SELECT * FROM services WHERE InvoiceStatus='$serviceStatus' AND IsActivate='1' ORDER BY StartDate DESC ";
+            $sql = "SELECT * FROM services WHERE InvoiceStatus='$serviceStatus' AND IsActivate='1' AND InvoicePath!='' ORDER BY StartDate DESC ";
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);

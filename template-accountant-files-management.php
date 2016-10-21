@@ -18,7 +18,7 @@
 
     // Get All Services By Status
     function get_all_services($serviceStatus){
-        $allServicesResult = get_all_services_by_status($serviceStatus);
+        $allServicesResult = get_all_services_with_file_by_status($serviceStatus);
         while($service = mysqli_fetch_array($allServicesResult))
         {
             $caseResult = mysqli_fetch_array(get_case_by_service_type_and_id($service['SupplierType'], $service['ServiceID']));

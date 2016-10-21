@@ -495,6 +495,24 @@ EOD;
         return $data;
     }
 
+    // Download File
+    function download_file($fileName){
+        if(file_exists($fileName) && is_readable($fileName)){
+            $size = filesize($fileName);
+            header('Content-Type: application/octet-stream');
+            header('Content-Length: ' . $size);
+            header('Content-Disposition: attachment; filename=' . $fileName);
+            header('Content-Transfer_Encoding: binary');
+
+            // Open The File In Binary Read-Only Mode
+            $file = @ fopen($fileName, 'rb');
+            if($file){
+                // Stream The File And Exit
+                fpassthru($file);
+                exit;
+            }
+        }
+    }
     // Generate Guid
     function GUID()
     {
@@ -974,9 +992,9 @@ EOD;
     }
 
     // Get All Services By Status
-    function get_all_services_by_status($serviceStatus){
+    function get_all_services_with_file_by_status($serviceStatus){
         require_once(__DIR__ . '/include/repository/service-repository.php');
-        return get_all_services_by_status_request($serviceStatus);
+        return get_all_services_with_file_by_status_request($serviceStatus);
     }
 
     // Update Service Invoice

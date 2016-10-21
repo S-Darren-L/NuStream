@@ -216,23 +216,9 @@ Template Name: Admin Case Details
         header('location: ' . $PageURL . '/?CID=' . $MLS);
     }
 
+    // Download FIle
     if(isset($_GET['File'])){
-        $fileName = $_GET['File'];
-        if(file_exists($fileName) && is_readable($fileName)){
-            $size = filesize($fileName);
-            header('Content-Type: application/octet-stream');
-            header('Content-Length: ' . $size);
-            header('Content-Disposition: attachment; filename=' . $fileName);
-            header('Content-Transfer_Encoding: binary');
-
-            // Open The File In Binary Read-Only Mode
-            $file = @ fopen($fileName, 'rb');
-            if($file){
-                // Stream The File And Exit
-                fpassthru($file);
-                exit;
-            }
-        }
+        download_file($_GET['File']);
     }
 
 ?>
