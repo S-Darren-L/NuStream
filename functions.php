@@ -158,6 +158,7 @@
     function combine_case_report_invoices($reportInvoicesArray, $MLS){
         foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
             if(!empty($reportInvoiceFile)){
+                $reportInvoiceFile = dirname(__FILE__) . DIRECTORY_SEPARATOR . $reportInvoiceFile;
                 $reportInvoiceFile = strtolower($reportInvoiceFile);
                 $allowedImagesType =  array('png' ,'jpg');
                 $allowedFilesType ='pdf';
@@ -206,6 +207,7 @@
 
         $pdf = new FPDI();
         foreach ($reportInvoicesArray as $reportInvoiceKey => $reportInvoiceFile) {
+            $reportInvoiceFile = dirname(__FILE__) . DIRECTORY_SEPARATOR . $reportInvoiceFile;
             $pdf->setSourceFile($reportInvoiceFile);
             $tplIdxA = $pdf->importPage(1, '/MediaBox');
             $pdf->addPage();

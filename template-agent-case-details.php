@@ -423,13 +423,13 @@ Template Name: Agent Case Details
             );
             $reportInvoicesArray = array(
                 "reportFormFile" => '',
-                "stagingInvoice" => mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Staging/" . "Invoice/"))['FileName'],
-                "cleanUpInvoice" => mysqli_fetch_array(download_file_by_path($uploadBasePath . "/CleanUp/" . "Invoice/"))['FileName'],
-                "relocateHomeInvoice" => mysqli_fetch_array(download_file_by_path($uploadBasePath . "/RelocateHome/" . "Invoice/"))['FileName'],
-                "touchUpInvoice" => mysqli_fetch_array(download_file_by_path($uploadBasePath . "/TouchUp/" . "Invoice/"))['FileName'],
-                "inspectionInvoice" => mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Inspection/" . "Invoice/"))['FileName'],
-                "yardWorkInvoice" => mysqli_fetch_array(download_file_by_path($uploadBasePath . "/YardWork/" . "Invoice/"))['FileName'],
-                "storageInvoice" => mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Storage/" . "Invoice/"))['FileName'],
+                "stagingInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Staging/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                "cleanUpInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/CleanUp/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                "relocateHomeInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/RelocateHome/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                "touchUpInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/TouchUp/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                "inspectionInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Inspection/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                "yardWorkInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/YardWork/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                "storageInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Storage/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
             );
 
             generate_case_report($reportFromArray, $reportInvoicesArray);
