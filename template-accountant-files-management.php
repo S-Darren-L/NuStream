@@ -10,23 +10,29 @@
 
     // Init
     $serviceStatus = '';
-    $allServices = array();
-    $allServices = get_all_services($serviceStatus);
+    $allServiceArray = get_all_cases();
+    $PageURL = get_home_url() . '/accountant-files-management';
 
-    // Get All Services By Status
-    function get_all_services($serviceStatus){
-        $allServicesResult = get_all_services_with_file_by_status($serviceStatus);
-        while($service = mysqli_fetch_array($allServicesResult))
+    // Get All Closed Cases
+    function get_all_cases(){
+        $allServicesResult = get_all_closed_cases();
+    //        $allServiceArray = mysqli_fetch_array($allServicesResult);
+        foreach ($allServicesResult as $case)
         {
-            $caseResult = mysqli_fetch_array(get_case_by_service_type_and_id($service['SupplierType'], $service['ServiceID']));
-            $service['MLS'] = $caseResult['MLS'];
-            $accountResult = mysqli_fetch_array(get_agent_account($caseResult['StaffID']));
-            $service['MemberName'] = $accountResult['FirstName'] . $accountResult['LastName'];
+            $accountResult = mysqli_fetch_array(get_agent_account($case['StaffID']));
+            $case['MemberName'] = $accountResult['FirstName'] . $accountResult['LastName'];
             $teamResult = mysqli_fetch_array(get_team_by_team_id($accountResult['TeamID']));
-            $service['TeamLeaderName'] = $teamResult['TeamLeaderName'];
-            $allServices[] = $service;
+            $case['TeamLeaderName'] = $teamResult['TeamLeaderName'];
+            $allServiceArray[] = $case;
         }
-        return $allServices;
+        return $allServiceArray;
+    }
+
+    // Download FIle
+    if(isset($_GET['File'])){
+        $MLS = $_GET['File'];
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $MLS . DIRECTORY_SEPARATOR . "finalReport";
+        create_zip($uploadPath);
     }
 
 ?>
@@ -55,22 +61,20 @@
                     <th class="FACTableHeader">MEMBER NAME</th>
                     <th class="FACTableHeader">TEAM LEAD</th>
                     <th class="FACTableHeader">UPLOAD DATE</th>
-                    <th class="FACTableHeader">SERVICE TYPE</th>
                     <th class="FACTableHeader FACTableHeaderLarge">PRICE BEFORE TAX</th>
                     <th class="FACTableHeader FACTableHeaderSmall">INVOICE</th>
                     <th class="FACTableHeader FACTableHeaderSmall">SELECT</th></tr>
                 </thead>
                 <tbody>
                 <?php
-                    for($i = 0; $i < count($allServices); $i++) {
+                    for($i = 0; $i < count($allServiceArray); $i++) {
                         echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
-                        echo '<td class="FACTableMargin">', $allServices[$i]['MLS'], '</td>';
-                        echo '<td>', $allServices[$i]['MemberName'], '</td>';
-                        echo '<td>', $allServices[$i]['TeamLeaderName'], '</td>';
-                        echo '<td>', $allServices[$i]['StartDate'], '</td>';
-                        echo '<td>', $allServices[$i]['SupplierType'], '</td>';
-                        echo '<td>$&nbsp;', $allServices[$i]['RealCost'], '&nbsp;CAD</td>';
-                        echo '<td class="FACDownload">', '<a href="#">DOWNLOAD</a>', '</td>';
+                        echo '<td class="FACTableMargin">', $allServiceArray[$i]['MLS'], '</td>';
+                        echo '<td>', $allServiceArray[$i]['MemberName'], '</td>';
+                        echo '<td>', $allServiceArray[$i]['TeamLeaderName'], '</td>';
+                        echo '<td>', $allServiceArray[$i]['StartDate'], '</td>';
+                        echo '<td>$&nbsp;', $allServiceArray[$i]['FinalPrice'], '&nbsp;CAD</td>';
+                        echo '<td class="FACDownload">', '<a href="' . $PageURL . '/?File=' . $allServiceArray[$i]['MLS'] . '">DOWNLOAD</a>', '</td>';
                         echo '<td>', '<input class="FACCheckBox" name="select_for_download" checked="checked" type="checkbox">', '</td>';
                     }
                 ?>
