@@ -176,9 +176,6 @@ Template Name: Agent Case File Upload
         if (!$uploadTmp) {
             die("No File Selected, Please Upload Again.");
         } else {
-            echo "tmp: " . $uploadTmp . " ";
-            echo "path: " . $uploadPath . " ";
-            echo "name: " . $uploadName . " ";
             $uploadResult = move_uploaded_file($uploadTmp, $uploadPath . $uploadName);
         }
 
