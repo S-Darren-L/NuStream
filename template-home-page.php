@@ -307,6 +307,8 @@
                 </div>';
                 }
             ?>
+        </form>
+        <form method="post">
         <div class="FPassword"><a data-toggle="modal" data-target="#myModal"<!--href="<?php echo $forgetPasswordPath; ?>"-->Forgot password?</a></div>
         <form>
 
