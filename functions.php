@@ -160,12 +160,12 @@
             if(!empty($reportInvoiceFile)){
                 $reportInvoiceFile = dirname(__FILE__) . DIRECTORY_SEPARATOR . $reportInvoiceFile;
 //                $reportInvoiceFile = strtolower($reportInvoiceFile);
-                $allowedImagesType =  array('png' ,'jpg');
+                $allowedImagesType =  array('png' ,'jpg', 'PNG', 'JPG');
                 $allowedFilesType ='pdf';
                 $ext = pathinfo($reportInvoiceFile, PATHINFO_EXTENSION);
                 if(in_array($ext, $allowedImagesType)){
                     // Convert Image to PDF
-                    $reportInvoiceFile = convert_image_to_pdf($reportInvoiceFile, $MLS);
+                    $reportInvoiceFile = convert_image_to_pdf($reportInvoiceKey, $reportInvoiceFile, $MLS);
                     $reportInvoicesArray[$reportInvoiceKey] = $reportInvoiceFile;
                 }else if($ext === $allowedFilesType){
                     // Is PDF File, Do Nothing
@@ -225,7 +225,7 @@
     }
 
     // Convert Image To PDF
-    function convert_image_to_pdf($image, $MLS){
+    function convert_image_to_pdf($reportInvoiceKey, $image, $MLS){
         require_once('fpdf/fpdf.php');
         $pdf = new FPDF();
         $pdf->AddPage();
@@ -235,7 +235,7 @@
             mkdir($uploadPath, 0777, true);
         }
 //        $uploadPath = "wp-content/themes/NuStream/Upload/";
-        $filename = $uploadPath . rand(10000, 99999) . rand(10000, 99999) . ".pdf";
+        $filename = $uploadPath . $MLS . $reportInvoiceKey . ".pdf";
         $pdf->Output($filename,'F');
         return $filename;
     }
@@ -580,8 +580,8 @@ EOD;
     }
 
     // Generate Zip File
-    function create_zip($uploadPath) {
-        $zip_file = 'Final Report.zip';
+    function create_zip($uploadPath, $MLS) {
+        $zip_file = $MLS . ' Archive.zip';
 
         // Get real path for our folder
         $rootPath = realpath($uploadPath);

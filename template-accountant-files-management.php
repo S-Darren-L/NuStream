@@ -32,7 +32,11 @@
     if(isset($_GET['File'])){
         $MLS = $_GET['File'];
         $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $MLS . DIRECTORY_SEPARATOR . "finalReport";
-        create_zip($uploadPath);
+        try{
+            create_zip($uploadPath, $MLS);
+        }catch (Exception $e){
+
+        }
     }
 
 ?>
