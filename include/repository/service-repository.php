@@ -123,7 +123,7 @@
         $sql = "UPDATE services SET InvoiceStatus = '$invoiceStatus'
                         WHERE ServiceID = '$serviceID' AND IsActivate='1'";
         $result = mysqli_query($conn, $sql);
-echo $sql;
+
         mysqli_close($conn);
         return $result;
     }

@@ -48,6 +48,19 @@
         return $result;
     }
 
+    // Get Supplier Brief Info
+    function get_no_default_supplier_brief_info_request($supplierType){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT SupplierID, SupplierName, PricePerUnit, FirstContactName, FirstContactNumber, SupportLocation FROM suppliers WHERE SupplierType='$supplierType' AND isDefault='0' AND IsActivate=TRUE ";
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        return $result;
+    }
+
     // Get Supplier Detail
     function get_supplier_detail_request($supplierID)
     {

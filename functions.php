@@ -833,6 +833,13 @@ EOD;
         return get_supplier_brief_info_request($supplierType);
     }
 
+    // Get Supplier Brief Info
+    function get_no_default_supplier_brief_info($supplierType){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        return get_no_default_supplier_brief_info_request($supplierType);
+    }
+
+
     // Get Supplier Detail
     function get_supplier_detail($supplierID){
         require_once(__DIR__ . '/include/repository/supplier-repository.php');

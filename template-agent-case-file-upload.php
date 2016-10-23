@@ -13,6 +13,7 @@ Template Name: Agent Case File Upload
     $uploadBasePath = "wp-content/themes/NuStream/Upload/case/" . $MLS;
     $PageURL = get_home_url() . '/agent-case-file-upload';
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
+    $defaultHouseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
 
     // Init Date
     // Get Case Statuses
@@ -1149,10 +1150,10 @@ Template Name: Agent Case File Upload
                 <div class="houseInfo">
                     <div class="houseImg">
                         <?php
-                        if(!is_null($caseDetailsArray['Images'])){
+                        if(!empty($caseDetailsArray['Images'])){
                             echo '<img src="' . $houseImageURL . $caseDetailsArray['Images'] . '">';
                         }else{
-                            echo '<img>';
+                            echo '<img src="' . $defaultHouseImageURL . '">';
                         }
                         ?>
                     </div>

@@ -14,6 +14,7 @@ Template Name: Agent Case Details
     $uploadPath = get_home_url() . "/wp-content/themes/NuStream/Upload/Services/";
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
     $uploadBasePath = "wp-content/themes/NuStream/Upload/case/" . $MLS;
+    $defaultHouseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
 
     // Init Date
     // Get Case Statuses
@@ -22,6 +23,7 @@ Template Name: Agent Case Details
     // Get Case Basic Details
     $caseDetailsArray = array();
     $caseDetailsArray = get_case_basic_details($MLS);
+    $isCaseChangeable = $caseDetailsArray['CaseStatus'] === 'CLOSED' ? 'hidden' : null;
 
     // Get All Suppliers Brief Info
     $allSuppliersArray = array(); // supplier table
@@ -76,7 +78,7 @@ Template Name: Agent Case Details
     function get_all_suppliers_brief_info(){
         $supplierTypes = get_supplier_types();
         foreach ($supplierTypes as $supplierType){
-            $supplierResult = get_supplier_brief_info($supplierType);
+            $supplierResult = get_no_default_supplier_brief_info($supplierType);
 
             if($supplierResult === null)
                 echo 'result is null';
@@ -790,10 +792,10 @@ Template Name: Agent Case Details
                 <div class="houseInfo">
                     <div class="houseImg">
                         <?php
-                        if(!is_null($caseDetailsArray['Images'])){
+                        if(!empty($caseDetailsArray['Images'])){
                             echo '<img src="' . $houseImageURL . $caseDetailsArray['Images'] . '">';
                         }else{
-                            echo '<img>';
+                            echo '<img src="' . $defaultHouseImageURL . '">';
                         }
                         ?>
                     </div>
@@ -803,7 +805,14 @@ Template Name: Agent Case Details
                             <tbody>
                             <tr>
                                 <td>MLS#</td>
-                                <td><?php echo '<a href="' . $uploadPageURL . '">', $caseDetailsArray['MLS'], '</a>';?></td>
+                                <td><?php
+                                    if($isCaseChangeable === 'hidden'){
+                                        echo '<a>', $caseDetailsArray['MLS'], '</a>';
+                                    }else{
+                                        echo '<a href="' . $uploadPageURL . '">', $caseDetailsArray['MLS'], '</a>';
+                                    }
+                                    ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td>ADDRESS</td>
@@ -1070,8 +1079,8 @@ Template Name: Agent Case Details
                     </div>
                     <div style="height:150px;"></div>
                 </div>
-                <input type="submit" value="Estimate" name="estimate">
-                <input type="submit" value="Submit" name="submit_service_info">
+                <input type="submit" <?php echo $isCaseChangeable; ?> value="Estimate" name="estimate">
+                <input type="submit" <?php echo $isCaseChangeable; ?> value="Submit" name="submit_service_info">
             </form>
         </div>
     </div>

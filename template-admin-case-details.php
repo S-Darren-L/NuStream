@@ -14,6 +14,7 @@ Template Name: Admin Case Details
     $PageURL = get_home_url() . '/admin-case-details';
     $invoiceStatuses = get_invoice_statuses();
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
+    $defaultHouseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
 
 // Init Date
     // Get Case Statuses
@@ -868,10 +869,10 @@ Template Name: Admin Case Details
                     <div class="houseInfo">
                         <div class="houseImg">
                             <?php
-                            if(!is_null($caseDetailsArray['Images'])){
+                            if(!empty($caseDetailsArray['Images'])){
                                 echo '<img src="' . $houseImageURL . $caseDetailsArray['Images'] . '">';
                             }else{
-                                echo '<img>';
+                                echo '<img src="' . $defaultHouseImageURL . '">';
                             }
                             ?>
                         </div>
