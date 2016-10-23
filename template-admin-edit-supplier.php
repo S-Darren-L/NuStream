@@ -15,6 +15,8 @@
 	$priceUnits = get_price_units();
 	$paymentTerms = get_payment_terms();
 	init_date($supplierID);
+	$isDisable = $_SESSION['AccountPosition'] !== ADMIN ?'disabled' : null;
+	$isHidden = $_SESSION['AccountPosition'] !== ADMIN ?'hidden' : null;
 
 	// //Init Data
 	function init_date($supplierID){
@@ -445,11 +447,11 @@
 						</div>
 						<div class="inputContent">
 							<div class="ba">
-								<input type="text" name="supplierName" value="<?php echo $supplierName; ?>" placeholder="SUPPLIER NAME*" style="font-size:11px; height:27px;" size="22" require/>
+								<input type="text" <?php echo $isDisable; ?> name="supplierName" value="<?php echo $supplierName; ?>" placeholder="SUPPLIER NAME*" style="font-size:11px; height:27px;" size="22" require/>
 							</div>
 							<div class="selectServerType">
 								<div class="dropdown" >
-									<select name="supplierType">
+									<select name="supplierType" <?php echo $isDisable; ?> >
 										<?php
 											foreach ($supplierTypes as $supplierTypeItem){
 												global $supplierType;
@@ -461,7 +463,7 @@
 								</div>
 							</div>
 							<div class="HSTNumber">
-								<input type="text" name="HSTNumber" value="<?php echo $HSTNumber; ?>" placeholder="HST NUMBER*" style="font-size:11px; height:27px;" size="30" require/>
+								<input type="text" <?php echo $isDisable; ?> name="HSTNumber" value="<?php echo $HSTNumber; ?>" placeholder="HST NUMBER*" style="font-size:11px; height:27px;" size="30" require/>
 							</div>
 						</div>
 					</div>
@@ -474,10 +476,10 @@
 								</div>
 							</div>
 
-							<input type="text" name="firstContactName" value="<?php echo $firstContactName; ?>" placeholder="FIRST CONTACT NAME*" style="font-size:11px; margin-bottom:10px; margin-top:10px; height:27px;" size="30" require />
-							<input type="text" name="firstContactNumber" value="<?php echo $firstContactNumber; ?>" placeholder="FIRST CONTACT NUMBER*" style="font-size:11px; margin-bottom:25px; height:27px;" size="30" require />
-							<input type="text" name="secondContactName" value="<?php echo $secondContactName; ?>" placeholder="SECOND CONTACT NAME*" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
-							<input type="text" name="secondContactNumber" value="<?php echo $secondContactNumber; ?>" placeholder="SECOND CONTACT NUMBER*" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
+							<input type="text" <?php echo $isDisable; ?> name="firstContactName" value="<?php echo $firstContactName; ?>" placeholder="FIRST CONTACT NAME*" style="font-size:11px; margin-bottom:10px; margin-top:10px; height:27px;" size="30" require />
+							<input type="text" <?php echo $isDisable; ?> name="firstContactNumber" value="<?php echo $firstContactNumber; ?>" placeholder="FIRST CONTACT NUMBER*" style="font-size:11px; margin-bottom:25px; height:27px;" size="30" require />
+							<input type="text" <?php echo $isDisable; ?> name="secondContactName" value="<?php echo $secondContactName; ?>" placeholder="SECOND CONTACT NAME*" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
+							<input type="text" <?php echo $isDisable; ?> name="secondContactNumber" value="<?php echo $secondContactNumber; ?>" placeholder="SECOND CONTACT NUMBER*" style="font-size:11px; margin-bottom:10px; height:27px;" size="30" require />
 						</div>
 						<div class="priceInfo">
 							<div class="subTitle" style="margin-top:20px; width:400px; margin-bottom:13px;">
@@ -488,7 +490,7 @@
 							</div>
 							<div class="selectPriceUnit">
 								<div class="dropdown">
-									<select name="priceUnit">
+									<select name="priceUnit" <?php echo $isDisable; ?> >
 										<?php
 											foreach ($priceUnits as $priceUnitItem){
 												global $priceUnit;
@@ -500,11 +502,11 @@
 								</div>
 							</div>
 							<div class="pricePerUnit">
-								<input type="text" name="pricePerUnit" value="<?php echo $pricePerUnit; ?>" placeholder="PRICE PER UNIT*" style="font-size:11px; height:27px;" size="30" require/>
+								<input type="text" <?php echo $isDisable; ?> name="pricePerUnit" value="<?php echo $pricePerUnit; ?>" placeholder="PRICE PER UNIT*" style="font-size:11px; height:27px;" size="30" require/>
 							</div>
 							<div class="selectPaymentTeam">
 								<div class="dropdown">
-									<select name="paymentTerm" id="payment-term-drop-down" onchange="paymentTermChanged()">
+									<select name="paymentTerm" <?php echo $isDisable; ?>  id="payment-term-drop-down" onchange="paymentTermChanged()">
 										<?php
 											foreach ($paymentTerms as $paymentTermItem){
 												global $paymentTerm;
@@ -516,14 +518,14 @@
 								</div>
 							</div>
 							<div class="priceOthers">
-								<input type="text" name="otherPaymentTerm" value="<?php echo $otherPaymentTerm; ?>" id="other-payment-term" disabled="disabled" placeholder="OTHER PAYMENT TERM" style="font-size:11px; height:27px;" size="30" require/>
+								<input type="text" <?php echo $isDisable; ?> name="otherPaymentTerm" value="<?php echo $otherPaymentTerm; ?>" id="other-payment-term" disabled="disabled" placeholder="OTHER PAYMENT TERM" style="font-size:11px; height:27px;" size="30" require/>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="create">
-					<input type="submit" value="Update" name="update_supplier" class="createButton">
-					<input type="submit" value="Deactivate" name="deactivate_supplier" class="deleteButton">
+					<input type="submit" <?php echo $isHidden; ?> value="Update" name="update_supplier" class="createButton">
+					<input type="submit" <?php echo $isHidden; ?> value="Deactivate" name="deactivate_supplier" class="deleteButton">
 					<?php
 					if($isError){
 						echo '<div class="error-message"><a>';
