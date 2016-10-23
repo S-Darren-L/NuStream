@@ -91,7 +91,6 @@
     }
 
 ?>
-
 <!DOCTYPE html>
 <style>
     body {
@@ -110,6 +109,7 @@
         width:100%;
         height: 480px;
         background-image: url("<?php echo $backgroundImagePath; ?>") ;
+        background-size:cover;
 
     }
     .middlePart img{width:100%;}
@@ -199,58 +199,39 @@
         font-size: 80%;
     }
 
-    /* ----------- iPhone 5 and 5S ----------- */
-
-    /* Portrait and Landscape */
-    @media only screen
-    and (min-device-width: 320px)
-    and (max-device-width: 568px)
-    and (-webkit-min-device-pixel-ratio: 2) {
-
-        .NUS_login {
-            position: relative;
-            margin-top: 50px;
-            width: 300px;
-            height: 300px;
-            padding:30px;
-            margin: 0 auto;
-            background-color: white;
+        .contentPart {
+            width:80%;
+            height: 170px;
+            margin:0 auto;
+            border:1px #a9a9a9 solid;
         }
-    }
-
-    /* Portrait */
-    @media only screen
-    and (min-device-width: 320px)
-    and (max-device-width: 568px)
-    and (-webkit-min-device-pixel-ratio: 2)
-    and (orientation: portrait) {
-        .NUS_login {
-            position: relative;
-            margin-top: 50px;
-            width: 300px;
-            height: 300px;
-            padding:30px;
-            margin: 0 auto;
-            background-color: white;
+        .modal-title {
+            text-align: center;
         }
-    }
-
-    /* Landscape */
-    @media only screen
-    and (min-device-width: 320px)
-    and (max-device-width: 568px)
-    and (-webkit-min-device-pixel-ratio: 2)
-    and (orientation: landscape) {
-        .NUS_login {
-            position: relative;
-            margin-top: 50px;
-            width: 300px;
-            height: 300px;
-            padding:30px;
-            margin: 0 auto;
-            background-color: white;
+        .contentPart p {
+            text-align: center;
+            padding-top: 20px;
         }
-    }
+        .contentPart input {
+            margin-top: 10px;
+            margin-left: 10%;
+            border-radius: 3px;
+            border:1px #a9a9a9 solid;
+            margin-bottom: 10px;
+            height: 30px;
+            width: 80%;
+        }
+        .sendPassword {
+            width: 80%;
+            margin-left: 10%;
+        }
+        .modalStyle {
+            height: 300px;
+        }
+        .error-message a{
+            color: red;
+            font-size: 100%;
+        }
 
 
 </style>
@@ -299,7 +280,40 @@
                 }
             ?>
         </form>
-        <div class="FPassword"><a href="<?php echo $forgetPasswordPath; ?>">Forgot password?</a></div>
+        <form method="post">
+        <div class="FPassword"><a data-toggle="modal" data-target="#myModal"<!--href="<?php echo $forgetPasswordPath; ?>"-->Forgot password?</a></div>
+        <form>
+
+<!-- ADD THE FORGET PASSWORD MODEL and I didn't change your php code please handle it-->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">What's My Password?</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="contentPart">
+                        <form method="post">
+                            <p>If you forget your password, you can reset here.</p>
+                            <input type="email" name="email" placeholder="&nbsp;&nbsp;E-mail Address" size="50">
+                            <input type="submit" name="reset_password" value="Send My Password" class="btn btn-primary sendPassword">
+                            <?php
+                            if($isError){
+                                echo '<div class="error-message"><a>';
+                                global $errorMessage;
+                                echo $errorMessage;
+                                echo '</a></div>';
+                            }
+                            ?>
+                        </form>
+                    </div>
+                </div>
+                 <br/><br/>
+            </div>
+        </div>
+    </div>
     </div>
 
 </div>
@@ -309,6 +323,8 @@
             echo '<img src="' . $logoSImagePath . '">';
         ?>
     </div>
-    <p class="copyright">@copyright @2016 Darren Liu All Rights Reserved</p>
+    <p class="copyright">copyright&copy;2016 Darren Liu All Rights Reserved</p>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

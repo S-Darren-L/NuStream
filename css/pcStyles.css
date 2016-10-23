@@ -1,0 +1,1874 @@
+    /*------------------------------------nav bar css---------------------------------*/
+    html, body {
+        margin:0;
+        padding:0;
+        background-color: #eeeeee !important;
+        font-family: Arial!important;
+    }
+
+    #container {
+        margin-left: 230px;
+        _zoom: 1;
+    }
+
+    #nav {
+        float: left;
+        width: 230px;
+        height: 100%;
+        background: #32323a;
+        margin-left: -230px;
+        position:fixed;
+        margin-top:-54px;
+    }
+
+    #main {
+        height: 400px;
+    }
+
+    /* style icon */
+    .inner-addon .glyphicon {
+        position: absolute;
+        padding: 10px;
+        pointer-events: none;
+    }
+
+    /* align icon */
+    .left-addon .glyphicon {
+        left: 0px;
+    }
+
+    /* add padding  */
+    .left-addon input {
+        padding-left: 30px;
+    }
+
+    a {
+        letter-spacing: 1px;
+    }
+
+    .logo {
+        height: 120px;
+        width: 230px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right:20px;
+        padding-bottom: 20px;
+        display: block;
+        background-color: #28282e;
+    }
+
+    .logo img {
+        width: 100%;
+    }
+
+    .nav-pills {
+        background-color: #32323a;
+        border-color: #030033;
+    }
+
+    .nav-pills > li > a {
+        color: #95a0aa; /*Change active text color here*/
+    }
+
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+        color: #000;  /*Sets the text hover color on navbar*/
+    }
+
+    li {
+        border-bottom:1px #2a2a31 solid;
+    }
+
+    .footer {
+        position: absolute;
+        bottom:0px;
+        left:0;
+        right:0;
+        margin:0 auto;
+        text-align: center;
+    }
+
+    .copyRight {
+        color:white;
+    }
+
+    .formPart {
+    }
+
+    th {
+        color:white;
+        font-size:11px;
+        text-align:center;
+    }
+
+    .userNamePart {
+        color:white;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /*--------------------------template css for all page----------------------*/
+
+    .title {
+        padding:5px 0 5px 0;
+        margin-top:54px;
+        margin-left: 18px;
+        background-color: #fff;
+        border-left:5px #0068b7 solid;
+        border-bottom:1px #eeeeee solid;
+        width: 600px;
+    }
+    .titleSize {
+        font-size: 20px;
+        margin:0px;
+        padding-left:23px;
+        color:#616161
+    }
+
+    .contentPart {
+        padding-top: 20px;
+        background-color: #fff;
+        color:#a9a9a9;
+        height: 400px;
+        width: 600px;
+        font-size: 12px;
+        margin-left: 23px; 
+    }
+
+
+    /*--------------------------template-agent-create-case----------------------*/
+
+    .inputPart {
+        padding-top: 20px;
+        background-color: #fff;
+        color:#a9a9a9;
+        height: 400px;
+        width: 600px;
+        font-size: 12px;
+        margin-left: 18px;
+    }
+
+    .oneLineDiv {
+        display: relative;
+        height: 45px;
+        padding: 0px;
+        margin: 0px;
+        vertical-align:middle;
+        padding:10px 0 0 0;
+    }
+
+    .requireTitle {
+        height: 30px;
+        padding-left:23px;
+        float:left;
+        vertical-align: middle;
+        line-height: 30px;
+        display: absolute;
+    }
+
+    .inputContent {
+        display: absolute;
+        padding:0 0 0 143px;
+        margin:0px; 
+        width: 150px;
+    }
+
+    .secondTitle {
+        margin:-30px 0 0 280px;
+
+    }
+
+    .secondInput {
+        margin: -30px 0 0 415px;
+    }
+
+    input {
+        border-radius: 3px;
+        border:1px #a9a9a9 solid;
+        width: 150px;
+        height: 30px;
+    }
+
+    fieldset {
+        overflow: hidden
+    }
+
+    .dropdown {
+        height: 30px;
+        width: 150px;
+    }
+
+    select {
+        border-radius: 3px;
+        height: 30px;
+        width: 150px;
+    }
+
+    .createButton {
+        border-radius: 5px;
+        background-color: #32323a;
+        border: #32323a;
+        color:#fff;
+        font-weight: 100px;
+        height: 30px;
+        width: 150px;
+    }
+
+    .PropertyType select {
+        border-radius: 3px;
+        height: 30px;
+        width: 150px;
+    }
+
+    .coListingTitle {
+        margin-top: -60px;
+        margin-left: 290px;
+    }
+
+    .photoUploadButton {
+        font-size: 11px;
+        color:#a9a9a9;
+        background-color: #fff;
+        border:1px #a9a9a9 solid;
+        width: 150px;
+        height: 30px;
+        border-radius: 3px;
+    }
+
+    .error-message a{
+        color: red;
+        font-size: 80%;
+    }
+
+
+    /*------------------------------------table page css--------------------------------------*/
+.tablePageTitle {
+    width:800px;
+    margin:0 auto;
+}
+.title img {
+    width: 100%;
+}
+
+.tablePart table {
+    text-align: center;
+    border:1px #000 solid;
+    width:800px;
+    margin:0 auto;
+}
+
+/*------------------------------------File Approvement Admin css--------------------------------------*/
+
+.FAFContentPart {
+    padding-top: 20px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 240px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+/*File Approvement Page First Title*/
+.FAFTitle {
+    padding:5px 0 5px 0;
+    margin-top:89px;
+    margin-left: 23px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 750px;   
+}
+
+.FANormalTitle {
+    padding:5px 0 5px 0;
+    margin-top:10px;
+    margin-left: 23px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 750px; 
+}
+
+.FASContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 270px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+.table-striped {
+    width: 775px !important;
+    padding-left:20px;
+    margin-left: 20px;
+}
+
+.table-striped th{
+    font-size: 10px;
+    color:#a9a9a9;
+}
+
+.table-striped td{
+    color:#a9a9a9;
+}
+
+.houseInfo .table-striped tr {
+    font-size: 10px;
+    color:#a9a9a9;
+}
+
+.houseInfo .table-striped th {
+    font-size: 10px;
+    color:#a9a9a9;
+}
+
+.houseInfo .table-striped td {
+    padding-top:2px !important; 
+    padding-bottom:2px !important;
+}
+
+.houseInfo .table-striped {
+/*  margin-top: 0px;
+    margin-left: 0px;*/
+    width: 400px !important;
+    height: 200px !important;  
+    color: #a9a9a9;
+}
+
+.houseInfo {
+    width: 100%; 
+    overflow: hidden;
+    padding-left: 20px;
+    background-color: #fff;
+}
+
+.houseImg {
+    height: 200px;
+    width: 300px;
+    float: left;
+    /*padding-top:25px;*/
+}
+
+.houseImg img {
+    width: 100%;
+}
+
+.houseTable {
+    width: 300px;
+    margin-left: 300px;
+}
+
+
+
+.FAFSubTitle {
+    font-weight:bold;
+    padding-left: 23px;
+    float: left;
+    padding-top: 5px;
+    width: 100px;
+}
+
+.FASubTitleUpload {
+    margin-left: 10px;
+    width: 100px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASelectType {
+    height: 30px;
+    width: 80px;  
+    margin-left: 360px; 
+
+}
+
+.FASelectType select {
+    border-radius: 3px;
+    height: 30px;
+    width: 80px;
+}
+
+.FASCPSLine {
+    float:left;
+    height: 100px;
+    width: 750px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.FASSubTitle {
+    font-weight:bold;
+    padding-left: 23px;
+    float: left;
+    padding-top: 5px;
+    color:#a9a9a9;
+}
+.FAImage {
+    float:left;
+    height: 70px;
+    width: 130px;
+    border: 1px blue dashed;
+    margin:0 25px;
+
+}
+
+.FAtable {
+    float:left;
+}
+
+
+.FAtable td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.FASCPTLine {
+    float:left;
+    height: 100px;
+    width: 750px;
+    margin-top: 10px;
+    margin-left: 20px;   
+}
+
+.FATContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 270px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FAFoContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 270px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FAImageTouchUp {
+    float:left;
+    height: 70px;
+    width: 80px;
+    border: 1px blue dashed;
+    margin:0 10px;
+}
+
+.FAImageYardWork {
+    float:left;
+    height: 80px;
+    width: 170px;
+    border: 1px blue dashed;
+    margin:0 25px;
+}
+
+.FASubTitleInsoection {
+    margin-left: 10px;
+    width: 150px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASubTitleInvoice {
+    margin-left: 20px;
+    width: 150px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASelectTypeInspection {
+    height: 30px;
+    width: 80px;  
+    margin-left: 145px; 
+}
+
+.FAFiContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 280px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FASixContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 50px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.FASubTitleStoageInvoice {
+    margin-left: 10px;
+    width: 70px;
+    float: left;
+    padding-top: 5px;
+}
+
+.FASelectTypeStorage {
+    height: 30px;
+    width: 80px;  
+    margin-left: 315px; 
+}
+
+.approveButton {
+    height: 30px;
+    width: 120px;
+    background-color: #32323a;
+    color:#fff;
+    font-size: 12px;
+    float:left;
+    border:1px solid #32323a;
+    margin-left: 20px;
+    border-radius: 3px;
+}
+
+.submitChangeButton {
+    height: 30px;
+    width: 120px;
+    background-color: #32323a;
+    color:#fff;
+    font-size: 12px;
+    border:1px solid #32323a;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.FASevenContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 60px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+
+/*----------------------------------------File Upload Agent---------------------------------------*/
+
+.FUASaveButton {
+    height: 25px;
+    width: 80px;
+    background-color: #32323a;
+    color:#fff;
+    font-size: 12px;
+    float:left;
+    border:1px solid #32323a;
+    margin-left: 20px;
+    border-radius: 3px;
+}
+
+.FUAChooseFileButton {
+    border-radius: 3px;
+    height: 17px;
+    width: 130px;
+    margin:0 25px;
+    font-size: 9px;
+}
+
+.TouchUpButtonStyle {
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.inspectionButtonStyle {
+    margin-left: 120px; 
+}
+
+.inspectionStyle {
+    margin-left: 0px;
+}
+
+.FUSixContentPart {
+    padding-top: 10px;
+    background-color: #fff;
+    color:#a9a9a9;
+    height: 60px;
+    width: 750px;
+    font-size: 12px;
+    margin-left: 23px; 
+    border-bottom:1px #eeeeee solid;
+}
+
+.storageButtonStyle {
+    margin-left: 215px;
+}
+
+.storageInputFileStyle {
+    float: left;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+
+
+/*----------------------------------create member admin-------------------------------------------*/
+
+.CMATitle {
+    padding:5px 0 5px 0;
+    margin-top:54px;
+    margin-left: 18px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 700px;
+    height:42px;
+} 
+.CMAInputPart {
+    padding-top: 20px;
+    background-color: #fff;
+    color:#868686;
+    height: 350px;
+    width: 700px;
+    font-size: 12px;
+    margin-left: 18px;
+}
+
+.CMACreate {
+    float:left;
+    padding-left: 20px;
+    margin-top: 30px;
+}
+
+.CMACreateButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+}
+
+.CMAOneLineDiv {
+    display: relative;
+    height: 75px;
+    padding: 0px;
+    margin: 0px;
+    vertical-align:middle;
+    padding:10px 0 0 0;
+    font-size: 12px;
+}
+
+.CMAInput {
+    font-size:12px;
+    width: 200px;
+}
+
+.CMARadioButtonPart {
+    float: left;
+    clear: none;
+}
+
+.CMASelectPart {
+    margin:-30px 0 0 280px;
+    width: 200px;
+}
+
+.CMASelect {
+    width: 200px;
+}
+
+input.CMARadioButton {
+    height: 15px;
+    width: 15px;
+    padding-top: 5px !important;
+}
+
+
+/*-------------------------------create new supplier admin--------------------*/
+.CNSTitle {
+        padding:5px 0 5px 0;
+        margin-top:54px;
+        margin-left: 18px;
+        background-color: #fff;
+        border-left:5px #0068b7 solid;
+        border-bottom:1px #eeeeee solid;
+        width: 650px;
+    }
+
+.CNSInputPart {
+    padding-top: 20px;
+    background-color: #fff;
+    color:#808080;
+    height: 390px;
+    width: 650px;
+    font-size: 12px;
+    margin-left: 18px;
+}
+
+.CNSOneLineDiv {
+    display: relative;
+    height: 90px;
+    margin: 0px;
+    vertical-align:middle;
+    padding:10px 0 0 0;
+    font-size: 12px;
+    margin-left: 23px;
+}
+
+.subTitle h5{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color:#616161;
+    margin-left: 0px;
+}
+
+.CNSSuppliceNamePart {
+    width: 120px; 
+    float: left;
+}
+
+.CNSSuppliceName {
+    font-size:12px; 
+    height:30px;
+    width: 120px;
+}
+
+.CNSSelectServerType {
+    margin-left: 20px;
+    float: left;
+}
+
+.CNSSelectServerType select {
+    border-radius: 3px; 
+    height: 30px;
+    width: 210px;
+}
+
+.CNSHSTNumberPart {
+    margin-left: 20px;
+    float: left;
+}
+
+.CNSHSTNumber {
+    height: 30px;
+    width: 170px;
+}
+
+.CNSContantInfo {
+    margin-left: 0px;
+    width: 210px;
+    float:left;
+}
+
+.CNSPriceInfo {
+    display: relative;
+    float: left;
+    margin-left: 20px;
+    width: 350px;
+}
+
+.CNSContactInput {
+    height: 30px;
+    width: 210px;
+}
+
+.CNSSelectPriceUnit {
+    width: 120px;
+    float: left;
+}
+
+.CNSPriceUnitSelect {
+    height: 30px;
+    width: 120px !important;
+}
+
+.CNSPricePerUintInput {
+    height: 30px;
+    width: 170px;
+}
+
+.CNSPricePerUnit {
+    float: left;
+    margin-left: 20px;
+    width: 180px;
+}
+
+.CNSMinimumPaymentInput {
+    width: 120px;
+    height: 30px;
+}
+
+.CNSSpace {
+    height: 63px;
+}
+
+.CNSCreateButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 120px;
+    margin-left: 50px;
+}
+
+
+
+/*----------------------------------------edit account admin--------------------------------*/
+
+
+/*------------------------------edit supplier admin----------------------------------------*/
+.ESAPriceInfoLineOne {
+    display: relative;
+    width: 350px;
+}
+
+.ESAPriceUnitSelect {
+    float: left;
+    width: 120px;
+    height: 30px;
+}
+
+.ESAPricePerUnit {
+    float: left;
+    margin-left: 20px;
+}
+.ESAPricePerUintInput {
+    width: 210px;
+    height: 30px;
+}
+
+.ESACondo {
+    float: left;
+}
+
+.ESACondoInput {
+    width: 80px;
+    height: 30px;
+}
+
+.ESATownhouse {
+    float: left;
+    margin-left: 10px;
+}
+
+.ESATownhouseInput {
+    width: 80px;
+    height: 30px;
+}
+
+.ESASemi {
+    float: left;
+    margin-left: 10px;
+}
+
+.ESASemiInput {
+    width: 80px;
+    height: 30px;
+}
+
+.ESADetached {
+    float: left;
+    margin-left: 10px;
+}
+
+.ESADetachedInput {
+    width: 80px;
+    height: 30px;
+}
+
+.ESAPaymentTeam {
+    float:left;
+    width: 120px;
+}
+
+.ESAOthers {
+    margin-left: 20px;
+    float: left;
+    width: 210px;
+}
+
+
+.ESAUpdateButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+    margin-left: -10px;
+    float: left;
+}
+
+.ESADeleteButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+    margin-left:20px; 
+}
+
+.ESASpace {
+    margin-top: 17px;
+}
+
+
+/*-------------------------------------files admin----------------------------------------*/
+
+
+.FATitle {
+    padding:5px 0 5px 0;
+    margin-top:54px;
+    margin-left: 19px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 900px;
+    height:42px;
+}
+
+.FASubTitle {
+    font-size: 12px;
+}
+
+.titleSize a:link {
+    text-decoration: none;
+}
+
+.titleSize a:link{
+    color:#000;
+    text-decoration:none;
+}
+
+.titleSize a:visited{
+    color:#0068b7;
+    text-decoration:none;
+}
+
+.titleSize a:hover{
+    color:#0068b7;
+    text-decoration:none;
+}
+
+.titleSize a:active{
+    color:#0068b7;
+    text-decoration:none;
+}
+
+.arrow-up {
+    width:0; 
+    height:0; 
+    border-left:3px solid transparent;
+    border-right:3px solid transparent;
+    border-bottom:6px solid #a9a9a9;
+    display: inline-block;
+}
+    
+.arrow-down {
+    width:0; 
+    height:0; 
+    border-left:3px solid transparent;
+    border-right:3px solid transparent;
+    border-top:6px solid #a9a9a9;
+    display: inline-block;
+}
+
+.FATable {
+    width: 900px !important;
+    margin-left: 19px;
+    text-align: center;
+    font-size: 12px;
+    background-color: #ffffff;
+    color:#616161;
+}
+
+.FATable th , .FATable td{
+    height: 38px;
+    border-bottom: 1px #eeeeee solid;
+}
+
+.FATable th {
+    background-color: #f8f8f8;
+    color:#616161;
+    font-weight:bold;
+}
+
+.FATableHead {
+    width:120px;
+} 
+
+.FATableHeadSmall {
+   width:80px;
+}
+
+.FATableHeadLarge {
+    width: 140px;
+}
+
+.FATableHead a:link{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.FATableHead a:visited{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.FATableHead a:hover{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.FATableHead a:active{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.FAView a:link{
+    text-decoration:underline;
+}
+
+.FAView a:visited{
+    text-decoration:underline;
+}
+
+.FAView a:hover{
+    text-decoration:underline;
+}
+
+.FAView a:active{
+    text-decoration:underline;
+}
+
+.FAPageNum {
+    height: 38px;
+    width: 900px;
+    margin-left: 19px;
+    text-align: center;
+    background-color: #fff;
+
+}
+
+.FAPageNum a:link{
+    color:#6f6f6f;
+    text-decoration:underline;
+}
+
+.FAPageNum a:visited{
+    color:#6f6f6f;
+    text-decoration:underline;
+}
+
+.FAPageNum a:hover{
+    color:#6f6f6f;
+    text-decoration:underline;
+}
+
+.FAPageNum a:active{
+    color:#6f6f6f;
+    text-decoration:underline;
+}
+
+.FAPageNum span{
+    line-height:38px;
+    text-align:center;
+}
+
+
+
+/*---------------------------------member info admin -----------------------------------*/
+
+.MIATitle {
+    padding:5px 0 5px 0;
+    margin-top:54px;
+    margin-left: 18px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 700px;
+} 
+
+.MIATableHeader {
+    background-color: #ddd；
+    width:120px;
+}
+
+.MIATable {
+    width: 700px !important;
+    margin-left: 18px;
+    text-align: left;
+    font-size: 12px;
+    background-color: #ffffff;
+    border-bottom: 1px #eeeeee solid;
+}
+
+.MIATable th {
+    background-color: #f8f8f8;
+    text-align: left;
+    height: 38px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.MIATable td {
+    background-color: #fff;
+    text-align: left;
+    height: 38px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.MIATable a:link{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MIATable a:visited{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MIATable a:hover{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MIATable a:active{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MIATableFirstLine {
+    padding-left: 20px;
+}
+
+.MIAPageNum {
+    height: 38px;
+    width: 700px;
+    margin-left: 18px;
+    text-align: center;
+    background-color: #fff;
+    line-height:38px;
+}
+
+.MIAPageNum a:link{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.MIAPageNum a:visited{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.MIAPageNum a:hover{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.MIAPageNum a:active{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.MIADective a:link{
+    text-decoration:none;
+}
+
+.MIADective a:visited{
+    text-decoration:none;
+}
+
+.MIADective a:hover{
+    text-decoration:none;
+}
+
+.MIADective a:active{
+    text-decoration:none;
+}
+
+
+/*--------------------------------------info Center admin--------------------------------------*/
+.ICATitle {
+    padding:5px 0 5px 0;
+    margin-top:54px;
+    margin-left: 18px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 900px;
+    height:42px;
+}
+.ICATopNav {
+    background-color: #f8f8f8;
+    height: 38px;
+    width: 900px;
+    text-align: center;
+    margin-left: 18px;
+    line-height:38px;
+}
+
+.ICATopNav a:link {
+    text-decoration: none;
+    color:#32323a;
+} 
+
+.ICATopNav a:visited {
+    text-decoration: underline;
+}
+
+.ICATopNav a:hover {
+    text-decoration: underline;
+    color:#0068b7;
+}
+
+.ICATopNav a:active {
+    text-decoration: none;
+}
+
+.ICATopNav a {
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-bottom: 10px;
+    color:#a9a9a9;
+}
+
+.ICATable {
+    width: 900px;
+    text-align: left;
+    background-color: #fff !important;
+    margin-left: 18px;
+}
+
+.ICATable th {
+    border-bottom: 1px #eeeeee solid;
+    height: 38px;
+    color:#616161;
+    text-align: left;
+}
+
+.ICATable td {
+    border-bottom: 1px #eeeeee solid;
+    height: 38px;
+}
+
+.ICATablePadding {
+    padding-left: 20px;
+}
+
+.ICAPageNum {
+    width: 900px;
+    text-align: center;
+    height: 38px;
+    background-color: #fff;
+    margin-left: 18px;
+    line-height:38px;
+}
+
+.ICAPageNum a:link{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.ICAPageNum a:visited{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.ICAPageNum a:hover{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.ICAPageNum a:active{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.ICATTableWidth  {
+    width:170px;
+}
+
+.ICATableSmallWidth {
+   width:100px;
+}
+
+
+/*------------------------files accountant----------------------------------------*/
+.FACTable {
+    background-color: #fff;
+    width: 900px;
+    margin-left: 18px;
+}
+
+.FACTable th {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eeeeee;
+    height: 38px !important;
+    color:#616161;
+    text-align:left;
+}
+
+.FACTable td {
+    border-bottom: 1px #eeeeee solid;
+    height: 38px;
+}
+
+.FACTable a:link{
+    color:#a9a9a9;
+    text-decoration:none;
+}
+
+.FACTable a:visited{
+    color:#a9a9a9;
+    text-decoration:none;
+}
+
+.FACTable a:hover{
+    color:#a9a9a9;
+    text-decoration:none;
+}
+
+.FACTable a:active{
+    color:#a9a9a9;
+    text-decoration:none;
+}
+
+.FACTableHeader {
+    width: 135px;
+}
+
+.FACTableHeaderLarge {
+    width: 160px;
+}
+
+.FACTableHeaderSmall {
+    width: 60px;
+}
+.FACCheckBox {
+    width: 10px;
+    height:10px;
+    margin-left:20px !important;
+}
+
+.FACDownload {
+   letter-spacing: 1px;
+}
+
+.FACDownload a {
+    color: #0068b7 !important;
+    text-decoration:underline!important;
+    letter-spacing:0.1px;
+    font-size:11px !important;
+}
+
+.FACPageNum {
+    height: 38px;
+    width: 900px;
+    margin-left: 18px;
+    text-align: center;
+    background-color: #fff;
+    line-height:38px;
+}
+
+.FACPageNum a:link{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.FACPageNum a:visited{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.FACPageNum a:hover{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.FACPageNum a:active{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.FACTableMargin {
+    padding-left: 20px;
+}
+
+.ICATitle a {
+    font-size: 11px;
+    margin-left: 600px;
+    text-decoration: underline;
+    letter-spacing:0.1px;
+}
+.ICATitleSize {
+    font-size: 20px;
+    margin:0px;
+    padding-left:23px;
+}
+
+/*-----------------------------------case details agent----------------------------------*/
+
+.CDATitle {
+    padding:5px 0 5px 0;
+    margin-top:89px;
+    margin-left: 23px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 750px;
+}
+
+.CDANormalTitle {
+    padding:5px 0 5px 0;
+    margin-top:10px;
+    margin-left: 23px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 750px; 
+}
+
+.CDATable {
+    width: 750px!important;
+    margin-left: 23px;
+    background-color: #fff;
+}
+
+.CDATable th {
+    border-bottom: 1px #eeeeee solid;
+    height: 30px !important;
+    border-right:1px #000 solid;
+    width: 120px;
+    background-color: #eeeeee;
+    color:#a9a9a9;
+}
+.CDATable td {
+    border-bottom: 1px #eeeeee solid;
+    height: 30px!important;
+    width: 120px;
+    color:#a9a9a9;
+}
+.CDATableFirstLine {
+    width: 80px !important;
+}
+
+.CDACheckBox {
+    width: 15px;
+    height: 15px;
+    margin-left: 40px !important;
+}
+
+.CDASelect {
+    height: 20px !important;
+    width: 120px !important;
+    margin-left: 5px;
+}
+
+.CDAInput {
+    height: 20px !important;
+    width: 120px !important;
+    margin-left: 5px;
+}
+
+.CDALink a{
+    letter-spacing: 0.1px !important;
+}
+
+.CDALink {
+    width: 140px !important;
+}
+
+.CDATableStatus {
+    text-align: center;
+}
+
+.CDATableStatus a{
+    letter-spacing: 0.1px !important;
+}
+
+.CDAfinancial {
+    height: 30px;
+    width: 750px;
+    background-color: #eeeeee;
+    margin-left: 23px;
+    padding-left: 50px;
+}
+
+.CDASpace {
+    height: 30px;
+    width: 750px;
+    background-color: #fff;
+    margin-left: 23px;
+}
+
+.CDACalculateButton {
+    border-radius: 5px;
+    background-color: #fff;
+    border: #32323a;
+    color:#32323a;
+    font-weight: 100px;
+    height: 30px;
+    width: 120px;
+    border:1px #32323a solid;
+    margin-left: 100px;
+}
+
+.CDASubmitButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 120px;
+}
+
+
+/*--------------------------------------------------estimation agent -----------------------------------*/
+
+.ESTATablePart {
+    float: left;
+    width: 400px;
+    margin-left: 0px;
+}
+
+.ESTATable-style {
+    width: 300px !important;
+}
+
+.ESTATable-style td{
+    color:#898989;
+    border-bottom: 2px #eeeeee solid !important;
+    height: 38px;
+}
+
+.ESRASelectPart {
+    width: 600px;
+    height: 70px;
+    background: #f8f8f8;
+    margin-left:18px;
+}
+
+.ESTAInputPart {
+    background-color: #fff;
+    color:#898989;
+    height: 300px;
+    width: 600px;
+    font-size: 12px;
+    margin-left: 18px;
+}
+
+.ESTACheckBox {
+    width: 15px;
+    height: 15px;
+    margin-left: 40px !important;
+}
+.ESTASpaceOne {
+    width: 600px;
+    height: 38px;
+    line-height:38px;
+    background-color: #f8f8f8;
+}
+
+.ESTATotalCostStyle {
+    margin-left: 40px;
+    font-size: 12px;
+}
+
+.ESRAOneLineDiv {
+    display: relative;
+    height: 90px;
+    margin: 0px;
+    vertical-align:middle;
+    padding:10px 0 0 20px;
+    font-size: 12px;
+    margin-left: 23px;
+    color: #898989;
+}
+
+.ESRAHouseSize {
+    font-size:12px; 
+    height:30px;
+    width: 120px;
+}
+
+.ESRAHouseSizePart {
+    width: 120px; 
+    float: left;
+}
+
+.ESRASelectPropertyType {
+    margin-left: 20px;
+    float: left;
+}
+
+.ESRAButtonPart {
+    margin-left: 20px;
+    float: left;
+}
+
+.EDTASubmitButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+}
+
+.EDTAClearButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+}
+
+/*--------------------------------------- my case admin----------------------------------*/
+
+.MCATitle {
+    padding:5px 0 5px 0;
+    margin-top:54px;
+    margin-left: 18px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 700px;   
+}
+
+.MCATable td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left !important;
+    height: 50PX;
+}
+
+.MCATable {
+    width: 700px !important;
+    margin-left: 18px;
+    text-align: center;
+    font-size: 12px;
+    background-color: #ffffff;
+}
+
+.MCATable th , .MCATable td{
+    height: 50px;
+    border-bottom: 1px #eeeeee solid;
+}
+
+.MCATable th {
+    background-color: #f8f8f8;
+    text-align: left;
+}
+
+.MCATableHead {
+    width:120px;
+} 
+
+.MCATableHeadSmall {
+   width:80px;
+}
+
+.MCATableHeadLarge {
+    width: 140px;
+}
+
+.MCATableHead a:link{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MCATableHead a:visited{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MCATableHead a:hover{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MCATableHead a:active{
+    color:#32323a;
+    text-decoration:none;
+}
+
+.MCAView a:link{
+    text-decoration:underline;
+}
+
+.MCAView a:visited{
+    text-decoration:underline;
+}
+
+.MCAView a:hover{
+    text-decoration:underline;
+}
+
+.MCAView a:active{
+    text-decoration:underline;
+}
+
+..MCAView a{
+    text-decoration:underline;
+}
+
+.MCAPageNum {
+    height: 50px;
+    width: 700px;
+    margin-left: 18px;
+    text-align: center;
+    line-height:50px;
+    background-color: #fff;
+}
+
+.MCAPageNum a:link{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.MCAPageNum a:visited{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.MCAPageNum a:hover{
+    color:#898989;
+    text-decoration:underline;
+}
+
+.MCAPageNum a:active{
+    color:#898989;
+    text-decoration:underline;
+}
+.MCATableFirstLine {
+    padding-left: 20px;
+}
+
+/*--------------------------------setting page admin----------------------------------------*/
+
+.SETTINGInputPart {
+    padding-top: 20px;
+    background-color: #fff;
+    color:#808080;
+    height: 400px;
+    width: 600px;
+    font-size: 12px;
+    margin-left: 18px;
+}
+
+.SETTINGNewPasswordPart {
+    float: left;
+    margin-left: 10px;
+}
+
+.SETTINGUpDate {
+    float:left;
+    margin-left: 45px;
+    margin-top: -87px;
+}
+
+.SETTINGUpDateButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+}
+
+.SETTINGConfirmPart {
+    float:left;
+    margin-top: 0px;
+}
+
+.SETTINGConfirmButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 100px;
+}
+.SETTINGSubTitle h5{
+    margin-top: 3px;
+    margin-bottom: 2px;
+    color:#808080;
+}
+
+.SETTINGInputContent {
+    position:relative;
+}
+
+.SETTINGRetypePassword {
+    margin-left: 10px;
+    float: left;
+}
+
+.SETTINGChangeInfo {
+    display: block;
+    padding-top: 0px;
+    margin-left: 20px;
+    width: 250px;
+}
+
+.SETTINGOldPasswordPart{
+    float: left;
+}
+
+.SETTINGOldPassword {
+    width: 150px;
+    height: 30px;
+}
+
+.SETTINGTitle {
+    padding:5px 0 5px 0;
+    margin-top:54px;
+    margin-left: 18px;
+    background-color: #fff;
+    border-left:5px #0068b7 solid;
+    border-bottom:1px #eeeeee solid;
+    width: 600px;
+    height:42px;
+}
+
+.SETTINGOneLineDiv {
+    height: 80px;
+    padding: 0px;
+    margin: 0px;
+    vertical-align:middle;
+    padding:10px 0 0 0;
+    margin-left: 23px;
+}
+
+.SETTINGEmail {
+    font-size:12px; 
+    margin-bottom:10px; 
+    margin-top:10px; 
+    height:30px;
+    width: 180px;
+}
+
+.SETTINGMoveSpace {
+    margin-top:-20px;
+}
+

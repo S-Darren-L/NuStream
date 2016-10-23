@@ -849,7 +849,7 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $yardWordEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="yardWorkRealCost" value="' . $yardWorkServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td><?php echo $yardWorkServiceArray['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $yardWorkServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo '<input type="checkbox" name="inspectionCheckbox" value="checked" ' . $inspectionServiceArray['IsChecked'] . ' ' . $inspectionServiceArray['IsDisabled'] . '>'; ?></td>
@@ -872,7 +872,7 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $inspectionEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="inspectionRealCost" value="' . $inspectionServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td><?php echo $inspectionServiceArray['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $inspectionServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo '<input type="checkbox" name="storageCheckbox" value="checked" ' . $storageServiceArray['IsChecked'] . ' ' . $storageServiceArray['IsDisabled'] . '>' ;?></td>
@@ -895,7 +895,7 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $storageEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="storageRealCost" value="' . $storageServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td><?php echo $storageServiceArray['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $storageServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo '<input type="checkbox" name="relocateHomeCheckbox" value="checked" ' . $relocateHomeServiceArray['IsChecked'] . ' ' . $relocateHomeServiceArray['IsDisabled'] .'>'; ?></td>
@@ -918,7 +918,7 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $relocateHomeEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="relocateHomeRealCost" value="' . $relocateHomeServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td><?php echo $relocateHomeServiceArray['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $relocateHomeServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo '<input type="checkbox" name="photographyCheckbox" value="checked" ' . $photographyServiceArray['IsChecked'] . ' ' . $photographyServiceArray['IsDisabled'] . '>'; ?></td>
@@ -941,7 +941,7 @@ Template Name: Agent Case Details
                         </td>
                         <td style="text-align:center;"><?php echo $photographyEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="photographyRealCost" value="' . $photographyServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td><?php echo $photographyServiceArray['InvoiceStatus'] ?? '-'; ?></td>
+                        <td><?php echo $photographyServiceArray['InvoiceStatus']; ?></td>
                     </tr>
                     </tbody>
                 </table>

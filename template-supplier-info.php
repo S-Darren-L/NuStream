@@ -32,199 +32,12 @@
 ?>
 
 <!DOCTYPE html>
-<style type="text/css">
-
-	html, body {
-		margin:0;
-		padding:0;
-	}
-
-	#container {
-		margin-left: 230px;
-		_zoom: 1;
-	}
-
-	#nav {
-		float: left;
-		width: 230px;
-		height: 100%;
-		background: #32323a;
-		margin-left: -230px;
-		position:fixed;
-	}
-
-	#main{
-		height: 400px;
-	}
-
-	/* style icon */
-	.inner-addon .glyphicon {
-		position: absolute;
-		padding: 10px;
-		pointer-events: none;
-	}
-
-	/* align icon */
-	.left-addon .glyphicon {
-		left: 0px;
-	}
-
-	/* add padding  */
-	.left-addon input {
-		padding-left: 30px;
-	}
-
-	a {
-		letter-spacing: 1px;
-	}
-
-	.logo {
-		height: 120px;
-		width: 230px;
-		padding:20px 20px 20px 20px;
-		display: block;
-		background-color: #28282e;
-	}
-
-	.logo img {
-		width: 100%;
-	}
-
-	.nav-pills {
-		background-color: #32323a;
-		border-color: #030033;
-	}
-
-	.nav-pills > li > a {
-		color: #95a0aa; /*Change active text color here*/
-	}
-
-	.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-		color: #000;  /*Sets the text hover color on navbar*/
-	}
-
-	li {
-		border-bottom:1px #2a2a31 solid;
-	}
-
-	.footer {
-		position: absolute;
-		bottom:0px;
-		left:0;
-		right:0;
-		margin:0 auto;
-		text-align: center;
-	}
-
-	.copyRight {
-		color:white;
-	}
-
-	.formPart {
-		margin-right: 40px;
-		margin-left: 40px;
-		padding-top: 40px;
-	}
-
-	th {
-		color:#a9a9a9;
-		font-size:11px;
-		text-align:center;
-	}
-
-	td {
-		color:#a9a9a9;
-	}
-
-	.userNamePart {
-		color:white;
-		text-align: center;
-		margin-bottom: 20px;
-	}
-
-	.table td {
-		font-size:10px;
-		vertical-align: middle;
-	}
-
-	.table-striped {
-		width: 900px !important;
-		margin:0 auto;
-		padding-top: 0px;
-	}
-
-	.topNav {
-		height: 20px;
-		width: 900px;
-		margin: 10px auto;
-		background-color: #434343;
-		padding:10px 10px 25px 10px;
-		text-align: center;
-		font-size: 10px;
-	}
-
-	.topNav a:link {
-		text-decoration: none;
-		color:white;
-	}
-
-	.topNav a:visited {
-		text-decoration: underline;
-		color:white;
-	}
-
-	.topNav a:hover {
-		text-decoration: underline;
-		color:white;
-	}
-
-	.topNav a:active {
-		text-decoration: underline;
-		color:white;
-	}
-
-	.topNav a {
-		padding-left: 20px;
-		padding-right: 20px;
-		letter-spacing: 0px;
-		margin-bottom: 10px;
-	}
-
-	.pageNum {
-		text-align: center;
-	}
-
-	.pageNum a:link{
-		font-size: 8px;
-		color:black;
-		text-decoration:underline;
-	}
-
-	.pageNum a:visited{
-		color:black;
-		text-decoration:underline;
-	}
-
-	.pageNum a:hover{
-		color:black;
-		text-decoration:underline;
-	}
-
-	.pageNum a:active{
-		color:black;
-		text-decoration:underline;
-	}
-
-	.table a:link {
-		text-decoration: underline;
-	}
-</style>
-
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/pcStyles.css">
+	
 </head>
 <body>
 <div id="container">
@@ -232,27 +45,30 @@
 		include_once(__DIR__ . '/navigation.php');
 	?>
 	<div id="main">
-		<div class="formPart"><!-- There should be a dynamic table-->
-			<div class="topNav" style="color:white;">
+		<div class="formPart">
+                                <div class="ICATitle">
+					<p class="titleSize"><strong>SUPPLIER INFO</strong></p>
+				</div>
+			<div class="ICATopNav">
 				<?php
-					echo '<a href="' . $subMenuURL . "STAGING" . '" >', 'Stage</a>|';
-					echo '<a href="' . $subMenuURL . "PHOTOGRAPHY" . '" >', 'Photography</a>|';
-					echo '<a href="' . $subMenuURL . "CLEANUP" . '" >', 'Clean Up</a>|';
-					echo '<a href="' . $subMenuURL . "RELOCATEHOME" . '" >', 'Relocate Home</a>|';
-					echo '<a href="' . $subMenuURL . "TOUCHUP" . '" >', 'Touch Up</a>|';
-					echo '<a href="' . $subMenuURL . "INSPECTION" . '" >', 'Inspection</a>|';
-					echo '<a href="' . $subMenuURL . "YARDWORK" . '" >', 'Yard Work</a>|';
-					echo '<a href="' . $subMenuURL . "STORAGE" . '" >', 'Storage</a>';
+					echo '<a href="' . $subMenuURL . "STAGING" . '" >', 'STAGING</a>|';
+					echo '<a href="' . $subMenuURL . "PHOTOGRAPHY" . '" >', 'PHOTOGRAPHY</a>|';
+					echo '<a href="' . $subMenuURL . "CLEANUP" . '" >', 'ClEAN UP</a>|';
+					echo '<a href="' . $subMenuURL . "RELOCATEHOME" . '" >', 'RRLOCATE HOME</a>|';
+					echo '<a href="' . $subMenuURL . "TOUCHUP" . '" >', 'TOUCH UP</a>|';
+					echo '<a href="' . $subMenuURL . "INSPECTION" . '" >', 'INSPECTION</a>|';
+					echo '<a href="' . $subMenuURL . "YARDWORK" . '" >', 'YARD WORK</a>|';
+					echo '<a href="' . $subMenuURL . "STORAGE" . '" >', 'STORAGE</a>';
 				?>
 			</div>
-			<table class="table table-striped" style="margin-top:-10px;">
-				<thead style="background-color: #ffffff;">
+			<table class="ICATable">
+				<thead>
 				<tr>
-					<th>COMPANY NAME</th>
-					<th>PRICE</th>
-					<th>CONTACT NAME</th>
-					<th>CONTACT NUMBER</th>
-					<th>SUPPORT AREA</th>
+					<th class="ICATTableWidth ICATablePadding">COMPANY NAME</th>
+					<th class="ICATableSmallWidth">PRICE</th>
+					<th class="ICATTableWidth">CONTACT NAME</th>
+					<th class="ICATTableWidth">CONTACT NUMBER</th>
+					<th class="ICATTableWidth">SUPPORT AREA</th>
 					<th>DETAILS</th>
 				</tr>
 				</thead>
@@ -261,7 +77,7 @@
 					for($i = 0; $i < count($supplerBriefInfoArray); $i++) {
 						$supplierID = $supplerBriefInfoArray[$i]["SupplierID"];
 						echo '<tr>';
-							echo '<td >', $supplerBriefInfoArray[$i]["SupplierName"], '</td>';
+							echo '<td class="ICATablePadding">', $supplerBriefInfoArray[$i]["SupplierName"], '</td>';
 							echo '<td>', $supplerBriefInfoArray[$i]["PricePerUnit"], '</td>';
 							echo '<td>', $supplerBriefInfoArray[$i]["FirstContactName"], '</td>';
 							echo '<td>', $supplerBriefInfoArray[$i]["FirstContactNumber"], '</td>';
@@ -272,8 +88,11 @@
 				?>
 				</tbody>
 			</table>
-			<div class="pageNum"><a href="#">BACK</a>&nbsp;&nbsp;&nbsp;<a href="#">NEXT</a></div>
+			<div class="ICAPageNum"><a href="#">BACK</a>&nbsp;&nbsp;&nbsp;<a href="#">NEXT</a></div>
 		</div>
 	</div>
 </div>
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
