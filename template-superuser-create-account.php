@@ -8,81 +8,81 @@ Template Name: Superuser Create Account
 */
 
 
-// init Data
+    // init Data
 
-// Validate Mandatory Fields
-function date_validated()
-{
-    $firstName = test_input($_POST["firstName"]);
-    $lastName = test_input($_POST["lastName"]);
-    $contactNumber = test_input($_POST["contactNumber"]);
-    $email = test_input($_POST["email"]);
-    $isAdmin  = (int)$_POST["isAdmin"] == 'TRUE' ? true : false;
-    $isAdmin = test_input($isAdmin);
+    // Validate Mandatory Fields
+    function date_validated()
+    {
+        $firstName = test_input($_POST["firstName"]);
+        $lastName = test_input($_POST["lastName"]);
+        $contactNumber = test_input($_POST["contactNumber"]);
+        $email = test_input($_POST["email"]);
+        $isAdmin  = (int)$_POST["isAdmin"] == 'TRUE' ? true : false;
+        $isAdmin = test_input($isAdmin);
 
-    global $errorMessage;
-    global $isError;
-    if (empty($firstName) || empty($lastName) || empty($contactNumber) || empty($email) || empty($isAdmin)) {
-        $errorMessage = "Mandatory fields are empty";
-        $isError = true;
-        return false;
-    } else {
-        $errorMessage = null;
-        $isError = false;
-        return true;
-    }
-}
-
-// Create Account
-if(isset($_POST['create_account']) && date_validated() === true) {
-    // Generate Password
-    $password = generate_password();
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $contactNumber = $_POST['contactNumber'];
-    $email = $_POST['email'];
-    $isAdmin = $_POST['isAdmin'] == 'TRUE' ? true : false;
-
-    // Check if account exist
-    $isAccountExistResult = is_account_exist($email);
-    $isAccountExistResultRow = mysqli_fetch_array($isAccountExistResult);
-    if(!is_null($isAccountExistResultRow)){
-        $errorMessage = "Email already exist";
-        $isError = true;
-    }
-    else{
-        $errorMessage = null;
-        $isError = false;
-        // Create Account
-        $createAccountArray = array (
-            "password" => $password,
-            "firstName" => $firstName,
-            "lastName" => $lastName,
-            "contactNumber" => $contactNumber,
-            "email" => $email,
-            "isAdmin" => $isAdmin
-        );
-
-        $createAccountResult = superuser_create_account($createAccountArray);
-        $result_rows = [];
-        while($row = mysqli_fetch_array($createAccountResult))
-        {
-            $result_rows[] = $row;
-        }
-        $accountID = $result_rows[0]["LAST_INSERT_ID()"];
-
-        // Send User Password By Email
-        if(!is_null($accountID)){
-            $sendEmailResult = send_user_password($email, $firstName, $lastName,$password);
-        }
-
-        // Navigate
-        if(!is_null($accountID)){
-            $url = get_home_url() . '/superuser-member-info';
-            echo("<script>window.location.assign('$url');</script>");
+        global $errorMessage;
+        global $isError;
+        if (empty($firstName) || empty($lastName) || empty($contactNumber) || empty($email) || empty($isAdmin)) {
+            $errorMessage = "Mandatory fields are empty";
+            $isError = true;
+            return false;
+        } else {
+            $errorMessage = null;
+            $isError = false;
+            return true;
         }
     }
-}
+
+    // Create Account
+    if(isset($_POST['create_account']) && date_validated() === true) {
+        // Generate Password
+        $password = generate_password();
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $contactNumber = $_POST['contactNumber'];
+        $email = $_POST['email'];
+        $isAdmin = $_POST['isAdmin'] == 'TRUE' ? true : false;
+
+        // Check if account exist
+        $isAccountExistResult = is_account_exist($email);
+        $isAccountExistResultRow = mysqli_fetch_array($isAccountExistResult);
+        if(!is_null($isAccountExistResultRow)){
+            $errorMessage = "Email already exist";
+            $isError = true;
+        }
+        else{
+            $errorMessage = null;
+            $isError = false;
+            // Create Account
+            $createAccountArray = array (
+                "password" => $password,
+                "firstName" => $firstName,
+                "lastName" => $lastName,
+                "contactNumber" => $contactNumber,
+                "email" => $email,
+                "isAdmin" => $isAdmin
+            );
+
+            $createAccountResult = superuser_create_account($createAccountArray);
+            $result_rows = [];
+            while($row = mysqli_fetch_array($createAccountResult))
+            {
+                $result_rows[] = $row;
+            }
+            $accountID = $result_rows[0]["LAST_INSERT_ID()"];
+
+            // Send User Password By Email
+            if(!is_null($accountID)){
+                $sendEmailResult = send_user_password($email, $firstName, $lastName,$password);
+            }
+
+            // Navigate
+            if(!is_null($accountID)){
+                $url = get_home_url() . '/superuser-member-info';
+                echo("<script>window.location.assign('$url');</script>");
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
