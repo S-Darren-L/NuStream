@@ -90,6 +90,34 @@
         $setCookieResult = setcookie($cookieName, $cookieValue, $expiry, '/', $_SERVER['SERVER_NAME'], false, false);
     }
 
+    // Reset Password
+    if(isset($_POST['reset_password'])) {
+        $email = $_POST['email'];
+        // Check if account exist
+        $isAccountExistResult = is_account_exist($email);
+        $isAccountExistResultRow = mysqli_fetch_array($isAccountExistResult);
+        if (!is_null($isAccountExistResultRow)) {
+            $errorMessage = null;
+            $isError = false;
+
+            // Generate Password
+            $password = generate_password();
+            $forgetPasswordArray = array(
+                "accountID" => $isAccountExistResultRow['AccountID'],
+                "password" => $password
+            );
+            $forgetPasswordResult = forget_password($forgetPasswordArray);
+
+            if(!is_null($forgetPasswordResult)){
+                // Send User Password By Email
+                $sendEmailResult = send_user_new_password($email, $isAccountExistResultRow['FirstName'], $isAccountExistResultRow['LastName'], $password);
+            }
+        } else {
+            $errorMessage = "Email does not exist";
+            $isError = true;
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <style>
@@ -279,8 +307,6 @@
                 </div>';
                 }
             ?>
-        </form>
-        <form method="post">
         <div class="FPassword"><a data-toggle="modal" data-target="#myModal"<!--href="<?php echo $forgetPasswordPath; ?>"-->Forgot password?</a></div>
         <form>
 
