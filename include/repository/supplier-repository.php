@@ -133,4 +133,17 @@
         return $result;
     }
 
+    // Get Supplier Name By Id
+    function get_supplier_name_by_id_request($supplierID){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT SupplierName FROM suppliers WHERE SupplierID='$supplierID' AND IsActivate=TRUE LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+
+        return $result;
+    }
+
 ?>

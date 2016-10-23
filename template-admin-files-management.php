@@ -16,7 +16,11 @@ Template Name: Admin Files Management
     }
     // Init
     $allServices = array();
-    $allServices = get_all_services($serviceStatus);
+    if($serviceStatus !== 'Final'){
+        $allServices = get_all_services($serviceStatus);
+    }else{
+        $allServiceArray = get_all_cases();
+    }
 
     // Get All Services By Status
     function get_all_services($serviceStatus){
@@ -37,9 +41,29 @@ Template Name: Admin Files Management
         return $allServices;
     }
 
+    // Get All Closed Cases
+    function get_all_cases(){
+        $allServicesResult = get_all_closed_cases();
+        //        $allServiceArray = mysqli_fetch_array($allServicesResult);
+        foreach ($allServicesResult as $case)
+        {
+            $accountResult = mysqli_fetch_array(get_agent_account($case['StaffID']));
+            $case['MemberName'] = $accountResult['FirstName'] . $accountResult['LastName'];
+            $teamResult = mysqli_fetch_array(get_team_by_team_id($accountResult['TeamID']));
+            $case['TeamLeaderName'] = $teamResult['TeamLeaderName'];
+            $allServiceArray[] = $case;
+        }
+        return $allServiceArray;
+    }
+
     // Download FIle
     if(isset($_GET['File'])){
         download_file($_GET['File']);
+    }
+    if(isset($_GET['Files'])){
+        echo "zip";
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $_GET['Files'] . DIRECTORY_SEPARATOR . "finalReport";
+        create_zip($uploadPath);
     }
 ?>
 
@@ -59,7 +83,7 @@ Template Name: Admin Files Management
         <div class="formPart">
             <div class="FATitle"><p class="titleSize"><strong>CREATE NEW SUPPLIER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <?php
-                    echo '<a class="FASubTitle" href="' . $subMenuURL . '' . '">All Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Pending" . '">&nbsp;&nbsp;Pending Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Approved" . '">&nbsp;&nbsp;Approved Files&nbsp;&nbsp;</a>';
+                    echo '<a class="FASubTitle" href="' . $subMenuURL . '' . '">All Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Pending" . '">&nbsp;&nbsp;Pending Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Approved" . '">&nbsp;&nbsp;Approved Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Final" . '">&nbsp;&nbsp;Final Reports&nbsp;&nbsp;</a>';
                 ?></strong></p>
             </div>
             <section ng-app="app" ng-controller="MainCtrl">
@@ -81,35 +105,56 @@ Template Name: Admin Files Management
                             <a href="#" ng-click="orderByField='UPLOADDATE'; reverseSort = !reverseSort">UPLOAD DATE <!--<span ng-show="orderByField == 'UPLOADDATE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>-->
                             </a>
                         </th>
+                        <?php
+                        if($serviceStatus !== 'Final'){
+                            echo '
                         <th class="FATableHead">
-                            <a href="#" ng-click="orderByField='SERVICETYPE'; reverseSort = !reverseSort">SERVICE TYPE <!--<span ng-show="orderByField == 'SERVICETYPE'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>-->
+                            <a href="#" ng-click="orderByField=\'SERVICETYPE\'; reverseSort = !reverseSort">SERVICE TYPE <!--<span ng-show="orderByField == \'SERVICETYPE\'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>-->
                             </a>
-                        </th>
+                        </th>';
+                        }
+                        ?>
                         <th class="FATableHead FATableHeadLarge">
                             <a href="#" ng-click="orderByField='PRICEBEFFORETAX'; reverseSort = !reverseSort">PRICE BEFFORE TAX <!--<span ng-show="orderByField == 'PRICEBEFFORETAX'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>-->
                             </a>
                         </th>
                         <th  class="FATableHead FATableHeadSmall">
                             <a href="#">INVOICE</a>
-                        </th>
+                        </th><?php
+                        if($serviceStatus !== 'Final'){
+                            echo '
                         <th  class="FATableHead FATableHeadSmall">
                             <a href="#">STATUS</a>
-                        </th>
+                        </th>';
+                            }
+                        ?>
                     </tr>
                     </thead>
                     <tbody>
                     <form method="post">
                         <?php
-                        for($i = 0; $i < count($allServices); $i++) {
-                            echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
-                            echo '<td>', '<a href="' . $homeURL . '/admin-case-details/?CID=' . $allServices[$i]['MLS'] . '" />', $allServices[$i]['MLS'], '</td>';
-                            echo '<td>', $allServices[$i]['MemberName'], '</td>';
-                            echo '<td>', $allServices[$i]['TeamLeaderName'], '</td>';
-                            echo '<td>', $allServices[$i]['StartDate'], '</td>';
-                            echo '<td>', $allServices[$i]['SupplierType'], '</td>';
-                            echo '<td>', $allServices[$i]['RealCost'], '</td>';
-                            echo '<td>', '<a href="' . $subMenuURL . $serviceStatus . '&File=' . $allServices[$i]["File"] . '">DOWNLOAD</a>', '</td>';
-                            echo '<td>', $allServices[$i]['InvoiceStatus'], '</td>';
+                        if($serviceStatus !== 'Final') {
+                            for($i = 0; $i < count($allServices); $i++) {
+                                echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
+                                echo '<td>', '<a href="' . $homeURL . '/admin-case-details/?CID=' . $allServices[$i]['MLS'] . '" />', $allServices[$i]['MLS'], '</td>';
+                                echo '<td>', $allServices[$i]['MemberName'], '</td>';
+                                echo '<td>', $allServices[$i]['TeamLeaderName'], '</td>';
+                                echo '<td>', $allServices[$i]['StartDate'], '</td>';
+                                echo '<td>', $allServices[$i]['SupplierType'], '</td>';
+                                echo '<td>', $allServices[$i]['RealCost'], '</td>';
+                                echo '<td>', '<a href="' . $subMenuURL . $serviceStatus . '&File=' . $allServices[$i]["File"] . '">DOWNLOAD</a>', '</td>';
+                                echo '<td>', $allServices[$i]['InvoiceStatus'], '</td>';
+                            }
+                        }else{
+                            for($i = 0; $i < count($allServiceArray); $i++) {
+                                echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
+                                echo '<td>', $allServiceArray[$i]['MLS'], '</td>';
+                                echo '<td>', $allServiceArray[$i]['MemberName'], '</td>';
+                                echo '<td>', $allServiceArray[$i]['TeamLeaderName'], '</td>';
+                                echo '<td>', $allServiceArray[$i]['StartDate'], '</td>';
+                                echo '<td>', $allServiceArray[$i]['FinalPrice'], '</td>';
+                                echo '<td>', '<a href="' . $subMenuURL . 'Final' . '/&Files=' . $allServiceArray[$i]['MLS'] . '">DOWNLOAD</a>', '</td>';
+                            }
                         }
                         ?>
                     </form>

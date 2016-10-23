@@ -123,57 +123,116 @@
         return $sendEmailResult;
     }
 
+    //Demo
+    // Combine Files
+    function combine_files()
+    {
+        require_once('fpdf/fpdf.php');
+        require_once('fpdi/fpdi.php');
+
+        // Set URL
+        $homeURL = get_home_url();
+
+        $pdf = new FPDI();
+
+        $pdf->setSourceFile("C:\Users\Darren\Desktop\9408110466.pdf");
+        $tplIdxA = $pdf->importPage(1, '/MediaBox');
+
+        $pdf->setSourceFile("C:\Users\Darren\Desktop\generatedPDF.pdf");
+        $tplIdxB = $pdf->importPage(1, '/MediaBox');
+
+        $pdf->addPage();
+        // place the imported page of the first document:
+        $pdf->useTemplate($tplIdxA, 0, 0, 200, 280);
+        $pdf->addPage();
+        // place the imported page of the snd document:
+        $pdf->useTemplate($tplIdxB, 0, 0, 200, 280);
+
+        $uploadPath = "wp-content/themes/NuStream/Upload/";
+        $filename = $uploadPath . "test.pdf";
+        $pdf->Output($filename, 'F');
+        //        $pdf->Output();
+    }
+
     // Combine Case Report Invoices
-    function combine_case_report_invoices($reportInvoicesArray){
+    function combine_case_report_invoices($reportInvoicesArray, $MLS){
         foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
-            $reportInvoiceFile = strtolower($reportInvoiceFile);
-            $allowedImagesType =  array('png' ,'jpg');
-            $allowedFilesType ='pdf';
-            $ext = pathinfo($reportInvoiceFile, PATHINFO_EXTENSION);
-            if(in_array($ext, $allowedImagesType)){
-                // Convert Image to PDF
-                $reportInvoiceFile = convert_image_to_pdf($reportInvoiceFile);
-                $reportInvoicesArray[$reportInvoiceKey] = $reportInvoiceFile;
-            }else if($ext === $allowedFilesType){
-                // Is PDF File, Do Nothing
-            }else{
-                // TODO: File Type Is Not Supported
+            if(!empty($reportInvoiceFile)){
+                $reportInvoiceFile = strtolower($reportInvoiceFile);
+                $allowedImagesType =  array('png' ,'jpg');
+                $allowedFilesType ='pdf';
+                $ext = pathinfo($reportInvoiceFile, PATHINFO_EXTENSION);
+                if(in_array($ext, $allowedImagesType)){
+                    // Convert Image to PDF
+                    $reportInvoiceFile = convert_image_to_pdf($reportInvoiceFile, $MLS);
+                    $reportInvoicesArray[$reportInvoiceKey] = $reportInvoiceFile;
+                }else if($ext === $allowedFilesType){
+                    // Is PDF File, Do Nothing
+                }else{
+                    // TODO: File Type Is Not Supported
+                }
             }
         }
         try {
-            $reportInvoicesFile = combine_pdf_array($reportInvoicesArray);
+            $reportInvoicesFile = combine_pdf_array($reportInvoicesArray, $MLS);
+            // If Succeed, Remove Temp Files
+            if(!is_null($reportInvoiceFile)){
+                try {
+                    remove_temp_files($reportInvoicesArray);
+                }
+                catch (Exception $e){
+
+                }
+            }
         }catch(Exception $e) {
             echo "Unable combine all PDFs, some file types are not supported";
         }
         return $reportInvoicesFile;
     }
 
+    // Remove Temp Files
+    function remove_temp_files($reportInvoicesArray){
+        foreach ($reportInvoicesArray as $reportInvoiceKey => $reportInvoiceFile) {
+            if (!is_null($reportInvoiceFile)) {
+                $removeBool = unlink($reportInvoiceFile);
+            }
+        }
+    }
+
     // Combine PDF Array
-    function combine_pdf_array($reportInvoicesArray){
+    function combine_pdf_array($reportInvoicesArray, $MLS){
         require_once('fpdf/fpdf.php');
         require_once('fpdi/fpdi.php');
 
         $pdf = new FPDI();
-        foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
+        foreach ($reportInvoicesArray as $reportInvoiceKey => $reportInvoiceFile) {
             $pdf->setSourceFile($reportInvoiceFile);
             $tplIdxA = $pdf->importPage(1, '/MediaBox');
             $pdf->addPage();
             // place the imported page of the first document:
             $pdf->useTemplate($tplIdxA,0,0,200,280);
         }
-        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR;
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $MLS . DIRECTORY_SEPARATOR . "finalReport" . DIRECTORY_SEPARATOR;
+        if(!is_dir($uploadPath)){
+            mkdir($uploadPath, 0777, true);
+        }
+//        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR;
         $filename = $uploadPath . "combine_file_array.pdf";
         $pdf->Output($filename,'F');
         return $filename;
     }
 
     // Convert Image To PDF
-    function convert_image_to_pdf($image){
+    function convert_image_to_pdf($image, $MLS){
         require_once('fpdf/fpdf.php');
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->Image($image,10,10,180,280);
-        $uploadPath = "wp-content/themes/NuStream/Upload/";
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $MLS . DIRECTORY_SEPARATOR . "finalReport" . DIRECTORY_SEPARATOR;
+        if(!is_dir($uploadPath)){
+            mkdir($uploadPath, 0777, true);
+        }
+//        $uploadPath = "wp-content/themes/NuStream/Upload/";
         $filename = $uploadPath . rand(10000, 99999) . rand(10000, 99999) . ".pdf";
         $pdf->Output($filename,'F');
         return $filename;
@@ -185,7 +244,7 @@
         $reportFormFile = generate_case_report_from($reportFromArray);
         $reportInvoicesArray['reportFormFile'] = $reportFormFile;
 
-        $reportInvoicesFile = combine_case_report_invoices($reportInvoicesArray);
+        $reportInvoicesFile = combine_case_report_invoices($reportInvoicesArray, $reportFromArray['MLS']);
     }
 
     // Generate Case Report Form
@@ -194,8 +253,9 @@
         $address = $reportFromArray['address'];
         $teamLeader = $reportFromArray['teamLeader'];
         $teamMember = $reportFromArray['teamMember'];
-        $sellerName = $reportFromArray['sellerName'];
         $propertyType = $reportFromArray['propertyType'];
+        $sellingListingRate = $reportFromArray['sellingListingRate'];
+        $listingPrice = $reportFromArray['listingPrice'];
         $stagingSupplier = $reportFromArray['stagingSupplier'];
         $stagingFinalPrice = $reportFromArray['stagingFinalPrice'];
         $cleanUpSupplier = $reportFromArray['cleanUpSupplier'];
@@ -329,12 +389,11 @@
 					<td tyle="width:134px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Propety&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<td style="width:266px;" colspan="4">$propertyType</td>
 					<td ctyle="width:134px;" colspan="2">Selling Listing Rate</td>
-					<td style="width:266px;" colspan="4">$stagingFinalPrice</td>
+					<td style="width:266px;" colspan="4">$sellingListingRate %</td>
 				</tr>
 				<tr>
 					<td tyle="width:134px;" colspan="2">Listing&nbsp;Price</td>
-					<td style="width:266px;" colspan="4"></td>
-					<td style="width:400px;" colspan="6"></td>
+					<td style="width:266px;" colspan="4">$listingPrice</td>
 				</tr>
 				<tr>
 					<th colspan="12" style="text-align: center;">Part 2:Group Expense</th>
@@ -347,7 +406,7 @@
 				<tr>
 					<td colspan="4" style="text-align:left;">Staging Service </td>
 					<td colspan="4">$stagingSupplier</td>
-					<td colspan="4"></td>
+					<td colspan="4">$stagingFinalPrice</td>
 				</tr>
 				<tr>
 					<td colspan="4" style="text-align:left;">Clean up service</td>
@@ -397,7 +456,11 @@ EOD;
 
 // Close and output PDF document
 // This method has several options, check the source code documentation for more information.
-        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR;
+
+        $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $MLS . DIRECTORY_SEPARATOR . "finalReport" . DIRECTORY_SEPARATOR;
+        if(!is_dir($uploadPath)){
+            mkdir($uploadPath, 0777, true);
+        }
         $filename = $uploadPath . "generatedPDF.pdf";
         ob_clean();
         $pdf->Output($filename,'F');
@@ -513,6 +576,54 @@ EOD;
             }
         }
     }
+
+    // Generate Zip File
+    function create_zip($uploadPath) {
+        $zip_file = 'Final Report.zip';
+
+        // Get real path for our folder
+        $rootPath = realpath($uploadPath);
+
+        // Initialize archive object
+        $zip = new ZipArchive();
+        $zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+        // Create recursive directory iterator
+        /** @var SplFileInfo[] $files */
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($rootPath),
+            RecursiveIteratorIterator::LEAVES_ONLY
+        );
+
+        foreach ($files as $name => $file)
+        {
+            // Skip directories (they would be added automatically)
+            if (!$file->isDir())
+            {
+                // Get real and relative path for current file
+                $filePath = $file->getRealPath();
+                $relativePath = substr($filePath, strlen($rootPath) + 1);
+
+                // Add current file to archive
+                $zip->addFile($filePath, $relativePath);
+            }
+        }
+
+        // Zip archive will be created only after closing object
+        $zip->close();
+
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename($zip_file));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($zip_file));
+        readfile($zip_file);
+    }
+
     // Generate Guid
     function GUID()
     {
@@ -744,6 +855,12 @@ EOD;
         return deactivate_supplier_by_id_request($supplierID);
     }
 
+    // Get Supplier Name By Id
+    function get_supplier_name_by_id($supplierID){
+        require_once(__DIR__ . '/include/repository/supplier-repository.php');
+        return get_supplier_name_by_id_request($supplierID);
+    }
+
     // Set File Path And Name
     function set_file_path_and_name($uploadPath, $uploadName){
         require_once(__DIR__ . '/include/repository/file-repository.php');
@@ -958,6 +1075,12 @@ EOD;
     function get_case_by_service_type_and_id($serviceType, $serviceID){
         require_once(__DIR__ . '/include/repository/case-repository.php');
         return get_case_by_service_type_and_id_request($serviceType, $serviceID);
+    }
+
+    // Get All Closed Cases
+    function get_all_closed_cases(){
+        require_once(__DIR__ . '/include/repository/case-repository.php');
+        return get_all_closed_cases_request();
     }
 
     // Update Case Status And Final Price

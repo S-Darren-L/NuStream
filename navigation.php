@@ -55,7 +55,7 @@
             </div>';
             if($_SESSION['AccountPosition'] === 'ADMIN'){
                 // Admin Menu
-                echo '<ul class="nav nav-pills nav-stacked>
+                echo '<ul class="nav nav-pills nav-stacked">
                     <li><a href="' . $adminFilesURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;Files</a></li>
                     <li><a ui-sref-active="active" href="' . $adminCreateMemberURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Create Member</a></li>
                     <li><a href="' . $adminMemberInfoURL . '" style="text-align:left;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-large"></span>&nbsp;&nbsp;Member Info</a></li>

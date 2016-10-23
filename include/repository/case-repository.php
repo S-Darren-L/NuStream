@@ -170,6 +170,20 @@
         return $result;
     }
 
+    // Get All Closed Cases
+    function get_all_closed_cases_request(){
+        // Require SQL Connection
+        require_once(__DIR__ . '/mysql-connect.php');
+        $conn = mysqli_connection();
+
+        $sql = "SELECT * FROM cases WHERE CaseStatus='CLOSED'";
+
+        $result = mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+        return $result;
+    }
+
     // Update Case Status And Final Price
     function update_case_status_and_final_price_request($MLS, $totalCost, $caseStatus){
         // Require SQL Connection
@@ -182,7 +196,6 @@
 
         mysqli_close($conn);
         return $result;
-
     }
 
 ?>
