@@ -61,7 +61,6 @@ Template Name: Admin Files Management
         download_file($_GET['File']);
     }
     if(isset($_GET['Files'])){
-        echo "zip";
         $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $_GET['Files'] . DIRECTORY_SEPARATOR . "finalReport";
         create_zip($uploadPath);
     }

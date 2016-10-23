@@ -13,7 +13,7 @@ Template Name: Admin Case Details
     $uploadBasePath = "wp-content/themes/NuStream/Upload/case/" . $MLS;
     $PageURL = get_home_url() . '/admin-case-details';
     $invoiceStatuses = get_invoice_statuses();
-    $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
+    $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
 
 // Init Date
     // Get Case Statuses
@@ -866,7 +866,15 @@ Template Name: Admin Case Details
                 </div>
                 <div class="FAFContentPart ">
                     <div class="houseInfo">
-                        <div class="houseImg"><?php echo '<img src="' . $houseImageURL . '">'; ?></div>
+                        <div class="houseImg">
+                            <?php
+                            if(!is_null($caseDetailsArray['Images'])){
+                                echo '<img src="' . $houseImageURL . $caseDetailsArray['Images'] . '">';
+                            }else{
+                                echo '<img>';
+                            }
+                            ?>
+                        </div>
                         <div class="houseTable">
                             <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
                             <table class="table table-striped">

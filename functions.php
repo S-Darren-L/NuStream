@@ -186,7 +186,7 @@
                 }
             }
         }catch(Exception $e) {
-            echo "Unable combine all PDFs, some file types are not supported";
+//            echo "Unable combine all PDFs, some file types are not supported";
         }
         return $reportInvoicesFile;
     }

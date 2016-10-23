@@ -420,7 +420,7 @@ Template Name: Agent Edit Case
     <div id="main">
         <div class="formPart">
             <div class="title"><h4>EDIT LISTING</h4></div>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
                 <div class="form-group inputPart">
                     <div class="requireTitle mlsNumberTitle">MLS NUMBER* </div>
                     <div class="inputContent">

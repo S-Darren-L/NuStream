@@ -13,14 +13,15 @@
         $ownerName = $createCaseArray['ownerName'];
         $contactNumber = $createCaseArray['contactNumber'];
         $commissionRate = $createCaseArray['commissionRate'];
+        $image = $createCaseArray['image'];
         $CaseStatus = 'OPEN';
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "INSERT INTO cases (MLS, StaffID, CoStaffID, Address, LandSize, HouseSize, PropertyType, ListingPrice, OwnerName, ContactNumber, CaseStatus, CommissionRate)
-                        VALUES ('$MLSNumber', '$staffID', '$coStaffID', '$address', '$landSize', '$houseSize', '$propertyType', '$listingPrice', '$ownerName', '$contactNumber', '$CaseStatus', '$commissionRate')";
+        $sql = "INSERT INTO cases (MLS, StaffID, CoStaffID, Address, LandSize, HouseSize, PropertyType, ListingPrice, OwnerName, ContactNumber, CaseStatus, CommissionRate, Images)
+                        VALUES ('$MLSNumber', '$staffID', '$coStaffID', '$address', '$landSize', '$houseSize', '$propertyType', '$listingPrice', '$ownerName', '$contactNumber', '$CaseStatus', '$commissionRate', '$image')";
 
         $result = mysqli_query($conn, $sql);
 

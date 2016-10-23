@@ -9,6 +9,7 @@ Template Name: Agent Create Case
 
     // Init Date
     $propertyTypes = get_property_types();
+    $uploadBasePath = "wp-content/themes/NuStream/Upload/case/";
     $teamID = $_SESSION['TeamID'];
     $teamResult = mysqli_fetch_array(get_team_by_team_id($teamID));
     $teamLeaderID = $teamResult['TeamLeaderID'];
@@ -65,6 +66,22 @@ Template Name: Agent Create Case
 
     // Create Case
     if(isset($_POST['create_case']) && date_validated() === true){
+        $MLS = $_POST['MLSNumber'];
+        $caseImageTmp = $_FILES['case_image']['tmp_name'];
+        $caseImageName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['case_image']['name']);
+        $uploadPath = $uploadBasePath . $MLS . "/HouseImage/";
+        if(!empty($caseImageTmp)){
+
+            if(!is_dir($uploadPath)){
+                mkdir($uploadPath, 0777, true);
+            }
+
+            if (!$caseImageTmp) {
+                die("No File Selected, Please Upload Again.");
+            } else {
+                $uploadResult = move_uploaded_file($caseImageTmp, $uploadPath . $caseImageName);
+            }
+        }
         $createCaseArray = array (
             "MLSNumber" => $_POST['MLSNumber'],
             "staffID" => $_SESSION['AccountID'],
@@ -76,7 +93,8 @@ Template Name: Agent Create Case
             "listingPrice" => $_POST['listingPrice'],
             "ownerName" => $_POST['ownerName'],
             "contactNumber" => $_POST['contactNumber'],
-            "commissionRate" => $_POST['commissionRate']);
+            "commissionRate" => $_POST['commissionRate'],
+            "image" => $caseImageName);
 
         // Check If MLS Exist
         $isMLSExistResult = is_MLS_exist($_POST['MLSNumber']);
@@ -109,7 +127,7 @@ Template Name: Agent Create Case
     <div id="main">
         <div class="formPart">
             <div class="title"><p class="titleSize"><strong>NEW LISTING</strong></p></div>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
                 <div class="form-group inputPart">
                     <div class="oneLineDiv">
                         <div class="requireTitle mlsNumberTitle">MLS NUMBER* </div>
@@ -210,7 +228,7 @@ Template Name: Agent Create Case
                             </div>-->
                         <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
                         <div class="inputContent ">
-                            <button class="photoUploadButton">UPLOAD</button>
+                            <input type="file" value="UPLOAD" name="case_image" class="photoUploadButton">
                         </div>
                     </div>
                     <div class="secondInput create">
