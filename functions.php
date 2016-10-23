@@ -159,7 +159,7 @@
         foreach ($reportInvoicesArray as  $reportInvoiceKey => $reportInvoiceFile) {
             if(!empty($reportInvoiceFile)){
                 $reportInvoiceFile = dirname(__FILE__) . DIRECTORY_SEPARATOR . $reportInvoiceFile;
-                $reportInvoiceFile = strtolower($reportInvoiceFile);
+//                $reportInvoiceFile = strtolower($reportInvoiceFile);
                 $allowedImagesType =  array('png' ,'jpg');
                 $allowedFilesType ='pdf';
                 $ext = pathinfo($reportInvoiceFile, PATHINFO_EXTENSION);
