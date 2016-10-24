@@ -495,7 +495,14 @@ Template Name: Agent Mobile Case Details
         <div class="TopContainer">
             <div class="BackgroundGrey">
                 <div>MLS#</div>
-                <div><?php echo $caseDetailsArray['MLS'];?></div>
+                <div><?php
+                    if($isCaseChangeable === 'hidden'){
+                        echo '<a>', $caseDetailsArray['MLS'], '</a>';
+                    }else{
+                        echo '<a href="' . $uploadPageURL . '">', $caseDetailsArray['MLS'], '</a>';
+                    }
+                    ?>
+                </div>
             </div>
             <div>
                 <div>ADDRESS</div>
@@ -533,156 +540,239 @@ Template Name: Agent Mobile Case Details
 
         <div class="TotalCostContainer">
             <div class="TextContainer">
-                <div>Total Cost: $5000.00 CAD</div>
-                <div>Final Commission: $ 14000.00 CAD</div>
+                <div>Total Cost: <?php echo "$" . $totalCost; ?></div>
+                <div>Final Commission: <?php echo "$" . $finalCommission; ?></div>
             </div>
-            <input type="submit" class="Button Submit" value="SUBMIT" />
-            <div class="Button">UPLOAD FILES</div>
+            <input type="submit" name="estimate" class="Button Submit" value="SUBMIT" <?php echo $isCaseChangeable; ?> >
+            <input type="submit" value="Submit" class="Button" name="submit_service_info" <?php echo $isCaseChangeable; ?>>
         </div>
 
         <div class="BottomContainer">
             <div class="ItemContainer">
                 <div class="FirstLine">
                     <div class="Label"><label>STAGING</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
+                    <div class="Select"><?php
+                        echo '<select name="stagingSelect" ' . $stagingServiceArray['IsDisabled'] . '>';
+                        if(is_null($stagingServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['STAGING'] as $stagingSupplierItem){
+                            if(!is_null($stagingServiceArray['ServiceSupplierID']) && $stagingServiceArray['ServiceSupplierID'] === $stagingSupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $stagingSupplierItem['SupplierID'] . '" ' . $isSelected . '>', $stagingSupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                    </div>
+                    <label class="Status"><?php echo $stagingServiceArray['InvoiceStatus']; ?></label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
+                    <label class="Amount"><?php echo $stagingEstimatePrice; ?></label>
+                    <?php echo '<input type="text" class="Input" placeholder="REAL COST" name="stagingRealCost" value="' . $stagingServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="stagingCheckbox" value="checked" ' . $stagingServiceArray['IsChecked'] . ' ' . $stagingServiceArray['IsDisabled'] . ' >'; ?>
+                </div>
+            </div>
+
+            <div class="ItemContainer">
+                <div class="FirstLine">
+                    <div class="Label"><label>TOUCH UP</label></div>
+                    <div class="Select"><?php
+                        echo '<select name="touchUpSelect" ' . $touchUpServiceArray['IsDisabled'] . '>';
+                        if(is_null($touchUpServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['TOUCHUP'] as $touchUpSupplierItem){
+                            if(!is_null($touchUpServiceArray['ServiceSupplierID']) && $touchUpServiceArray['ServiceSupplierID'] === $touchUpSupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $touchUpSupplierItem['SupplierID'] . '" ' . $isSelected . '>', $touchUpSupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                    </div>
+                    <label class="Status"><?php echo $touchUpServiceArray['InvoiceStatus']; ?></label>
+                </div>
+                <div class="SecondLine">
+                    <label class="Est">EST</label>
+                    <label class="Amount"><?php echo $touchUpEstimatePrice; ?></label>
+                    <?php echo '<input type="text" class="Input" placeholder="REAL COST" name="touchUpRealCost" value="' . $touchUpServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="touchUpCheckbox" value="checked" ' . $touchUpServiceArray['IsChecked'] . ' ' . $touchUpServiceArray['IsDisabled'] . '>'; ?>
                 </div>
             </div>
 
             <div class="ItemContainer">
                 <div class="FirstLine">
                     <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
+                    <div class="Select"><?php
+                        echo '<select name="cleanUpSelect" ' . $cleanUpServiceArray['IsDisabled'] . '>';
+                        if(is_null($cleanUpServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['CLEANUP'] as $cleanUpSupplierItem){
+                            if(!is_null($cleanUpServiceArray['ServiceSupplierID']) && $cleanUpServiceArray['ServiceSupplierID'] === $cleanUpSupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $cleanUpSupplierItem['SupplierID'] . '" ' . $isSelected . ' >', $cleanUpSupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                    </div>
+                    <label class="Status"><?php echo $cleanUpServiceArray['InvoiceStatus']; ?></label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
+                    <label class="Amount"><?php echo $cleanUpEstimatePrice; ?></label>
+                    <?php echo '<input type="text" class="Input" placeholder="REAL COST" name="cleanUpRealCost" value="' . $cleanUpServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="cleanUpCheckbox" value="checked" ' . $cleanUpServiceArray['IsChecked'] . ' ' . $cleanUpServiceArray['IsDisabled'] . '>'; ?>
                 </div>
             </div>
 
             <div class="ItemContainer">
                 <div class="FirstLine">
-                    <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
+                    <div class="Label"><label>YARD WORK</label></div>
+                    <div class="Select"><?php
+                        echo '<select name="yardWorkSelect" ' . $yardWorkServiceArray['IsDisabled'] . '>';
+                        if(is_null($yardWorkServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['YARDWORK'] as $yardWorkSupplierItem){
+                            if(!is_null($yardWorkServiceArray['ServiceSupplierID']) && $yardWorkServiceArray['ServiceSupplierID'] === $yardWorkSupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $yardWorkSupplierItem['SupplierID'] . '" ' . $isSelected . '>', $yardWorkSupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                        </select></div>
+                    <label class="Status"><?php echo $yardWorkServiceArray['InvoiceStatus']; ?></label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
+                    <label class="Amount"><?php echo $yardWordEstimatePrice; ?></label>
+                    <?php echo '<input type="text" class="Input" placeholder="REAL COST" name="yardWorkRealCost" value="' . $yardWorkServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="yardWorkCheckbox" value="checked" ' . $yardWorkServiceArray['IsChecked'] . ' ' . $yardWorkServiceArray['IsDisabled'] . '>'; ?>
                 </div>
             </div>
 
             <div class="ItemContainer">
                 <div class="FirstLine">
-                    <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
+                    <div class="Label"><label>INSPECTION</label></div>
+                    <div class="Select"><?php
+                        echo '<select name="inspectionSelect" ' . $inspectionServiceArray['IsDisabled'] . '>';
+                        if(is_null($inspectionServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['INSPECTION'] as $inspectionSupplierItem){
+                            if(!is_null($inspectionServiceArray['ServiceSupplierID']) && $inspectionServiceArray['ServiceSupplierID'] === $inspectionSupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $inspectionSupplierItem['SupplierID'] . '" ' . $isSelected . '>', $inspectionSupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                    </div>
+                    <label class="Status"><?php echo $inspectionServiceArray['InvoiceStatus']; ?></label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
+                    <label class="Amount"><?php echo $inspectionEstimatePrice; ?></label>
+                    <?php echo '<input type="text" name="inspectionRealCost" class="Input" placeholder="REAL COST" value="' . $inspectionServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="inspectionCheckbox" value="checked" ' . $inspectionServiceArray['IsChecked'] . ' ' . $inspectionServiceArray['IsDisabled'] . '>'; ?>
                 </div>
             </div>
 
             <div class="ItemContainer">
                 <div class="FirstLine">
-                    <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
+                    <div class="Label"><label>STORAGE</label></div>
+                    <div class="Select"><?php
+                        echo '<select name="storageSelect" ' . $storageServiceArray['IsDisabled'] . '>';
+                        if(is_null($storageServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['STORAGE'] as $storageSupplierItem){
+                            if(!is_null($storageServiceArray['ServiceSupplierID']) && $storageServiceArray['ServiceSupplierID'] === $storageSupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $storageSupplierItem['SupplierID'] . '" ' . $isSelected . '>', $storageSupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                    </div>
+                    <label class="Status"><?php echo $storageServiceArray['InvoiceStatus']; ?></label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
+                    <label class="Amount"><?php echo $storageEstimatePrice; ?></label>
+                    <?php echo '<input type="text" name="storageRealCost" class="Input" placeholder="REAL COST" value="' . $storageServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="storageCheckbox" value="checked" ' . $storageServiceArray['IsChecked'] . ' ' . $storageServiceArray['IsDisabled'] . '>' ;?>
                 </div>
             </div>
 
             <div class="ItemContainer">
                 <div class="FirstLine">
-                    <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
+                    <div class="Label"><label>RELOCATE HOME</label></div>
+                    <div class="Select"><?php
+                        echo '<select name="relocateHomeSelect" ' . $relocateHomeServiceArray['IsDisabled'] . '>';
+                        if(is_null($relocateHomeServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['RELOCATEHOME'] as $relocateHomeSupplierItem){
+                            if(!is_null($relocateHomeServiceArray['ServiceSupplierID']) && $relocateHomeServiceArray['ServiceSupplierID'] === $relocateHomeSupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $relocateHomeSupplierItem['SupplierID'] . '" ' . $isSelected . '>', $relocateHomeSupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                    </div>
+                    <label class="Status"><?php echo $relocateHomeServiceArray['InvoiceStatus']; ?></label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
+                    <label class="Amount"><?php echo $relocateHomeEstimatePrice; ?></label>
+                    <?php echo '<input type="text" name="relocateHomeRealCost" class="Input" placeholder="REAL COST" value="' . $relocateHomeServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="relocateHomeCheckbox" value="checked" ' . $relocateHomeServiceArray['IsChecked'] . ' ' . $relocateHomeServiceArray['IsDisabled'] .'>'; ?>
                 </div>
             </div>
 
             <div class="ItemContainer">
                 <div class="FirstLine">
-                    <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
+                    <div class="Label"><label>PHOTOGRAPHY</label></div>
+                    <div class="Select"><?php
+                        echo '<select name="photographySelect" ' . $photographyServiceArray['IsDisabled'] . '>';
+                        if(is_null($photographyServiceArray['ServiceSupplierID']))
+                            $isDefaultSelected = 'selected';
+                        foreach ($allSuppliersArray['PHOTOGRAPHY'] as $photographySupplierItem){
+                            if(!is_null($photographyServiceArray['ServiceSupplierID']) && $photographyServiceArray['ServiceSupplierID'] === $photographySupplierItem['SupplierID']){
+                                $isSelected = 'selected';
+                            }else {
+                                $isSelected = null;
+                            }
+                            echo '<option value="' . $photographySupplierItem['SupplierID'] . '" ' . $isSelected . '>', $photographySupplierItem['SupplierName'], '</option>';
+                        }
+                        echo '</select>';
+                        ?>
+                    </div>
+                    <label class="Status"><?php echo $photographyServiceArray['InvoiceStatus']; ?></label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
+                    <label class="Amount"><?php echo $photographyEstimatePrice; ?></label>
+                    <?php echo '<input type="text" name="photographyRealCost" class="Input" placeholder="REAL COST" value="' . $photographyServiceArray['RealCost'] . '"/>'; ?>
+                    <?php echo '<input type="checkbox" class="Check" name="photographyCheckbox" value="checked" ' . $photographyServiceArray['IsChecked'] . ' ' . $photographyServiceArray['IsDisabled'] . '>'; ?>
                 </div>
             </div>
-
-            <div class="ItemContainer">
-                <div class="FirstLine">
-                    <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
-                </div>
-                <div class="SecondLine">
-                    <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
-                </div>
-            </div>
-
-            <div class="ItemContainer">
-                <div class="FirstLine">
-                    <div class="Label"><label>CLEAN UP</label></div>
-                    <div class="Select"><select placeholder="ABC AS"></select></div>
-                    <label class="Status">PENDING</label>
-                </div>
-                <div class="SecondLine">
-                    <label class="Est">EST</label>
-                    <label class="Amount">$3500</label>
-                    <input class="Input" tpye="text" placeholder="REAL COST">
-                    <input class="Check" type="checkbox" />
-                </div>
-            </div>
-
-
-
-
-
-
-
-
         </div>
-
-
-
     </form>
 </div>
-
-
-
 </body>
-
 </html>
