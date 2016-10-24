@@ -7,6 +7,25 @@
     Template Name: Home Page
     */
 
+    //Demo
+    require_once 'Mobile-Detect/Mobile_Detect.php';
+    $detect = new Mobile_Detect;
+
+    // Any mobile device (phones or tablets).
+    if ( $detect->isMobile() ) {
+        echo "mobile";
+    }
+
+    // Any tablet device.
+    if( $detect->isTablet() ){
+        echo "tablet";
+    }
+
+    // Any tablet device.
+    if( !$detect->isMobile() && !$detect->isTablet() ){
+        echo "web";
+    }
+
     // Set Cookie Name
     $cookieName = 'userLogin';
 
