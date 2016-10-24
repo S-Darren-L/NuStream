@@ -54,8 +54,8 @@
             $url = get_home_url() . '/accountant-files-management';
             echo("<script>window.location.assign('$url');</script>");
         }else if ($_SESSION['AccountPosition'] === 'SUPERUSER') {
-    //                $url = get_home_url() . '/super-user-home-page';
-    //                echo("<script>window.location.assign('$url');</script>");
+            $url = get_home_url() . '/superuser-member-info';
+            echo("<script>window.location.assign('$url');</script>");
         }
     }
 
