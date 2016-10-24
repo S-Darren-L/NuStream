@@ -1,0 +1,24 @@
+Admin:
+1.Deactive password confirm Page
+2.Create New Supplier
+3.Supplier Info 	
+  a. display unit
+  b. title colar
+  C. View Button Issue
+  d. add edit button
+4.Update Supplier Page
+
+Agent:
+1. New listing ******cannot creat
+   Photo upload button.
+2. Estimation
+   Property type 
+   Color
+3. My cases
+   View error
+4. Edit Listing re-design
+5. Account Setting
+   email+contact number display
+Super User
+1.Deactive password confirm page.
+2.Member name link issue
