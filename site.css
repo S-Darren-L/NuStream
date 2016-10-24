@@ -1,0 +1,123 @@
+html{
+	font-family: arial;
+}
+.Back{
+	width:100%;
+	height:50px;
+	background: black;
+
+}
+.Back > label{
+	padding-left:20%;
+	position: relative;
+	top:15px;
+	color:lightgrey;
+	font-size:20px;
+
+}
+.Back > label:hover{
+	color:white;
+	cursor: pointer;
+
+}
+.TopContainer{
+
+}
+.TopContainer > div > div{
+	display:inline-block;
+	width:44%;
+	padding: 5px 0px 5px 5%;
+}
+
+.BackgroundGrey{
+	background: #eee;
+}
+
+.ButtonContainer{
+	width:100%;
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.Button{
+	padding:10px 20px 10px 20px;
+	border:1px solid grey;
+	text-align: center;
+	width:16%;
+    display:inline-block;
+    clear:both;
+    border-radius: 5px;
+
+}
+
+.Button:hover{
+	cursor: pointer;
+	background: black;
+	color:white;
+}
+
+
+
+.StagingBar{
+	background: #333;
+	color:white;
+	width:100%;
+	padding:20px;
+	margin-top:10px;
+	font-size: 18px;
+}
+
+.StagingBar > label:first-child{
+	font-weight: 800;
+	margin-left:10%;
+	margin-right:20%;
+}
+
+.StagingBar > label:nth-child(2){
+	margin-right:10%;
+}
+
+.Save{
+	background: #222;
+	display:inline-block;
+	border:1px solid lightgrey;
+	padding:5px 50px 5px 50px;
+	border-radius: 4px;
+	float:right;
+	margin-right:10%;
+}
+
+.Save:hover{
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+.UploadContainer{
+	margin-top:10px;
+	margin-left:5%;
+}
+.Upload{
+	padding:15%;
+	margin-right:3%;
+	margin-bottom:2%;
+	border: 1px solid blue;
+	display: inline-block;
+	width:15%;
+}
+
+.BeforeAfterLabel{
+	display:inline-block;
+	width:48%;
+	text-align: center;
+	font-weight: 800;
+	font-size: 18px;
+}
+
+.Upload label{
+	position: absolute;
+}
+
+.UploadInvoice{
+	display: block;
+	width: 100%;
+}
