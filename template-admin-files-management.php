@@ -63,7 +63,6 @@ Template Name: Admin Files Management
     if(isset($_GET['Files'])){
         $MLS = $_GET['Files'];
         $uploadPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . "Upload" . DIRECTORY_SEPARATOR . "case" . DIRECTORY_SEPARATOR . $MLS . DIRECTORY_SEPARATOR . "finalReport";
-        echo "path: " .$uploadPath;
         try{
             create_zip($uploadPath, $MLS);
         }catch (Exception $e){
