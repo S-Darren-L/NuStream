@@ -68,10 +68,11 @@ if(isset($_POST['estimate'])){
     $_SESSION['isYardWordChecked'] = $isYardWordChecked;
     $_SESSION['isStorageChecked'] = $isStorageChecked;
 
-//    header('Location: ' . get_home_url() . '/agent-case-estimation/?RF=true');
+    header('Location: ' . get_home_url() . '/agent-case-estimation/?RF=true');
 }
 
 if(isset($_POST['clear_all'])){
+    header('Location: ' . get_home_url() . '/agent-case-estimation');
     set_init_value();
 }
 

@@ -9,7 +9,8 @@ Template Name: Agent Mobile Case Estimation 2
 
 // Init Data
 
-$isNewPage = $_GET['RF'];
+$houseSize = $_GET['HS'];
+$propertyType = $_GET['HP'];
 $propertyTypes = get_property_types();
 //set_init_value();
 
@@ -30,105 +31,6 @@ $yardWorkEstimatePrice = default_yard_work_price_estimate();
 //Estimate Storage
 $storageEstimatePrice = default_storage_price_estimate();
 
-//Estimate
-if(isset($_POST['estimate'])){
-    $houseSize = $_POST['houseSize'];
-    $propertyType = $_POST['propertyType'];
-    $landSize = $_POST['landSize'];
-
-    $isStagingChecked = $_POST['stagingCheckBox'];
-    $isPhotographyChecked = $_POST['photographyCheckBox'];
-    $isCleanUpChecked = $_POST['cleanUpCheckBox'];
-    $isRelocateHomeChecked = $_POST['relocateHomeCheckBox'];
-    $isTouchUpChecked = $_POST['touchUpCheckBox'];
-    $isInspectionChecked = $_POST['inspectionCheckBox'];
-    $isYardWordChecked = $_POST['yardWordCheckBox'];
-    $isStorageChecked = $_POST['storageCheckBox'];
-
-    // Total Cost
-    $totalCost = $stagingEstimatePrice + $photographyEstimatePrice + $cleanUpEstimatePrice + $relocateHomeEstimatePrice + $touchUpEstimatePrice + $inspectionEstimatePrice + $yardWorkEstimatePrice + $storageEstimatePrice;
-
-    $_SESSION['estimateHouseSize'] = $houseSize;
-    $_SESSION['estimatePropertyType'] = $propertyType;
-    $_SESSION['estimateLandSize'] = $landSize;
-
-    $_SESSION['isStagingChecked'] = $isStagingChecked;
-    $_SESSION['isPhotographyChecked'] = $isPhotographyChecked;
-    $_SESSION['isCleanUpChecked'] = $isCleanUpChecked;
-    $_SESSION['isRelocateHomeChecked'] = $isRelocateHomeChecked;
-    $_SESSION['isTouchUpChecked'] = $isTouchUpChecked;
-    $_SESSION['isInspectionChecked'] = $isInspectionChecked;
-    $_SESSION['isYardWordChecked'] = $isYardWordChecked;
-    $_SESSION['isStorageChecked'] = $isStorageChecked;
-
-    header('Location: ' . get_home_url() . '/agent-case-estimation/?RF=true');
-}
-
-if(isset($_POST['clear_all'])){
-    set_init_value();
-}
-
-//function set_init_value(){
-//    global $isNewPage;
-//
-//    global  $houseSize;
-//    global  $landSize;
-//    global  $propertyType;
-//
-//    global  $stagingEstimatePrice;
-//    global  $photographyEstimatePrice;
-//    global  $cleanUpEstimatePrice;
-//    global  $touchUpEstimatePrice;
-//    global  $relocateHomeEstimatePrice;
-//    global  $inspectionEstimatePrice;
-//    global  $yardWorkEstimatePrice;
-//    global  $storageEstimatePrice;
-//    global  $totalCost;
-//
-//    global $isStagingChecked;
-//    global $isPhotographyChecked;
-//    global $isCleanUpChecked;
-//    global $isRelocateHomeChecked;
-//    global $isTouchUpChecked;
-//    global $isInspectionChecked;
-//    global $isYardWordChecked;
-//    global $isStorageChecked;
-//
-//
-//    $stagingEstimatePrice =
-//    $photographyEstimatePrice =
-//    $cleanUpEstimatePrice =
-//    $touchUpEstimatePrice =
-//    $relocateHomeEstimatePrice =
-//    $inspectionEstimatePrice =
-//    $yardWorkEstimatePrice =
-//    $storageEstimatePrice =
-//    $totalCost = 0;
-//    if ($isNewPage === 'true'){
-//        $houseSize = $_SESSION['estimateHouseSize'];
-//        $propertyType = $_SESSION['estimatePropertyType'];
-//        $landSize = $_SESSION['estimateLandSize'];
-//
-//        $isStagingChecked = $_SESSION['isStagingChecked'];
-//        $isPhotographyChecked = $_SESSION['isPhotographyChecked'];
-//        $isCleanUpChecked = $_SESSION['isCleanUpChecked'];
-//        $isRelocateHomeChecked = $_SESSION['isRelocateHomeChecked'];
-//        $isTouchUpChecked = $_SESSION['isTouchUpChecked'];
-//        $isInspectionChecked = $_SESSION['isInspectionChecked'];
-//        $isYardWordChecked = $_SESSION['isYardWordChecked'];
-//        $isStorageChecked = $_SESSION['isStorageChecked'];
-//    }
-//    else{
-//        $isStagingChecked = null;
-//        $isPhotographyChecked = null;
-//        $isCleanUpChecked = null;
-//        $isRelocateHomeChecked = null;
-//        $isTouchUpChecked = null;
-//        $isInspectionChecked = null;
-//        $isYardWordChecked = null;
-//        $isStorageChecked = null;
-//    }
-//}
 ?>
 
 <!DOCTYPE html>
@@ -138,36 +40,150 @@ if(isset($_POST['clear_all'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUSTREAM</title>
-    <link rel="stylesheet" type="text/css" href="../css/default.css">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
 </head>
 <body>
-<div class='estimationTwoPage'>
-    <div class="goBack">
-        <img class="goBackButton" src="../img/goBack.png">
+    <div class='estimationTwoPage'>
+        <div class="goBack">
+            <img class="goBackButton" src="<?php bloginfo('template_url');?>/img/goBack.png">
+        </div>
+        <div id="staging" style="display:none"><?php echo $stagingEstimatePrice; ?></div>
+        <div id="touchup" style="display:none"><?php echo $photographyEstimatePrice; ?></div>
+        <div id="cleanup" style="display:none"><?php echo $cleanUpEstimatePrice; ?></div>
+        <div id="yardwork" style="display:none"><?php echo $relocateHomeEstimatePrice; ?></div>
+        <div id="storage" style="display:none"><?php echo $touchUpEstimatePrice; ?></div>
+        <div id="relocation" style="display:none"><?php echo $inspectionEstimatePrice; ?></div>
+        <div id="photography" style="display:none"><?php echo $isYardWordChecked; ?></div>
+        <div id="inspection" style="display:none"><?php echo $storageEstimatePrice; ?></div>
+        <div class='estimationTwoButton'>
+            <button class="estimationTwoWhiteButton" id="sta">STAGING</button>
+            <button class="estimationTwoWhiteButton" id="tou">TOUCH UP</button>
+            <button class="estimationTwoWhiteButton" id="cle">CLEAN UP</button>
+            <button class="estimationTwoWhiteButton" id="yar">YARD WORK</button>
+            <button class="estimationTwoWhiteButton" id="sto">STORAGE</button>
+            <button class="estimationTwoWhiteButton" id="rel">RELOCATION HOME</button>
+            <button class="estimationTwoWhiteButton" id="pho">PHOTOGRAPHY</button>
+            <button class="estimationTwoWhiteButton" id="ins">INSPECTION</button>
+        </div>
+        <div class="estimateCostPart">
+            <p style="font-size:11px;">ESTIMATE COST</p>
+            <p style="margin-top:0px; font-size:15px;" id="sum">0 CAD</p>
+        </div>
     </div>
-    <div id="staging" style="display:none"><?php echo $stagingEstimatePrice; ?></div>
-    <div id="staging" style="display:none"><?php echo $photographyEstimatePrice; ?></div>
-    <div id="staging" style="display:none"><?php echo $cleanUpEstimatePrice; ?></div>
-    <div id="staging" style="display:none"><?php echo $relocateHomeEstimatePrice; ?></div>
-    <div id="staging" style="display:none"><?php echo $touchUpEstimatePrice; ?></div>
-    <div id="staging" style="display:none"><?php echo $inspectionEstimatePrice; ?></div>
-    <div id="staging" style="display:none"><?php echo $isYardWordChecked; ?></div>
-    <div id="staging" style="display:none"><?php echo $storageEstimatePrice; ?></div>
-    <div class='estimationTwoButton'>
-        <button class="estimationTwoBlackButton">STAGING</button>
-        <button class="estimationTwoBlackButton">TOUCH UP</button>
-        <button class="estimationTwoWhiteButton">CLEN UP</button>
-        <button class="estimationTwoBlackButton">YARWORK</button>
-        <button class="estimationTwoWhiteButton">STORAGE</button>
-        <button class="estimationTwoBlackButton">RELOCATION HOME</button>
-        <button class="estimationTwoBlackButton">PHOTOGRAPHY</button>
-        <button class="estimationTwoWhiteButton">INSPECTION</button>
-    </div>
-    <div class="estimateCostPart">
-        <p style="font-size:11px;">ESTIMATE COST</p>
-        <p style="margin-top:0px; font-size:15px;">$5000.00 CAD</p>
-    </div>
-</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        
+        var sta = $('#staging').text();
+        var tou = $('#touchup').text();
+        var cle = $('#cleanup').text();
+        var yar = $('#yardwork').text();
+        var sto = $('#storage').text();
+        var rel = $('#relocation').text();
+        var pho = $('#photography').text();
+        var ins = $('#inspection').text();
+        
+        var ifsta = false;
+        var iftou = false;
+        var ifcle = false;
+        var ifyar = false;
+        var ifsto = false;
+        var ifrel = false;
+        var ifpho = false;
+        var ifins = false;
+        $('#sta').on('click', function () {
+            ifsta = !ifsta;
+            recalculate();
+        });
+        $('#tou').on('click', function () {
+            iftou = !iftou;
+            recalculate();
+        });
+        $('#cle').on('click', function () {
+            ifcle = !ifcle;
+            recalculate();
+        });
+        $('#yar').on('click', function () {
+            ifyar = !ifyar;
+            recalculate();
+        });
+        $('#sto').on('click', function () {
+            ifsto = !ifsto;
+            recalculate();
+        });
+        $('#rel').on('click', function () {
+            ifrel = !ifrel;
+            recalculate();
+        });
+        $('#pho').on('click', function () {
+            ifpho = !ifpho;
+            recalculate();
+        });
+        $('#ins').on('click', function () {
+            ifins = !ifins;
+            recalculate();
+        });
+
+        function recalculate() {
+            var sum = 0;
+            if (ifsta) {
+                $('#sta').css('background-color', 'black').css('color', 'white');
+                sum += sta * 1;
+            } else {
+                $('#sta').css('background-color', 'white').css('color', 'black');
+            }
+
+            if (iftou) {
+                $('#tou').css('background-color', 'black').css('color', 'white');
+                sum += tou * 1;
+            } else {
+                $('#tou').css('background-color', 'white').css('color', 'black');
+            }
+
+            if (ifcle) {
+                $('#cle').css('background-color', 'black').css('color', 'white');
+                sum += cle * 1;
+            } else {
+                $('#cle').css('background-color', 'white').css('color', 'black');
+            }
+
+            if (ifyar) {
+                $('#yar').css('background-color', 'black').css('color', 'white');
+                sum += yar * 1;
+            } else {
+                $('#yar').css('background-color', 'white').css('color', 'black');
+            }
+
+            if (ifsto) {
+                $('#sto').css('background-color', 'black').css('color', 'white');
+                sum += sto * 1;
+            } else {
+                $('#sto').css('background-color', 'white').css('color', 'black');
+            }
+
+            if (ifrel) {
+                $('#rel').css('background-color', 'black').css('color', 'white');
+                sum += rel * 1;
+            } else {
+                $('#rel').css('background-color', 'white').css('color', 'black');
+            }
+
+            if (ifpho) {
+                $('#pho').css('background-color', 'black').css('color', 'white');
+                sum += pho * 1;
+            } else {
+                $('#pho').css('background-color', 'white').css('color', 'black');
+            }
+
+            if (ifins) {
+                $('#ins').css('background-color', 'black').css('color', 'white');
+                sum += ins * 1;
+            } else {
+                $('#ins').css('background-color', 'white').css('color', 'black');
+            }
+            $('#sum').text(sum + ' CAD');
+        }
+    </script>
 </body>
 </html>
