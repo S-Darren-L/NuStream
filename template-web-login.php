@@ -2,8 +2,6 @@
     // Start Session
     session_start();
 
-    echo "this web";
-
     // Set Cookie Name
     $cookieName = 'userLogin';
 

@@ -3,7 +3,6 @@
     // Start Session
     session_start();
 
-    echo "this mobile";
     // Set Cookie Name
     $cookieName = 'userLogin';
 
