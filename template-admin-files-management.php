@@ -119,10 +119,15 @@ Template Name: Admin Files Management
                         </th>';
                         }
                         ?>
-                        <th class="FATableHead FATableHeadLarge">
-                            <a href="#" ng-click="orderByField='PRICEBEFFORETAX'; reverseSort = !reverseSort">PRICE BEFFORE TAX <!--<span ng-show="orderByField == 'PRICEBEFFORETAX'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>-->
+
+                        <?php
+                        if($serviceStatus !== 'Final'){
+                            echo '<th class="FATableHead FATableHeadLarge">
+                            <a href="#" ng-click="orderByField=\'PRICEBEFFORETAX\'; reverseSort = !reverseSort">PRICE BEFFORE TAX <!--<span ng-show="orderByField == \'PRICEBEFFORETAX\'"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>-->
                             </a>
-                        </th>
+                        </th>';
+                        }
+                        ?>
                         <th  class="FATableHead FATableHeadSmall">
                             <a href="#">INVOICE</a>
                         </th><?php
@@ -157,7 +162,6 @@ Template Name: Admin Files Management
                                 echo '<td>', $allServiceArray[$i]['MemberName'], '</td>';
                                 echo '<td>', $allServiceArray[$i]['TeamLeaderName'], '</td>';
                                 echo '<td>', $allServiceArray[$i]['StartDate'], '</td>';
-                                echo '<td>', $allServiceArray[$i]['FinalPrice'], '</td>';
                                 echo '<td>', '<a href="' . $subMenuURL . 'Final' . '/&Files=' . $allServiceArray[$i]['MLS'] . '">DOWNLOAD</a>', '</td>';
                             }
                         }
