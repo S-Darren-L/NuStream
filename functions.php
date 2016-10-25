@@ -1038,19 +1038,22 @@ EOD;
                 );
                 $createServiceResult = create_service_details($createServiceArray);
                 $result_rows = [];
-                while($row = mysqli_fetch_array($createServiceResult))
-                {
-                    $result_rows[] = $row;
-                }
-                $serviceID = $result_rows[0]["LAST_INSERT_ID()"];
+                try {
+                    while ($row = mysqli_fetch_array($createServiceResult)) {
+                        $result_rows[] = $row;
+                    }
+                    $serviceID = $result_rows[0]["LAST_INSERT_ID()"];
 
-                // Update Case Service ID
-                $updateCaseServiceIDArray = array(
-                    "MLS" => $MLS,
-                    "serviceID" => $serviceID,
-                    "serviceSupplierType" => $supplierType
-                );
-                $createCaseServiceResult = update_case_service_id($updateCaseServiceIDArray);
+                    // Update Case Service ID
+                    $updateCaseServiceIDArray = array(
+                        "MLS" => $MLS,
+                        "serviceID" => $serviceID,
+                        "serviceSupplierType" => $supplierType
+                    );
+                    $createCaseServiceResult = update_case_service_id($updateCaseServiceIDArray);
+                }catch (Exception $e){
+
+                }
             }
         }
         return $createCaseResult;
