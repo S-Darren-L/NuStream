@@ -289,7 +289,7 @@
             </div>
             <div class="checkbox">
                 <label>
-                    <input id="login-remember" type="checkbox" value="1" name="remember_me">Remeber me
+                    <input id="login-remember" type="checkbox" value="1" name="remember_me">Remember me
                 </label>
             </div>
             <input type="submit" value="Login" name="login" class="btn btn-primary btn-block">

@@ -13,9 +13,9 @@
 
     // Web
     if( !$detect->isMobile() && !$detect->isTablet() ){
-        require_once 'template-web-login.php';
+        require_once 'template-mobile-login.php';
     }else{
-        require_once 'template-web-login.php';
+        require_once 'template-mobile-login.php';
     }
 ?>
 
