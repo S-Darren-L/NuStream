@@ -8,17 +8,24 @@
         $pricePerUnit = $createSupplierArray['pricePerUnit'];
         $firstContactName = $createSupplierArray['firstContactName'];
         $firstContactNumber = $createSupplierArray['firstContactNumber'];
-        $secondContactName = $createSupplierArray['secondContactName'];
+        $supportArea = $createSupplierArray['supportArea'];
         $secondContactNumber = $createSupplierArray['secondContactNumber'];
         $supportLocation = $createSupplierArray['supportLocation'];
         $HSTNumber = $createSupplierArray['HSTNumber'];
         $paymentTerm = $createSupplierArray['paymentTerm'];
+        $mimPayment = $createSupplierArray['mimPayment'];
+        $condoPrice = $createSupplierArray['condoPrice'];
+        $townPrice = $createSupplierArray['townPrice'];
+        $semiPrice = $createSupplierArray['semiPrice'];
+        $detachedPrice = $createSupplierArray['detachedPrice'];
         if($paymentTerm === 'OTHER')
             $otherPaymentTerm = $createSupplierArray['otherPaymentTerm'];
         else
             $otherPaymentTerm = null;
-        $sql = "INSERT INTO suppliers (SupplierName, SupplierType, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, SecondContactName, SecondContactNumber, SupportLocation, HSTNumber, PaymentTerm, OtherPaymentTerm)
-                        VALUES ('$supplierName', '$supplierType', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$secondContactName', '$secondContactNumber', '$supportLocation', '$HSTNumber', '$paymentTerm', '$otherPaymentTerm')";
+        $sql = "INSERT INTO suppliers (SupplierName, SupplierType, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, 
+                SecondContactNumber, SupportLocation, HSTNumber, PaymentTerm, OtherPaymentTerm, MinimumPrice, PricePerCondo, PricePerHouse, PricePerSemi, PricePerTownhouse )
+                        VALUES ('$supplierName', '$supplierType', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$secondContactNumber', 
+                        '$supportLocation', '$HSTNumber', '$paymentTerm', '$otherPaymentTerm', '$mimPayment', '$condoPrice', '$detachedPrice', '$semiPrice', '$townPrice')";
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
