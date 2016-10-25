@@ -20,15 +20,15 @@ Template Name: Agent Edit Case
     $teamLeaderName = $teamResult['TeamLeaderName'];
     $teamMemberResult = get_all_team_members_by_team_id($teamID);
     $teamMembers = [];
-    if($_SESSION['IsTeamLeader'] === true){
-        $isCoListingDisabled = false;
+    if($_SESSION['IsTeamLeader'] === '1'){
+        $isCoListingDisabled = null;
         while($row = mysqli_fetch_array($teamMemberResult))
         {
             $teamMembers[] = $row;
         }
     }
     else{
-        $isCoListingDisabled = true;
+        $isCoListingDisabled = 'disabled';
         $teamLeader = array (
             "AccountID" => $teamLeaderID,
             "FirstName" => $teamLeaderName,
@@ -467,7 +467,7 @@ Template Name: Agent Edit Case
                     <div class="selectTeamMember">
                         <div class="dropdown" >
                             <?php
-                            echo '<select name="coStaffID" disabled="' . (int)$isCoListingDisabled . '">';
+                            echo '<select name="coStaffID" ' . isCoListingDisabled . '>';
                             foreach ($teamMembers as $teamMemberItem){
                                 global $coStaffID;
                                 $isSelected = $teamMemberItem['AccountID'] === $coStaffID ? 'selected' : null;

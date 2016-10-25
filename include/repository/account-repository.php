@@ -269,9 +269,11 @@
         $conn = mysqli_connection();
 
         $sql = "SELECT AccountID, FirstName, LastName FROM accounts WHERE TeamID='$teamID' AND IsActivate=TRUE AND IsTeamLeader=FALSE AND AccountPosition='AGENT' ";
+
         $result = mysqli_query($conn, $sql);
 
         mysqli_close($conn);
+        return $result;
     }
 
     // Update Account Email

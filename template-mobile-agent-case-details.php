@@ -510,7 +510,7 @@ Template Name: Agent Mobile Case Details
             </div>
             <div class="BackgroundGrey">
                 <div>PROPERTY TYPE</div>
-                <div><?php echo $caseDetailsArray['PropertyType'];?>E</div>
+                <div><?php echo $caseDetailsArray['PropertyType'];?></div>
             </div>
             <div>
                 <div>LAND SIZE(LOT)</div>
@@ -543,7 +543,7 @@ Template Name: Agent Mobile Case Details
                 <div>Total Cost: <?php echo "$" . $totalCost; ?></div>
                 <div>Final Commission: <?php echo "$" . $finalCommission; ?></div>
             </div>
-            <input type="submit" name="estimate" class="Button Submit" value="SUBMIT" <?php echo $isCaseChangeable; ?> >
+            <input type="submit" name="estimate" class="Button Submit" value="Estimate" <?php echo $isCaseChangeable; ?> >
             <input type="submit" value="Submit" class="Button" name="submit_service_info" <?php echo $isCaseChangeable; ?>>
         </div>
 

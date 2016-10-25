@@ -16,16 +16,15 @@ Template Name: Agent Create Case
     $teamLeaderName = $teamResult['TeamLeaderName'];
     $teamMemberResult = get_all_team_members_by_team_id($teamID);
     $teamMembers = [];
-    if($_SESSION['IsTeamLeader'] === true){
-        $isCoListingDisabled = false;
+    if($_SESSION['IsTeamLeader'] === '1'){
+        $isCoListingDisabled = null;
         while($row = mysqli_fetch_array($teamMemberResult))
         {
             $teamMembers[] = $row;
         }
-        echo var_dump($teamMembers);
     }
     else{
-        $isCoListingDisabled = true;
+        $isCoListingDisabled = 'disabled';
         $teamLeader = array (
             "AccountID" => $teamLeaderID,
             "FirstName" => $teamLeaderName,
@@ -117,30 +116,31 @@ Template Name: Agent Create Case
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/pcStyles.css">
-    
+
 </head>
 <body>
-<div id="container">
-    <?php
+    <div id="container">
+        <?php
         include_once(__DIR__ . '/navigation.php');
-    ?>
-    <div id="main">
-        <div class="formPart">
-            <div class="title"><p class="titleSize"><strong>NEW LISTING</strong></p></div>
-            <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
-                <div class="form-group inputPart">
-                    <div class="oneLineDiv">
-                        <div class="requireTitle mlsNumberTitle">MLS NUMBER* </div>
+        ?>
+        <div id="main">
+            <div class="formPart">
+                <div class="title"><p class="titleSize"><strong>NEW LISTING</strong></p></div>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <div class="form-group inputPart">
+                        <div class="oneLineDiv">
+                            <div class="requireTitle mlsNumberTitle">MLS NUMBER* </div>
                             <div class="inputContent">
-                                <input type="text" name="MLSNumber" id="MLSNumber" placeholder="&nbsp;&nbsp;MLS NUMBER" style="font-size:12px; height:30px;" size="20" require/>
+                                <input type="text" name="MLSNumber" id="MLSNumber" placeholder="&nbsp;&nbsp;MLS NUMBER" style="font-size:12px; height:30px;" size="20" require />
                             </div>
-                            <div class="requireTitle secondTitle">PROPERTY TYPE*</div>
+                            <div class="requireTitle secondTitle">PROPERTY TYPE* </div>
                             <div class="selectPropertyType secondInput">
-                                <div class="dropdown">
+                                <div class="dropdown" style="margin-left:10px;">
                                     <select name="propertyType">
                                         <?php
                                         foreach ($propertyTypes as $propertyTypeItem){
-                                            echo '<option value="' . $propertyTypeItem . '">', $propertyTypeItem, '</option>';
+                                        echo '
+                                        <option value="' . $propertyTypeItem . '">', $propertyTypeItem, '</option>';
                                         }
                                         ?>
                                     </select>
@@ -150,27 +150,27 @@ Template Name: Agent Create Case
                         <div class="oneLineDiv">
                             <div class="requireTitle addressTitle">ADDRESS*</div>
                             <div class="inputContent addressInput">
-                                <input type="text" name="address" id="address" style="font-size:12px; height:30px; width:420px !important;" size="70" require/>
+                                <input type="text" name="address" id="address" style="font-size:12px; height:30px; width:432px !important;" size="70" require />
                             </div>
                         </div>
                         <div class="oneLineDiv">
                             <div class="requireTitle houseSizeTitle">HOUSE SIZE*</div>
                             <div class="inputContent houseSizeInput">
-                                <input type="number" step="any" name="houseSize" id="houseSize" placeholder="&nbsp;&nbsp;SQF" style="font-size:12px; height:30px;" size="20" require/>
+                                <input type="number" step="any" name="houseSize" id="houseSize" placeholder="&nbsp;&nbsp;SQF" style="font-size:12px; height:30px;" size="20" require />
                             </div>
-                            <div class="requireTitle secondTitle landSizeTitle">LAND SIZE*</div>
+                            <div class="requireTitle secondTitle landSizeTitle">LAND SIZE* </div>
                             <div class="secondInput landSizeInput">
-                                <input type="number" step="any" name="landSize" id="landSize" placeholder="&nbsp;&nbsp;FT" style="font-size:12px; height:30px;" size="23" require/>
+                                <input type="number" step="any" name="landSize" id="landSize" placeholder="&nbsp;&nbsp;FT" style="font-size:12px; height:30px;margin-left:10px;" size="23" require />
                             </div>
                         </div>
                         <div class="oneLineDiv">
                             <div class="requireTitle listingPriceTitle">LISTING PRICE*</div>
                             <div class="inputContent listingPriceInput">
-                                <input type="number" step="any" name="listingPrice" id="listingPrice" style="font-size:12px; height:30px;" size="20" require/>
+                                <input type="number" step="any" name="listingPrice" id="listingPrice" style="font-size:12px; height:30px;" size="20" require />
                             </div>
-                            <div class="requireTitle secondTitle contactNumberTitle">COMMISSION RATE*</div>
+                            <div class="requireTitle secondTitle contactNumberTitle">COMMISSION RATE* </div>
                             <div class="secondInput contactNumberInput">
-                                <input type="number" step="any" name="commissionRate" id="commissionRate" style="font-size:12px; height:30px;" size="20" require/>
+                                <input type="number" step="any" name="commissionRate" id="commissionRate" style="font-size:12px; height:30px;margin-left:10px;" size="20" require />
                             </div>
                             <!--<div class="requireTitle secondTitle">TEAM</div>
                             <div class="secondInput showLeaderName">
@@ -184,19 +184,19 @@ Template Name: Agent Create Case
                         <div class="oneLineDiv">
                             <div class="requireTitle owenweNameTitle">OWNER'S NAME*</div>
                             <div class="inputContent owenweNameInput">
-                                <input type="text" name="ownerName" id="ownerName" style="font-size:12px; height:30px;" size="20" require/>
+                                <input type="text" name="ownerName" id="ownerName" style="font-size:12px; height:30px;" size="20" require />
                             </div>
                             <div class="requireTitle secondTitle">TEAM</div>
                             <div class="secondInput howLeaderName">
-                               <a style="font-size:12px; height:30px;" size="20" require><?php echo $teamLeaderName;?></a>
+                                <a style="font-size:12px; height:30px;margin-left:10px;" size="20" require><?php echo $teamLeaderName;?></a>
                             </div>
                             <!--<div class="selectTeamMember secondInput">
                                 <div class="dropdown" >
                                 <?php
-                                    echo '<select name="coStaffID" disabled="' . (int)$isCoListingDisabled . '">';
+                                    echo '<select name="coStaffID" ' . isCoListingDisabled . '>';
                                         foreach ($teamMembers as $teamMemberItem){
                                             $teamMemberName = $teamMemberItem['FirstName'] . " " . $teamMemberItem['LastName'];
-                                            echo '<option value="' . $teamMemberItem['AccountID'] . '" selected="' . $isSelected . '">', $teamMemberName, '</option>';
+                                            echo '<option value="' . $teamMemberItem['AccountID'] . '" ' . $isSelected . '>', $teamMemberName, '</option>';
                                         }
                                     echo '</select>';
                                 ?>
@@ -204,50 +204,72 @@ Template Name: Agent Create Case
                             </div> -->
                         </div>
                         <div class="oneLineDiv">
-                             <div class="requireTitle contactNumberTitle">CONTACT NUMBER*</div>
-                             <div class="inputContent contactNumberInput">
-                                <input type="text" name="contactNumber" id="contactNumber" style="font-size:12px; height:30px;" size="20" require/>
-                             </div>
-                             <div class="selectTeamMember secondInput">
-                                <div class="dropdown" >
-                                <?php
-                                    echo '<select name="coStaffID" disabled="' . (int)$isCoListingDisabled . '">';
+                            <div class="requireTitle contactNumberTitle">CONTACT NUMBER*</div>
+                            <div class="inputContent contactNumberInput">
+                                <input type="text" name="contactNumber" id="contactNumber" style="font-size:12px; height:30px;" size="20" require />
+                            </div>
+                            <div class="selectTeamMember secondInput">
+                                <div class="dropdown">
+                                    <?php
+                                    echo '<select style="margin-left:10px;" name="coStaffID" ' . isCoListingDisabled . ' >
+                                        ';
                                         foreach ($teamMembers as $teamMemberItem){
-                                            $teamMemberName = $teamMemberItem['FirstName'] . " " . $teamMemberItem['LastName'];
-                                            echo '<option value="' . $teamMemberItem['AccountID'] . '" selected="' . $isSelected . '">', $teamMemberName, '</option>';
+                                        $teamMemberName = $teamMemberItem['FirstName'] . " " . $teamMemberItem['LastName'];
+                                        echo '
+                                        <option value="' . $teamMemberItem['AccountID'] . '" ' . $isSelected . '>', $teamMemberName, '</option>';
                                         }
-                                    echo '</select>';
-                                ?>
+                                        echo '
+                                    </select>';
+                                    ?>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                         <div class="oneLineDiv">
                             <!--<div class="requireTitle contactNumberTitle">COMMISSION RATE*</div>
                             <div class="inputContent contactNumberInput">
                                 <input type="number" step="any" name="commissionRate" id="commissionRate" style="font-size:12px; height:30px;" size="20" require/>
                             </div>-->
-                        <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
-                        <div class="inputContent ">
-                            <input type="file" value="UPLOAD" name="case_image" class="photoUploadButton">
+                            <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
+                            <div id="UploadID" class="" style="width: 150px;
+    display: inline-block;
+    border: 1px #a9a9a9 solid;
+    margin-left: 20px;
+    height: 30px;
+    border-radius: 3px;
+    text-align: center;
+    padding: 6px;
+    font-weight: 700;cursor:pointer;">
+                                Upload
+
+                            </div>
+                            <input id="UploadFile" type="file" value="UPLOAD" name="case_image" class="photoUploadButton" style="display:none;" />
+                        </div>
+                        <div class="secondInput create">
+                            <input class="createButton" type="submit" value="Create" name="create_case" style="margin-left:10px;margin-top:-7px;">
+                            <?php
+                            if($isError){
+                            echo '<div class="error-message">
+                                <a>
+                                    ';
+                                    global $errorMessage;
+                                    echo $errorMessage;
+                                    echo '
+                                </a>
+                            </div>';
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div class="secondInput create">
-                        <input class="createButton" type="submit" value="Create" name="create_case">
-                    <?php
-                    if($isError){
-                        echo '<div class="error-message"><a>';
-                        global $errorMessage;
-                        echo $errorMessage;
-                        echo '</a></div>';
-                    }
-                    ?>
-                        </div>
-                    </div>
-                </div>
+            </div>
             </form>
         </div>
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $('#UploadID').on('click', function () {
+            $('#UploadFile').trigger('click');
+        });
+    </script>
 </body>
