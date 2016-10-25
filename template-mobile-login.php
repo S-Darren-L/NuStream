@@ -165,7 +165,7 @@
         <div class='login_fields__submit'>
             <input type='submit' name="login" value='LOGIN' style="width:270px;border-radius:5px;padding:11px 0px;"/>
             <div class='forgot'>
-                <a href='#'>Forgot Password?</a>
+<!--                <a href='#'>Forgot Password?</a>-->
                 <?php
                 if($isLoginFailed){
                     echo '<div class="error-message">
