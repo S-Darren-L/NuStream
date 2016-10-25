@@ -10,7 +10,7 @@ Template Name: Agent Mobile Case Details
     // Get Case ID
     $MLS = $_GET['CID'];
     $isRefreshPage = $_GET['RF'];
-    $uploadPageURL = get_home_url() . '/agent-case-file-upload/?CID=' . $MLS;
+    $uploadPageURL = get_home_url() . '/agent-mobile-case-file-upload/?CID=' . $MLS;
     $uploadPath = get_home_url() . "/wp-content/themes/NuStream/Upload/Services/";
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
     $uploadBasePath = "wp-content/themes/NuStream/Upload/case/" . $MLS;
