@@ -250,7 +250,7 @@ Template Name: Admin Case Details
         background: #32323a;
         margin-left: -230px;
         position:fixed;
-        margin-top: -89px;
+        margin-top: -54px;
     }
 
     #main {
@@ -502,7 +502,7 @@ Template Name: Admin Case Details
     /*File Approvement Page First Title*/
     .FAFTitle {
         padding:5px 0 5px 0;
-        margin-top:89px;
+        margin-top:54px;
         margin-left: 23px;
         background-color: #fff;
         border-left:5px #0068b7 solid;
@@ -863,7 +863,7 @@ Template Name: Admin Case Details
         <div class="formPart">
             <form method="post">
                 <div class="FAFTitle">
-                    <p class="titleSize">BASIC INFO</p>
+                    <p class="titleSize"><strong>BASIC INFO</strong></p>
                 </div>
                 <div class="FAFContentPart ">
                     <div class="houseInfo">
@@ -922,7 +922,7 @@ Template Name: Admin Case Details
                     </div>
                 </div>
                 <div class="FANormalTitle">
-                    <p class="titleSize">FILE UPLOAD</p>
+                    <p class="titleSize"><strong>FILE UPLOAD</strong></p>
                 </div>
                 <div class="FASContentPart">
                     <div class="FASCPFLine">

@@ -122,18 +122,17 @@
 
 ?>
 
-<!DOCTYPE html>
-<html lang="zh">
+<html class="gr__nustreamtoronto_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUSTREAM</title>
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">
+    <!--<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">-->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
 </head>
-<body>
-<div class='login' style="border:1px solid grey">
+<body data-gr-c-s-loaded="true">
+<div ng-app="App" ng-controller="myController" class="ng-scope">
     <form method="post">
     <div class='login_title'>
         <span><?php
@@ -141,29 +140,29 @@
             ?></span>
     </div>
     <div class='login_fields'>
-        <div class='login_fields__user'>
-            <div class='icon'>
+        <!--<div class='login_fields__user'>-->
+            <div class='userIcon'>
                 <?php
                 echo '<img src="' . $userIconImagePath . '"/>';
                 ?>
             </div>
-            <input class="userNameInput" name="email" placeholder='Email' type='email' size="30" style="width:140px;border-radius:5px;" />
-        </div>
-        <div class='login_fields__password'>
-            <div class='icon'>
+            <input class="userNameInput" name="email" placeholder='&nbsp;&nbsp;&nbsp;Username' type='email'/>
+        <!--</div>-->
+        <!--<div class='login_fields__password'>-->
+            <div class='passwordIcon'>
                 <?php
                 echo '<img src="' . $lockIconImagePath . '"/>';
                 ?>
             </div>
-            <input class="passwordInput" name="password" placeholder='Password' type='password' style="width:140px;border-radius:5px;"/>
-        </div>
+            <input class="passwordInput" name="password" placeholder='&nbsp;&nbsp;&nbsp;Password' type='password' />
+        <!--</div>-->
         <div class="checkbox">
             <label>
                 <input id="login-remember" type="checkbox" name="remember_me" value="1" />&nbsp;&nbsp;Remember me
             </label>
         </div>
         <div class='login_fields__submit'>
-            <input type='submit' name="login" value='LOGIN' style="width:270px;border-radius:5px;padding:11px 0px;"/>
+            <input type='submit' name="login" value='LOGIN'/>
             <div class='forgot'>
 <!--                <a href='#'>Forgot Password?</a>-->
                 <?php
@@ -181,4 +180,4 @@
     </form>
 </div>
 </body>
-</html>
+<!--</html>-->

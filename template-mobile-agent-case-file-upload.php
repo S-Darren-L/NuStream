@@ -11,7 +11,7 @@
     $MLS = $_GET['CID'];
     $isRefreshPage = $_GET['RF'];
     $uploadBasePath = "wp-content/themes/NuStream/Upload/case/" . $MLS;
-    $PageURL = get_home_url() . '/agent-mobile-case-file-upload';
+    $PageURL = get_home_url() . '/agent-case-file-upload';
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
     $defaultHouseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
 
@@ -525,153 +525,174 @@
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/site.css">
 </head>
 <body>
-<div ng-app="App" ng-controller="myController">
-    <div class="Back">
-        <label><a href="javascript:history.go(-1)"><<</a></label>
-    </div>
-    <div class="TopContainer">
-        <div class="BackgroundGrey">
-            <div>MLS#</div>
-            <div><?php echo $caseDetailsArray['MLS'];?></div>
+    <div ng-app="App" ng-controller="myController">
+        <div class="Back">
         </div>
-        <div>
-            <div>ADDRESS</div>
-            <div><?php echo $caseDetailsArray['Address'];?></div>
+        <div class="TopContainer">
+            <div class="BackgroundGrey">
+                <div>MLS#</div>
+                <div><?php echo $caseDetailsArray['MLS'];?></div>
+            </div>
+            <div>
+                <div>ADDRESS</div>
+                <div><?php echo $caseDetailsArray['Address'];?></div>
+            </div>
+            <div class="BackgroundGrey">
+                <div>PROPERTY TYPE</div>
+                <div><?php echo $caseDetailsArray['PropertyType'];?>E</div>
+            </div>
+            <div>
+                <div>LAND SIZE(LOT)</div>
+                <div><?php echo $caseDetailsArray['LandSize'];?></div>
+            </div>
+            <div class="BackgroundGrey">
+                <div>HOUSE SIZE(SQF)</div>
+                <div><?php echo $caseDetailsArray['HouseSize'];?></div>
+            </div>
+            <div>
+                <div>LISTING PRICE</div>
+                <div><?php echo $caseDetailsArray['ListingPrice'];?></div>
+            </div>
+            <div class="BackgroundGrey">
+                <div>OWNER'S NAME</div>
+                <div><?php echo $caseDetailsArray['OwnerName'];?></div>
+            </div>
+            <div>
+                <div>TEAM MEMBER'S NAME</div>
+                <div><?php echo $caseDetailsArray['CoStaffName'];?></div>
+            </div>
+            <div class="BackgroundGrey">
+                <div>SELLING LISTING RATE</div>
+                <div><?php echo $caseDetailsArray['CommissionRate'] . "%";?></div>
+            </div>
         </div>
-        <div class="BackgroundGrey">
-            <div>PROPERTY TYPE</div>
-            <div><?php echo $caseDetailsArray['PropertyType'];?>E</div>
+        <div class="ButtonContainer">
+            <ul>
+                <li class="Button" ng-click="onStagingClick()">STAGING</li>
+                <li class="Button" ng-click="onCleanupClick()">CLEAN UP</li>
+                <li class="Button" ng-click="onTouchupClick()">TOUCH UP</li>
+                <li class="Button" ng-click="onYardWorkClick()">YARD WORK</li>
+            </ul>
+            <ul>
+                <li class="Button" ng-click="onInspectionClick()">INSPECTION</li>
+                <li class="Button" ng-click="onStorageClick()">STORAGE</li>
+                <li class="Button" ng-click="onRelocationClick()">RELOCATION</li>
+            </ul>
         </div>
-        <div>
-            <div>LAND SIZE(LOT)</div>
-            <div><?php echo $caseDetailsArray['LandSize'];?></div>
-        </div>
-        <div class="BackgroundGrey">
-            <div>HOUSE SIZE(SQF)</div>
-            <div><?php echo $caseDetailsArray['HouseSize'];?></div>
-        </div>
-        <div>
-            <div>LISTING PRICE</div>
-            <div><?php echo $caseDetailsArray['ListingPrice'];?></div>
-        </div>
-        <div class="BackgroundGrey">
-            <div>OWNER'S NAME</div>
-            <div><?php echo $caseDetailsArray['OwnerName'];?></div>
-        </div>
-        <div>
-            <div>TEAM MEMBER'S NAME</div>
-            <div><?php echo $caseDetailsArray['CoStaffName'];?></div>
-        </div>
-        <div class="BackgroundGrey">
-            <div>SELLING LISTING RATE</div>
-            <div><?php echo $caseDetailsArray['CommissionRate'] . "%";?></div>
-        </div>
-    </div>
-    <div class="ButtonContainer">
-        <ul>
-            <li class="Button" ng-click="onStagingClick()">STAGING</li>
-            <li class="Button" ng-click="onCleanupClick()">CLEAN UP</li>
-            <li class="Button" ng-click="onTouchupClick()">TOUCH UP</li>
-            <li class="Button" ng-click="onYardWorkClick()">YARD WORK</li>
-        </ul>
-        <ul>
-            <li class="Button" ng-click="onInspectionClick()">INSPECTION</li>
-            <li class="Button" ng-click="onStorageClick()">STORAGE</li>
-            <li class="Button" ng-click="onRelocationClick()">RELOCATION</li>
-        </ul>
-    </div>
 
-    <div class="StagingBar">
-        <label>{{vm.Label}}</label>
-        <div class="SAVE" ng-click="onSaveClick()">SAVE</div>
-    </div>
+        <div class="StagingBar">
+            <label>{{vm.Label}}</label>
+            <div class="SAVE" ng-click="onSaveClick()">SAVE</div>
+        </div>
 
 
-    <div class="UploadContainer">
+        <div class="UploadContainer">
             <div ng-show="vm.showStaging" class="Staging">
-                <form method="post"  enctype="multipart/form-data" name="FileUploadFrom">
-                <input type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
-                <label class="BeforeAfterLabel">Before</label>
-                <label class="BeforeAfterLabel">After</label>
-                <upload name="upload_staging_before_living_room" label="LIVING ROOM"></upload>
-                <upload name="upload_staging_after_living_room" label="LIVING ROOM"></upload>
-                <upload name="upload_staging_before_dinning_room" label="DINING ROOM"></upload>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <label for="file-upload" class="custom-file-upload">
+                        Upload
+                    </label>
+                    <input id="file-upload" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice"/>
 
-                <upload name="upload_staging_after_dinning_room" label="DINING ROOM"></upload>
-                <upload name="upload_staging_before_master_room" label="MASTER ROOM"></upload>
-                <upload name="upload_staging_after_master_room" label="MASTER ROOM"></upload>
-                    <input type="submit" style="display:none" name="submit_staging" class="SubmitButton"/>
+                    <label class="BeforeAfterLabel">Before</label>
+                    <label class="BeforeAfterLabel">After</label>
+                    <upload name="upload_staging_before_living_room" label="LIVING ROOM"></upload>
+                    <upload name="upload_staging_after_living_room" label="LIVING ROOM"></upload>
+                    <upload name="upload_staging_before_dinning_room" label="DINING ROOM"></upload>
+
+                    <upload name="upload_staging_after_dinning_room" label="DINING ROOM"></upload>
+                    <upload name="upload_staging_before_master_room" label="MASTER ROOM"></upload>
+                    <upload name="upload_staging_after_master_room" label="MASTER ROOM"></upload>
+                    <input type="submit" style="display:none" name="submit_staging" class="SubmitButton" />
                 </form>
             </div>
 
             <div ng-show="vm.showCleanup" class="Cleanup">
-                <form method="post"  enctype="multipart/form-data" name="FileUploadFrom">
-                <input type="file" accept="image/*;capture=camera" name="upload_clean_up_invoice"  class="UploadInvoice"/>
-                <label class="BeforeAfterLabel">Before</label>
-                <label class="BeforeAfterLabel">After</label>
-                <upload name="upload_clean_up_before_living_room" label="LIVING ROOM"></upload>
-                <upload name="upload_clean_up_after_living_room" label="LIVING ROOM"></upload>
-                <upload name="upload_clean_up_before_kitchen" label="KITCHEN"></upload>
-                <upload name="upload_clean_up_after_kitchen" label="KITCHEN"></upload>
-                <upload name="upload_clean_up_before_wash_room" label="WASHROOM"></upload>
-                <upload name="upload_clean_up_after_wash_room" label="WASHROOM"></upload>
-                    <input type="submit" style="display:none" name="submit_clean_up" class="SubmitButton"/>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <label for="file-upload1" class="custom-file-upload">
+                        Upload
+                    </label>
+                    <input id="file-upload1" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <label class="BeforeAfterLabel">Before</label>
+                    <label class="BeforeAfterLabel">After</label>
+                    <upload name="upload_clean_up_before_living_room" label="LIVING ROOM"></upload>
+                    <upload name="upload_clean_up_after_living_room" label="LIVING ROOM"></upload>
+                    <upload name="upload_clean_up_before_kitchen" label="KITCHEN"></upload>
+                    <upload name="upload_clean_up_after_kitchen" label="KITCHEN"></upload>
+                    <upload name="upload_clean_up_before_wash_room" label="WASHROOM"></upload>
+                    <upload name="upload_clean_up_after_wash_room" label="WASHROOM"></upload>
+                    <input type="submit" style="display:none" name="submit_clean_up" class="SubmitButton" />
                 </form>
             </div>
 
             <div ng-show="vm.showTouchup" class="Touchup">
-                <form method="post"  enctype="multipart/form-data" name="FileUploadFrom">
-                <input type="file" accept="image/*;capture=camera" name="upload_touch_up_invoice"  class="UploadInvoice"/>
-                <label class="BeforeAfterLabel">Before</label>
-                <label class="BeforeAfterLabel">After</label>
-                <upload name="upload_touch_up_before_1" label=""></upload>
-                <upload name="upload_touch_up_after_1" label=""></upload>
-                <upload name="upload_touch_up_before_2" label=""></upload>
-                <upload name="upload_touch_up_after_2" label=""></upload>
-                <upload name="upload_touch_up_before_3" label=""></upload>
-                <upload name="upload_touch_up_after_3" label=""></upload>
-                <upload name="upload_touch_up_before_4" label=""></upload>
-                <upload name="upload_touch_up_after_4" label=""></upload>
-                    <input type="submit" style="display:none" name="submit_touch_up" class="SubmitButton"/>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <label for="file-upload2" class="custom-file-upload">
+                        Upload
+                    </label>
+                    <input id="file-upload2" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <label class="BeforeAfterLabel">Before</label>
+                    <label class="BeforeAfterLabel">After</label>
+                    <upload name="upload_touch_up_before_1" label=""></upload>
+                    <upload name="upload_touch_up_after_1" label=""></upload>
+                    <upload name="upload_touch_up_before_2" label=""></upload>
+                    <upload name="upload_touch_up_after_2" label=""></upload>
+                    <upload name="upload_touch_up_before_3" label=""></upload>
+                    <upload name="upload_touch_up_after_3" label=""></upload>
+                    <upload name="upload_touch_up_before_4" label=""></upload>
+                    <upload name="upload_touch_up_after_4" label=""></upload>
+                    <input type="submit" style="display:none" name="submit_touch_up" class="SubmitButton" />
                 </form>
             </div>
 
             <div ng-show="vm.showYardWork" class="YardWork">
-                <form method="post"  enctype="multipart/form-data" name="FileUploadFrom">
-                <input type="file" accept="image/*;capture=camera" name="upload_yard_work_invoice" class="UploadInvoice" />
-                <label class="BeforeAfterLabel">Before</label>
-                <label class="BeforeAfterLabel">After</label>
-                <upload name="upload_yard_work_before_front" label="FRONT YARD"></upload>
-                <upload name="upload_yard_work_after_front" label="FRONT YARD"></upload>
-                <upload name="upload_yard_work_before_back" label="BACK YARD"></upload>
-                <upload name="upload_yard_work_after_back" label="BACK YARD"></upload>
-                    <input type="submit" style="display:none" name="submit_yard_work" class="SubmitButton"/>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <label for="file-upload3" class="custom-file-upload">
+                        Upload
+                    </label>
+                    <input id="file-upload3" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <label class="BeforeAfterLabel">Before</label>
+                    <label class="BeforeAfterLabel">After</label>
+                    <upload name="upload_yard_work_before_front" label="FRONT YARD"></upload>
+                    <upload name="upload_yard_work_after_front" label="FRONT YARD"></upload>
+                    <upload name="upload_yard_work_before_back" label="BACK YARD"></upload>
+                    <upload name="upload_yard_work_after_back" label="BACK YARD"></upload>
+                    <input type="submit" style="display:none" name="submit_yard_work" class="SubmitButton" />
                 </form>
             </div>
 
             <div ng-show="vm.showInspection" class="Innspection">
-                <form method="post"  enctype="multipart/form-data" name="FileUploadFrom">
-                <input type="file" accept="image/*;capture=camera" name="upload_inspection_report" class="UploadInvoice" />
-                    <input type="submit" style="display:none" name="upload_inspection_report" class="SubmitButton"/>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <label for="file-upload4" class="custom-file-upload">
+                        Upload
+                    </label>
+                    <input id="file-upload4" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <input type="submit" style="display:none" name="upload_inspection_report" class="SubmitButton" />
                 </form>
             </div>
 
             <div ng-show="vm.showStorageWork" class="Storage">
-                <form method="post"  enctype="multipart/form-data" name="FileUploadFrom">
-                <input type="file" accept="image/*;capture=camera" name="upload_storage_invoice"  class="UploadInvoice"/>
-                    <input type="submit" style="display:none" name="upload_storage_invoice" class="SubmitButton"/>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <label for="file-upload5" class="custom-file-upload">
+                        Upload
+                    </label>
+                    <input id="file-upload5" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <input type="submit" style="display:none" name="upload_storage_invoice" class="SubmitButton" />
                 </form>
             </div>
 
             <div ng-show="vm.showRelocation" class="Relocation">
-                <form method="post"  enctype="multipart/form-data" name="FileUploadFrom">
-                <input type="file" accept="image/*;capture=camera" name="upload_relocate_home_invoice" class="UploadInvoice" />
-                    <input type="submit" style="display:none" name="upload_relocate_home_invoice" class="SubmitButton"/>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <label for="file-upload6" class="custom-file-upload">
+                        Upload
+                    </label>
+                    <input id="file-upload6" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <input type="submit" style="display:none" name="upload_relocate_home_invoice" class="SubmitButton" />
                 </form>
             </div>
 
+        </div>
     </div>
-</div>
 
 </body>
 

@@ -62,7 +62,7 @@
 		$HSTNumber = $_POST['HSTNumber'];
 		$firstContactName = $_POST['firstContactName'];
 		$firstContactNumber = $_POST['firstContactNumber'];
-		$secondContactName = $_POST['supportArea'];
+		$secondContactName = $_POST['secondContactName'];
 		$secondContactNumber = $_POST['secondContactNumber'];
 		$priceUnit = $_POST['priceUnit'];
 		$ricePerUnit = $_POST['pricePerUnit'];
@@ -97,7 +97,7 @@
 			"HSTNumber" => $_POST['HSTNumber'],
 			"firstContactName" => $_POST['firstContactName'],
 			"firstContactNumber" => $_POST['firstContactNumber'],
-			"supportArea" => $_POST['supportArea'],
+			"secondContactName" => $_POST['secondContactName'],
 			"secondContactNumber" => $_POST['secondContactNumber'],
 			"priceUnit" => $_POST['priceUnit'],
 			"pricePerUnit" => $_POST['pricePerUnit'],
@@ -209,7 +209,7 @@
                                 </div>CONTACT PERSON 1 *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="firstContactName" value="<?php echo $firstContactName; ?>"  class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="firstContactNumber" value="<?php echo $firstContactNumber; ?>" class="CNSContactInput" require /><br/><br/>SUPPORT AREA *<br/>
-                                    <input type="text" <?php echo $isDisable; ?> name="supportArea" value="<?php echo $secondContactName; ?>" class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
+                                    <input type="text" <?php echo $isDisable; ?> name="secondContactName" value="<?php echo $secondContactName; ?>" class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="secondContactNumber" value="<?php echo $secondContactNumber; ?>" class="CNSContactInput" require />
                             </div>
                             <div class="CNSPriceInfo">
@@ -230,24 +230,24 @@
                                         <div class="CNSSpace" id="empty"></div>
                                         <div id="NoHouseTypeSelected">
                                             <div>MINIMUM PAYMENT</div>
-                                            <input type="text" name="mimPayment" class="CNSMinimumPaymentInput" require />
+                                            <input type="text" class="CNSMinimumPaymentInput" require />
                                         </div>
                                         <div id="HouseTypeSelected">
                                             <div class="Condo">
                                                 <div>CONDO</div>
-                                                <input type="text"  name="condoPrice"/>
+                                                <input type="text" />
                                             </div>
                                             <div class="Townhouse">
                                                 <div>TOWNHOUSE</div>
-                                                <input type="text" name="townPrice"/>
+                                                <input type="text" />
                                             </div>
                                             <div class="Semi">
                                                 <div>SEMI</div>
-                                                <input type="text" name="semiPrice"/>
+                                                <input type="text" />
                                             </div>
                                             <div class="Detached">
                                                 <div>DETACHED</div>
-                                                <input type="text" name="detachedPrice"/>
+                                                <input type="text" />
                                             </div>
                                         </div>
                                     </div>

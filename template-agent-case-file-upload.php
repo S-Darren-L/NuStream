@@ -885,7 +885,7 @@ Template Name: Agent Case File Upload
 
     .FASubTitleUpload {
         margin-left: 10px;
-        width: 100px;
+        width: 130px;
         float: left;
         padding-top: 5px;
     }
@@ -1084,7 +1084,7 @@ Template Name: Agent Case File Upload
         font-size: 12px;
         float:left;
         border:1px solid #32323a;
-        margin-left: 20px;
+        margin-left: 10px;
         border-radius: 3px;
     }
 
@@ -1103,6 +1103,7 @@ Template Name: Agent Case File Upload
 
     .inspectionButtonStyle {
         margin-left: 120px;
+margin-top:20px;
     }
 
     .inspectionStyle {
@@ -1122,6 +1123,7 @@ Template Name: Agent Case File Upload
 
     .storageButtonStyle {
         margin-left: 215px;
+margin-top:-10px;
     }
 
     .storageInputFileStyle {
@@ -1129,6 +1131,35 @@ Template Name: Agent Case File Upload
         margin-left: 0px;
         margin-top: 5px;
     }
+/*----------------------------------------File Upload Agent New---------------------------------------*/
+.FUAInputOnOneLine {
+    border-radius: 3px;
+        height: 17px;
+        width: 130px;
+        margin:2px 0px 0px 10px;
+        font-size: 9px;
+    float:left;
+}
+
+.FUAChooseFileButtonTouchUp {
+    border-radius: 3px;
+        height: 17px;
+        width: 120px;
+        margin:0 5px;
+        font-size: 9px;
+}
+
+.FUSixContentPartNew {
+    padding-top: 10px;
+        background-color: #fff;
+        color:#a9a9a9;
+        height: 80px;
+        width: 750px;
+        font-size: 12px;
+        margin-left: 23px;
+        border-bottom:1px #eeeeee solid;
+}
+
 </style>
 <head>
     <meta charset="utf-8">
@@ -1218,8 +1249,9 @@ Template Name: Agent Case File Upload
                                     echo '<a>No Invoice uploaded</a>';
                                 }
                             ?>
-                            <input type="file" name="upload_staging_invoice">
+                            
                         </p>
+                        <input type="file" name="upload_staging_invoice" class="FUAInputOnOneLine">
                         <input type="submit" name="submit_staging" value=" SAVE " class="FUASaveButton">
                     </div>
                     <div class="FASCPSLine">
@@ -1309,8 +1341,9 @@ Template Name: Agent Case File Upload
                                 echo '<a>No Invoice uploaded</a>';
                             }
                             ?>
-                            <input type="file" name="upload_clean_up_invoice">
+                            
                         </p>
+                        <input type="file" name="upload_clean_up_invoice" class="FUAInputOnOneLine" >
                         <input type="submit" name="submit_clean_up" value=" SAVE " class="FUASaveButton">
                     </div>
                     <div class="FASCPSLine">
@@ -1400,8 +1433,9 @@ Template Name: Agent Case File Upload
                                 echo '<a>No Invoice uploaded</a>';
                             }
                             ?>
-                            <input type="file" name="upload_touch_up_invoice">
+                            
                         </p>
+                        <input type="file" name="upload_touch_up_invoice" class="FUAInputOnOneLine">
                         <input type="submit" name="submit_touch_up" value=" SAVE " class="FUASaveButton">
                     </div>
                     <div class="FASCPSLine">
@@ -1451,18 +1485,18 @@ Template Name: Agent Case File Upload
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><input type="file" name="upload_touch_up_before_1" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_before_2" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_before_3" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_before_4" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_before_5" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_before_1" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_before_2" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_before_3" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_before_4" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_before_5" class="FUAChooseFileButtonTouchUp"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="FASCPTLine">
                         <table class="FAtable">
                             <tr>
-                                <td>AFTER</td>
+                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
                                 <td>
                                     <?php
                                     if(!empty($touchUpImageFilesArray['After1']["FileName"]))
@@ -1506,11 +1540,11 @@ Template Name: Agent Case File Upload
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><input type="file" name="upload_touch_up_after_1" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_after_2" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_after_3" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_after_4" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_touch_up_after_5" class="FUAChooseFileButton"></td>
+                                <td><input type="file" name="upload_touch_up_after_1" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_after_2" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_after_3" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_after_4" class="FUAChooseFileButtonTouchUp"></td>
+                                <td><input type="file" name="upload_touch_up_after_5" class="FUAChooseFileButtonTouchUp"></td>
                             </tr>
                         </table>
                     </div>
@@ -1527,8 +1561,9 @@ Template Name: Agent Case File Upload
                                 echo '<a>No Invoice uploaded</a>';
                             }
                             ?>
-                            <input type="file" name="upload_yard_work_invoice">
+                            
                         </p>
+                        <input type="file" name="upload_yard_work_invoice" class="FUAInputOnOneLine">
                         <input type="submit" name="submit_yard_work" value=" SAVE " class="FUASaveButton">
                     </div>
                     <div class="FASCPSLine">
@@ -1588,10 +1623,10 @@ Template Name: Agent Case File Upload
                         </table>
                     </div>
                 </div>
-                <div class="FUSixContentPart">
+                <div class="FUSixContentPartNew">
                     <div class="FASCPFLine">
                         <p class="FAFSubTitle">INSPECTION</p>
-                        <p class="FASubTitleInsoection">INSPECTION REPORT*
+                        <p class="FASubTitleInsoection">INSPECTION REPORT*<br>
                             <?php
                             if(!empty($inspectionImageFilesArray['Report']["FileName"])){
                                 echo '<a>Report uploaded</a>';
@@ -1602,7 +1637,7 @@ Template Name: Agent Case File Upload
                             ?>
                             <input type="file" name="upload_inspection_report" class="FUAChooseFileButton inspectionStyle">
                         </p>
-                        <p class="FASubTitleInvoice">INVOICE*
+                        <p class="FASubTitleInvoice">INVOICE*<br>
                             <?php
                             if(!empty($inspectionImageFilesArray['Invoice']["FileName"])){
                                 echo '<a>Invoice uploaded</a>';

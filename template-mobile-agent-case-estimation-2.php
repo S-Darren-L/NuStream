@@ -46,7 +46,6 @@ $storageEstimatePrice = default_storage_price_estimate();
 <body>
     <div class='estimationTwoPage'>
         <div class="goBack">
-            <img class="goBackButton" src="<?php bloginfo('template_url');?>/img/goBack.png">
         </div>
         <div id="staging" style="display:none"><?php echo $stagingEstimatePrice; ?></div>
         <div id="touchup" style="display:none"><?php echo $photographyEstimatePrice; ?></div>

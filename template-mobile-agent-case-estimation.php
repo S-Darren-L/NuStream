@@ -41,7 +41,6 @@ if(isset($_POST['submit'])){
 <div class='estimationPage'>
     <form method="post">
     <div class="goBack">
-        <?php echo '<img class="goBackButton" src="' . $goBackImagePath . '">'; ?>
     </div>
     <div class="estimationTitlePart">
         <h2>ESTIMATION</h2>

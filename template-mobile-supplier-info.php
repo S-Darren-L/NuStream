@@ -62,7 +62,6 @@
 <body>
 <div class='infoCentrePage'>
 	<div class="goBack">
-		<?php echo '<img class="goBackButton" src="' . $goBackImagePath . '">'; ?>
 	</div><br/>
 	<div class="buttonPart">
 		<button class="buttonStyle buttonWhite stagingButtton" id="strd">STAGING</button>

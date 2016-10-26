@@ -27,21 +27,21 @@ $goBackImagePath = $mainPath . "img/goBack.png";
         return $result_rows;
     }
 ?>
-<!DOCTYPE html>
-<html lang="zh">
+<html class="gr__nustreamtoronto_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NUSTREAM</title>
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NUSTREAM</title>
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
     <script type="text/javascript" src="<?php bloginfo('template_url');?>/js/index.js"></script>
 </head>
-<body>
-<div class='myCasePage'>
+<body  data-gr-c-s-loaded="true">
+<div cng-app="App" ng-controller="myController" class="ng-scope myCasePage">
     <div class="goBack">
-        <?php echo '<img class="goBackButton" src="' . $goBackImagePath . '">'; ?>
+        <?php
+                            echo '<img class="goBackButton" src="' . $goBackImagePath . '" />';
+                            ?>
     </div></br>
     <div class="infoPart"><?php
         for($i = 0; $i < count($CasesBriefInfoArray); $i++)
@@ -59,7 +59,11 @@ $goBackImagePath = $mainPath . "img/goBack.png";
         ?>
 
     </div>
-    </br>
+	<div class="myCaseInfoBottom">
+		<button class="buttonStyle buttonBlack">PREVIOUS</button>&nbsp;&nbsp;&nbsp;
+		<button class="buttonStyle buttonBlack">NEXT</button>
+	</div>
+</br>
 </div>
 </body>
 </html>

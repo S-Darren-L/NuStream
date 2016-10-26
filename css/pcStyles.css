@@ -844,7 +844,7 @@ input.CMARadioButton {
     margin-left: 20px;
 }
 .ESAPricePerUintInput {
-    width: 210px;
+    width: 170px;
     height: 30px;
 }
 
@@ -924,6 +924,58 @@ input.CMARadioButton {
 
 .ESASpace {
     margin-top: 17px;
+}
+
+
+.ESAUpdateButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 100px;
+    height: 30px;
+    width: 90px;
+    margin-left: -90px;
+    float: left;
+}
+
+.ESADeleteButton {
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 90px;
+    height: 30px;
+    width: 100px;
+    margin-right:0;
+    margin-left:10px;
+    float:left;
+}
+
+.ESABackButton{
+    border-radius: 5px;
+    background-color: #32323a;
+    border: #32323a;
+    color:#fff;
+    font-weight: 90px;
+    height: 30px;
+    width: 90px;
+    margin-left: 10px;
+}
+
+.ESASelectPaymentTeam {
+    height:30px !important;
+    width: 120px !important;
+}
+
+.ESASelectPaymentTeamPart {
+    height:30px !important;
+    width: 120px !important;
+    float:left;
+}
+
+.ESALastSpace {
+    margin-top:120px;
 }
 
 
@@ -1871,4 +1923,5 @@ input.CMARadioButton {
 .SETTINGMoveSpace {
     margin-top:-20px;
 }
+
 
