@@ -16,16 +16,15 @@ $teamLeaderID = $teamResult['TeamLeaderID'];
 $teamLeaderName = $teamResult['TeamLeaderName'];
 $teamMemberResult = get_all_team_members_by_team_id($teamID);
 $teamMembers = [];
-if($_SESSION['IsTeamLeader'] === true){
-    $isCoListingDisabled = false;
+if($_SESSION['IsTeamLeader'] === '1'){
+    $isCoListingDisabled = null;
     while($row = mysqli_fetch_array($teamMemberResult))
     {
         $teamMembers[] = $row;
     }
-    echo var_dump($teamMembers);
 }
 else{
-    $isCoListingDisabled = true;
+    $isCoListingDisabled = 'disabled';
     $teamLeader = array (
         "AccountID" => $teamLeaderID,
         "FirstName" => $teamLeaderName,
@@ -172,12 +171,12 @@ if(isset($_POST['create_case']) && date_validated() === true){
             </div>
             <div class='newInputPart'>
                 <?php
-                echo '<select name="coStaffID" disabled="' . (int)$isCoListingDisabled . '">
+                echo '<select name="coStaffID" ' . isCoListingDisabled . '">
                         ';
                 foreach ($teamMembers as $teamMemberItem){
                     $teamMemberName = $teamMemberItem['FirstName'] . " " . $teamMemberItem['LastName'];
                     echo '
-                        <option value="' . $teamMemberItem['AccountID'] . '" selected="' . $isSelected . '">', $teamMemberName, '</option>';
+                        <option value="' . $teamMemberItem['AccountID'] . '" ' . $isSelected . '>', $teamMemberName, '</option>';
                 }
                 echo '
                     </select>';
