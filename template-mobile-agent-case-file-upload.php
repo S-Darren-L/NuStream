@@ -120,8 +120,8 @@
             "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "1/")),
             "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "2/")),
             "Before3" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "3/")),
-            "Before4" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "4/")),
-            "Before5" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "5/")),
+            "Before4" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "4/")),
+            "Before5" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "5/")),
             "After1" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "1/")),
             "After2" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "2/")),
             "After3" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "3/")),
@@ -186,9 +186,20 @@
     }
 
     // Remove File
-    function remove_file($fileName){
+    function remove_file($dir, $fileName){
         if(!is_null($fileName)){
-            $removeBool = unlink($fileName);
+            if (is_dir($dir)) {
+                $objects = scandir($dir);
+                foreach ($objects as $object) {
+                    if ($object != "." && $object != "..") {
+                        if (filetype($dir."/".$object) == "dir")
+                            rrmdir($dir."/".$object);
+                        else unlink   ($dir."/".$object);
+                    }
+                }
+                reset($objects);
+                rmdir($dir);
+            }
             $removeFileResult = remove_file_by_name($fileName);
         }
     }
@@ -221,31 +232,31 @@
         $afterMasterRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_staging_after_master_room']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($stagingImageFilesArray['Invoice']["FileName"]);
+            remove_file($stagingImageFilesArray['Invoice']["FilePath"], $stagingImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($beforeLivingRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['BeforeLivingRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['BeforeLivingRoom']["FilePath"], $stagingImageFilesArray['BeforeLivingRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "LivingRoom/", $beforeLivingRoomUploadTmp, $beforeLivingRoomUploadName);
         }
         if(!empty($beforeDinningRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['BeforeDinningRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['BeforeDinningRoom']["FilePath"], $stagingImageFilesArray['BeforeDinningRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "DinningRoom/", $beforeDinningRoomUploadTmp, $beforeDinningRoomUploadName);
         }
         if(!empty($beforeMasterRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['BeforeMasterRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['BeforeMasterRoom']["FilePath"], $stagingImageFilesArray['BeforeMasterRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "MasterRoom/", $beforeMasterRoomUploadTmp, $beforeMasterRoomUploadName);
         }
         if(!empty($afterLivingRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['AfterLivingRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['AfterLivingRoom']["FilePath"], $stagingImageFilesArray['AfterLivingRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "LivingRoom/", $afterLivingRoomUploadTmp, $afterLivingRoomUploadName);
         }
         if(!empty($afterDinningRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['AfterDinningRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['AfterDinningRoom']["FilePath"], $stagingImageFilesArray['AfterDinningRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "DinningRoom/", $afterDinningRoomUploadTmp, $afterDinningRoomUploadName);
         }
         if(!empty($afterMasterRoomUploadTmp)) {
-            remove_file($stagingImageFilesArray['AfterMasterRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['AfterMasterRoom']["FilePath"], $stagingImageFilesArray['AfterMasterRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "MasterRoom/", $afterMasterRoomUploadTmp, $afterMasterRoomUploadName);
         }
 
@@ -268,8 +279,8 @@
         $beforeKitchenUploadTmp = $_FILES['upload_clean_up_before_kitchen']['tmp_name'];
         $beforeKitchenUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_before_kitchen']['name']);
 
-        $beforeWashRoomUploadTmp = $_FILES['upload_clean_up_before_washroom_room']['tmp_name'];
-        $beforeWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_before_washroom_room']['name']);
+        $beforeWashRoomUploadTmp = $_FILES['upload_clean_up_before_wash_room']['tmp_name'];
+        $beforeWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_before_wash_room']['name']);
 
         $afterLivingRoomUploadTmp = $_FILES['upload_clean_up_after_living_room']['tmp_name'];
         $afterLivingRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_living_room']['name']);
@@ -277,35 +288,35 @@
         $afterKitchenRoomUploadTmp = $_FILES['upload_clean_up_after_kitchen']['tmp_name'];
         $afterKitchenRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_kitchen']['name']);
 
-        $afterWashRoomUploadTmp = $_FILES['upload_clean_up_after_washroom_room']['tmp_name'];
-        $afterWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_washroom_room']['name']);
+        $afterWashRoomUploadTmp = $_FILES['upload_clean_up_after_wash_room']['tmp_name'];
+        $afterWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_wash_room']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($cleanUpImageFilesArray['Invoice']["FileName"]);
+            remove_file($cleanUpImageFilesArray['Invoice']["FilePath"], $cleanUpImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($beforeLivingRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['BeforeLivingRoom']["FilePath"], $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "LivingRoom/", $beforeLivingRoomUploadTmp, $beforeLivingRoomUploadName);
         }
         if(!empty($beforeKitchenUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeKitchen']["FileName"]);
+            remove_file($cleanUpImageFilesArray['BeforeKitchen']["FilePath"], $cleanUpImageFilesArray['BeforeKitchen']["FileName"]);
             upload_file($uploadPath . "Before/" . "Kitchen/", $beforeKitchenUploadTmp, $beforeKitchenUploadName);
         }
         if(!empty($beforeWashRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeWashRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['BeforeWashRoom']["FilePath"], $cleanUpImageFilesArray['BeforeWashRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "WashRoom/", $beforeWashRoomUploadTmp, $beforeWashRoomUploadName);
         }
         if(!empty($afterLivingRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['AfterLivingRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['AfterLivingRoom']["FilePath"], $cleanUpImageFilesArray['AfterLivingRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "LivingRoom/", $afterLivingRoomUploadTmp, $afterLivingRoomUploadName);
         }
         if(!empty($afterKitchenRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['AfterKitchen']["FileName"]);
+            remove_file($cleanUpImageFilesArray['AfterKitchen']["FilePath"], $cleanUpImageFilesArray['AfterKitchen']["FileName"]);
             upload_file($uploadPath . "After/" . "Kitchen/", $afterKitchenRoomUploadTmp, $afterKitchenRoomUploadName);
         }
         if(!empty($afterWashRoomUploadTmp)) {
-            remove_file($cleanUpImageFilesArray['AfterWashRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['AfterWashRoom']["FilePath"], $cleanUpImageFilesArray['AfterWashRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "WashRoom/", $afterWashRoomUploadTmp, $afterWashRoomUploadName);
         }
 
@@ -331,11 +342,11 @@
         $before3UploadTmp = $_FILES['upload_touch_up_before_3']['tmp_name'];
         $before3UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_3']['name']);
 
-        $after4UploadTmp = $_FILES['upload_touch_up_before_4']['tmp_name'];
-        $after4UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_4']['name']);
+        $before4UploadTmp = $_FILES['upload_touch_up_before_4']['tmp_name'];
+        $before4UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_4']['name']);
 
-        $after5UploadTmp = $_FILES['upload_touch_up_before_5']['tmp_name'];
-        $after5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_5']['name']);
+        $before5UploadTmp = $_FILES['upload_touch_up_before_5']['tmp_name'];
+        $before5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_5']['name']);
 
         $after1UploadTmp = $_FILES['upload_touch_up_after_1']['tmp_name'];
         $after1UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_1']['name']);
@@ -353,47 +364,47 @@
         $after5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_5']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($touchUpImageFilesArray['Invoice']["FileName"]);
+            remove_file($touchUpImageFilesArray['Invoice']["FilePath"], $touchUpImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($before1UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before1']["FileName"]);
+            remove_file($touchUpImageFilesArray['Before1']["FilePath"], $touchUpImageFilesArray['Before1']["FileName"]);
             upload_file($uploadPath . "Before/" . "1/", $before1UploadTmp, $before1UploadName);
         }
         if(!empty($before2UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before2']["FileName"]);
+            remove_file($touchUpImageFilesArray['Before2']["FilePath"], $touchUpImageFilesArray['Before2']["FileName"]);
             upload_file($uploadPath . "Before/" . "2/", $before2UploadTmp, $before2UploadName);
         }
         if(!empty($before3UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before3']["FileName"]);
+            remove_file($touchUpImageFilesArray['Before3']["FilePath"], $touchUpImageFilesArray['Before3']["FileName"]);
             upload_file($uploadPath . "Before/" . "3/", $before3UploadTmp, $before3UploadName);
         }
-        if(!empty($after4UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before4']["FileName"]);
-            upload_file($uploadPath . "After/" . "4/", $after4UploadTmp, $after4UploadName);
+        if(!empty($before4UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before4']["FilePath"], $touchUpImageFilesArray['Before4']["FileName"]);
+            upload_file($uploadPath . "Before/" . "4/", $before4UploadTmp, $before4UploadName);
         }
-        if(!empty($after5UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before5']["FileName"]);
-            upload_file($uploadPath . "After/" . "5/", $after5UploadTmp, $after5UploadName);
+        if(!empty($before5UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before5']["FilePath"], $touchUpImageFilesArray['Before5']["FileName"]);
+            upload_file($uploadPath . "Before/" . "5/", $before5UploadTmp, $before5UploadName);
         }
         if(!empty($after1UploadTmp)) {
-            remove_file($touchUpImageFilesArray['After1']["FileName"]);
+            remove_file($touchUpImageFilesArray['After1']["FilePath"], $touchUpImageFilesArray['After1']["FileName"]);
             upload_file($uploadPath . "After/" . "1/", $after1UploadTmp, $after1UploadName);
         }
-        if(!empty($before2UploadTmp)){
-            remove_file($touchUpImageFilesArray['After2']["FileName"]);
-            upload_file($uploadPath . "Before/" . "2/", $before2UploadTmp, $before2UploadName);
+        if(!empty($after2UploadTmp)){
+            remove_file($touchUpImageFilesArray['After2']["FilePath"], $touchUpImageFilesArray['After2']["FileName"]);
+            upload_file($uploadPath . "After/" . "2/", $after2UploadTmp, $after2UploadName);
         }
         if(!empty($after3UploadTmp)){
-            remove_file($touchUpImageFilesArray['After3']["FileName"]);
+            remove_file($touchUpImageFilesArray['After3']["FilePath"], $touchUpImageFilesArray['After3']["FileName"]);
             upload_file($uploadPath . "After/" . "3/", $after3UploadTmp, $after3UploadName);
         }
         if(!empty($after4UploadTmp)){
-            remove_file($touchUpImageFilesArray['After4']["FileName"]);
+            remove_file($touchUpImageFilesArray['After4']["FilePath"], $touchUpImageFilesArray['After4']["FileName"]);
             upload_file($uploadPath . "After/" . "4/", $after4UploadTmp, $after4UploadName);
         }
         if(!empty($after5UploadTmp)) {
-            remove_file($touchUpImageFilesArray['After5']["FileName"]);
+            remove_file($touchUpImageFilesArray['After5']["FilePath"], $touchUpImageFilesArray['After5']["FileName"]);
             upload_file($uploadPath . "After/" . "5/", $after5UploadTmp, $after5UploadName);
         }
 
@@ -423,24 +434,24 @@
         $afterBackYardUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_yard_work_after_back']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($cleanUpImageFilesArray['Invoice']["FileName"]);
+            remove_file($cleanUpImageFilesArray['Invoice']["FilePath"], $cleanUpImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($beforeFrontYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['BeforeFrontYard']["FileName"]);
-            upload_file($uploadPath . "Before/" . "LivingRoom/", $beforeFrontYardUploadTmp, $beforeFrontYardUploadName);
+            remove_file($cleanUpImageFilesArray['BeforeFrontYard']["FilePath"], $yardWorkImageFilesArray['BeforeFrontYard']["FileName"]);
+            upload_file($uploadPath . "Before/" . "FrontYard/", $beforeFrontYardUploadTmp, $beforeFrontYardUploadName);
         }
         if(!empty($beforeBackYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['BeforeBackYard']["FileName"]);
-            upload_file($uploadPath . "Before/" . "DinningRoom/", $beforeBackYardUploadTmp, $beforeBackYardUploadName);
+            remove_file($cleanUpImageFilesArray['BeforeBackYard']["FilePath"], $yardWorkImageFilesArray['BeforeBackYard']["FileName"]);
+            upload_file($uploadPath . "Before/" . "BackYard/", $beforeBackYardUploadTmp, $beforeBackYardUploadName);
         }
         if(!empty($afterFrontYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['AfterFrontYard']["FileName"]);
-            upload_file($uploadPath . "After/" . "LivingRoom/", $afterFrontYardUploadTmp, $afterFrontYardUploadName);
+            remove_file($cleanUpImageFilesArray['AfterFrontYard']["FilePath"], $yardWorkImageFilesArray['AfterFrontYard']["FileName"]);
+            upload_file($uploadPath . "After/" . "FrontYard/", $afterFrontYardUploadTmp, $afterFrontYardUploadName);
         }
         if(!empty($afterBackYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['AfterBackYard']["FileName"]);
-            upload_file($uploadPath . "After/" . "DinningRoom/", $afterBackYardUploadTmp, $afterBackYardUploadName);
+            remove_file($cleanUpImageFilesArray['AfterBackYard']["FilePath"], $yardWorkImageFilesArray['AfterBackYard']["FileName"]);
+            upload_file($uploadPath . "After/" . "BackYard/", $afterBackYardUploadTmp, $afterBackYardUploadName);
         }
 
         $updateServiceInvoiceResult = update_service_invoice($serviceID, $uploadPath . "Invoice/");
@@ -460,11 +471,11 @@
         $invoiceUploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_inspection_invoice']['name']);
 
         if(!empty($reportUploadTmp)){
-            remove_file($inspectionImageFilesArray['Report']["FileName"]);
+            remove_file($inspectionImageFilesArray['Report']["FilePath"], $inspectionImageFilesArray['Report']["FileName"]);
             upload_file($uploadPath . "Report/", $reportUploadTmp, $reportUploadName);
         }
         if(!empty($invoiceUploadTmp)){
-            remove_file($inspectionImageFilesArray['Invoice']["FileName"]);
+            remove_file($inspectionImageFilesArray['Invoice']["FilePath"], $inspectionImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
 
@@ -482,7 +493,7 @@
         $invoiceUploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_storage_invoice']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($storageImageFilesArray['Invoice']["FileName"]);
+            remove_file($storageImageFilesArray['Invoice']["FilePath"], $storageImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
 
@@ -500,7 +511,7 @@
         $invoiceUploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_relocate_home_invoice']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($relocateHomeImageFilesArray['Invoice']["FileName"]);
+            remove_file($relocateHomeImageFilesArray['Invoice']["FilePath"], $relocateHomeImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
 

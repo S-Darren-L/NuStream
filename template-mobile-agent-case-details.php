@@ -490,7 +490,6 @@ Template Name: Agent Mobile Case Details
 <div ng-app="CaseDetailApp" ng-controller="CaseDetailController" class="CaseDetailContainer">
     <form method="post">
         <div class="Back">
-            <label><a href="javascript:history.go(-1)"><<</a></label>
         </div>
         <div class="TopContainer">
             <div class="BackgroundGrey">
@@ -543,8 +542,8 @@ Template Name: Agent Mobile Case Details
                 <div>Total Cost: <?php echo "$" . $totalCost; ?></div>
                 <div>Final Commission: <?php echo "$" . $finalCommission; ?></div>
             </div>
-            <input type="submit" name="estimate" class="Button Submit" value="Estimate"  >
-            <input type="submit" value="Submit" class="Button" name="submit_service_info" >
+            <input type="submit" name="estimate" class="Button Submit" value="Estimate" <?php echo $isCaseChangeable; ?> />
+            <input type="submit" value="Submit" class="Button" name="submit_service_info" <?php echo $isCaseChangeable; ?>/>
         </div>
 
         <div class="BottomContainer">

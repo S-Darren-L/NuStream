@@ -1380,7 +1380,7 @@ Template Name: Admin Case Details
                             }
                             ?>
                         </p>
-                        <select name="stagingStatus" id="drop-down" class="FASelectTypeStorage">
+                        <select name="storageStatus" id="drop-down" class="FASelectTypeStorage">
                             <?php
                             foreach ($invoiceStatuses as $invoiceStatus){
                                 if($stagingServiceArray['InvoiceStatus'] === $invoiceStatus){

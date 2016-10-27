@@ -120,8 +120,8 @@ Template Name: Agent Case File Upload
             "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "1/")),
             "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "2/")),
             "Before3" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "3/")),
-            "Before4" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "4/")),
-            "Before5" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "5/")),
+            "Before4" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "4/")),
+            "Before5" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "5/")),
             "After1" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "1/")),
             "After2" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "2/")),
             "After3" => mysqli_fetch_array(download_file_by_path($uploadPath . "After/" . "3/")),
@@ -186,9 +186,20 @@ Template Name: Agent Case File Upload
     }
 
     // Remove File
-    function remove_file($fileName){
+    function remove_file($dir, $fileName){
         if(!is_null($fileName)){
-            $removeBool = unlink($fileName);
+            if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir")
+                        rrmdir($dir."/".$object);
+                    else unlink   ($dir."/".$object);
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
             $removeFileResult = remove_file_by_name($fileName);
         }
     }
@@ -221,31 +232,31 @@ Template Name: Agent Case File Upload
         $afterMasterRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_staging_after_master_room']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($stagingImageFilesArray['Invoice']["FileName"]);
+            remove_file($stagingImageFilesArray['Invoice']["FilePath"], $stagingImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($beforeLivingRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['BeforeLivingRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['BeforeLivingRoom']["FilePath"], $stagingImageFilesArray['BeforeLivingRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "LivingRoom/", $beforeLivingRoomUploadTmp, $beforeLivingRoomUploadName);
         }
         if(!empty($beforeDinningRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['BeforeDinningRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['BeforeDinningRoom']["FilePath"], $stagingImageFilesArray['BeforeDinningRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "DinningRoom/", $beforeDinningRoomUploadTmp, $beforeDinningRoomUploadName);
         }
         if(!empty($beforeMasterRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['BeforeMasterRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['BeforeMasterRoom']["FilePath"], $stagingImageFilesArray['BeforeMasterRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "MasterRoom/", $beforeMasterRoomUploadTmp, $beforeMasterRoomUploadName);
         }
         if(!empty($afterLivingRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['AfterLivingRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['AfterLivingRoom']["FilePath"], $stagingImageFilesArray['AfterLivingRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "LivingRoom/", $afterLivingRoomUploadTmp, $afterLivingRoomUploadName);
         }
         if(!empty($afterDinningRoomUploadTmp)){
-            remove_file($stagingImageFilesArray['AfterDinningRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['AfterDinningRoom']["FilePath"], $stagingImageFilesArray['AfterDinningRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "DinningRoom/", $afterDinningRoomUploadTmp, $afterDinningRoomUploadName);
         }
         if(!empty($afterMasterRoomUploadTmp)) {
-            remove_file($stagingImageFilesArray['AfterMasterRoom']["FileName"]);
+            remove_file($stagingImageFilesArray['AfterMasterRoom']["FilePath"], $stagingImageFilesArray['AfterMasterRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "MasterRoom/", $afterMasterRoomUploadTmp, $afterMasterRoomUploadName);
         }
 
@@ -253,7 +264,7 @@ Template Name: Agent Case File Upload
         $updateServiceImageResult = update_service_image($serviceID, $uploadPath);
         header('location: ' . $PageURL . '/?CID=' . $MLS);
     }
-        
+
     if(isset($_POST['submit_clean_up'])){
         global $PageURL;
         $serviceID = $cleanUpServiceArray['ServiceID'];
@@ -268,8 +279,8 @@ Template Name: Agent Case File Upload
         $beforeKitchenUploadTmp = $_FILES['upload_clean_up_before_kitchen']['tmp_name'];
         $beforeKitchenUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_before_kitchen']['name']);
 
-        $beforeWashRoomUploadTmp = $_FILES['upload_clean_up_before_washroom_room']['tmp_name'];
-        $beforeWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_before_washroom_room']['name']);
+        $beforeWashRoomUploadTmp = $_FILES['upload_clean_up_before_wash_room']['tmp_name'];
+        $beforeWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_before_wash_room']['name']);
 
         $afterLivingRoomUploadTmp = $_FILES['upload_clean_up_after_living_room']['tmp_name'];
         $afterLivingRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_living_room']['name']);
@@ -277,35 +288,35 @@ Template Name: Agent Case File Upload
         $afterKitchenRoomUploadTmp = $_FILES['upload_clean_up_after_kitchen']['tmp_name'];
         $afterKitchenRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_kitchen']['name']);
 
-        $afterWashRoomUploadTmp = $_FILES['upload_clean_up_after_washroom_room']['tmp_name'];
-        $afterWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_washroom_room']['name']);
+        $afterWashRoomUploadTmp = $_FILES['upload_clean_up_after_wash_room']['tmp_name'];
+        $afterWashRoomUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_clean_up_after_wash_room']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($cleanUpImageFilesArray['Invoice']["FileName"]);
+            remove_file($cleanUpImageFilesArray['Invoice']["FilePath"], $cleanUpImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($beforeLivingRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['BeforeLivingRoom']["FilePath"], $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "LivingRoom/", $beforeLivingRoomUploadTmp, $beforeLivingRoomUploadName);
         }
         if(!empty($beforeKitchenUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeKitchen']["FileName"]);
+            remove_file($cleanUpImageFilesArray['BeforeKitchen']["FilePath"], $cleanUpImageFilesArray['BeforeKitchen']["FileName"]);
             upload_file($uploadPath . "Before/" . "Kitchen/", $beforeKitchenUploadTmp, $beforeKitchenUploadName);
         }
         if(!empty($beforeWashRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeWashRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['BeforeWashRoom']["FilePath"], $cleanUpImageFilesArray['BeforeWashRoom']["FileName"]);
             upload_file($uploadPath . "Before/" . "WashRoom/", $beforeWashRoomUploadTmp, $beforeWashRoomUploadName);
         }
         if(!empty($afterLivingRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['AfterLivingRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['AfterLivingRoom']["FilePath"], $cleanUpImageFilesArray['AfterLivingRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "LivingRoom/", $afterLivingRoomUploadTmp, $afterLivingRoomUploadName);
         }
         if(!empty($afterKitchenRoomUploadTmp)){
-            remove_file($cleanUpImageFilesArray['AfterKitchen']["FileName"]);
+            remove_file($cleanUpImageFilesArray['AfterKitchen']["FilePath"], $cleanUpImageFilesArray['AfterKitchen']["FileName"]);
             upload_file($uploadPath . "After/" . "Kitchen/", $afterKitchenRoomUploadTmp, $afterKitchenRoomUploadName);
         }
         if(!empty($afterWashRoomUploadTmp)) {
-            remove_file($cleanUpImageFilesArray['AfterWashRoom']["FileName"]);
+            remove_file($cleanUpImageFilesArray['AfterWashRoom']["FilePath"], $cleanUpImageFilesArray['AfterWashRoom']["FileName"]);
             upload_file($uploadPath . "After/" . "WashRoom/", $afterWashRoomUploadTmp, $afterWashRoomUploadName);
         }
 
@@ -331,11 +342,11 @@ Template Name: Agent Case File Upload
         $before3UploadTmp = $_FILES['upload_touch_up_before_3']['tmp_name'];
         $before3UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_3']['name']);
 
-        $after4UploadTmp = $_FILES['upload_touch_up_before_4']['tmp_name'];
-        $after4UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_4']['name']);
+        $before4UploadTmp = $_FILES['upload_touch_up_before_4']['tmp_name'];
+        $before4UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_4']['name']);
 
-        $after5UploadTmp = $_FILES['upload_touch_up_before_5']['tmp_name'];
-        $after5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_5']['name']);
+        $before5UploadTmp = $_FILES['upload_touch_up_before_5']['tmp_name'];
+        $before5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_before_5']['name']);
 
         $after1UploadTmp = $_FILES['upload_touch_up_after_1']['tmp_name'];
         $after1UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_1']['name']);
@@ -353,47 +364,47 @@ Template Name: Agent Case File Upload
         $after5UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_5']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($touchUpImageFilesArray['Invoice']["FileName"]);
+            remove_file($touchUpImageFilesArray['Invoice']["FilePath"], $touchUpImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($before1UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before1']["FileName"]);
+            remove_file($touchUpImageFilesArray['Before1']["FilePath"], $touchUpImageFilesArray['Before1']["FileName"]);
             upload_file($uploadPath . "Before/" . "1/", $before1UploadTmp, $before1UploadName);
         }
         if(!empty($before2UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before2']["FileName"]);
+            remove_file($touchUpImageFilesArray['Before2']["FilePath"], $touchUpImageFilesArray['Before2']["FileName"]);
             upload_file($uploadPath . "Before/" . "2/", $before2UploadTmp, $before2UploadName);
         }
         if(!empty($before3UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before3']["FileName"]);
+            remove_file($touchUpImageFilesArray['Before3']["FilePath"], $touchUpImageFilesArray['Before3']["FileName"]);
             upload_file($uploadPath . "Before/" . "3/", $before3UploadTmp, $before3UploadName);
         }
-        if(!empty($after4UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before4']["FileName"]);
-            upload_file($uploadPath . "After/" . "4/", $after4UploadTmp, $after4UploadName);
+        if(!empty($before4UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before4']["FilePath"], $touchUpImageFilesArray['Before4']["FileName"]);
+            upload_file($uploadPath . "Before/" . "4/", $before4UploadTmp, $before4UploadName);
         }
-        if(!empty($after5UploadTmp)){
-            remove_file($touchUpImageFilesArray['Before5']["FileName"]);
-            upload_file($uploadPath . "After/" . "5/", $after5UploadTmp, $after5UploadName);
+        if(!empty($before5UploadTmp)){
+            remove_file($touchUpImageFilesArray['Before5']["FilePath"], $touchUpImageFilesArray['Before5']["FileName"]);
+            upload_file($uploadPath . "Before/" . "5/", $before5UploadTmp, $before5UploadName);
         }
         if(!empty($after1UploadTmp)) {
-            remove_file($touchUpImageFilesArray['After1']["FileName"]);
+            remove_file($touchUpImageFilesArray['After1']["FilePath"], $touchUpImageFilesArray['After1']["FileName"]);
             upload_file($uploadPath . "After/" . "1/", $after1UploadTmp, $after1UploadName);
         }
-        if(!empty($before2UploadTmp)){
-            remove_file($touchUpImageFilesArray['After2']["FileName"]);
-            upload_file($uploadPath . "Before/" . "2/", $before2UploadTmp, $before2UploadName);
+        if(!empty($after2UploadTmp)){
+            remove_file($touchUpImageFilesArray['After2']["FilePath"], $touchUpImageFilesArray['After2']["FileName"]);
+            upload_file($uploadPath . "After/" . "2/", $after2UploadTmp, $after2UploadName);
         }
         if(!empty($after3UploadTmp)){
-            remove_file($touchUpImageFilesArray['After3']["FileName"]);
+            remove_file($touchUpImageFilesArray['After3']["FilePath"], $touchUpImageFilesArray['After3']["FileName"]);
             upload_file($uploadPath . "After/" . "3/", $after3UploadTmp, $after3UploadName);
         }
         if(!empty($after4UploadTmp)){
-            remove_file($touchUpImageFilesArray['After4']["FileName"]);
+            remove_file($touchUpImageFilesArray['After4']["FilePath"], $touchUpImageFilesArray['After4']["FileName"]);
             upload_file($uploadPath . "After/" . "4/", $after4UploadTmp, $after4UploadName);
         }
         if(!empty($after5UploadTmp)) {
-            remove_file($touchUpImageFilesArray['After5']["FileName"]);
+            remove_file($touchUpImageFilesArray['After5']["FilePath"], $touchUpImageFilesArray['After5']["FileName"]);
             upload_file($uploadPath . "After/" . "5/", $after5UploadTmp, $after5UploadName);
         }
 
@@ -423,24 +434,24 @@ Template Name: Agent Case File Upload
         $afterBackYardUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_yard_work_after_back']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($cleanUpImageFilesArray['Invoice']["FileName"]);
+            remove_file($cleanUpImageFilesArray['Invoice']["FilePath"], $cleanUpImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($beforeFrontYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['BeforeFrontYard']["FileName"]);
-            upload_file($uploadPath . "Before/" . "LivingRoom/", $beforeFrontYardUploadTmp, $beforeFrontYardUploadName);
+            remove_file($cleanUpImageFilesArray['BeforeFrontYard']["FilePath"], $yardWorkImageFilesArray['BeforeFrontYard']["FileName"]);
+            upload_file($uploadPath . "Before/" . "FrontYard/", $beforeFrontYardUploadTmp, $beforeFrontYardUploadName);
         }
         if(!empty($beforeBackYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['BeforeBackYard']["FileName"]);
-            upload_file($uploadPath . "Before/" . "DinningRoom/", $beforeBackYardUploadTmp, $beforeBackYardUploadName);
+            remove_file($cleanUpImageFilesArray['BeforeBackYard']["FilePath"], $yardWorkImageFilesArray['BeforeBackYard']["FileName"]);
+            upload_file($uploadPath . "Before/" . "BackYard/", $beforeBackYardUploadTmp, $beforeBackYardUploadName);
         }
         if(!empty($afterFrontYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['AfterFrontYard']["FileName"]);
-            upload_file($uploadPath . "After/" . "LivingRoom/", $afterFrontYardUploadTmp, $afterFrontYardUploadName);
+            remove_file($cleanUpImageFilesArray['AfterFrontYard']["FilePath"], $yardWorkImageFilesArray['AfterFrontYard']["FileName"]);
+            upload_file($uploadPath . "After/" . "FrontYard/", $afterFrontYardUploadTmp, $afterFrontYardUploadName);
         }
         if(!empty($afterBackYardUploadTmp)){
-            remove_file($yardWorkImageFilesArray['AfterBackYard']["FileName"]);
-            upload_file($uploadPath . "After/" . "DinningRoom/", $afterBackYardUploadTmp, $afterBackYardUploadName);
+            remove_file($cleanUpImageFilesArray['AfterBackYard']["FilePath"], $yardWorkImageFilesArray['AfterBackYard']["FileName"]);
+            upload_file($uploadPath . "After/" . "BackYard/", $afterBackYardUploadTmp, $afterBackYardUploadName);
         }
 
         $updateServiceInvoiceResult = update_service_invoice($serviceID, $uploadPath . "Invoice/");
@@ -460,11 +471,11 @@ Template Name: Agent Case File Upload
         $invoiceUploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_inspection_invoice']['name']);
 
         if(!empty($reportUploadTmp)){
-            remove_file($inspectionImageFilesArray['Report']["FileName"]);
+            remove_file($inspectionImageFilesArray['Report']["FilePath"], $inspectionImageFilesArray['Report']["FileName"]);
             upload_file($uploadPath . "Report/", $reportUploadTmp, $reportUploadName);
         }
         if(!empty($invoiceUploadTmp)){
-            remove_file($inspectionImageFilesArray['Invoice']["FileName"]);
+            remove_file($inspectionImageFilesArray['Invoice']["FilePath"], $inspectionImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
 
@@ -482,7 +493,7 @@ Template Name: Agent Case File Upload
         $invoiceUploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_storage_invoice']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($storageImageFilesArray['Invoice']["FileName"]);
+            remove_file($storageImageFilesArray['Invoice']["FilePath"], $storageImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
 
@@ -500,7 +511,7 @@ Template Name: Agent Case File Upload
         $invoiceUploadName = preg_replace("#[^a-z0-9.]#i", "",  time() . '_' . $_FILES['upload_relocate_home_invoice']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($relocateHomeImageFilesArray['Invoice']["FileName"]);
+            remove_file($relocateHomeImageFilesArray['Invoice']["FilePath"], $relocateHomeImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
 
@@ -514,10 +525,10 @@ Template Name: Agent Case File Upload
 <style type="text/css">
     /*------------------------------------nav bar css---------------------------------*/
     html, body {
-        margin:0;
-        padding:0;
+        margin: 0;
+        padding: 0;
         background-color: #eeeeee !important;
-        font-family: Arial!important;
+        font-family: Arial !important;
     }
 
     #container {
@@ -531,7 +542,7 @@ Template Name: Agent Case File Upload
         height: 100%;
         background: #32323a;
         margin-left: -230px;
-        position:fixed;
+        position: fixed;
         margin-top: -89px;
     }
 
@@ -565,57 +576,57 @@ Template Name: Agent Case File Upload
         width: 230px;
         padding-top: 20px;
         padding-left: 20px;
-        padding-right:20px;
+        padding-right: 20px;
         padding-bottom: 20px;
         display: block;
         background-color: #28282e;
     }
 
-    .logo img {
-        width: 100%;
-    }
+        .logo img {
+            width: 100%;
+        }
 
     .nav-pills {
         background-color: #32323a;
         border-color: #030033;
     }
 
-    .nav-pills > li > a {
-        color: #95a0aa; /*Change active text color here*/
-    }
+        .nav-pills > li > a {
+            color: #95a0aa; /*Change active text color here*/
+        }
 
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-        color: #000;  /*Sets the text hover color on navbar*/
+        color: #000; /*Sets the text hover color on navbar*/
     }
 
     li {
-        border-bottom:1px #2a2a31 solid;
+        border-bottom: 1px #2a2a31 solid;
     }
 
     .footer {
         position: absolute;
-        bottom:0px;
-        left:0;
-        right:0;
-        margin:0 auto;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
         text-align: center;
     }
 
     .copyRight {
-        color:white;
+        color: white;
     }
 
     .formPart {
     }
 
     th {
-        color:white;
-        font-size:11px;
-        text-align:center;
+        color: white;
+        font-size: 11px;
+        text-align: center;
     }
 
     .userNamePart {
-        color:white;
+        color: white;
         text-align: center;
         margin-bottom: 20px;
     }
@@ -623,24 +634,25 @@ Template Name: Agent Case File Upload
     /*--------------------------template css for all page----------------------*/
 
     .title {
-        padding:5px 0 5px 0;
-        margin-top:89px;
+        padding: 5px 0 5px 0;
+        margin-top: 89px;
         margin-left: 23px;
         background-color: #fff;
-        border-left:5px #0068b7 solid;
-        border-bottom:1px #eeeeee solid;
+        border-left: 5px #0068b7 solid;
+        border-bottom: 1px #eeeeee solid;
         width: 600px;
     }
+
     .titleSize {
         font-size: 20px;
-        margin:0px;
-        padding-left:23px;
+        margin: 0px;
+        padding-left: 23px;
     }
 
     .contentPart {
         padding-top: 20px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 400px;
         width: 600px;
         font-size: 12px;
@@ -653,7 +665,7 @@ Template Name: Agent Case File Upload
     .inputPart {
         padding-top: 20px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 400px;
         width: 600px;
         font-size: 12px;
@@ -665,14 +677,14 @@ Template Name: Agent Case File Upload
         height: 45px;
         padding: 0px;
         margin: 0px;
-        vertical-align:middle;
-        padding:10px 0 0 0;
+        vertical-align: middle;
+        padding: 10px 0 0 0;
     }
 
     .requireTitle {
         height: 30px;
-        padding-left:23px;
-        float:left;
+        padding-left: 23px;
+        float: left;
         vertical-align: middle;
         line-height: 30px;
         display: absolute;
@@ -680,14 +692,13 @@ Template Name: Agent Case File Upload
 
     .inputContent {
         display: absolute;
-        padding:0 0 0 143px;
-        margin:0px;
+        padding: 0 0 0 143px;
+        margin: 0px;
         width: 150px;
     }
 
     .secondTitle {
-        margin:-30px 0 0 280px;
-
+        margin: -30px 0 0 280px;
     }
 
     .secondInput {
@@ -696,13 +707,13 @@ Template Name: Agent Case File Upload
 
     input {
         border-radius: 3px;
-        border:1px #a9a9a9 solid;
+        border: 1px #a9a9a9 solid;
         width: 150px;
         height: 30px;
     }
 
     fieldset {
-        overflow: hidden
+        overflow: hidden;
     }
 
     .dropdown {
@@ -720,7 +731,7 @@ Template Name: Agent Case File Upload
         border-radius: 5px;
         background-color: #32323a;
         border: #32323a;
-        color:#fff;
+        color: #fff;
         font-weight: 100px;
         height: 30px;
         width: 150px;
@@ -739,15 +750,15 @@ Template Name: Agent Case File Upload
 
     .photoUploadButton {
         font-size: 11px;
-        color:#a9a9a9;
+        color: #a9a9a9;
         background-color: #fff;
-        border:1px #a9a9a9 solid;
+        border: 1px #a9a9a9 solid;
         width: 150px;
         height: 30px;
         border-radius: 3px;
     }
 
-    .error-message a{
+    .error-message a {
         color: red;
         font-size: 80%;
     }
@@ -755,18 +766,19 @@ Template Name: Agent Case File Upload
 
     /*------------------------------------table page css--------------------------------------*/
     .tablePageTitle {
-        width:800px;
-        margin:0 auto;
+        width: 800px;
+        margin: 0 auto;
     }
+
     .title img {
         width: 100%;
     }
 
     .tablePart table {
         text-align: center;
-        border:1px #000 solid;
-        width:800px;
-        margin:0 auto;
+        border: 1px #000 solid;
+        width: 800px;
+        margin: 0 auto;
     }
 
     /*------------------------------------File Approvement Admin css--------------------------------------*/
@@ -774,72 +786,73 @@ Template Name: Agent Case File Upload
     .FAFContentPart {
         padding-top: 20px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 240px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
     /*File Approvement Page First Title*/
     .FAFTitle {
-        padding:5px 0 5px 0;
-        margin-top:89px;
+        padding: 5px 0 5px 0;
+        margin-top: 89px;
         margin-left: 23px;
         background-color: #fff;
-        border-left:5px #0068b7 solid;
-        border-bottom:1px #eeeeee solid;
+        border-left: 5px #0068b7 solid;
+        border-bottom: 1px #eeeeee solid;
         width: 750px;
     }
 
     .FANormalTitle {
-        padding:5px 0 5px 0;
-        margin-top:10px;
+        padding: 5px 0 5px 0;
+        margin-top: 25px;
         margin-left: 23px;
         background-color: #fff;
-        border-left:5px #0068b7 solid;
-        border-bottom:1px #eeeeee solid;
+        border-left: 5px #0068b7 solid;
+        border-bottom: 1px #eeeeee solid;
         width: 750px;
     }
 
     .FASContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 270px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
+
     .table-striped {
         width: 775px !important;
-        padding-left:20px;
+        padding-left: 20px;
         margin-left: 20px;
     }
 
-    .table-striped th{
-        font-size: 10px;
-        color:#a9a9a9;
-    }
+        .table-striped th {
+            font-size: 10px;
+            color: #a9a9a9;
+        }
 
-    .table-striped td{
-        color:#a9a9a9;
-    }
+        .table-striped td {
+            color: #a9a9a9;
+        }
 
     .houseInfo .table-striped tr {
         font-size: 10px;
-        color:#a9a9a9;
+        color: #a9a9a9;
     }
 
     .houseInfo .table-striped th {
         font-size: 10px;
-        color:#a9a9a9;
+        color: #a9a9a9;
     }
 
     .houseInfo .table-striped td {
-        padding-top:2px !important;
-        padding-bottom:2px !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
     }
 
     .houseInfo .table-striped {
@@ -864,9 +877,9 @@ Template Name: Agent Case File Upload
         /*padding-top:25px;*/
     }
 
-    .houseImg img {
-        width: 100%;
-    }
+        .houseImg img {
+            width: 100%;
+        }
 
     .houseTable {
         width: 300px;
@@ -876,7 +889,7 @@ Template Name: Agent Case File Upload
 
 
     .FAFSubTitle {
-        font-weight:bold;
+        font-weight: bold;
         padding-left: 23px;
         float: left;
         padding-top: 5px;
@@ -894,17 +907,16 @@ Template Name: Agent Case File Upload
         height: 30px;
         width: 80px;
         margin-left: 360px;
-
     }
 
-    .FASelectType select {
-        border-radius: 3px;
-        height: 30px;
-        width: 80px;
-    }
+        .FASelectType select {
+            border-radius: 3px;
+            height: 30px;
+            width: 80px;
+        }
 
     .FASCPSLine {
-        float:left;
+        float: left;
         height: 100px;
         width: 750px;
         margin-top: 10px;
@@ -912,34 +924,34 @@ Template Name: Agent Case File Upload
     }
 
     .FASSubTitle {
-        font-weight:bold;
+        font-weight: bold;
         padding-left: 23px;
         float: left;
         padding-top: 5px;
-        color:#a9a9a9;
+        color: #a9a9a9;
     }
+
     .FAImage {
-        float:left;
+        float: left;
         height: 70px;
         width: 130px;
         border: 1px blue dashed;
-        margin:0 25px;
-
+        margin: 0 25px;
     }
 
     .FAtable {
-        float:left;
+        float: left;
     }
 
 
-    .FAtable td {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        text-align: center;
-    }
+        .FAtable td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
 
     .FASCPTLine {
-        float:left;
+        float: left;
         height: 100px;
         width: 750px;
         margin-top: 10px;
@@ -949,39 +961,39 @@ Template Name: Agent Case File Upload
     .FATContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 270px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FAFoContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 270px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FAImageTouchUp {
-        float:left;
+        float: left;
         height: 70px;
         width: 80px;
         border: 1px blue dashed;
-        margin:0 10px;
+        margin: 0 10px;
     }
 
     .FAImageYardWork {
-        float:left;
+        float: left;
         height: 80px;
         width: 170px;
         border: 1px blue dashed;
-        margin:0 25px;
+        margin: 0 25px;
     }
 
     .FASubTitleInsoection {
@@ -1007,23 +1019,23 @@ Template Name: Agent Case File Upload
     .FAFiContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 280px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FASixContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 50px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FASubTitleStoageInvoice {
@@ -1043,10 +1055,10 @@ Template Name: Agent Case File Upload
         height: 30px;
         width: 120px;
         background-color: #32323a;
-        color:#fff;
+        color: #fff;
         font-size: 12px;
-        float:left;
-        border:1px solid #32323a;
+        float: left;
+        border: 1px solid #32323a;
         margin-left: 20px;
         border-radius: 3px;
     }
@@ -1055,9 +1067,9 @@ Template Name: Agent Case File Upload
         height: 30px;
         width: 120px;
         background-color: #32323a;
-        color:#fff;
+        color: #fff;
         font-size: 12px;
-        border:1px solid #32323a;
+        border: 1px solid #32323a;
         margin-left: 10px;
         border-radius: 3px;
     }
@@ -1065,12 +1077,12 @@ Template Name: Agent Case File Upload
     .FASevenContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 60px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
 
@@ -1080,10 +1092,10 @@ Template Name: Agent Case File Upload
         height: 25px;
         width: 80px;
         background-color: #32323a;
-        color:#fff;
+        color: #fff;
         font-size: 12px;
-        float:left;
-        border:1px solid #32323a;
+        float: left;
+        border: 1px solid #32323a;
         margin-left: 10px;
         border-radius: 3px;
     }
@@ -1092,7 +1104,7 @@ Template Name: Agent Case File Upload
         border-radius: 3px;
         height: 17px;
         width: 130px;
-        margin:0 25px;
+        margin: 0 25px;
         font-size: 9px;
     }
 
@@ -1103,7 +1115,7 @@ Template Name: Agent Case File Upload
 
     .inspectionButtonStyle {
         margin-left: 120px;
-margin-top:20px;
+        margin-top: 20px;
     }
 
     .inspectionStyle {
@@ -1113,17 +1125,17 @@ margin-top:20px;
     .FUSixContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 60px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .storageButtonStyle {
         margin-left: 215px;
-margin-top:-10px;
+        margin-top: -10px;
     }
 
     .storageInputFileStyle {
@@ -1131,564 +1143,585 @@ margin-top:-10px;
         margin-left: 0px;
         margin-top: 5px;
     }
-/*----------------------------------------File Upload Agent New---------------------------------------*/
-.FUAInputOnOneLine {
-    border-radius: 3px;
+    /*----------------------------------------File Upload Agent New---------------------------------------*/
+    .FUAInputOnOneLine {
+        border-radius: 3px;
         height: 17px;
         width: 130px;
-        margin:2px 0px 0px 10px;
+        margin: 2px 0px 0px 10px;
         font-size: 9px;
-    float:left;
-}
+        float: left;
+    }
 
-.FUAChooseFileButtonTouchUp {
-    border-radius: 3px;
+    .FUAChooseFileButtonTouchUp {
+        border-radius: 3px;
         height: 17px;
         width: 120px;
-        margin:0 5px;
+        margin: 0 5px;
         font-size: 9px;
-}
+    }
 
-.FUSixContentPartNew {
-    padding-top: 10px;
+    .FUSixContentPartNew {
+        padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 80px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
-}
+        border-bottom: 1px #eeeeee solid;
+    }
 
+    .upload{
+            text-align: center;
+    padding-top: 3px;
+    font-weight: 500;
+    }
 </style>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--    <link rel="stylesheet" type="text/css" href="css/pcStyles.css">-->
+    <!--    <link rel="stylesheet" type="text/css" href="css/pcStyles.css">-->
 </head>
 <body>
-<div id="container">
-    <?php
-    include_once(__DIR__ . '/navigation.php');
-    ?>
-    <div id="main">
-        <div class="formPart">
-            <div class="FAFTitle">
-                <p class="titleSize">BASIC INFO</p>
-            </div>
-            <div class="FAFContentPart ">
-                <div class="houseInfo">
-                    <div class="houseImg">
-                        <?php
-                        if(!empty($caseDetailsArray['Images'])){
+    <div id="container">
+        <?php
+        include_once(__DIR__ . '/navigation.php');
+        ?>
+        <div id="main">
+            <div class="formPart">
+                <div class="FAFTitle">
+                    <p class="titleSize">BASIC INFO</p>
+                </div>
+                <div class="FAFContentPart ">
+                    <div class="houseInfo">
+                        <div class="houseImg">
+                            <?php
+                            if(!empty($caseDetailsArray['Images'])){
                             echo '<img src="' . $houseImageURL . $caseDetailsArray['Images'] . '">';
-                        }else{
+                            }else{
                             echo '<img src="' . $defaultHouseImageURL . '">';
-                        }
-                        ?>
-                    </div>
-                    <div class="houseTable">
-                        <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr>
-                                <td>MLS#</td>
-                                <td><?php echo $caseDetailsArray['MLS'];?></td>
-                            </tr>
-                            <tr>
-                                <td>ADDRESS</td>
-                                <td><?php echo $caseDetailsArray['Address'];?></td>
-                            </tr>
-                            <tr>
-                                <td>PROPERTY TYPE</td>
-                                <td><?php echo $caseDetailsArray['PropertyType'];?></td>
-                            </tr>
-                            <tr>
-                                <td>LAND SIZE (LOT)</td>
-                                <td><?php echo $caseDetailsArray['LandSize'];?></td>
-                            </tr>
-                            <tr>
-                                <td>HOUSE SIZE(SQF)</td>
-                                <td><?php echo $caseDetailsArray['HouseSize'];?></td>
-                            </tr>
-                            <tr>
-                                <td>LISTING PRICE</td>
-                                <td><?php echo $caseDetailsArray['ListingPrice'];?></td>
-                            </tr>
-                            <tr>
-                                <td>OWNER'S NAME</td>
-                                <td><?php echo $caseDetailsArray['OwnerName'];?></td>
-                            </tr>
-                            <tr>
-                                <td>TEAM MEMBER'S NAME</td>
-                                <td><?php echo $caseDetailsArray['CoStaffName'];?></td>
-                            </tr>
-                            <tr>
-                                <td>SELLING LISTING RATE</td>
-                                <td><?php echo $caseDetailsArray['CommissionRate'] . "%";?></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            }
+                            ?>
+                        </div>
+                        <div class="houseTable">
+                            <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>MLS#</td>
+                                        <td><?php echo $caseDetailsArray['MLS'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ADDRESS</td>
+                                        <td><?php echo $caseDetailsArray['Address'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PROPERTY TYPE</td>
+                                        <td><?php echo $caseDetailsArray['PropertyType'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>LAND SIZE (LOT)</td>
+                                        <td><?php echo $caseDetailsArray['LandSize'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HOUSE SIZE(SQF)</td>
+                                        <td><?php echo $caseDetailsArray['HouseSize'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>LISTING PRICE</td>
+                                        <td><?php echo $caseDetailsArray['ListingPrice'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>OWNER'S NAME</td>
+                                        <td><?php echo $caseDetailsArray['OwnerName'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>TEAM MEMBER'S NAME</td>
+                                        <td><?php echo $caseDetailsArray['CoStaffName'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SELLING LISTING RATE</td>
+                                        <td><?php echo $caseDetailsArray['CommissionRate'] . "%";?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="FANormalTitle">
-                <p class="titleSize">FILE UPLOAD</p>
-            </div>
-            <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
-                <div class="FASContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">STAGING</p>
-                        <p class="FASubTitleUpload">
-                            <?php
+                <div class="FANormalTitle">
+                    <p class="titleSize">FILE UPLOAD</p>
+                </div>
+                <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+                    <div class="FASContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">STAGING</p>
+                            <p class="FASubTitleUpload">
+                                <?php
                                 if(!empty($stagingImageFilesArray['Invoice']["FileName"])){
-                                    echo '<a>Invoice uploaded</a>';
+                                echo '<a>Invoice uploaded</a>';
                                 }
                                 else{
-                                    echo '<a>No Invoice uploaded</a>';
+                                echo '<a>No Invoice uploaded</a>';
                                 }
-                            ?>
-                            
-                        </p>
-                        <input type="file" name="upload_staging_invoice" class="FUAInputOnOneLine">
-                        <input type="submit" name="submit_staging" value=" SAVE " class="FUASaveButton">
+                                ?>
+
+                            </p>
+                            <label for="stagingupload" class="FUASaveButton upload">Upload</label>
+                            <input style="display:none" id="stagingupload" style="display:none;" type="file" name="upload_staging_invoice" class="FUAInputOnOneLine">
+                            <input type="submit" name="submit_staging" value="SAVE" class="FUASaveButton">
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>BEFORE</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
+                                        echo '<img up="stagingb1" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="stagingb1" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeDinningRoom']["FileName"]))
+                                        echo '<img up="stagingb2" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeDinningRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="stagingb2" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeMasterRoom']["FileName"]))
+                                        echo '<img up="stagingb3" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeMasterRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="stagingb3" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="stagingb1" type="file" name="upload_staging_before_living_room" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="stagingb2" type="file" name="upload_staging_before_dinning_room" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="stagingb3" type="file" name="upload_staging_before_master_room" class="FUAChooseFileButton"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
+                                        echo '<img up="staa1" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="staa1" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterDinningRoom']["FileName"]))
+                                        echo '<img up="staa2" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterDinningRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="staa2" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterMasterRoom']["FileName"]))
+                                        echo '<img up="staa3" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterMasterRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="staa3" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="staa1" type="file" name="upload_staging_after_living_room" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="staa2" type="file" name="upload_staging_after_dinning_room" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="staa3" type="file" name="upload_staging_after_master_room" class="FUAChooseFileButton"></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeDinningRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeDinningRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeMasterRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeMasterRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_staging_before_living_room" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_staging_before_dinning_room" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_staging_before_master_room" class="FUAChooseFileButton"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterDinningRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterDinningRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterMasterRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterMasterRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_staging_after_living_room" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_staging_after_dinning_room" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_staging_after_master_room" class="FUAChooseFileButton"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="FATContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">CLEAN UP</p>
-                        <p class="FASubTitleUpload">
-                            <?php
-                            if(!empty($cleanUpImageFilesArray['Invoice']["FileName"])){
+                    <div class="FATContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">CLEAN UP</p>
+                            <p class="FASubTitleUpload">
+                                <?php
+                                if(!empty($cleanUpImageFilesArray['Invoice']["FileName"])){
                                 echo '<a>Invoice uploaded</a>';
-                            }
-                            else{
+                                }
+                                else{
                                 echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                            
-                        </p>
-                        <input type="file" name="upload_clean_up_invoice" class="FUAInputOnOneLine" >
-                        <input type="submit" name="submit_clean_up" value=" SAVE " class="FUASaveButton">
+                                }
+                                ?>
+
+                            </p>
+                            <label for="cleanupupload" class="FUASaveButton upload">Upload</label>
+                            <input style="display:none" id="cleanupupload" type="file" name="upload_clean_up_invoice" class="FUAInputOnOneLine">
+                            <input type="submit" name="submit_clean_up" value=" SAVE " class="FUASaveButton">
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>BEFORE</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]))
+                                        echo '<img up="cleb1" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="cleb1" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($cleanUpImageFilesArray['BeforeKitchen']["FileName"]))
+                                        echo '<img up="cleb2" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="cleb2" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($cleanUpImageFilesArray['BeforeWashRoom']["FileName"]))
+                                        echo '<img up="cleb3" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="cleb3" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="cleb1" type="file" name="upload_clean_up_before_living_room" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="cleb2" type="file" name="upload_clean_up_before_kitchen" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="cleb3" type="file" name="upload_clean_up_before_wash_room" class="FUAChooseFileButton"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($cleanUpImageFilesArray['AfterLivingRoom']["FileName"]))
+                                        echo '<img up="clea1" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="clea1" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($cleanUpImageFilesArray['AfterKitchen']["FileName"]))
+                                        echo '<img up="clea2" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="clea2" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($cleanUpImageFilesArray['AfterWashRoom']["FileName"]))
+                                        echo '<img up="clea3" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="clea3" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="clea1" type="file" name="upload_clean_up_after_living_room" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="clea2" type="file" name="upload_clean_up_after_kitchen" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="clea3" type="file" name="upload_clean_up_after_wash_room" class="FUAChooseFileButton"></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE</td>
-                                <td>
-                                    <?php
-                                    if(!empty($cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($cleanUpImageFilesArray['BeforeKitchen']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($cleanUpImageFilesArray['BeforeWashRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_clean_up_before_living_room" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_clean_up_before_kitchen" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_clean_up_before_wash_room" class="FUAChooseFileButton"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($cleanUpImageFilesArray['AfterLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($cleanUpImageFilesArray['AfterKitchen']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($cleanUpImageFilesArray['AfterWashRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_clean_up_after_living_room" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_clean_up_after_kitchen" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_clean_up_after_wash_room" class="FUAChooseFileButton"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="FAFoContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">TOUCH UP</p>
-                        <p class="FASubTitleUpload">
-                            <?php
-                            if(!empty($touchUpImageFilesArray['Invoice']["FileName"])){
+                    <div class="FAFoContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">TOUCH UP</p>
+                            <p class="FASubTitleUpload">
+                                <?php
+                                if(!empty($touchUpImageFilesArray['Invoice']["FileName"])){
                                 echo '<a>Invoice uploaded</a>';
-                            }
-                            else{
+                                }
+                                else{
                                 echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                            
-                        </p>
-                        <input type="file" name="upload_touch_up_invoice" class="FUAInputOnOneLine">
-                        <input type="submit" name="submit_touch_up" value=" SAVE " class="FUASaveButton">
+                                }
+                                ?>
+
+                            </p>
+                            <label for="touchupupload" class="FUASaveButton upload">Upload</label>
+                            <input style="display:none" id="touchupupload" type="file" name="upload_touch_up_invoice" class="FUAInputOnOneLine">
+                            <input type="submit" name="submit_touch_up" value=" SAVE " class="FUASaveButton">
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>BEFORE</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['Before1']["FileName"]))
+                                        echo '<img up="toub1" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toub1" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['Before2']["FileName"]))
+                                        echo '<img up="toub2" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toub2" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['Before3']["FileName"]))
+                                        echo '<img up="toub3" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toub3" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['Before4']["FileName"]))
+                                        echo '<img up="toub4" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toub4" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['Before5']["FileName"]))
+                                        echo '<img up="toub5" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before5']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toub5" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="toub1" type="file" name="upload_touch_up_before_1" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toub2" type="file" name="upload_touch_up_before_2" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toub3" type="file" name="upload_touch_up_before_3" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toub4" type="file" name="upload_touch_up_before_4" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toub5" type="file" name="upload_touch_up_before_5" class="FUAChooseFileButtonTouchUp"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['After1']["FileName"]))
+                                        echo '<img up="toua1" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toua1" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['After2']["FileName"]))
+                                        echo '<img up="toua2" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toua2" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['After3']["FileName"]))
+                                        echo '<img up="toua3" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toua3" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['After4']["FileName"]))
+                                        echo '<img up="toua4" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toua4" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($touchUpImageFilesArray['After5']["FileName"]))
+                                        echo '<img up="toua5" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After5']["FileName"] . '" class="FAImageTouchUp">';
+                                        else
+                                        echo '<img up="toua5" src="" class="FAImageTouchUp">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="toua1" type="file" name="upload_touch_up_after_1" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toua2" type="file" name="upload_touch_up_after_2" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toua3" type="file" name="upload_touch_up_after_3" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toua4" type="file" name="upload_touch_up_after_4" class="FUAChooseFileButtonTouchUp"></td>
+                                    <td><input style="display:none" id="toua5" type="file" name="upload_touch_up_after_5" class="FUAChooseFileButtonTouchUp"></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE</td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['Before1']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['Before2']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['Before3']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['Before4']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['Before5']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before5']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_touch_up_before_1" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_before_2" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_before_3" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_before_4" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_before_5" class="FUAChooseFileButtonTouchUp"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['After1']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['After2']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['After3']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['After4']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($touchUpImageFilesArray['After5']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After5']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
-                                        echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_touch_up_after_1" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_after_2" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_after_3" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_after_4" class="FUAChooseFileButtonTouchUp"></td>
-                                <td><input type="file" name="upload_touch_up_after_5" class="FUAChooseFileButtonTouchUp"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="FAFiContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">YARD WORK</p>
-                        <p class="FASubTitleUpload">
-                            <?php
-                            if(!empty($yardWorkImageFilesArray['Invoice']["FileName"])){
+                    <div class="FAFiContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">YARD WORK</p>
+                            <p class="FASubTitleUpload">
+                                <?php
+                                if(!empty($yardWorkImageFilesArray['Invoice']["FileName"])){
                                 echo '<a>Invoice uploaded</a>';
-                            }
-                            else{
+                                }
+                                else{
                                 echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                            
-                        </p>
-                        <input type="file" name="upload_yard_work_invoice" class="FUAInputOnOneLine">
-                        <input type="submit" name="submit_yard_work" value=" SAVE " class="FUASaveButton">
+                                }
+                                ?>
+
+                            </p>
+                            <label for="yarkworkupload" class="FUASaveButton upload">Upload</label>
+                            <input style="display:none" id="yarkworkupload" type="file" name="upload_yard_work_invoice" class="FUAInputOnOneLine">
+                            <input type="submit" name="submit_yard_work" value=" SAVE " class="FUASaveButton">
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>BEFORE</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($yardWorkImageFilesArray['BeforeFrontYard']["FileName"]))
+                                        echo '<img up="yarb1" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeFrontYard']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="yarb1" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($yardWorkImageFilesArray['BeforeBackYard']["FileName"]))
+                                        echo '<img up="yarb2" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeBackYard']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="yarb2" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="yarb1" type="file" name="upload_yard_work_before_front" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="yarb2" type="file" name="upload_yard_work_before_back" class="FUAChooseFileButton"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($yardWorkImageFilesArray['AfterFrontYard']["FileName"]))
+                                        echo '<img up="yara1" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterFrontYard']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="yara1" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($yardWorkImageFilesArray['AfterBackYard']["FileName"]))
+                                        echo '<img up="yara2" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterBackYard']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img up="yara2" src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input style="display:none" id="yara1" type="file" name="upload_yard_work_after_front" class="FUAChooseFileButton"></td>
+                                    <td><input style="display:none" id="yara2" type="file" name="upload_yard_work_after_back" class="FUAChooseFileButton"></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE</td>
-                                <td>
-                                    <?php
-                                    if(!empty($yardWorkImageFilesArray['BeforeFrontYard']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeFrontYard']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($yardWorkImageFilesArray['BeforeBackYard']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeBackYard']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_yard_work_before_front" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_yard_work_before_back" class="FUAChooseFileButton"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($yardWorkImageFilesArray['AfterFrontYard']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterFrontYard']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($yardWorkImageFilesArray['AfterBackYard']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterBackYard']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="file" name="upload_yard_work_after_front" class="FUAChooseFileButton"></td>
-                                <td><input type="file" name="upload_yard_work_after_back" class="FUAChooseFileButton"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="FUSixContentPartNew">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">INSPECTION</p>
-                        <p class="FASubTitleInsoection">INSPECTION REPORT*<br>
-                            <?php
-                            if(!empty($inspectionImageFilesArray['Report']["FileName"])){
+                    <div class="FUSixContentPartNew">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">INSPECTION</p>
+                            <p class="FASubTitleInsoection">
+                                INSPECTION REPORT*<br>
+                                <?php
+                                if(!empty($inspectionImageFilesArray['Report']["FileName"])){
                                 echo '<a>Report uploaded</a>';
-                            }
-                            else{
+                                }
+                                else{
                                 echo '<a>No Report uploaded</a>';
-                            }
-                            ?>
-                            <input type="file" name="upload_inspection_report" class="FUAChooseFileButton inspectionStyle">
-                        </p>
-                        <p class="FASubTitleInvoice">INVOICE*<br>
-                            <?php
-                            if(!empty($inspectionImageFilesArray['Invoice']["FileName"])){
+                                }
+                                ?>
+                                <label for="inspectionupload" class="FUASaveButton upload">Upload</label>
+                                <input style="display:none" id="inspectionupload" type="file" name="upload_inspection_report" class="FUAChooseFileButton inspectionStyle">
+                            </p>
+                            <p class="FASubTitleInvoice">
+                                INVOICE*<br>
+                                <?php
+                                if(!empty($inspectionImageFilesArray['Invoice']["FileName"])){
                                 echo '<a>Invoice uploaded</a>';
+                                }
+                                else{
+                                echo '<a>No Invoice uploaded</a>';
+                                }
+                                ?>
+                                <label for="inspectioninvoiceupload" class="FUASaveButton upload">Upload</label>
+                                <input style="display:none" id="inspectioninvoiceupload" type="file" name="upload_inspection_invoice" class="FUAChooseFileButton inspectionStyle">
+                            </p>
+                            <input type="submit" name="submit_inspection" value=" SAVE " class="FUASaveButton inspectionButtonStyle">
+                        </div>
+                    </div>
+                    <div class="FASixContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">STORAGE</p>
+                            <p class="FASubTitleStoageInvoice">INVOICE*</p>
+                            <?php
+                            if(!empty($storageImageFilesArray['Invoice']["FileName"])){
+                            echo '<a>Invoice uploaded</a>';
                             }
                             else{
-                                echo '<a>No Invoice uploaded</a>';
+                            echo '<a>No Invoice uploaded</a>';
                             }
                             ?>
-                            <input type="file" name="upload_inspection_invoice" class="FUAChooseFileButton inspectionStyle">
-                        </p>
-                        <input type="submit" name="submit_inspection" value=" SAVE " class="FUASaveButton inspectionButtonStyle">
+                            <label for="storageupload" class="FUASaveButton upload">Upload</label>
+                            <input style="display:none" id="storageupload" type="file" name="upload_storage_invoice" class="FUAChooseFileButton storageInputFileStyle">
+                            <input type="submit" name="submit_storage" value=" SAVE " class="FUASaveButton">
+                        </div>
                     </div>
-                </div>
-                <div class="FASixContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">STORAGE</p>
-                        <p class="FASubTitleStoageInvoice">INVOICE*</p>
-                        <?php
-                        if(!empty($storageImageFilesArray['Invoice']["FileName"])){
+                    <div class="FASevenContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">RELOCATION HOME</p>
+                            <p class="FASubTitleStoageInvoice">INVOICE*</p>
+                            <?php
+                            if(!empty($relocateHomeImageFilesArray['Invoice']["FileName"])){
                             echo '<a>Invoice uploaded</a>';
-                        }
-                        else{
+                            }
+                            else{
                             echo '<a>No Invoice uploaded</a>';
-                        }
-                        ?>
-                        <input type="file" name="upload_storage_invoice" class="FUAChooseFileButton storageInputFileStyle">
-                        <input type="submit" name="submit_storage" value=" SAVE " class="FUASaveButton storageButtonStyle">
+                            }
+                            ?>
+                            <label for="relocationupload" class="FUASaveButton upload">Upload</label>
+                            <input style="display:none" id="relocationupload" type="file" name="upload_relocate_home_invoice" class="FUAChooseFileButton storageInputFileStyle">
+                            <input type="submit" name="submit_relocate_home" value=" SAVE " class="FUASaveButton">
+                        </div>
                     </div>
-                </div>
-                <div class="FASevenContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">RELOCATION HOME</p>
-                        <p class="FASubTitleStoageInvoice">INVOICE*</p>
-                        <?php
-                        if(!empty($relocateHomeImageFilesArray['Invoice']["FileName"])){
-                            echo '<a>Invoice uploaded</a>';
-                        }
-                        else{
-                            echo '<a>No Invoice uploaded</a>';
-                        }
-                        ?>
-                        <input type="file" name="upload_relocate_home_invoice" class="FUAChooseFileButton storageInputFileStyle">
-                        <input type="submit" name="submit_relocate_home" value=" SAVE " class="FUASaveButton storageButtonStyle">
-                    </div>
-                </div>
-            </form>
-        </div></br></br></br>
+                </form>
+            </div></br></br></br>
+        </div>
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $('img').on('click', function (evt) {
+            debugger;
+            $('#' + this.attributes.up.value).click();
+        });
+    </script>
 </body>
 
 

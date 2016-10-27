@@ -322,6 +322,9 @@ Template Name: Agent Case Details
         }else{
             $isTouchUpEnabled = $_POST['touchUpCheckbox'] === 'checked' ? '1' : '0';
             $touchUpSupplierID = $_POST['touchUpSelect'];
+            echo "abled ";
+            echo "chckbox " . $_POST['touchUpCheckbox'] . "  ";
+            echo "is enabled" . (int)$isTouchUpEnabled ;
         }
         $touchUpServiceID = $touchUpServiceArray['ServiceID'];
         $touchUpRealCost = $_POST['touchUpRealCost'];
@@ -438,7 +441,7 @@ Template Name: Agent Case Details
         }
 
         save_session();
-        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
+//        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
         exit;
     }
 
