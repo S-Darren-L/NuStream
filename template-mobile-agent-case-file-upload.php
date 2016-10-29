@@ -11,7 +11,7 @@
     $MLS = $_GET['CID'];
     $isRefreshPage = $_GET['RF'];
     $uploadBasePath = "wp-content/themes/NuStream/Upload/case/" . $MLS;
-    $PageURL = get_home_url() . '/agent-case-file-upload';
+    $PageURL = get_home_url() . '/agent-mobile-case-file-upload';
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
     $defaultHouseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
 

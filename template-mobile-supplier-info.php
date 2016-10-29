@@ -44,147 +44,246 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>NUSTREAM</title>
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
-	<script type="text/javascript" src="<?php bloginfo('template_url');?>/js/index.js"></script>
-	<style>
-		.buttonPart button:hover{
-			color:white;
-			background:black;
-			cursor:pointer;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUSTREAM</title>
+
+
+    <style>
+        .buttonPart button:hover {
+            color: white;
+            background: black;
+            cursor: pointer;
+        }
+
+        .buttonPart button {
+    border: 1px solid lightgrey;
+    background: none;
+    width: 23%;
+    font-size: 5px;
+    padding: 2% 0px 2% 0px;
+    font-weight: 700;
+    outline: none;
+        }
+
+        .infoCentreInfoStyle {
+            width: 100%;
+            border-left: 8px solid red;
+            margin-top: 2%;
+            background: #EEE;
+        }
+
+        .infoCentreInfoTable {
+            padding: 2%;
+            width: 100%;
+            display: table;
+        }
+
+            .infoCentreInfoTable > li {
+                width: 32%;
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+                .infoCentreInfoTable > li:nth-child(1) {
+                    border-right: 1px solid lightgrey;
+                    font-size: 0.9em;
+                }
+
+                .infoCentreInfoTable > li:nth-child(2) {
+                    border-right: 1px solid lightgrey;
+                    font-size: 0.8em;
+                }
+
+                .infoCentreInfoTable > li:nth-child(3) {
+                    font-size: 0.8em;
+                }
+    </style>
 </head>
 <body>
-<div class='infoCentrePage'>
-	<div class="goBack">
-	</div><br/>
-	<div class="buttonPart">
-		<button class="buttonStyle buttonWhite stagingButtton" id="strd">STAGING</button>
-		<button class="buttonStyle buttonWhite claenUpButtton" id="cled">CLEAN UP</button>
-		<button class="buttonStyle buttonWhite touchUpButtton" id="toud">TOUCH UP</button>
-		<button class="buttonStyle buttonWhite yardWorkButtton" id="yard">YARD WORK</button>
-		<button class="buttonStyle buttonWhite relocationButtton" id="reld">RELOCATION HOME</button>
-		<button class="buttonStyle buttonWhite storageButtton" id="stod">STORAGE</button>
-		<button class="buttonStyle buttonWhite inspectionButtton" id="insd">INSPECTION</button>
-		<button class="buttonStyle buttonWhite photographyButtton" id="phod">PHOTOGRAPHY</button>
-	</div>
+    <div class=''>
+        <div class="">
+        </div>
+        <div class="buttonPart">
+            <button class="buttonStyle buttonWhite stagingButtton" id="str">STAGING</button>
+            <button class="buttonStyle buttonWhite claenUpButtton" id="cle">CLEAN UP</button>
+            <button class="buttonStyle buttonWhite touchUpButtton" id="tou">TOUCH UP</button>
+            <button class="buttonStyle buttonWhite yardWorkButtton" id="yar">YARD WORK</button>
+            <button class="buttonStyle buttonWhite relocationButtton" id="rel">RELOCATION HOME</button>
+            <button class="buttonStyle buttonWhite storageButtton" id="sto">STORAGE</button>
+            <button class="buttonStyle buttonWhite inspectionButtton" id="ins">INSPECTION</button>
+            <button class="buttonStyle buttonWhite photographyButtton" id="pho">PHOTOGRAPHY</button>
+        </div>
 
 
-	<div id="strd" style="display:none;">
-		<?php
-		for($i = 0; $i < count($strdInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $strdInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $strdInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $strdInfoArray[$i]["FirstContactName"], '</br>', $strdInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div id="cled" style="display:none;">
-		<?php
-		for($i = 0; $i < count($cledBriefInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $cledBriefInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $cledBriefInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $cledBriefInfoArray[$i]["FirstContactName"], '</br>', $cledBriefInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div id="toud" style="display:none;">
-		<?php
-		for($i = 0; $i < count($toudBriefInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $toudBriefInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $toudBriefInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $toudBriefInfoArray[$i]["FirstContactName"], '</br>', $toudBriefInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div id="yard" style="display:none;">
-		<?php
-		for($i = 0; $i < count($yardBriefInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $yardBriefInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $yardBriefInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $yardBriefInfoArray[$i]["FirstContactName"], '</br>', $yardBriefInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div id="reld" style="display:none;">
-		<?php
-		for($i = 0; $i < count($reldBriefInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $reldBriefInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $reldBriefInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $reldBriefInfoArray[$i]["FirstContactName"], '</br>', $reldBriefInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div id="stod" style="display:none;">
-		<?php
-		for($i = 0; $i < count($stodBriefInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $stodBriefInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $stodBriefInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $stodBriefInfoArray[$i]["FirstContactName"], '</br>', $stodBriefInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div id="insd" style="display:none;">
-		<?php
-		for($i = 0; $i < count($insdBriefInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $insdBriefInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $insdBriefInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $insdBriefInfoArray[$i]["FirstContactName"], '</br>', $insdBriefInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div id="phod" style="display:none;">
-		<?php
-		for($i = 0; $i < count($phodBriefInfoArray); $i++) {
-			echo '<div class="infoCentreInfoStyle">';
-			echo '<table class="infoCentreInfoTable">';
-			echo '<th>', $phodBriefInfoArray[$i]["SupplierName"], '</th>';
-			echo '<th>', $phodBriefInfoArray[$i]["SupportLocation"], '</th>';
-			echo '<th class="tableBorderColor">', $phodBriefInfoArray[$i]["FirstContactName"], '</br>', $phodBriefInfoArray[$i]["FirstContactNumber"], '</th>';
-			echo '</table>';
-			echo '</div>';
-		}
-		?>
-	</div>
+        <div id="strd" style="display:block;">
+            <?php
+            for($i = 0; $i < count($strdInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $strdInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $strdInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $strdInfoArray[$i]["FirstContactName"], '</br>', $strdInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
+        <div id="cled" style="display:none;">
+            <?php
+            for($i = 0; $i < count($cledBriefInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $cledBriefInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $cledBriefInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $cledBriefInfoArray[$i]["FirstContactName"], '</br>', $cledBriefInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
+        <div id="toud" style="display:none;">
+            <?php
+            for($i = 0; $i < count($toudBriefInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $toudBriefInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $toudBriefInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $toudBriefInfoArray[$i]["FirstContactName"], '</br>', $toudBriefInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
+        <div id="yard" style="display:none;">
+            <?php
+            for($i = 0; $i < count($yardBriefInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $yardBriefInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $yardBriefInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $yardBriefInfoArray[$i]["FirstContactName"], '</br>', $yardBriefInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
+        <div id="reld" style="display:none;">
+            <?php
+            for($i = 0; $i < count($reldBriefInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $reldBriefInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $reldBriefInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $reldBriefInfoArray[$i]["FirstContactName"], '</br>', $reldBriefInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
+        <div id="stod" style="display:none;">
+            <?php
+            for($i = 0; $i < count($stodBriefInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $stodBriefInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $stodBriefInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $stodBriefInfoArray[$i]["FirstContactName"], '</br>', $stodBriefInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
+        <div id="insd" style="display:none;">
+            <?php
+            for($i = 0; $i < count($insdBriefInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $insdBriefInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $insdBriefInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $insdBriefInfoArray[$i]["FirstContactName"], '</br>', $insdBriefInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
+        <div id="phod" style="display:none;">
+            <?php
+            for($i = 0; $i < count($phodBriefInfoArray); $i++) {
+            echo '<div class="infoCentreInfoStyle">
+                ';
+                echo '<ul class="infoCentreInfoTable">
+                    ';
+                    echo '
+                    <li>', $phodBriefInfoArray[$i]["SupplierName"], '</li>';
+                    echo '
+                    <li>', $phodBriefInfoArray[$i]["SupportLocation"], '</li>';
+                    echo '
+                    <li class="tableBorderColor">', $phodBriefInfoArray[$i]["FirstContactName"], '</br>', $phodBriefInfoArray[$i]["FirstContactNumber"], '</li>';
+                    echo '
+                </ul>';
+                echo '
+            </div>';
+            }
+            ?>
+        </div>
 
-</div>
+    </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
 	function hideAll() {
 		$('#strd').css('display', 'none');
 		$('#cled').css('display', 'none');
@@ -196,39 +295,47 @@
 		$('#phod').css('display', 'none');
 	}
 
-	$('#strd').on('click', function () {
+	$('#str').on('click', function () {
 		hideAll();
 		$('#strd').css('display', 'block');
+		$('#str').css('background', 'black').css('color', 'white');
 	});
-	$('#cled').on('click', function () {
+	$('#cle').on('click', function () {
 		hideAll();
 		$('#cled').css('display', 'block');
+		$('#str').css('background', 'white').css('color', 'black');
 	});
-	$('#toud').on('click', function () {
+	$('#tou').on('click', function () {
 		hideAll();
 		$('#toud').css('display', 'block');
+		$('#str').css('background', 'white').css('color', 'black');
 	});
-	$('#yard').on('click', function () {
+	$('#yar').on('click', function () {
 		hideAll();
 		$('#yard').css('display', 'block');
+		$('#str').css('background', 'white').css('color', 'black');
 	});
-	$('#reld').on('click', function () {
+	$('#rel').on('click', function () {
 		hideAll();
 		$('#reld').css('display', 'block');
+		$('#str').css('background', 'white').css('color', 'black');
 	});
-	$('#stod').on('click', function () {
+	$('#sto').on('click', function () {
 		hideAll();
 		$('#stod').css('display', 'block');
+		$('#str').css('background', 'white').css('color', 'black');
 	});
-	$('#insd').on('click', function () {
+	$('#ins').on('click', function () {
 		hideAll();
 		$('#insd').css('display', 'block');
+		$('#str').css('background', 'white').css('color', 'black');
 	});
-	$('#phod').on('click', function () {
+	$('#pho').on('click', function () {
 		hideAll();
 		$('#phod').css('display', 'block');
+		$('#str').css('background', 'white').css('color', 'black');
 	});
-
-</script>
+	$('#str').css('background', 'black').css('color', 'white');
+    </script>
 </body>
 </html>

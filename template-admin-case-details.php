@@ -232,10 +232,10 @@ Template Name: Admin Case Details
 <style type="text/css">
     /*------------------------------------nav bar css---------------------------------*/
     html, body {
-        margin:0;
-        padding:0;
+        margin: 0;
+        padding: 0;
         background-color: #eeeeee !important;
-        font-family: Arial!important;
+        font-family: Arial !important;
     }
 
     #container {
@@ -249,7 +249,7 @@ Template Name: Admin Case Details
         height: 100%;
         background: #32323a;
         margin-left: -230px;
-        position:fixed;
+        position: fixed;
         margin-top: -54px;
     }
 
@@ -283,57 +283,57 @@ Template Name: Admin Case Details
         width: 230px;
         padding-top: 20px;
         padding-left: 20px;
-        padding-right:20px;
+        padding-right: 20px;
         padding-bottom: 20px;
         display: block;
         background-color: #28282e;
     }
 
-    .logo img {
-        width: 100%;
-    }
+        .logo img {
+            width: 100%;
+        }
 
     .nav-pills {
         background-color: #32323a;
         border-color: #030033;
     }
 
-    .nav-pills > li > a {
-        color: #95a0aa; /*Change active text color here*/
-    }
+        .nav-pills > li > a {
+            color: #95a0aa; /*Change active text color here*/
+        }
 
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-        color: #000;  /*Sets the text hover color on navbar*/
+        color: #000; /*Sets the text hover color on navbar*/
     }
 
     li {
-        border-bottom:1px #2a2a31 solid;
+        border-bottom: 1px #2a2a31 solid;
     }
 
     .footer {
         position: absolute;
-        bottom:0px;
-        left:0;
-        right:0;
-        margin:0 auto;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
         text-align: center;
     }
 
     .copyRight {
-        color:white;
+        color: white;
     }
 
     .formPart {
     }
 
     th {
-        color:white;
-        font-size:11px;
-        text-align:center;
+        color: white;
+        font-size: 11px;
+        text-align: center;
     }
 
     .userNamePart {
-        color:white;
+        color: white;
         text-align: center;
         margin-bottom: 20px;
     }
@@ -341,24 +341,25 @@ Template Name: Admin Case Details
     /*--------------------------template css for all page----------------------*/
 
     .title {
-        padding:5px 0 5px 0;
-        margin-top:89px;
+        padding: 5px 0 5px 0;
+        margin-top: 89px;
         margin-left: 23px;
         background-color: #fff;
-        border-left:5px #0068b7 solid;
-        border-bottom:1px #eeeeee solid;
+        border-left: 5px #0068b7 solid;
+        border-bottom: 1px #eeeeee solid;
         width: 600px;
     }
+
     .titleSize {
         font-size: 20px;
-        margin:0px;
-        padding-left:23px;
+        margin: 0px;
+        padding-left: 23px;
     }
 
     .contentPart {
         padding-top: 20px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 400px;
         width: 600px;
         font-size: 12px;
@@ -371,7 +372,7 @@ Template Name: Admin Case Details
     .inputPart {
         padding-top: 20px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 400px;
         width: 600px;
         font-size: 12px;
@@ -383,14 +384,14 @@ Template Name: Admin Case Details
         height: 45px;
         padding: 0px;
         margin: 0px;
-        vertical-align:middle;
-        padding:10px 0 0 0;
+        vertical-align: middle;
+        padding: 10px 0 0 0;
     }
 
     .requireTitle {
         height: 30px;
-        padding-left:23px;
-        float:left;
+        padding-left: 23px;
+        float: left;
         vertical-align: middle;
         line-height: 30px;
         display: absolute;
@@ -398,14 +399,13 @@ Template Name: Admin Case Details
 
     .inputContent {
         display: absolute;
-        padding:0 0 0 143px;
-        margin:0px;
+        padding: 0 0 0 143px;
+        margin: 0px;
         width: 150px;
     }
 
     .secondTitle {
-        margin:-30px 0 0 280px;
-
+        margin: -30px 0 0 280px;
     }
 
     .secondInput {
@@ -414,13 +414,13 @@ Template Name: Admin Case Details
 
     input {
         border-radius: 3px;
-        border:1px #a9a9a9 solid;
+        border: 1px #a9a9a9 solid;
         width: 150px;
         height: 30px;
     }
 
     fieldset {
-        overflow: hidden
+        overflow: hidden;
     }
 
     .dropdown {
@@ -438,7 +438,7 @@ Template Name: Admin Case Details
         border-radius: 5px;
         background-color: #32323a;
         border: #32323a;
-        color:#fff;
+        color: #fff;
         font-weight: 100px;
         height: 30px;
         width: 150px;
@@ -457,15 +457,15 @@ Template Name: Admin Case Details
 
     .photoUploadButton {
         font-size: 11px;
-        color:#a9a9a9;
+        color: #a9a9a9;
         background-color: #fff;
-        border:1px #a9a9a9 solid;
+        border: 1px #a9a9a9 solid;
         width: 150px;
         height: 30px;
         border-radius: 3px;
     }
 
-    .error-message a{
+    .error-message a {
         color: red;
         font-size: 80%;
     }
@@ -473,18 +473,19 @@ Template Name: Admin Case Details
 
     /*------------------------------------table page css--------------------------------------*/
     .tablePageTitle {
-        width:800px;
-        margin:0 auto;
+        width: 800px;
+        margin: 0 auto;
     }
+
     .title img {
         width: 100%;
     }
 
     .tablePart table {
         text-align: center;
-        border:1px #000 solid;
-        width:800px;
-        margin:0 auto;
+        border: 1px #000 solid;
+        width: 800px;
+        margin: 0 auto;
     }
 
     /*------------------------------------File Approvement Admin css--------------------------------------*/
@@ -492,72 +493,73 @@ Template Name: Admin Case Details
     .FAFContentPart {
         padding-top: 20px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 240px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
     /*File Approvement Page First Title*/
     .FAFTitle {
-        padding:5px 0 5px 0;
-        margin-top:54px;
+        padding: 5px 0 5px 0;
+        margin-top: 54px;
         margin-left: 23px;
         background-color: #fff;
-        border-left:5px #0068b7 solid;
-        border-bottom:1px #eeeeee solid;
+        border-left: 5px #0068b7 solid;
+        border-bottom: 1px #eeeeee solid;
         width: 750px;
     }
 
     .FANormalTitle {
-        padding:5px 0 5px 0;
-        margin-top:10px;
+        padding: 5px 0 5px 0;
+        margin-top: 10px;
         margin-left: 23px;
         background-color: #fff;
-        border-left:5px #0068b7 solid;
-        border-bottom:1px #eeeeee solid;
+        border-left: 5px #0068b7 solid;
+        border-bottom: 1px #eeeeee solid;
         width: 750px;
     }
 
     .FASContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 270px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
+
     .table-striped {
         width: 775px !important;
-        padding-left:20px;
+        padding-left: 20px;
         margin-left: 20px;
     }
 
-    .table-striped th{
-        font-size: 10px;
-        color:#a9a9a9;
-    }
+        .table-striped th {
+            font-size: 10px;
+            color: #a9a9a9;
+        }
 
-    .table-striped td{
-        color:#a9a9a9;
-    }
+        .table-striped td {
+            color: #a9a9a9;
+        }
 
     .houseInfo .table-striped tr {
         font-size: 10px;
-        color:#a9a9a9;
+        color: #a9a9a9;
     }
 
     .houseInfo .table-striped th {
         font-size: 10px;
-        color:#a9a9a9;
+        color: #a9a9a9;
     }
 
     .houseInfo .table-striped td {
-        padding-top:2px !important;
-        padding-bottom:2px !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
     }
 
     .houseInfo .table-striped {
@@ -582,9 +584,9 @@ Template Name: Admin Case Details
         /*padding-top:25px;*/
     }
 
-    .houseImg img {
-        width: 100%;
-    }
+        .houseImg img {
+            width: 100%;
+        }
 
     .houseTable {
         width: 300px;
@@ -594,7 +596,7 @@ Template Name: Admin Case Details
 
 
     .FAFSubTitle {
-        font-weight:bold;
+        font-weight: bold;
         padding-left: 23px;
         float: left;
         padding-top: 5px;
@@ -612,17 +614,16 @@ Template Name: Admin Case Details
         height: 30px;
         width: 80px;
         margin-left: 360px;
-
     }
 
-    .FASelectType select {
-        border-radius: 3px;
-        height: 30px;
-        width: 80px;
-    }
+        .FASelectType select {
+            border-radius: 3px;
+            height: 30px;
+            width: 80px;
+        }
 
     .FASCPSLine {
-        float:left;
+        float: left;
         height: 100px;
         width: 750px;
         margin-top: 10px;
@@ -630,34 +631,34 @@ Template Name: Admin Case Details
     }
 
     .FASSubTitle {
-        font-weight:bold;
+        font-weight: bold;
         padding-left: 23px;
         float: left;
         padding-top: 5px;
-        color:#a9a9a9;
+        color: #a9a9a9;
     }
+
     .FAImage {
-        float:left;
+        float: left;
         height: 70px;
         width: 130px;
         border: 1px blue dashed;
-        margin:0 25px;
-
+        margin: 0 25px;
     }
 
     .FAtable {
-        float:left;
+        float: left;
     }
 
 
-    .FAtable td {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        text-align: center;
-    }
+        .FAtable td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+        }
 
     .FASCPTLine {
-        float:left;
+        float: left;
         height: 100px;
         width: 750px;
         margin-top: 10px;
@@ -667,39 +668,39 @@ Template Name: Admin Case Details
     .FATContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 270px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FAFoContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 270px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FAImageTouchUp {
-        float:left;
+        float: left;
         height: 70px;
         width: 80px;
         border: 1px blue dashed;
-        margin:0 10px;
+        margin: 0 10px;
     }
 
     .FAImageYardWork {
-        float:left;
+        float: left;
         height: 80px;
         width: 170px;
         border: 1px blue dashed;
-        margin:0 25px;
+        margin: 0 25px;
     }
 
     .FASubTitleInsoection {
@@ -725,23 +726,23 @@ Template Name: Admin Case Details
     .FAFiContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 280px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FASixContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 50px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .FASubTitleStoageInvoice {
@@ -761,10 +762,10 @@ Template Name: Admin Case Details
         height: 30px;
         width: 120px;
         background-color: #32323a;
-        color:#fff;
+        color: #fff;
         font-size: 12px;
-        float:left;
-        border:1px solid #32323a;
+        float: left;
+        border: 1px solid #32323a;
         margin-left: 20px;
         border-radius: 3px;
     }
@@ -773,9 +774,9 @@ Template Name: Admin Case Details
         height: 30px;
         width: 120px;
         background-color: #32323a;
-        color:#fff;
+        color: #fff;
         font-size: 12px;
-        border:1px solid #32323a;
+        border: 1px solid #32323a;
         margin-left: 10px;
         border-radius: 3px;
     }
@@ -783,12 +784,12 @@ Template Name: Admin Case Details
     .FASevenContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 60px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
 
@@ -798,10 +799,10 @@ Template Name: Admin Case Details
         height: 25px;
         width: 80px;
         background-color: #32323a;
-        color:#fff;
+        color: #fff;
         font-size: 12px;
-        float:left;
-        border:1px solid #32323a;
+        float: left;
+        border: 1px solid #32323a;
         margin-left: 20px;
         border-radius: 3px;
     }
@@ -810,7 +811,7 @@ Template Name: Admin Case Details
         border-radius: 3px;
         height: 17px;
         width: 130px;
-        margin:0 25px;
+        margin: 0 25px;
         font-size: 9px;
     }
 
@@ -830,12 +831,12 @@ Template Name: Admin Case Details
     .FUSixContentPart {
         padding-top: 10px;
         background-color: #fff;
-        color:#a9a9a9;
+        color: #a9a9a9;
         height: 60px;
         width: 750px;
         font-size: 12px;
         margin-left: 23px;
-        border-bottom:1px #eeeeee solid;
+        border-bottom: 1px #eeeeee solid;
     }
 
     .storageButtonStyle {
@@ -853,585 +854,702 @@ Template Name: Admin Case Details
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/pcStyles.css">
+<style>
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+    </style>
 </head>
 <body>
-<div id="container">
-    <?php
-    include_once(__DIR__ . '/navigation.php');
-    ?>
-    <div id="main">
-        <div class="formPart">
-            <form method="post">
-                <div class="FAFTitle">
-                    <p class="titleSize"><strong>BASIC INFO</strong></p>
-                </div>
-                <div class="FAFContentPart ">
-                    <div class="houseInfo">
-                        <div class="houseImg">
-                            <?php
-                            if(!empty($caseDetailsArray['Images'])){
+    <div id="myModal" class="modal">
+        <span class="close">×</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <div id="container">
+        <?php
+        include_once(__DIR__ . '/navigation.php');
+        ?>
+        <div id="main">
+            <div class="formPart">
+                <form method="post">
+                    <div class="FAFTitle">
+                        <p class="titleSize"><strong>BASIC INFO</strong></p>
+                    </div>
+                    <div class="FAFContentPart ">
+                        <div class="houseInfo">
+                            <div class="houseImg">
+                                <?php
+                                if(!empty($caseDetailsArray['Images'])){
                                 echo '<img src="' . $houseImageURL . $caseDetailsArray['Images'] . '">';
-                            }else{
+                                }else{
                                 echo '<img src="' . $defaultHouseImageURL . '">';
-                            }
-                            ?>
+                                }
+                                ?>
+                            </div>
+                            <div class="houseTable">
+                                <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>MLS#</td>
+                                            <td><?php echo $caseDetailsArray['MLS'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>ADDRESS</td>
+                                            <td><?php echo $caseDetailsArray['Address'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PROPERTY TYPE</td>
+                                            <td><?php echo $caseDetailsArray['PropertyType'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>LAND SIZE (LOT)</td>
+                                            <td><?php echo $caseDetailsArray['LandSize'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>HOUSE SIZE(SQF)</td>
+                                            <td><?php echo $caseDetailsArray['HouseSize'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>LISTING PRICE</td>
+                                            <td><?php echo $caseDetailsArray['ListingPrice'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>OWNER'S NAME</td>
+                                            <td><?php echo $caseDetailsArray['OwnerName'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>TEAM MEMBER'S NAME</td>
+                                            <td><?php echo $caseDetailsArray['CoStaffName'];?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>SELLING LISTING RATE</td>
+                                            <td><?php echo $caseDetailsArray['CommissionRate'] . "%";?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="houseTable">
-                            <div style="width:300px; padding:0px;"><h5 style="z-index:100;color:#a9a9a9; margin-top:0px; margin-left:10px;">HOUSE INFORMATION</h5></div>
-                            <table class="table table-striped">
-                                <tbody>
+                    </div>
+                    <div class="FANormalTitle">
+                        <p class="titleSize"><strong>FILE UPLOAD</strong></p>
+                    </div>
+                    <div class="FASContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">STAGING</p>
+                            <p class="FASubTitleUpload">
+                                <?php
+                                if(!empty($stagingImageFilesArray['Invoice']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $stagingImageFilesArray['Invoice'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Invoice uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
+                            <select name="stagingStatus" id="drop-down" class="FASelectType">
+                                <?php
+                                foreach ($invoiceStatuses as $invoiceStatus){
+                                if($stagingServiceArray['InvoiceStatus'] === $invoiceStatus){
+                                $isSelected = "selected";
+                                }else{
+                                $isSelected = "";
+                                }
+                                echo '
+                                <option value="' . $invoiceStatus . '" ' . $isSelected . '>' , $invoiceStatus, '</option>' ;
+                                        }
+                                        ?>
+                            </select>
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
                                 <tr>
-                                    <td>MLS#</td>
-                                    <td><?php echo $caseDetailsArray['MLS'];?></td>
+                                    <td>BEFORE</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeDinningRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeDinningRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeMasterRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeMasterRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>ADDRESS</td>
-                                    <td><?php echo $caseDetailsArray['Address'];?></td>
+                                    <td></td>
+                                    <td>LIVING ROOM</td>
+                                    <td>KITCHEN</td>
+                                    <td>WASH ROOM</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterDinningRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterDinningRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterMasterRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterMasterRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>PROPERTY TYPE</td>
-                                    <td><?php echo $caseDetailsArray['PropertyType'];?></td>
+                                    <td></td>
+                                    <td>LIVING ROOM</td>
+                                    <td>KITCHEN</td>
+                                    <td>WASH ROOM</td>
                                 </tr>
-                                <tr>
-                                    <td>LAND SIZE (LOT)</td>
-                                    <td><?php echo $caseDetailsArray['LandSize'];?></td>
-                                </tr>
-                                <tr>
-                                    <td>HOUSE SIZE(SQF)</td>
-                                    <td><?php echo $caseDetailsArray['HouseSize'];?></td>
-                                </tr>
-                                <tr>
-                                    <td>LISTING PRICE</td>
-                                    <td><?php echo $caseDetailsArray['ListingPrice'];?></td>
-                                </tr>
-                                <tr>
-                                    <td>OWNER'S NAME</td>
-                                    <td><?php echo $caseDetailsArray['OwnerName'];?></td>
-                                </tr>
-                                <tr>
-                                    <td>TEAM MEMBER'S NAME</td>
-                                    <td><?php echo $caseDetailsArray['CoStaffName'];?></td>
-                                </tr>
-                                <tr>
-                                    <td>SELLING LISTING RATE</td>
-                                    <td><?php echo $caseDetailsArray['CommissionRate'] . "%";?></td>
-                                </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="FANormalTitle">
-                    <p class="titleSize"><strong>FILE UPLOAD</strong></p>
-                </div>
-                <div class="FASContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">STAGING</p>
-                        <p class="FASubTitleUpload">
-                            <?php
-                            if(!empty($stagingImageFilesArray['Invoice']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $stagingImageFilesArray['Invoice']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <select name="stagingStatus" id="drop-down" class="FASelectType">
-                            <?php
-                            foreach ($invoiceStatuses as $invoiceStatus){
-                                if($stagingServiceArray['InvoiceStatus'] === $invoiceStatus){
-                                    $isSelected = "selected";
-                                }else{
-                                    $isSelected = "";
-                                }
-                                echo '<option value="' . $invoiceStatus . '" ' . $isSelected . '>', $invoiceStatus, '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeDinningRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeDinningRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeMasterRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeMasterRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>LIVING ROOM</td>
-                                <td>KITCHEN</td>
-                                <td>WASH ROOM</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterDinningRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterDinningRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterMasterRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterMasterRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>LIVING ROOM</td>
-                                <td>KITCHEN</td>
-                                <td>WASH ROOM</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="FATContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">CLEAN UP</p>
-                        <p class="FASubTitleUpload">
-                            <?php
-                            if(!empty($cleanUpImageFilesArray['Invoice']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $cleanUpImageFilesArray['Invoice']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <select name="cleanUpStatus" id="drop-down" class="FASelectType">
-                            <?php
-                            foreach ($invoiceStatuses as $invoiceStatus){
-                                if($cleanUpServiceArray['InvoiceStatus'] === $invoiceStatus){
-                                    $isSelected = "selected";
-                                }else{
-                                    $isSelected = "";
-                                }
-                                echo '<option value="' . $invoiceStatus . '" ' . $isSelected . '>', $invoiceStatus, '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeKitchen']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeWashRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>LIVING ROOM</td>
-                                <td>KITCHEN</td>
-                                <td>WASH ROOM</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterKitchen']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterWashRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">';
-                                    else
-                                        echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>LIVING ROOM</td>
-                                <td>KITCHEN</td>
-                                <td>WASH ROOM</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="FAFoContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">TOUCH UP</p>
-                        <p class="FASubTitleUpload">
-                            <?php
-                            if(!empty($touchUpImageFilesArray['Invoice']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $touchUpImageFilesArray['Invoice']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <?php
-                            echo '<select name="touchUpStatus" id="drop-down" class="FASelectType">';
+                    <div class="FATContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">CLEAN UP</p>
+                            <p class="FASubTitleUpload">
+                                <?php
+                                if(!empty($cleanUpImageFilesArray['Invoice']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $cleanUpImageFilesArray['Invoice'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Invoice uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
+                            <select name="cleanUpStatus" id="drop-down" class="FASelectType">
+                                <?php
                                 foreach ($invoiceStatuses as $invoiceStatus){
-                                    if($touchUpServiceArray['InvoiceStatus'] === $invoiceStatus){
-                                        $isSelected = "selected";
-                                    }else{
-                                        $isSelected = null;
-                                    }
-                                    echo '<option value="' . $invoiceStatus . '" ' . $isSelected . '>', $invoiceStatus, '</option>';
+                                if($cleanUpServiceArray['InvoiceStatus'] === $invoiceStatus){
+                                $isSelected = "selected";
+                                }else{
+                                $isSelected = "";
                                 }
-                            echo '</select>';
-                        ?>
+                                echo '
+                                <option value="' . $invoiceStatus . '" ' . $isSelected . '>' , $invoiceStatus, '</option>' ;
+                                        }
+                                        ?>
+                            </select>
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>BEFORE</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeKitchen']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeWashRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>LIVING ROOM</td>
+                                    <td>KITCHEN</td>
+                                    <td>WASH ROOM</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterKitchen']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterWashRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">';
+                                        else
+                                        echo '<img src="" class="FAImage">';
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>LIVING ROOM</td>
+                                    <td>KITCHEN</td>
+                                    <td>WASH ROOM</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['Before1']["FileName"]))
+                    <div class="FAFoContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">TOUCH UP</p>
+                            <p class="FASubTitleUpload">
+                                <?php
+                                if(!empty($touchUpImageFilesArray['Invoice']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $touchUpImageFilesArray['Invoice'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Invoice uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
+                            <?php
+                            echo '<select name="touchUpStatus" id="drop-down" class="FASelectType">
+                                ';
+                                foreach ($invoiceStatuses as $invoiceStatus){
+                                if($touchUpServiceArray['InvoiceStatus'] === $invoiceStatus){
+                                $isSelected = "selected";
+                                }else{
+                                $isSelected = null;
+                                }
+                                echo '
+                                <option value="' . $invoiceStatus . '" ' . $isSelected . '>' , $invoiceStatus, '</option>' ;
+                                        }
+                                        echo '</select>' ;
+                                        ?>
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>BEFORE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['Before1']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before1']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['Before2']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['Before2']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before2']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['Before3']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['Before3']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before3']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['Before4']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['Before4']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before4']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['Before5']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['Before5']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before5']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['After1']["FileName"]))
+                                        ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['After1']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After1']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['After2']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['After2']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After2']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['After3']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['After3']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After3']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['After4']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['After4']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After4']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['After5']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['After5']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After5']["FileName"] . '" class="FAImageTouchUp">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImageTouchUp">';
-                                    ?>
-                                </td>
-                            </tr>
-                        </table>
+                                        ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="FAFiContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">YARD WORK</p>
-                        <p class="FASubTitleUpload">
-                            <?php
-                            if(!empty($yardWorkImageFilesArray['Invoice']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $yardWorkImageFilesArray['Invoice']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <select name="yardWorkStatus" id="drop-down" class="FASelectType">
-                            <?php
-                            foreach ($invoiceStatuses as $invoiceStatus){
+                    <div class="FAFiContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">YARD WORK</p>
+                            <p class="FASubTitleUpload">
+                                <?php
+                                if(!empty($yardWorkImageFilesArray['Invoice']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $yardWorkImageFilesArray['Invoice'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Invoice uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
+                            <select name="yardWorkStatus" id="drop-down" class="FASelectType">
+                                <?php
+                                foreach ($invoiceStatuses as $invoiceStatus){
                                 if($yardWorkServiceArray['InvoiceStatus'] === $invoiceStatus){
-                                    $isSelected = "selected";
+                                $isSelected = "selected";
                                 }else{
-                                    $isSelected = "";
+                                $isSelected = "";
                                 }
-                                echo '<option value="' . $invoiceStatus . '" ' . $isSelected . '>', $invoiceStatus, '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="FASCPSLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>BEFORE</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['BeforeFrontYard']["FileName"]))
+                                echo '
+                                <option value="' . $invoiceStatus . '" ' . $isSelected . '>' , $invoiceStatus, '</option>' ;
+                                        }
+                                        ?>
+                            </select>
+                        </div>
+                        <div class="FASCPSLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>BEFORE</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['BeforeFrontYard']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeFrontYard']["FileName"] . '" class="FAImage">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['After5']["BeforeBackYard"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['After5']["BeforeBackYard"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeBackYard']["FileName"] . '" class="FAImage">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>FRONT YEAR</td>
-                                <td>BACK YARD</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="FASCPTLine">
-                        <table class="FAtable">
-                            <tr>
-                                <td>AFTER&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterFrontYard']["FileName"]))
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>FRONT YEAR</td>
+                                    <td>BACK YARD</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="FASCPTLine">
+                            <table class="FAtable">
+                                <tr>
+                                    <td>AFTER&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterFrontYard']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterFrontYard']["FileName"] . '" class="FAImage">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if(!empty($stagingImageFilesArray['AfterBackYard']["FileName"]))
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if(!empty($stagingImageFilesArray['AfterBackYard']["FileName"]))
                                         echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterBackYard']["FileName"] . '" class="FAImage">';
-                                    else
+                                        else
                                         echo '<img src="" class="FAImage">';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>FRONT YEAR</td>
-                                <td>BACK YARD</td>
-                            </tr>
-                        </table>
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>FRONT YEAR</td>
+                                    <td>BACK YARD</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="FASixContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">INSPECTION</p>
-                        <p class="FASubTitleInsoection">
-                            <?php
-                            if(!empty($inspectionImageFilesArray['Report']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $inspectionImageFilesArray['Report']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Report uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <p class="FASubTitleInvoice">
-                            <?php
-                            if(!empty($inspectionImageFilesArray['Invoice']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $inspectionImageFilesArray['Invoice']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <select name="inspectionStatus" id="drop-down" class="FASelectTypeInspection">
-                            <?php
-                            foreach ($invoiceStatuses as $invoiceStatus){
+                    <div class="FASixContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">INSPECTION</p>
+                            <p class="FASubTitleInsoection">
+                                <?php
+                                if(!empty($inspectionImageFilesArray['Report']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $inspectionImageFilesArray['Report'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Report uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
+                            <p class="FASubTitleInvoice">
+                                <?php
+                                if(!empty($inspectionImageFilesArray['Invoice']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $inspectionImageFilesArray['Invoice'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Invoice uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
+                            <select name="inspectionStatus" id="drop-down" class="FASelectTypeInspection">
+                                <?php
+                                foreach ($invoiceStatuses as $invoiceStatus){
                                 if($inspectionServiceArray['InvoiceStatus'] === $invoiceStatus){
-                                    $isSelected = "selected";
+                                $isSelected = "selected";
                                 }else{
-                                    $isSelected = "";
+                                $isSelected = "";
                                 }
-                                echo '<option value="' . $invoiceStatus . '" ' . $isSelected . '>', $invoiceStatus, '</option>';
-                            }
-                            ?>
-                        </select>
+                                echo '
+                                <option value="' . $invoiceStatus . '" ' . $isSelected . '>' , $invoiceStatus, '</option>' ;
+                                        }
+                                        ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="FASixContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">STORAGE</p>
-                        <p class="FASubTitleStoageInvoice">
-                            <?php
-                            if(!empty($storageImageFilesArray['Invoice']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $storageImageFilesArray['Invoice']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <select name="storageStatus" id="drop-down" class="FASelectTypeStorage">
-                            <?php
-                            foreach ($invoiceStatuses as $invoiceStatus){
+                    <div class="FASixContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">STORAGE</p>
+                            <p class="FASubTitleStoageInvoice">
+                                <?php
+                                if(!empty($storageImageFilesArray['Invoice']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $storageImageFilesArray['Invoice'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Invoice uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
+                            <select name="storageStatus" id="drop-down" class="FASelectTypeStorage">
+                                <?php
+                                foreach ($invoiceStatuses as $invoiceStatus){
                                 if($stagingServiceArray['InvoiceStatus'] === $invoiceStatus){
-                                    $isSelected = "selected";
+                                $isSelected = "selected";
                                 }else{
-                                    $isSelected = "";
+                                $isSelected = "";
                                 }
-                                echo '<option value="' . $invoiceStatus . '" ' . $isSelected . '>', $invoiceStatus, '</option>';
-                            }
-                            ?>
-                        </select>
+                                echo '
+                                <option value="' . $invoiceStatus . '" ' . $isSelected . '>' , $invoiceStatus, '</option>' ;
+                                        }
+                                        ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="FASevenContentPart">
-                    <div class="FASCPFLine">
-                        <p class="FAFSubTitle">RELOCATION HOME</p>
-                        <p class="FASubTitleStoageInvoice">
+                    <div class="FASevenContentPart">
+                        <div class="FASCPFLine">
+                            <p class="FAFSubTitle">RELOCATION HOME</p>
+                            <p class="FASubTitleStoageInvoice">
+                                <?php
+                                if(!empty($relocateHomeImageFilesArray['Invoice']["FileName"])){
+                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $relocateHomeImageFilesArray['Invoice'][" FileName"] . '">Invoice uploaded</a>' ;
+                                         }
+                                         else{
+                                         echo '<a>No Invoice uploaded</a>' ;
+                                         }
+                                         ?>
+                            </p>
                             <?php
-                            if(!empty($relocateHomeImageFilesArray['Invoice']["FileName"])){
-                                echo '<a href="' . $PageURL . '/?CID=' . $MLS . '&File=' . $relocateHomeImageFilesArray['Invoice']["FileName"] . '">Invoice uploaded</a>';
-                            }
-                            else{
-                                echo '<a>No Invoice uploaded</a>';
-                            }
-                            ?>
-                        </p>
-                        <?php
-                            echo '<select name="relocateHomeStatus" id="drop-down" class="FASelectTypeStorage">';
+                            echo '<select name="relocateHomeStatus" id="drop-down" class="FASelectTypeStorage">
+                                ';
 
                                 foreach ($invoiceStatuses as $invoiceStatus){
-                                    if($relocateHomeServiceArray['InvoiceStatus'] === $invoiceStatus){
-                                        $isSelected = "selected";
-                                    }else{
-                                        $isSelected = "";
-                                    }
-                                    echo '<option value="' . $invoiceStatus . '" ' . $isSelected . '>', $invoiceStatus, '</option>';
+                                if($relocateHomeServiceArray['InvoiceStatus'] === $invoiceStatus){
+                                $isSelected = "selected";
+                                }else{
+                                $isSelected = "";
                                 }
-                            echo '</select>';
-                        ?>
+                                echo '
+                                <option value="' . $invoiceStatus . '" ' . $isSelected . '>' , $invoiceStatus, '</option>' ;
+                                        }
+                                        echo '</select>' ;
+                                        ?>
+                        </div>
                     </div>
-                </div>
-                <div class="FASixContentPart">
-                    <input type="submit" name="approve_all" value="APPROVE ALL" class="approveButton">
-                    <input type="submit" name="submit" value="SUBMIT CHANGE" class="submitChangeButton">
-                </div>
-            </form>
-        </div></br></br></br>
+                    <div class="FASixContentPart">
+                        <input type="submit" name="approve_all" value="APPROVE ALL" class="approveButton">
+                        <input type="submit" name="submit" value="SUBMIT CHANGE" class="submitChangeButton">
+                    </div>
+                </form>
+            </div></br></br></br>
+        </div>
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg');
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+
+        $('td').find('img').on('click', function (evt) {
+            debugger;
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        });
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>
 </body>
 
 

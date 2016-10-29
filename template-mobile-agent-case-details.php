@@ -227,28 +227,28 @@ Template Name: Agent Mobile Case Details
         // Estimate Total Cost And Commission
         global $totalCost;
         if($stagingServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($stagingServiceArray['RealCost'] !== '0' ? $stagingServiceArray['RealCost'] : $stagingEstimatePrice);
+            $totalCost = $totalCost + (($stagingServiceArray['RealCost'] !== '0' && $stagingServiceArray['RealCost'] !== '') ? $stagingServiceArray['RealCost'] : $stagingEstimatePrice);
         }
         if($touchUpServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($touchUpServiceArray['RealCost'] !== '0' ? $touchUpServiceArray['RealCost'] : $touchUpEstimatePrice);
+            $totalCost = $totalCost + (($touchUpServiceArray['RealCost'] !== '0' && $touchUpServiceArray['RealCost'] !== '')? $touchUpServiceArray['RealCost'] : $touchUpEstimatePrice);
         }
         if($cleanUpServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($cleanUpServiceArray['RealCost'] !== '0' ? $cleanUpServiceArray['RealCost'] : $cleanUpEstimatePrice);
+            $totalCost = $totalCost + (($cleanUpServiceArray['RealCost'] !== '0' && $cleanUpServiceArray['RealCost'] !== '') ? $cleanUpServiceArray['RealCost'] : $cleanUpEstimatePrice);
         }
         if($yardWorkServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($yardWorkServiceArray['RealCost'] !== '0' ? $yardWorkServiceArray['RealCost'] : $yardWordEstimatePrice);
+            $totalCost = $totalCost + (($yardWorkServiceArray['RealCost'] !== '0' && $yardWorkServiceArray['RealCost'] !== '') ? $yardWorkServiceArray['RealCost'] : $yardWordEstimatePrice);
         }
         if($inspectionServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($inspectionServiceArray['RealCost'] !== '0' ? $inspectionServiceArray['RealCost'] : $inspectionEstimatePrice);
+            $totalCost = $totalCost + (($inspectionServiceArray['RealCost'] !== '0' && $inspectionServiceArray['RealCost'] !== '') ? $inspectionServiceArray['RealCost'] : $inspectionEstimatePrice);
         }
         if($storageServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($storageServiceArray['RealCost'] !== '0' ? $storageServiceArray['RealCost'] : $storageEstimatePrice);
+            $totalCost = $totalCost + (($storageServiceArray['RealCost'] !== '0' && $storageServiceArray['RealCost'] !== '') ? $storageServiceArray['RealCost'] : $storageEstimatePrice);
         }
         if($relocateHomeServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($relocateHomeServiceArray['RealCost'] !== '0' ? $relocateHomeServiceArray['RealCost'] : $relocateHomeEstimatePrice);
+            $totalCost = $totalCost + (($relocateHomeServiceArray['RealCost'] !== '0' && $relocateHomeServiceArray['RealCost'] !== '') ? $relocateHomeServiceArray['RealCost'] : $relocateHomeEstimatePrice);
         }
         if($photographyServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($photographyServiceArray['RealCost'] !== '0' ? $photographyServiceArray['RealCost'] : $isPhotographyChecked);
+            $totalCost = $totalCost + (($photographyServiceArray['RealCost'] !== '0' && $photographyServiceArray['RealCost'] !== '') ? $photographyServiceArray['RealCost'] : $isPhotographyChecked);
         }
         global $finalCommission;
         $finalCommission = $caseDetailsArray['ListingPrice'] * $caseDetailsArray['CommissionRate'] * 0.01 - $totalCost;
@@ -300,7 +300,7 @@ Template Name: Agent Mobile Case Details
             )
         );
     }
-
+    
     // Submit Services Info
     if(isset($_POST['submit_service_info'])) {
         global $totalCost;
@@ -475,7 +475,6 @@ Template Name: Agent Mobile Case Details
         return $updateServiceResult;
     }
 
-
 ?>
 <html>
 <head>
@@ -485,6 +484,7 @@ Template Name: Agent Mobile Case Details
     <script src="<?php bloginfo('template_url');?>/CaseDetailSiteScripts/CaseDetailController.js"></script>
 
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/CaseDetailSite.css">
+
 </head>
 <body>
 <div ng-app="CaseDetailApp" ng-controller="CaseDetailController" class="CaseDetailContainer">

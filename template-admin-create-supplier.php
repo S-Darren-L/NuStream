@@ -78,6 +78,7 @@
 //			if(!is_null($result) && $result !== false)
 //			{
 //				echo ("
+//
 //<script>window.location.assign('.$uploadFilesPath');</script>");
 //			}
 		}
@@ -90,29 +91,37 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/pcStyles.css">
     <style>
-        #NoHouseTypeSelected{
+        #NoHouseTypeSelected {
             margin-bottom: 17px;
         }
 
-        #HouseTypeSelected{
-            display:none;
-            position:absolute;
+        #HouseTypeSelected {
+            display: none;
+            position: absolute;
         }
-        #empty{display:none;}
-        #HouseTypeSelected > div{
-            display:inline-block;
+
+        #empty {
+            display: none;
         }
-        .Condo input{
-            width:50px;
+
+        #HouseTypeSelected > div {
+            display: inline-block;
         }
-                .Townhouse input{
-            width:100px;
+
+        .Condo input {
+            width: 50px;
         }
-                        .Semi input{
-            width:50px;
+
+        .Townhouse input {
+            width: 100px;
         }
-                                .Detached input{
-            width:100px;
+
+        .Semi input {
+            width: 50px;
+        }
+
+        .Detached input {
+            width: 100px;
         }
     </style>
 </head>
@@ -174,7 +183,6 @@
                                         }
                                         ?>
                                     </select>
-                                    <div class="CNSSpace" id="empty"></div>
                                     <div id="NoHouseTypeSelected">
                                         <div>MINIMUM PAYMENT</div>
                                         <input type="text" name="mimPayment" class="CNSMinimumPaymentInput" require />
@@ -182,23 +190,23 @@
                                     <div id="HouseTypeSelected">
                                         <div class="Condo">
                                             <div>CONDO</div>
-                                            <input type="text" name="condoPrice"/>
+                                            <input type="text" name="condoPrice" />
                                         </div>
                                         <div class="Townhouse">
                                             <div>TOWNHOUSE</div>
-                                            <input type="text" name="townPrice"/>
+                                            <input type="text" name="townPrice" />
                                         </div>
                                         <div class="Semi">
                                             <div>SEMI</div>
-                                            <input type="text" name="semiPrice"/>
+                                            <input type="text" name="semiPrice" />
                                         </div>
                                         <div class="Detached">
                                             <div>DETACHED</div>
-                                            <input type="text" name="detachedPrice"/>
+                                            <input type="text" name="detachedPrice" />
                                         </div>
                                     </div>
 
-                                    <div>PAYMENT TEAM *</div>
+                                    <div id="paymentteam">PAYMENT TEAM *</div>
                                     <select class="CNSPriceUnitSelect" name="paymentTerm" id="payment-term-drop-down" onchange="paymentTermChanged()">
                                         <?php
                                         foreach ($paymentTerms as $paymentTermItem){
@@ -272,15 +280,14 @@
     <script>
         $('#priceUnit').on('change', function (evt) {
             if (evt.target.value !== 'BYHOUSETYPE') {
-                $('#empty').css('display', 'none');
                 $('#NoHouseTypeSelected').css('display', 'inline-block');
                 $('#HouseTypeSelected').css('display', 'none');
-                
+                $('#paymentteam').css('margin-top', '0px');
+
             } else {
-                $('#empty').css('display', 'inline-block');
                 $('#NoHouseTypeSelected').css('display', 'none');
                 $('#HouseTypeSelected').css('display', 'inline-block');
-        
+                $('#paymentteam').css('margin-top', '63px');
             }
         });
     </script>

@@ -68,7 +68,7 @@ html{
     font-size: 2em;
     /* margin-right: 5%; */
      position: relative;
-    margin-top: -5%; 
+    margin-top: -5%;
     margin-left:5%;
 
 
@@ -160,16 +160,19 @@ border-left: 8px solid blue;
     font-size: 2em;
     position: relative;
     top: 20%;
+    width: 27%;
+    display: inline-block;
 }
 .CaseDetailContainer .BottomContainer .ItemContainer .SecondLine .Input{
-    margin-left: 24%;
+    margin-left: %;
     /* height: 35px; */
-    width: 30%;
+    width: 25%;
     border-radius: 5px;
     text-indent: 3.8%;
     height: 70%;
     position: relative;
     top: 8%;
+    font-size: 1.5em;
 }
 
 .CaseDetailContainer .BottomContainer .ItemContainer .SecondLine .Check{

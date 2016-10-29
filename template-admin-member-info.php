@@ -46,62 +46,100 @@ Template Name: Admin Member Info
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/pcStyles.css">
 </head>
 <body>
-<div id="container">
-    <?php
+    <div id="container">
+        <?php
         include_once(__DIR__ . '/navigation.php');
-    ?>
-    <div id="main">
-        <div class="formPart">
-            <div class="MIATitle">
-	       <p class="titleSize"><strong>FILES</strong></p>
-            </div>
-            <?php
-                echo '<table class="MIATable">';
+        ?>
+        <div id="main">
+            <div class="formPart">
+                <div class="MIATitle">
+                    <p class="titleSize"><strong>MEMBER INFO</strong></p>
+                </div>
+                <?php
+                echo '<table class="MIATable">
+                    ';
                     // Table Head
-                    echo '<thead>';
-                        echo '<tr>';
-                            echo '<th class="MIATableHeader MIATableFirstLine">';
-                                echo '<a href="#" ng-click="orderByField()"; reverseSort = !reverseSort">MEMBER NAME <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
-                            echo '</th>';
-                            echo '<th  class="MIATableHeader">';
-                                echo '<a href="#" ng-click="orderByField()"; reverseSort = !reverseSort">TEAM LEAD <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
-                            echo '</th>';
-                            echo '<th  class="MIATableHeader">';
-                                echo '<a href="#" ng-click="orderByField()"; reverseSort = !reverseSort">CONTACT NUMBER <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
-                            echo '</th>';
-                            echo '<th class="MIATableHeader MIATableHeaderLarge">';
-                                echo '<a href="#" ng-click="orderByField()"; reverseSort = !reverseSort">EMAIL <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
-                            echo '</th>';
-                            echo '<th class="MIATableHeader">';
+                    echo '
+                    <thead>
+                        ';
+                        echo '
+                        <tr>
+                            ';
+                            echo '
+                            <th class="MIATableHeader MIATableFirstLine">
+                                ';
+                                echo '<a href="#" ng-click="orderByField()" ; reverseSort=!reverseSort">MEMBER NAME <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
+                                echo '
+                            </th>';
+                            echo '
+                            <th class="MIATableHeader">
+                                ';
+                                echo '<a href="#" ng-click="orderByField()" ; reverseSort=!reverseSort">TEAM LEAD <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
+                                echo '
+                            </th>';
+                            echo '
+                            <th class="MIATableHeader">
+                                ';
+                                echo '<a href="#" ng-click="orderByField()" ; reverseSort=!reverseSort">CONTACT NUMBER <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
+                                echo '
+                            </th>';
+                            echo '
+                            <th class="MIATableHeader MIATableHeaderLarge">
+                                ';
+                                echo '<a href="#" ng-click="orderByField()" ; reverseSort=!reverseSort">EMAIL <!--<span ng-show="orderByField()"><span ng-show="!reverseSort"><div class="arrow-up"></div></span><span ng-show="reverseSort"><div class="arrow-down"></div></span></span>--></a>';
+                                echo '
+                            </th>';
+                            echo '
+                            <th class="MIATableHeader">
+                                ';
                                 echo '<a href="#">DEACTIVE </a>';
-                            echo '</th>';
-                        echo '</tr>';
-                    echo '</thead>';
+                                echo '
+                            </th>';
+                            echo '
+                        </tr>';
+                        echo '
+                    </thead>';
                     // Table Body
-                    echo '<tbody id="tbody">';
+                    echo '
+                    <tbody id="tbody">
+                        ';
                         for($i = 0; $i < count($member_info_result_rows); $i++) {
-                            $accountID = $member_info_result_rows[$i]["AccountID"];
-                                echo '<tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">';
-                                    echo '<td class="MIATableFirstLine">', '<a href="' . $homeURL . '/admin-edit-agent-account/?AID=' . $accountID . '" />', $member_info_result_rows[$i]["FirstName"] . " " . $member_info_result_rows[$i]["LastName"], '</td>';
-                                    echo '<td>', $member_info_result_rows[$i]["TeamLeaderName"], '</td>';
-                                    echo '<td>', $member_info_result_rows[$i]["ContactNumber"], '</td>';
-                                    echo '<td>', $member_info_result_rows[$i]["Email"], '</td>';
-                                    echo '<td  class="MIADective">';
-                                        echo '<form method="post">';
-                                            echo '<input type="text" hidden="hidden" name="accountID" value="' . $accountID . '">';
-                                            echo '<input type="submit" value="Deactivate" name="deactivate_account">';
-                                        echo '</form>';
-                                    echo '</td>';
-                                echo '</tr>';
+                        $accountID = $member_info_result_rows[$i]["AccountID"];
+                        echo '
+                        <tr ng-repeat="info in data.infoAdmin|orderBy:orderByField:reverseSort">
+                            ';
+                            echo '
+                            <td class="MIATableFirstLine">', '<a href="' . $homeURL . '/admin-edit-agent-account/?AID=' . $accountID . '" />', $member_info_result_rows[$i]["FirstName"] . " " . $member_info_result_rows[$i]["LastName"], '</td>';
+                            echo '
+                            <td>', $member_info_result_rows[$i]["TeamLeaderName"], '</td>';
+                            echo '
+                            <td>', $member_info_result_rows[$i]["ContactNumber"], '</td>';
+                            echo '
+                            <td>', $member_info_result_rows[$i]["Email"], '</td>';
+                            echo '
+                            <td class="MIADective">
+                                ';
+                                echo '<form method="post">
+                                    ';
+                                    echo '<input type="text" hidden="hidden" name="accountID" value="' . $accountID . '">';
+                                    echo '<input type="submit" value="Deactivate" name="deactivate_account">';
+                                    echo '
+                                </form>';
+                                echo '
+                            </td>';
+                            echo '
+                        </tr>';
                         }
-                    echo '</tbody>';
-                echo '</table>';
-            ?>
-            <div class="MIAPageNum"><a href="#">BACK</a>&nbsp;&nbsp;&nbsp;<a href="#">NEXT</a></div>
+                        echo '
+                    </tbody>';
+                    echo '
+                </table>';
+                ?>
+                <div class="MIAPageNum"><a href="#">BACK</a>&nbsp;&nbsp;&nbsp;<a href="#">NEXT</a></div>
+            </div>
         </div>
     </div>
-</div>
-<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
