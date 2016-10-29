@@ -607,13 +607,14 @@
 
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
-                    <upload name="upload_staging_before_living_room" label="LIVING ROOM"></upload>
-                    <upload name="upload_staging_after_living_room" label="LIVING ROOM"></upload>
-                    <upload name="upload_staging_before_dinning_room" label="DINING ROOM"></upload>
+                    <?php echo '<upload name="upload_staging_before_living_room" label="LIVING ROOM" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_staging_after_living_room" label="LIVING ROOM" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '"></upload>'; ?>
 
-                    <upload name="upload_staging_after_dinning_room" label="DINING ROOM"></upload>
-                    <upload name="upload_staging_before_master_room" label="MASTER ROOM"></upload>
-                    <upload name="upload_staging_after_master_room" label="MASTER ROOM"></upload>
+                    <?php echo '<upload name="upload_staging_before_dinning_room" label="DINING ROOM" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeDinningRoom']["FileName"] . '" ></upload>'; ?>
+                    <?php echo '<upload name="upload_staging_after_dinning_room" label="DINING ROOM" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterDinningRoom']["FileName"] . '"></upload>'; ?>
+
+                    <?php echo '<upload name="upload_staging_before_master_room" label="MASTER ROOM" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeMasterRoom']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_staging_after_master_room" label="MASTER ROOM" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterMasterRoom']["FileName"] . '"></upload>'; ?>
                     <input type="submit" style="display:none" name="submit_staging" class="SubmitButton" />
                 </form>
             </div>
@@ -626,12 +627,14 @@
                     <input id="file-upload1" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
-                    <upload name="upload_clean_up_before_living_room" label="LIVING ROOM"></upload>
-                    <upload name="upload_clean_up_after_living_room" label="LIVING ROOM"></upload>
-                    <upload name="upload_clean_up_before_kitchen" label="KITCHEN"></upload>
-                    <upload name="upload_clean_up_after_kitchen" label="KITCHEN"></upload>
-                    <upload name="upload_clean_up_before_wash_room" label="WASHROOM"></upload>
-                    <upload name="upload_clean_up_after_wash_room" label="WASHROOM"></upload>
+                    <?php echo '<upload name="upload_clean_up_before_living_room" label="LIVING ROOM" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_clean_up_after_living_room" label="LIVING ROOM" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterLivingRoom']["FileName"] . '"></upload>'; ?>
+
+                    <?php echo '<upload name="upload_clean_up_before_kitchen" label="KITCHEN" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeKitchen']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_clean_up_after_kitchen" label="KITCHEN" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterKitchen']["FileName"] . '"></upload>'; ?>
+
+                    <?php echo '<upload name="upload_clean_up_before_wash_room" label="WASHROOM" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeWashRoom']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_clean_up_after_wash_room" label="WASHROOM" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterWashRoom']["FileName"] . '"></upload>'; ?>
                     <input type="submit" style="display:none" name="submit_clean_up" class="SubmitButton" />
                 </form>
             </div>
@@ -644,14 +647,17 @@
                     <input id="file-upload2" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
-                    <upload name="upload_touch_up_before_1" label=""></upload>
-                    <upload name="upload_touch_up_after_1" label=""></upload>
-                    <upload name="upload_touch_up_before_2" label=""></upload>
-                    <upload name="upload_touch_up_after_2" label=""></upload>
-                    <upload name="upload_touch_up_before_3" label=""></upload>
-                    <upload name="upload_touch_up_after_3" label=""></upload>
-                    <upload name="upload_touch_up_before_4" label=""></upload>
-                    <upload name="upload_touch_up_after_4" label=""></upload>
+                    <?php echo '<upload name="upload_touch_up_before_1" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_1" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '"></upload>'; ?>
+
+                    <?php echo '<upload name="upload_touch_up_before_2" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_2" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '"></upload>'; ?>
+
+                    <?php echo '<upload name="upload_touch_up_before_3" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_3" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '"></upload>'; ?>
+
+                    <?php echo '<upload name="upload_touch_up_before_4" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_4" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" ></upload>'; ?>
                     <input type="submit" style="display:none" name="submit_touch_up" class="SubmitButton" />
                 </form>
             </div>
@@ -664,10 +670,11 @@
                     <input id="file-upload3" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
-                    <upload name="upload_yard_work_before_front" label="FRONT YARD"></upload>
-                    <upload name="upload_yard_work_after_front" label="FRONT YARD"></upload>
-                    <upload name="upload_yard_work_before_back" label="BACK YARD"></upload>
-                    <upload name="upload_yard_work_after_back" label="BACK YARD"></upload>
+                    <?php echo '<upload name="upload_yard_work_before_front" label="FRONT YARD" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeFrontYard']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_yard_work_after_front" label="FRONT YARD" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterFrontYard']["FileName"] . '"></upload>'; ?>
+
+                    <?php echo '<upload name="upload_yard_work_before_back" label="BACK YARD" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeBackYard']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_yard_work_after_back" label="BACK YARD" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterBackYard']["FileName"] . '"></upload>'; ?>
                     <input type="submit" style="display:none" name="submit_yard_work" class="SubmitButton" />
                 </form>
             </div>
