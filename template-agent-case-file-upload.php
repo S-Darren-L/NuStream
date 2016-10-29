@@ -434,23 +434,23 @@ Template Name: Agent Case File Upload
         $afterBackYardUploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_yard_work_after_back']['name']);
 
         if(!empty($invoiceUploadTmp)){
-            remove_file($cleanUpImageFilesArray['Invoice']["FilePath"], $cleanUpImageFilesArray['Invoice']["FileName"]);
+            remove_file($yardWorkImageFilesArray['Invoice']["FilePath"], $yardWorkImageFilesArray['Invoice']["FileName"]);
             upload_file($uploadPath . "Invoice/", $invoiceUploadTmp, $invoiceUploadName);
         }
         if(!empty($beforeFrontYardUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeFrontYard']["FilePath"], $yardWorkImageFilesArray['BeforeFrontYard']["FileName"]);
+            remove_file($yardWorkImageFilesArray['BeforeFrontYard']["FilePath"], $yardWorkImageFilesArray['BeforeFrontYard']["FileName"]);
             upload_file($uploadPath . "Before/" . "FrontYard/", $beforeFrontYardUploadTmp, $beforeFrontYardUploadName);
         }
         if(!empty($beforeBackYardUploadTmp)){
-            remove_file($cleanUpImageFilesArray['BeforeBackYard']["FilePath"], $yardWorkImageFilesArray['BeforeBackYard']["FileName"]);
+            remove_file($yardWorkImageFilesArray['BeforeBackYard']["FilePath"], $yardWorkImageFilesArray['BeforeBackYard']["FileName"]);
             upload_file($uploadPath . "Before/" . "BackYard/", $beforeBackYardUploadTmp, $beforeBackYardUploadName);
         }
         if(!empty($afterFrontYardUploadTmp)){
-            remove_file($cleanUpImageFilesArray['AfterFrontYard']["FilePath"], $yardWorkImageFilesArray['AfterFrontYard']["FileName"]);
+            remove_file($yardWorkImageFilesArray['AfterFrontYard']["FilePath"], $yardWorkImageFilesArray['AfterFrontYard']["FileName"]);
             upload_file($uploadPath . "After/" . "FrontYard/", $afterFrontYardUploadTmp, $afterFrontYardUploadName);
         }
         if(!empty($afterBackYardUploadTmp)){
-            remove_file($cleanUpImageFilesArray['AfterBackYard']["FilePath"], $yardWorkImageFilesArray['AfterBackYard']["FileName"]);
+            remove_file($yardWorkImageFilesArray['AfterBackYard']["FilePath"], $yardWorkImageFilesArray['AfterBackYard']["FileName"]);
             upload_file($uploadPath . "After/" . "BackYard/", $afterBackYardUploadTmp, $afterBackYardUploadName);
         }
 

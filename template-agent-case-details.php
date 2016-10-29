@@ -227,28 +227,28 @@ Template Name: Agent Case Details
         // Estimate Total Cost And Commission
         global $totalCost;
         if($stagingServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($stagingServiceArray['RealCost'] !== '0' ? $stagingServiceArray['RealCost'] : $stagingEstimatePrice);
+            $totalCost = $totalCost + ($stagingServiceArray['RealCost'] !== '' ? $stagingServiceArray['RealCost'] : $stagingEstimatePrice);
         }
         if($touchUpServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($touchUpServiceArray['RealCost'] !== '0' ? $touchUpServiceArray['RealCost'] : $touchUpEstimatePrice);
+            $totalCost = $totalCost + ($touchUpServiceArray['RealCost'] !== '' ? $touchUpServiceArray['RealCost'] : $touchUpEstimatePrice);
         }
         if($cleanUpServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($cleanUpServiceArray['RealCost'] !== '0' ? $cleanUpServiceArray['RealCost'] : $cleanUpEstimatePrice);
+            $totalCost = $totalCost + ($cleanUpServiceArray['RealCost'] !== '' ? $cleanUpServiceArray['RealCost'] : $cleanUpEstimatePrice);
         }
         if($yardWorkServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($yardWorkServiceArray['RealCost'] !== '0' ? $yardWorkServiceArray['RealCost'] : $yardWordEstimatePrice);
+            $totalCost = $totalCost + ($yardWorkServiceArray['RealCost'] !== '' ? $yardWorkServiceArray['RealCost'] : $yardWordEstimatePrice);
         }
         if($inspectionServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($inspectionServiceArray['RealCost'] !== '0' ? $inspectionServiceArray['RealCost'] : $inspectionEstimatePrice);
+            $totalCost = $totalCost + ($inspectionServiceArray['RealCost'] !== '' ? $inspectionServiceArray['RealCost'] : $inspectionEstimatePrice);
         }
         if($storageServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($storageServiceArray['RealCost'] !== '0' ? $storageServiceArray['RealCost'] : $storageEstimatePrice);
+            $totalCost = $totalCost + ($storageServiceArray['RealCost'] !== '' ? $storageServiceArray['RealCost'] : $storageEstimatePrice);
         }
         if($relocateHomeServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($relocateHomeServiceArray['RealCost'] !== '0' ? $relocateHomeServiceArray['RealCost'] : $relocateHomeEstimatePrice);
+            $totalCost = $totalCost + ($relocateHomeServiceArray['RealCost'] !== '' ? $relocateHomeServiceArray['RealCost'] : $relocateHomeEstimatePrice);
         }
         if($photographyServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($photographyServiceArray['RealCost'] !== '0' ? $photographyServiceArray['RealCost'] : $isPhotographyChecked);
+            $totalCost = $totalCost + ($photographyServiceArray['RealCost'] !== '' ? $photographyServiceArray['RealCost'] : $isPhotographyChecked);
         }
         global $finalCommission;
         $finalCommission = $caseDetailsArray['ListingPrice'] * $caseDetailsArray['CommissionRate'] * 0.01 - $totalCost;
@@ -322,9 +322,6 @@ Template Name: Agent Case Details
         }else{
             $isTouchUpEnabled = $_POST['touchUpCheckbox'] === 'checked' ? '1' : '0';
             $touchUpSupplierID = $_POST['touchUpSelect'];
-            echo "abled ";
-            echo "chckbox " . $_POST['touchUpCheckbox'] . "  ";
-            echo "is enabled" . (int)$isTouchUpEnabled ;
         }
         $touchUpServiceID = $touchUpServiceArray['ServiceID'];
         $touchUpRealCost = $_POST['touchUpRealCost'];
@@ -441,7 +438,7 @@ Template Name: Agent Case Details
         }
 
         save_session();
-//        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
+        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
         exit;
     }
 

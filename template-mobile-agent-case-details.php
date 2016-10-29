@@ -438,7 +438,7 @@ Template Name: Agent Mobile Case Details
         }
 
         save_session();
-        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
+        header('Location: ' . get_home_url() . '/agent-mobile-case-details/?CID=' . $MLS . '&'  . 'RF=true');
         exit;
     }
 
@@ -446,7 +446,7 @@ Template Name: Agent Mobile Case Details
     if(isset($_POST['estimate'])){
         save_session();
         get_estimate_service_price();
-        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
+        header('Location: ' . get_home_url() . '/agent-mobile-case-details/?CID=' . $MLS . '&'  . 'RF=true');
         exit;
     }
 
