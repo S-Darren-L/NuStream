@@ -40,7 +40,6 @@
     $relocateHomeServiceArray = get_service_detail($caseDetailsArray['RelocateHomeID']);
     $photographyServiceArray = array();
     $photographyServiceArray = get_service_detail($caseDetailsArray['PhotographyID']);
-echo var_dump($stagingServiceArray);
 
     // Get All Files
     $stagingImageFilesArray = get_staging_files();
