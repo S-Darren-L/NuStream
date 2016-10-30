@@ -71,17 +71,17 @@ Template Name: Agent Edit Case
     {
         $coStaffID = test_input($_POST['coStaffID']);
         $address = test_input($_POST['address']);
-        $landSize = test_input($_POST['landSize']);
+//        $landSize = test_input($_POST['landSize']);
         $houseSize = test_input($_POST['houseSize']);
         $propertyType = test_input($_POST['propertyType']);
         $listingPrice = test_input($_POST['listingPrice']);
-        $ownerName = test_input($_POST['ownerName']);
-        $contactNumber = test_input($_POST['contactNumber']);
+//        $ownerName = test_input($_POST['ownerName']);
+//        $contactNumber = test_input($_POST['contactNumber']);
         $commissionRate = test_input($_POST['commissionRate']);
 
         global $errorMessage;
         global $isError;
-        if ((empty($coStaffID) && $_SESSION['IsTeamLeader'] === true) || empty($address) || empty($landSize) || empty($houseSize) || empty($propertyType) || empty($listingPrice) || empty($ownerName) || empty($contactNumber) || empty($commissionRate)) {
+        if ((empty($coStaffID) && $_SESSION['IsTeamLeader'] === true) || empty($address) || empty($houseSize) || empty($propertyType) || empty($listingPrice) || empty($commissionRate)) {
             $errorMessage = "Mandatory fields are empty";
             $isError = true;
             return false;
@@ -94,12 +94,15 @@ Template Name: Agent Edit Case
 
     // Update Case
     if(isset($_POST['update_case']) && date_validated() === true) {
+        if(empty($_POST['landSize']) || is_null($_POST['landSize']) || $_POST['landSize'] === ''){
+            $landSize = 0;
+        }
         $updateCaseArray = array(
             "MLS" => $MLS,
             "staffID" => $staffID,
             "coStaffID" => $_POST['coStaffID'],
             "address" => $_POST['address'],
-            "landSize" => $_POST['landSize'],
+            "landSize" => $landSize,
             "houseSize" => $_POST['houseSize'],
             "propertyType" => $_POST['propertyType'],
             "listingPrice" => $_POST['listingPrice'],

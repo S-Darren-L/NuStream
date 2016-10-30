@@ -16,22 +16,22 @@ Template Name: Agent Mobile Create Case
     $teamLeaderName = $teamResult['TeamLeaderName'];
     $teamMemberResult = get_all_team_members_by_team_id($teamID);
     $teamMembers = [];
-if($_SESSION['IsTeamLeader'] === '1'){
-    $isCoListingDisabled = null;
-    while($row = mysqli_fetch_array($teamMemberResult))
-    {
-        $teamMembers[] = $row;
+    if($_SESSION['IsTeamLeader'] === '1'){
+        $isCoListingDisabled = null;
+        while($row = mysqli_fetch_array($teamMemberResult))
+        {
+            $teamMembers[] = $row;
+        }
     }
-}
-else{
-    $isCoListingDisabled = 'disabled';
-    $teamLeader = array (
-        "AccountID" => $teamLeaderID,
-        "FirstName" => $teamLeaderName,
-        "LastName" => ""
-    );
-    array_push($teamMembers,$teamLeader);
-}
+    else{
+        $isCoListingDisabled = 'disabled';
+        $teamLeader = array (
+            "AccountID" => $teamLeaderID,
+            "FirstName" => $teamLeaderName,
+            "LastName" => ""
+        );
+        array_push($teamMembers,$teamLeader);
+    }
 
     // Validate Mandatory Fields
     function date_validated()
@@ -42,17 +42,17 @@ else{
         $propertyType = test_input($_POST['propertyType']);
         $address = test_input($_POST['address']);
         $houseSize =test_input($_POST['houseSize']);
-        $landSize = test_input($_POST['landSize']);
+    //        $landSize = test_input($_POST['landSize']);
         $listingPrice = test_input($_POST['listingPrice']);
         $coStaffID = test_input($isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID']);
-        $ownerName = test_input($_POST['ownerName']);
-        $contactNumber = test_input($_POST['contactNumber']);
+    //        $ownerName = test_input($_POST['ownerName']);
+    //        $contactNumber = test_input($_POST['contactNumber']);
         $commissionRate = test_input($_POST['commissionRate']);
 
         global $errorMessage;
         global $isError;
-        if (empty($MLSNumber) || empty($propertyType) || empty($address) || empty($houseSize) || empty($landSize) ||
-            empty($listingPrice) || empty($coStaffID) || empty($ownerName) || empty($contactNumber) || empty($commissionRate)) {
+        if (empty($MLSNumber) || empty($propertyType) || empty($address) || empty($houseSize) ||
+            empty($listingPrice) || empty($coStaffID) || empty($commissionRate)) {
             $errorMessage = "Mandatory fields are empty";
             $isError = true;
             return false;
@@ -81,12 +81,15 @@ else{
                 $uploadResult = move_uploaded_file($caseImageTmp, $uploadPath . $caseImageName);
             }
         }
+        if(empty($_POST['landSize'])){
+            $landSize = 0;
+        }
         $createCaseArray = array (
             "MLSNumber" => $_POST['MLSNumber'],
             "staffID" => $_SESSION['AccountID'],
             "coStaffID" => $isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID'],
             "address" => $_POST['address'],
-            "landSize" => $_POST['landSize'],
+            "landSize" => $landSize,
             "houseSize" => $_POST['houseSize'],
             "propertyType" => $_POST['propertyType'],
             "listingPrice" => $_POST['listingPrice'],

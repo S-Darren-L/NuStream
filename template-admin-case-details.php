@@ -1144,24 +1144,24 @@ Template Name: Admin Case Details
                                     <td>BEFORE</td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
+                                        if(!empty($cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['BeforeKitchen']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">';
+                                        if(!empty($cleanUpImageFilesArray['BeforeKitchen']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['BeforeWashRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">';
+                                        if(!empty($cleanUpImageFilesArray['BeforeWashRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
@@ -1181,24 +1181,24 @@ Template Name: Admin Case Details
                                     <td>AFTER&nbsp;&nbsp;&nbsp;</td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
+                                        if(!empty($cleanUpImageFilesArray['AfterLivingRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['AfterKitchen']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">';
+                                        if(!empty($cleanUpImageFilesArray['AfterKitchen']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['AfterWashRoom']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">';
+                                        if(!empty($cleanUpImageFilesArray['AfterWashRoom']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
@@ -1247,40 +1247,40 @@ Template Name: Admin Case Details
                                     <td>BEFORE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['Before1']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before1']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['Before1']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['Before2']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before2']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['Before2']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['Before3']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before3']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['Before3']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['Before4']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before4']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['Before4']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['Before5']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['Before5']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['Before5']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before5']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
@@ -1294,40 +1294,40 @@ Template Name: Admin Case Details
                                     <td>AFTER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['After1']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After1']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['After1']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['After2']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After2']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['After2']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['After3']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After3']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['After3']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['After4']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After4']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['After4']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['After5']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['After5']["FileName"] . '" class="FAImageTouchUp">';
+                                        if(!empty($touchUpImageFilesArray['After5']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $touchUpImageFilesArray['After5']["FileName"] . '" class="FAImageTouchUp">';
                                         else
                                         echo '<img src="" class="FAImageTouchUp">';
                                         ?>
@@ -1369,16 +1369,16 @@ Template Name: Admin Case Details
                                     <td>BEFORE</td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['BeforeFrontYard']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeFrontYard']["FileName"] . '" class="FAImage">';
+                                        if(!empty($yardWorkImageFilesArray['BeforeFrontYard']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeFrontYard']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['After5']["BeforeBackYard"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeBackYard']["FileName"] . '" class="FAImage">';
+                                        if(!empty($yardWorkImageFilesArray['BeforeBackYard']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeBackYard']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
@@ -1397,16 +1397,16 @@ Template Name: Admin Case Details
                                     <td>AFTER&nbsp;&nbsp;&nbsp;</td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['AfterFrontYard']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterFrontYard']["FileName"] . '" class="FAImage">';
+                                        if(!empty($yardWorkImageFilesArray['AfterFrontYard']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterFrontYard']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if(!empty($stagingImageFilesArray['AfterBackYard']["FileName"]))
-                                        echo '<img src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterBackYard']["FileName"] . '" class="FAImage">';
+                                        if(!empty($yardWorkImageFilesArray['AfterBackYard']["FileName"]))
+                                        echo '<img src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterBackYard']["FileName"] . '" class="FAImage">';
                                         else
                                         echo '<img src="" class="FAImage">';
                                         ?>

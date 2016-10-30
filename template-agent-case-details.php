@@ -114,145 +114,145 @@ Template Name: Agent Case Details
         return $serviceDetailsArray;
     }
 
-    // Get Estimate Service Price
-    function get_estimate_service_price(){
-        global $stagingEstimatePrice;
-        global $touchUpEstimatePrice;
-        global $cleanUpEstimatePrice;
-        global $yardWordEstimatePrice;
-        global $inspectionEstimatePrice;
-        global $storageEstimatePrice;
-        global $relocateHomeEstimatePrice;
-        global $photographyEstimatePrice;
+// Get Estimate Service Price
+function get_estimate_service_price(){
+    global $stagingEstimatePrice;
+    global $touchUpEstimatePrice;
+    global $cleanUpEstimatePrice;
+    global $yardWordEstimatePrice;
+    global $inspectionEstimatePrice;
+    global $storageEstimatePrice;
+    global $relocateHomeEstimatePrice;
+    global $photographyEstimatePrice;
 
-        global $isStagingChecked;
-        global $isTouchUpChecked;
-        global $isCleanUpChecked;
-        global $isYardWordChecked;
-        global $isInspectionChecked;
-        global $isStorageChecked;
-        global $isRelocateHomeChecked;
-        global $isPhotographyChecked;
+    global $isStagingChecked;
+    global $isTouchUpChecked;
+    global $isCleanUpChecked;
+    global $isYardWordChecked;
+    global $isInspectionChecked;
+    global $isStorageChecked;
+    global $isRelocateHomeChecked;
+    global $isPhotographyChecked;
 
-        global $caseDetailsArray;
+    global $caseDetailsArray;
 
-        global $stagingServiceArray;
-        global $touchUpServiceArray;
-        global $cleanUpServiceArray;
-        global $yardWorkServiceArray;
-        global $inspectionServiceArray;
-        global $storageServiceArray;
-        global $relocateHomeServiceArray;
-        global $photographyServiceArray;
+    global $stagingServiceArray;
+    global $touchUpServiceArray;
+    global $cleanUpServiceArray;
+    global $yardWorkServiceArray;
+    global $inspectionServiceArray;
+    global $storageServiceArray;
+    global $relocateHomeServiceArray;
+    global $photographyServiceArray;
 
-        if(!isset($_POST['submit_service_info']) && !isset($_POST['estimate'])){
-            $isStagingChecked = $stagingServiceArray['IsChecked'];
-            $isTouchUpChecked = $touchUpServiceArray['IsChecked'];
-            $isCleanUpChecked = $cleanUpServiceArray['IsChecked'];
-            $isYardWordChecked = $yardWorkServiceArray['IsChecked'];
-            $isInspectionChecked = $inspectionServiceArray['IsChecked'];
-            $isStorageChecked = $storageServiceArray['IsChecked'];
-            $isRelocateHomeChecked = $relocateHomeServiceArray['IsChecked'];
-            $isPhotographyChecked = $photographyServiceArray['IsChecked'];
+    if(!isset($_POST['submit_service_info']) && !isset($_POST['estimate'])){
+        $isStagingChecked = $stagingServiceArray['IsChecked'];
+        $isTouchUpChecked = $touchUpServiceArray['IsChecked'];
+        $isCleanUpChecked = $cleanUpServiceArray['IsChecked'];
+        $isYardWordChecked = $yardWorkServiceArray['IsChecked'];
+        $isInspectionChecked = $inspectionServiceArray['IsChecked'];
+        $isStorageChecked = $storageServiceArray['IsChecked'];
+        $isRelocateHomeChecked = $relocateHomeServiceArray['IsChecked'];
+        $isPhotographyChecked = $photographyServiceArray['IsChecked'];
 
-            $stagingSupplierID = $stagingServiceArray['ServiceSupplierID'];
-            $touchUpSupplierID = $touchUpServiceArray['ServiceSupplierID'];
-            $cleanUpSupplierID = $cleanUpServiceArray['ServiceSupplierID'];
-            $yardWordSupplierID = $yardWorkServiceArray['ServiceSupplierID'];
-            $inspectionSupplierID = $inspectionServiceArray['ServiceSupplierID'];
-            $storageSupplierID = $storageServiceArray['ServiceSupplierID'];
-            $relocateHomeSupplierID = $relocateHomeServiceArray['ServiceSupplierID'];
-            $photographySupplierID = $photographyServiceArray['ServiceSupplierID'];
-        }else{
-            $isStagingChecked = $_POST['stagingCheckbox'];
-            $isTouchUpChecked = $_POST['touchUpCheckbox'];
-            $isCleanUpChecked = $_POST['cleanUpCheckbox'];
-            $isYardWordChecked = $_POST['yardWorkCheckbox'];
-            $isInspectionChecked = $_POST['inspectionCheckbox'];
-            $isStorageChecked = $_POST['storageCheckbox'];
-            $isRelocateHomeChecked = $_POST['relocateHomeCheckbox'];
-            $isPhotographyChecked = $_POST['photographyCheckbox'];
+        $stagingSupplierID = $stagingServiceArray['ServiceSupplierID'];
+        $touchUpSupplierID = $touchUpServiceArray['ServiceSupplierID'];
+        $cleanUpSupplierID = $cleanUpServiceArray['ServiceSupplierID'];
+        $yardWordSupplierID = $yardWorkServiceArray['ServiceSupplierID'];
+        $inspectionSupplierID = $inspectionServiceArray['ServiceSupplierID'];
+        $storageSupplierID = $storageServiceArray['ServiceSupplierID'];
+        $relocateHomeSupplierID = $relocateHomeServiceArray['ServiceSupplierID'];
+        $photographySupplierID = $photographyServiceArray['ServiceSupplierID'];
+    }else{
+        $isStagingChecked = $_POST['stagingCheckbox'];
+        $isTouchUpChecked = $_POST['touchUpCheckbox'];
+        $isCleanUpChecked = $_POST['cleanUpCheckbox'];
+        $isYardWordChecked = $_POST['yardWorkCheckbox'];
+        $isInspectionChecked = $_POST['inspectionCheckbox'];
+        $isStorageChecked = $_POST['storageCheckbox'];
+        $isRelocateHomeChecked = $_POST['relocateHomeCheckbox'];
+        $isPhotographyChecked = $_POST['photographyCheckbox'];
 
-            $stagingSupplierID = $_POST['stagingSelect'];
-            $touchUpSupplierID = $_POST['touchUpSelect'];
-            $cleanUpSupplierID = $_POST['cleanUpSelect'];
-            $yardWordSupplierID = $_POST['yardWorkSelect'];
-            $inspectionSupplierID = $_POST['inspectionSelect'];
-            $storageSupplierID = $_POST['storageSelect'];
-            $relocateHomeSupplierID = $_POST['relocateHomeSelect'];
-            $photographySupplierID = $_POST['photographySelect'];
-        }
-
-        if($isStagingChecked === 'checked'){
-            $stagingEstimatePrice = staging_price_estimate_by_id($caseDetailsArray['HouseSize'], $stagingSupplierID);
-        }else{
-            $stagingEstimatePrice = 0;
-        }
-        if($isTouchUpChecked === 'checked'){
-            $touchUpEstimatePrice = touch_up_price_estimate_by_id($touchUpSupplierID);
-        }else{
-            $touchUpEstimatePrice = 0;
-        }
-        if($isCleanUpChecked === 'checked'){
-            $cleanUpEstimatePrice = clean_up_price_estimate_by_id($caseDetailsArray['HouseSize'], $cleanUpSupplierID);
-        }else{
-            $cleanUpEstimatePrice = 0;
-        }
-        if($isYardWordChecked === 'checked'){
-            $yardWordEstimatePrice = yard_work_price_estimate_by_id($yardWordSupplierID);
-        }else{
-            $yardWordEstimatePrice = 0;
-        }
-        if($isInspectionChecked === 'checked'){
-            $inspectionEstimatePrice = inspection_price_estimate_by_id($caseDetailsArray['PropertyType'], $inspectionSupplierID);
-        }else{
-            $inspectionEstimatePrice = 0;
-        }
-        if($isStorageChecked === 'checked'){
-            $storageEstimatePrice = storage_price_estimate_by_id($storageSupplierID);
-        }else{
-            $storageEstimatePrice = 0;
-        }
-        if($isRelocateHomeChecked === 'checked'){
-            $relocateHomeEstimatePrice = relocate_home_price_estimate_by_id($relocateHomeSupplierID);
-        }else{
-            $relocateHomeEstimatePrice = 0;
-        }
-        if($isPhotographyChecked === 'checked'){
-            $photographyEstimatePrice = photography_price_estimate_by_id($caseDetailsArray['PropertyType'], $photographySupplierID);
-        }else{
-            $photographyEstimatePrice = 0;
-        }
-
-        // Estimate Total Cost And Commission
-        global $totalCost;
-        if($stagingServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($stagingServiceArray['RealCost'] !== '' ? $stagingServiceArray['RealCost'] : $stagingEstimatePrice);
-        }
-        if($touchUpServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($touchUpServiceArray['RealCost'] !== '' ? $touchUpServiceArray['RealCost'] : $touchUpEstimatePrice);
-        }
-        if($cleanUpServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($cleanUpServiceArray['RealCost'] !== '' ? $cleanUpServiceArray['RealCost'] : $cleanUpEstimatePrice);
-        }
-        if($yardWorkServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($yardWorkServiceArray['RealCost'] !== '' ? $yardWorkServiceArray['RealCost'] : $yardWordEstimatePrice);
-        }
-        if($inspectionServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($inspectionServiceArray['RealCost'] !== '' ? $inspectionServiceArray['RealCost'] : $inspectionEstimatePrice);
-        }
-        if($storageServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($storageServiceArray['RealCost'] !== '' ? $storageServiceArray['RealCost'] : $storageEstimatePrice);
-        }
-        if($relocateHomeServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($relocateHomeServiceArray['RealCost'] !== '' ? $relocateHomeServiceArray['RealCost'] : $relocateHomeEstimatePrice);
-        }
-        if($photographyServiceArray['IsChecked'] === 'checked'){
-            $totalCost = $totalCost + ($photographyServiceArray['RealCost'] !== '' ? $photographyServiceArray['RealCost'] : $isPhotographyChecked);
-        }
-        global $finalCommission;
-        $finalCommission = $caseDetailsArray['ListingPrice'] * $caseDetailsArray['CommissionRate'] * 0.01 - $totalCost;
+        $stagingSupplierID = $_POST['stagingSelect'];
+        $touchUpSupplierID = $_POST['touchUpSelect'];
+        $cleanUpSupplierID = $_POST['cleanUpSelect'];
+        $yardWordSupplierID = $_POST['yardWorkSelect'];
+        $inspectionSupplierID = $_POST['inspectionSelect'];
+        $storageSupplierID = $_POST['storageSelect'];
+        $relocateHomeSupplierID = $_POST['relocateHomeSelect'];
+        $photographySupplierID = $_POST['photographySelect'];
     }
+
+    if($isStagingChecked === 'checked'){
+        $stagingEstimatePrice = staging_price_estimate_by_id($caseDetailsArray['HouseSize'], $stagingSupplierID);
+    }else{
+        $stagingEstimatePrice = 0;
+    }
+    if($isTouchUpChecked === 'checked'){
+        $touchUpEstimatePrice = touch_up_price_estimate_by_id($touchUpSupplierID);
+    }else{
+        $touchUpEstimatePrice = 0;
+    }
+    if($isCleanUpChecked === 'checked'){
+        $cleanUpEstimatePrice = clean_up_price_estimate_by_id($caseDetailsArray['HouseSize'], $cleanUpSupplierID);
+    }else{
+        $cleanUpEstimatePrice = 0;
+    }
+    if($isYardWordChecked === 'checked'){
+        $yardWordEstimatePrice = yard_work_price_estimate_by_id($yardWordSupplierID);
+    }else{
+        $yardWordEstimatePrice = 0;
+    }
+    if($isInspectionChecked === 'checked'){
+        $inspectionEstimatePrice = inspection_price_estimate_by_id($caseDetailsArray['PropertyType'], $inspectionSupplierID);
+    }else{
+        $inspectionEstimatePrice = 0;
+    }
+    if($isStorageChecked === 'checked'){
+        $storageEstimatePrice = storage_price_estimate_by_id($storageSupplierID);
+    }else{
+        $storageEstimatePrice = 0;
+    }
+    if($isRelocateHomeChecked === 'checked'){
+        $relocateHomeEstimatePrice = relocate_home_price_estimate_by_id($relocateHomeSupplierID);
+    }else{
+        $relocateHomeEstimatePrice = 0;
+    }
+    if($isPhotographyChecked === 'checked'){
+        $photographyEstimatePrice = photography_price_estimate_by_id($caseDetailsArray['PropertyType'], $photographySupplierID);
+    }else{
+        $photographyEstimatePrice = 0;
+    }
+
+    // Estimate Total Cost And Commission
+    global $totalCost;
+    if($stagingServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($stagingServiceArray['RealCost'] !== '0' && $stagingServiceArray['RealCost'] !== '') ? $stagingServiceArray['RealCost'] : $stagingEstimatePrice);
+    }
+    if($touchUpServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($touchUpServiceArray['RealCost'] !== '0' && $touchUpServiceArray['RealCost'] !== '')? $touchUpServiceArray['RealCost'] : $touchUpEstimatePrice);
+    }
+    if($cleanUpServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($cleanUpServiceArray['RealCost'] !== '0' && $cleanUpServiceArray['RealCost'] !== '') ? $cleanUpServiceArray['RealCost'] : $cleanUpEstimatePrice);
+    }
+    if($yardWorkServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($yardWorkServiceArray['RealCost'] !== '0' && $yardWorkServiceArray['RealCost'] !== '') ? $yardWorkServiceArray['RealCost'] : $yardWordEstimatePrice);
+    }
+    if($inspectionServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($inspectionServiceArray['RealCost'] !== '0' && $inspectionServiceArray['RealCost'] !== '') ? $inspectionServiceArray['RealCost'] : $inspectionEstimatePrice);
+    }
+    if($storageServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($storageServiceArray['RealCost'] !== '0' && $storageServiceArray['RealCost'] !== '') ? $storageServiceArray['RealCost'] : $storageEstimatePrice);
+    }
+    if($relocateHomeServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($relocateHomeServiceArray['RealCost'] !== '0' && $relocateHomeServiceArray['RealCost'] !== '') ? $relocateHomeServiceArray['RealCost'] : $relocateHomeEstimatePrice);
+    }
+    if($photographyServiceArray['IsChecked'] === 'checked'){
+        $totalCost = $totalCost + (($photographyServiceArray['RealCost'] !== '0' && $photographyServiceArray['RealCost'] !== '') ? $photographyServiceArray['RealCost'] : $isPhotographyChecked);
+    }
+    global $finalCommission;
+    $finalCommission = $caseDetailsArray['ListingPrice'] * $caseDetailsArray['CommissionRate'] * 0.01 - $totalCost;
+}
 
     // Save Session
     function save_session(){
@@ -395,51 +395,82 @@ Template Name: Agent Case Details
 
         // Update Case Status And Final Price
         $caseStatus = $_POST['case_status'];
-        update_case_status_and_final_price($MLS, $totalCost, $caseStatus);
 
-        // Generate Final Report
-        if($caseStatus === 'CLOSED'){
-            $reportFromArray = array(
-                "MLS" => $MLS,
-                "address" => $caseDetailsArray['Address'],
-                "teamLeader" => $teamLeaderName,
-                "teamMember" => $caseDetailsArray['CoStaffName'],
-                "propertyType" => $caseDetailsArray['PropertyType'],
-                "sellingListingRate" => $caseDetailsArray['CommissionRate'],
-                "listingPrice" => $caseDetailsArray['ListingPrice'],
-                "stagingSupplier" => mysqli_fetch_array(get_supplier_name_by_id($stagingSupplierID))['SupplierName'],
-                "stagingFinalPrice" => $stagingRealCost,
-                "cleanUpSupplier" => mysqli_fetch_array(get_supplier_name_by_id($cleanUpSupplierID))['SupplierName'],
-                "cleanUpFinalPrice" => $cleanUpRealCost,
-                "touchUpSupplier" => mysqli_fetch_array(get_supplier_name_by_id($touchUpSupplierID))['SupplierName'],
-                "touchUpFinalPrice" => $touchUpRealCost,
-                "inspectionSupplier" => mysqli_fetch_array(get_supplier_name_by_id($inspectionSupplierID))['SupplierName'],
-                "inspectionFinalPrice" => $inspectionRealCost,
-                "yardWorkSupplier" => mysqli_fetch_array(get_supplier_name_by_id($yardWorkSupplierID))['SupplierName'],
-                "yardWorkFinalPrice" => $yardWorkRealCost,
-                "storageSupplier" => mysqli_fetch_array(get_supplier_name_by_id($storageSupplierID))['SupplierName'],
-                "storageFinalPrice" => $storageRealCost,
-                "relocateHomeSupplier" => mysqli_fetch_array(get_supplier_name_by_id($relocateHomeSupplierID))['SupplierName'],
-                "relocateHomeFinalPrice" => $relocateHomeRealCost,
-                "totalCost" => $totalCost
-            );
-            $reportInvoicesArray = array(
-                "reportFormFile" => '',
-                "stagingInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Staging/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
-                "cleanUpInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/CleanUp/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
-                "relocateHomeInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/RelocateHome/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
-                "touchUpInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/TouchUp/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
-                "inspectionInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Inspection/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
-                "yardWorkInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/YardWork/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
-                "storageInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Storage/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
-            );
+        $canClose = '1';
+        if($isStagingEnabled === '1' && $stagingServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
+        if($isCleanUpEnabled === '1' && $cleanUpServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
+        if($isTouchUpEnabled === '1' && $touchUpServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
+        if($isInspectionEnabled === '1' && $inspectionServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
+        if($isRelocateHomeEnabled === '1' && $relocateHomeServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
+        if($isYardWorkEnabled === '1' && $yardWorkServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
+        if($isStorageEnabled === '1' && $storageServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
+        if($isPhotographyEnabled === '1' && $photographyServiceArray['InvoiceStatus'] !== 'APPROVED')
+            $canClose = '0';
 
-            generate_case_report($reportFromArray, $reportInvoicesArray);
+        global $errorMessage;
+        global $isError;
+        if($caseStatus === 'CLOSED' && $canClose === '0'){
+            $errorMessage = "Cannot close case";
+            $isError = true;
+        }
+        else{
+            update_case_status_and_final_price($MLS, $totalCost, $caseStatus);
+            $errorMessage = null;
+            $isError = false;
+
+            // Generate Final Report
+            if($caseStatus === 'CLOSED'){
+                $reportFromArray = array(
+                    "MLS" => $MLS,
+                    "address" => $caseDetailsArray['Address'],
+                    "teamLeader" => $teamLeaderName,
+                    "teamMember" => $caseDetailsArray['CoStaffName'],
+                    "propertyType" => $caseDetailsArray['PropertyType'],
+                    "sellingListingRate" => $caseDetailsArray['CommissionRate'],
+                    "listingPrice" => $caseDetailsArray['ListingPrice'],
+                    "stagingSupplier" => mysqli_fetch_array(get_supplier_name_by_id($stagingSupplierID))['SupplierName'],
+                    "stagingFinalPrice" => $stagingRealCost,
+                    "cleanUpSupplier" => mysqli_fetch_array(get_supplier_name_by_id($cleanUpSupplierID))['SupplierName'],
+                    "cleanUpFinalPrice" => $cleanUpRealCost,
+                    "touchUpSupplier" => mysqli_fetch_array(get_supplier_name_by_id($touchUpSupplierID))['SupplierName'],
+                    "touchUpFinalPrice" => $touchUpRealCost,
+                    "inspectionSupplier" => mysqli_fetch_array(get_supplier_name_by_id($inspectionSupplierID))['SupplierName'],
+                    "inspectionFinalPrice" => $inspectionRealCost,
+                    "yardWorkSupplier" => mysqli_fetch_array(get_supplier_name_by_id($yardWorkSupplierID))['SupplierName'],
+                    "yardWorkFinalPrice" => $yardWorkRealCost,
+                    "storageSupplier" => mysqli_fetch_array(get_supplier_name_by_id($storageSupplierID))['SupplierName'],
+                    "storageFinalPrice" => $storageRealCost,
+                    "relocateHomeSupplier" => mysqli_fetch_array(get_supplier_name_by_id($relocateHomeSupplierID))['SupplierName'],
+                    "relocateHomeFinalPrice" => $relocateHomeRealCost,
+                    "totalCost" => $totalCost
+                );
+                $reportInvoicesArray = array(
+                    "reportFormFile" => '',
+                    "stagingInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Staging/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                    "cleanUpInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/CleanUp/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                    "relocateHomeInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/RelocateHome/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                    "touchUpInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/TouchUp/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                    "inspectionInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Inspection/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                    "yardWorkInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/YardWork/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                    "storageInvoice" => trim(mysqli_fetch_array(download_file_by_path($uploadBasePath . "/Storage/" . "Invoice/"))['FileName'], "wp-content/themes/NuStream/"),
+                );
+
+                generate_case_report($reportFromArray, $reportInvoicesArray);
+            }
+
+            header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
+            exit;
         }
 
+
         save_session();
-        header('Location: ' . get_home_url() . '/agent-case-details/?CID=' . $MLS . '&'  . 'RF=true');
-        exit;
     }
 
     // Estimate
@@ -1062,8 +1093,6 @@ Template Name: Agent Case Details
                             <div class="dropdown">
                                 <?php
                                 echo '<select name="case_status" ' . $isCaseStatusChangeable . '>';
-                                if(is_null($stagingServiceArray['ServiceSupplierID']))
-                                    $isDefaultSelected = 'selected';
                                 foreach ($caseStatuses as $caseStatusItem){
                                     if($caseStatusItem === $caseDetailsArray['CaseStatus']){
                                         $isSelected = 'selected';
@@ -1081,6 +1110,14 @@ Template Name: Agent Case Details
                 </div>
                 <input type="submit" <?php echo $isCaseChangeable; ?> value="Estimate" name="estimate">
                 <input type="submit" <?php echo $isCaseChangeable; ?> value="Submit" name="submit_service_info">
+                <?php
+                if($isError){
+                    echo '<div class="error-message"><a style="color: red;">';
+                    global $errorMessage;
+                    echo $errorMessage;
+                    echo '</a></div>';
+                }
+                ?>
             </form>
         </div>
     </div>
