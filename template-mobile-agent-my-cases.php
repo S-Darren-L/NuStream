@@ -35,6 +35,30 @@ $goBackImagePath = $mainPath . "img/goBack.png";
 	<title>NUSTREAM</title>
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
     <script type="text/javascript" src="<?php bloginfo('template_url');?>/js/index.js"></script>
+    <style>
+        .firstdiv{
+            width:100px;
+            border-right:1px solid black;
+                padding: 0px 15px;
+        }
+                .seconddiv{
+    width: 100px;
+    border-right: 1px solid black;
+    padding: 0px 15px;
+    position: absolute;
+    left: 40%;
+    padding-top: 10px;
+    top: 0px;
+        }
+        .myCaseInfoTable th {
+            margin-top: 2%;
+            border-right: none;
+        }
+
+        .myCaseInfoTable a{
+                float: right;
+    margin-right: 15%;        }
+    </style>
 </head>
 <body  data-gr-c-s-loaded="true">
 <div cng-app="App" ng-controller="myController" class="ng-scope myCasePage">
@@ -48,10 +72,10 @@ $goBackImagePath = $mainPath . "img/goBack.png";
         {
             $MLS = $CasesBriefInfoArray[$i]["MLS"];
             echo '<div class="myCaseInfoStyle redBorder">';
-            echo '<table class="myCaseInfoTable ">';
-                echo '<th>', $CasesBriefInfoArray[$i]["Address"], '<br/>';
-                echo '<span style="font-size:6px;">MLS ', $MLS , $CasesBriefInfoArray[$i]["PropertyType"], '<span></th>';
-                echo '<th>', $CasesBriefInfoArray[$i]["StartDate"], '</th>';
+            echo '<table class="myCaseInfoTable " style="position:relative;">';
+                echo '<th><div class="firstdiv">', $CasesBriefInfoArray[$i]["Address"], '<br/>';
+                echo '<span style="font-size:6px;">MLS ', $MLS , $CasesBriefInfoArray[$i]["PropertyType"], '<span></div></th>';
+                echo '<th><div class="seconddiv">', $CasesBriefInfoArray[$i]["StartDate"], '</div></th>';
                 echo '<th class="tableBorderColor">', '<a href="' . $homeURL . '/agent-mobile-case-details/?CID=' . $MLS . '" >', $CasesBriefInfoArray[$i]["CaseStatus"], '</th>';
             echo '</table>';
         echo '</div>';

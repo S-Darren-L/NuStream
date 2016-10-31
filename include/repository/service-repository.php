@@ -23,6 +23,9 @@
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
+        if($realCost === ''){
+        	$realCost = 0;
+        }
 
         $sql = "UPDATE services SET ServiceSupplierID = '$serviceSupplierID', RealCost = '$realCost', IsActivate = '$isActive'
                         WHERE ServiceID = '$serviceID'";

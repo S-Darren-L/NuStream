@@ -534,6 +534,12 @@
     <script src="<?php bloginfo('template_url');?>/SiteScripts/MyController.js"></script>
     <script src="<?php bloginfo('template_url');?>/SiteScripts/Directives/UploadDirective.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/site.css">
+    <style>
+        .Touchup  .Upload > label{
+            margin-left:14%;
+            font-size: 3em;
+        }
+    </style>
 </head>
 <body>
     <div ng-app="App" ng-controller="myController">
@@ -647,17 +653,20 @@
                     <input id="file-upload2" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
-                    <?php echo '<upload name="upload_touch_up_before_1" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '"></upload>'; ?>
-                    <?php echo '<upload name="upload_touch_up_after_1" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_before_1" label="1" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_1" label="1" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '"></upload>'; ?>
 
-                    <?php echo '<upload name="upload_touch_up_before_2" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '"></upload>'; ?>
-                    <?php echo '<upload name="upload_touch_up_after_2" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_before_2" label="2" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_2" label="2" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '"></upload>'; ?>
 
-                    <?php echo '<upload name="upload_touch_up_before_3" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '"></upload>'; ?>
-                    <?php echo '<upload name="upload_touch_up_after_3" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_before_3" label="3" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_3" label="3" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '"></upload>'; ?>
 
-                    <?php echo '<upload name="upload_touch_up_before_4" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '"></upload>'; ?>
-                    <?php echo '<upload name="upload_touch_up_after_4" label="" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" ></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_before_4" label="4" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_4" label="4" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" ></upload>'; ?>
+
+                    <?php echo '<upload name="upload_touch_up_before_5" label="5" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before5']["FileName"] . '"></upload>'; ?>
+                    <?php echo '<upload name="upload_touch_up_after_5" label="5" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After5']["FileName"] . '" ></upload>'; ?>
                     <input type="submit" style="display:none" name="submit_touch_up" class="SubmitButton" />
                 </form>
             </div>

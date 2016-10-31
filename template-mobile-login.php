@@ -146,7 +146,7 @@
                 echo '<img src="' . $userIconImagePath . '"/>';
                 ?>
             </div>
-            <input class="userNameInput" name="email" placeholder='&nbsp;&nbsp;&nbsp;Username' type='email'/>
+            <input class="userNameInput" name="email" placeholder='&nbsp;&nbsp;&nbsp;Username' type='email' style="text-indent: 40px;" />
         <!--</div>-->
         <!--<div class='login_fields__password'>-->
             <div class='passwordIcon'>
@@ -154,7 +154,7 @@
                 echo '<img src="' . $lockIconImagePath . '"/>';
                 ?>
             </div>
-            <input class="passwordInput" name="password" placeholder='&nbsp;&nbsp;&nbsp;Password' type='password' />
+            <input class="passwordInput" name="password" placeholder='&nbsp;&nbsp;&nbsp;Password' type='password'  style="text-indent: 15px;"/>
         <!--</div>-->
         <div class="checkbox">
             <label>

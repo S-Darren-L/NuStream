@@ -1177,6 +1177,19 @@ Template Name: Agent Case File Upload
     padding-top: 3px;
     font-weight: 500;
     }
+
+    .uploadLabel{
+        float: left;
+    height: 70px;
+    width: 130px;
+    border: 1px blue dashed;
+    margin: 0 25px;
+    padding-top: 25px;
+    }
+
+    .imgsmall{
+        width:80px;
+    }
 </style>
 <head>
     <meta charset="utf-8">
@@ -1281,7 +1294,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($stagingImageFilesArray['BeforeLivingRoom']["FileName"]))
                                         echo '<img up="stagingb1" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="stagingb1" src="" class="FAImage">';
+                                        echo '<label up="stagingb1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1289,7 +1302,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($stagingImageFilesArray['BeforeDinningRoom']["FileName"]))
                                         echo '<img up="stagingb2" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeDinningRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="stagingb2" src="" class="FAImage">';
+                                        echo '<label up="stagingb2" class="uploadLabel">DINING ROOM</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1297,7 +1310,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($stagingImageFilesArray['BeforeMasterRoom']["FileName"]))
                                         echo '<img up="stagingb3" src="' . get_home_url() . "/" . $stagingImageFilesArray['BeforeMasterRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="stagingb3" src="" class="FAImage">';
+                                        echo '<label up="stagingb3" class="uploadLabel">MASTER ROOM</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1318,7 +1331,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($stagingImageFilesArray['AfterLivingRoom']["FileName"]))
                                         echo '<img up="staa1" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="staa1" src="" class="FAImage">';
+                                        echo '<label up="staa1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1326,7 +1339,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($stagingImageFilesArray['AfterDinningRoom']["FileName"]))
                                         echo '<img up="staa2" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterDinningRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="staa2" src="" class="FAImage">';
+                                        echo '<label up="staa2" class="uploadLabel">DINING ROOM</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1334,7 +1347,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($stagingImageFilesArray['AfterMasterRoom']["FileName"]))
                                         echo '<img up="staa3" src="' . get_home_url() . "/" . $stagingImageFilesArray['AfterMasterRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="staa3" src="" class="FAImage">';
+                                        echo '<label up="staa3" class="uploadLabel">MASTER ROOM</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1374,7 +1387,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($cleanUpImageFilesArray['BeforeLivingRoom']["FileName"]))
                                         echo '<img up="cleb1" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="cleb1" src="" class="FAImage">';
+                                        echo '<label up="cleb1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1382,7 +1395,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($cleanUpImageFilesArray['BeforeKitchen']["FileName"]))
                                         echo '<img up="cleb2" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeKitchen']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="cleb2" src="" class="FAImage">';
+                                        echo '<label up="cleb2" class="uploadLabel">KITCHEN</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1390,7 +1403,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($cleanUpImageFilesArray['BeforeWashRoom']["FileName"]))
                                         echo '<img up="cleb3" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeWashRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="cleb3" src="" class="FAImage">';
+                                        echo '<label up="cleb3" class="uploadLabel">WASHROOM</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1411,7 +1424,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($cleanUpImageFilesArray['AfterLivingRoom']["FileName"]))
                                         echo '<img up="clea1" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterLivingRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="clea1" src="" class="FAImage">';
+                                        echo '<label up="clea1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1419,7 +1432,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($cleanUpImageFilesArray['AfterKitchen']["FileName"]))
                                         echo '<img up="clea2" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterKitchen']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="clea2" src="" class="FAImage">';
+                                        echo '<label up="clea2" class="uploadLabel">KITCHEN</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1427,7 +1440,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($cleanUpImageFilesArray['AfterWashRoom']["FileName"]))
                                         echo '<img up="clea3" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['AfterWashRoom']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="clea3" src="" class="FAImage">';
+                                        echo '<label up="clea3" class="uploadLabel">WASHROOM</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1467,7 +1480,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['Before1']["FileName"]))
                                         echo '<img up="toub1" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toub1" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toub1" class="uploadLabel imgsmall">1</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1475,7 +1488,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['Before2']["FileName"]))
                                         echo '<img up="toub2" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before2']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toub2" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toub2" class="uploadLabel imgsmall">2</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1483,7 +1496,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['Before3']["FileName"]))
                                         echo '<img up="toub3" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before3']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toub3" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toub3" class="uploadLabel imgsmall">3</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1491,7 +1504,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['Before4']["FileName"]))
                                         echo '<img up="toub4" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before4']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toub4" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toub4" class="uploadLabel imgsmall">4</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1499,7 +1512,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['Before5']["FileName"]))
                                         echo '<img up="toub5" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before5']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toub5" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toub5" class="uploadLabel imgsmall">5</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1522,7 +1535,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['After1']["FileName"]))
                                         echo '<img up="toua1" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After1']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toua1" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toua1" class="uploadLabel imgsmall">1</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1530,7 +1543,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['After2']["FileName"]))
                                         echo '<img up="toua2" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After2']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toua2" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toua2" class="uploadLabel imgsmall">2</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1538,7 +1551,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['After3']["FileName"]))
                                         echo '<img up="toua3" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After3']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toua3" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toua3" class="uploadLabel imgsmall">3</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1546,7 +1559,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['After4']["FileName"]))
                                         echo '<img up="toua4" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After4']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toua4" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toua4" class="uploadLabel imgsmall">4</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1554,7 +1567,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($touchUpImageFilesArray['After5']["FileName"]))
                                         echo '<img up="toua5" src="' . get_home_url() . "/" . $touchUpImageFilesArray['After5']["FileName"] . '" class="FAImageTouchUp">';
                                         else
-                                        echo '<img up="toua5" src="" class="FAImageTouchUp">';
+                                        echo '<label up="toua5" class="uploadLabel imgsmall">5</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1596,7 +1609,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($yardWorkImageFilesArray['BeforeFrontYard']["FileName"]))
                                         echo '<img up="yarb1" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeFrontYard']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="yarb1" src="" class="FAImage">';
+                                        echo '<label up="yarb1" class="uploadLabel">FRONT YARD</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1604,7 +1617,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($yardWorkImageFilesArray['BeforeBackYard']["FileName"]))
                                         echo '<img up="yarb2" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeBackYard']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="yarb2" src="" class="FAImage">';
+                                        echo '<label up="yarb2" class="uploadLabel">BACK YARD</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1624,7 +1637,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($yardWorkImageFilesArray['AfterFrontYard']["FileName"]))
                                         echo '<img up="yara1" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterFrontYard']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="yara1" src="" class="FAImage">';
+                                        echo '<label up="yara1" class="uploadLabel">FRONT YARD</label>';
                                         ?>
                                     </td>
                                     <td>
@@ -1632,7 +1645,7 @@ Template Name: Agent Case File Upload
                                         if(!empty($yardWorkImageFilesArray['AfterBackYard']["FileName"]))
                                         echo '<img up="yara2" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterBackYard']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<img up="yara2" src="" class="FAImage">';
+                                        echo '<label up="yarb1" class="uploadLabel">BACK YARD</label>';
                                         ?>
                                     </td>
                                 </tr>
@@ -1718,7 +1731,9 @@ Template Name: Agent Case File Upload
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         $('img').on('click', function (evt) {
-            debugger;
+            $('#' + this.attributes.up.value).click();
+        });
+        $('.uploadLabel').on('click', function (evt) {
             $('#' + this.attributes.up.value).click();
         });
     </script>
