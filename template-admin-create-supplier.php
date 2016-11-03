@@ -17,24 +17,19 @@
 	{
 		$supplierName = $_POST['supplierName'];
 		$supplierType = $_POST['supplierType'];
-		$HSTNumber = $_POST['HSTNumber'];
 		$firstContactName = $_POST['firstContactName'];
 		$firstContactNumber = $_POST['firstContactNumber'];
-		$secondContactName = $_POST['supportArea'];
-		$secondContactNumber = $_POST['secondContactNumber'];
 		$priceUnit = $_POST['priceUnit'];
 		$ricePerUnit = $_POST['pricePerUnit'];
 		$paymentTerm = $_POST['paymentTerm'];
 		$otherPaymentTerm = $_POST['otherPaymentTerm'];
-		$supportLocation = $_POST['supportLocation'];
-		//temp
-		$supportLocation = "location";
+		$supportLocation = $_POST['supportArea'];
 
 		global $errorMessage;
 		global $isError;
-		if (empty($supplierName) || empty($supplierType) || empty($HSTNumber) || empty($firstContactName) || empty($firstContactNumber) ||
-			empty($secondContactName) || empty($secondContactNumber) || empty($priceUnit) || empty($ricePerUnit) || empty($paymentTerm) ||
-			($paymentTerm === 'OTHER' && empty($otherPaymentTerm)) || empty($supportLocation)) {
+		if (empty($supplierName) || empty($supplierType) || empty($firstContactName) || empty($firstContactNumber) ||
+            empty($supportLocation) || empty($priceUnit) || empty($ricePerUnit) || empty($paymentTerm) ||
+            ($paymentTerm === 'OTHER' && empty($otherPaymentTerm)) || empty($supportLocation)) {
 			$errorMessage = "Mandatory fields are empty";
 			$isError = true;
 			return false;
@@ -231,7 +226,7 @@
                                         ?>
                                             </select>-->
                                     IF OTHER PLEASE INDICATE
-                                    <input type="text" disabled="disabled" id="other-payment-term" name="otherPaymentTerm" class="CNSPricePerUintInput" require /><br /><br />
+                                    <input type="text" id="other-payment-term" name="otherPaymentTerm" class="CNSPricePerUintInput" require /><br /><br />
                                     <input class="CNSCreateButton" type="submit" value="Create" name="create_supplier">
                                     <?php
                                     if($isError){

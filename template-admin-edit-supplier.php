@@ -38,6 +38,11 @@
 		global $HSTNumber;
 		global $paymentTerm;
 		global $otherPaymentTerm;
+		global $minimumPrice;
+		global $pricePerCondo;
+		global $pricePerHouse;
+		global $pricePerSemi;
+		global $pricePerTownhouse;
 
 		$supplierName = $getSupplierArray['SupplierName'];
 		$supplierType = $getSupplierArray['SupplierType'];
@@ -51,31 +56,29 @@
 		$HSTNumber = $getSupplierArray['HSTNumber'];
 		$paymentTerm = $getSupplierArray['PaymentTerm'];
 		$otherPaymentTerm = $getSupplierArray['OtherPaymentTerm'];
+		$minimumPrice = $getSupplierArray['MinimumPrice'];
+		$pricePerCondo = $getSupplierArray['PricePerCondo'];
+		$pricePerHouse = $getSupplierArray['PricePerHouse'];
+		$pricePerSemi = $getSupplierArray['PricePerSemi'];
+		$pricePerTownhouse = $getSupplierArray['PricePerTownhouse'];
 
 	}
 
 	// Validate Mandatory Fields
 	function date_validated()
 	{
-		$supplierName = $_POST['supplierName'];
-		$supplierType = $_POST['supplierType'];
-		$HSTNumber = $_POST['HSTNumber'];
 		$firstContactName = $_POST['firstContactName'];
 		$firstContactNumber = $_POST['firstContactNumber'];
-		$secondContactName = $_POST['secondContactName'];
-		$secondContactNumber = $_POST['secondContactNumber'];
 		$priceUnit = $_POST['priceUnit'];
 		$ricePerUnit = $_POST['pricePerUnit'];
 		$paymentTerm = $_POST['paymentTerm'];
 		$otherPaymentTerm = $_POST['otherPaymentTerm'];
 		$supportLocation = $_POST['supportLocation'];
-		//temp
-		$supportLocation = "location";
 
 		global $errorMessage;
 		global $isError;
-		if (empty($supplierName) || empty($supplierType) || empty($HSTNumber) || empty($firstContactName) || empty($firstContactNumber) ||
-			empty($secondContactName) || empty($secondContactNumber) || empty($priceUnit) || empty($ricePerUnit) || empty($paymentTerm) ||
+		if (empty($firstContactName) || empty($firstContactNumber) ||
+			empty($supportLocation) || empty($priceUnit) || empty($ricePerUnit) || empty($paymentTerm) ||
 			($paymentTerm === 'OTHER' && empty($otherPaymentTerm)) || empty($supportLocation)) {
 			$errorMessage = "Mandatory fields are empty";
 			$isError = true;
@@ -92,17 +95,18 @@
 	{
 		$updateSupplierArray = array (
 			"supplierID" => $supplierID,
-			"supplierName" => $_POST['supplierName'],
-			"supplierType" => $_POST['supplierType'],
 			"HSTNumber" => $_POST['HSTNumber'],
 			"firstContactName" => $_POST['firstContactName'],
 			"firstContactNumber" => $_POST['firstContactNumber'],
-			"secondContactName" => $_POST['secondContactName'],
-			"secondContactNumber" => $_POST['secondContactNumber'],
 			"priceUnit" => $_POST['priceUnit'],
 			"pricePerUnit" => $_POST['pricePerUnit'],
 			"paymentTerm" => $_POST['paymentTerm'],
-			"supportLocation" => $_POST['supportLocation']);
+			"supportLocation" => $_POST['supportLocation'],
+			"mimPayment" => $_POST['mimPayment'],
+			"condoPrice" => $_POST['condoPrice'],
+			"townPrice" => $_POST['townPrice'],
+			"semiPrice" => $_POST['semiPrice'],
+			"detachedPrice" => $_POST['detachedPrice']);
 
 		$updateSupplierResult = edit_supplier($updateSupplierArray);
 
@@ -199,7 +203,7 @@
 				</select>    
                             </div>
                             <div class="CNSHSTNumberPart">HST NUMBER *<br/>
-                                <input type="text" <?php echo $isDisable; ?> name="HSTNumber" value="<?php echo $HSTNumber; ?>" class="CNSHSTNumber" disabled="true" require/>    
+                                <input type="text" <?php echo $isDisable; ?> name="HSTNumber" value="<?php echo $HSTNumber; ?>" class="CNSHSTNumber" require/>
                             </div>
                         </div>
                         <div class="CNSOneLineDiv">
@@ -209,7 +213,7 @@
                                 </div>CONTACT PERSON 1 *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="firstContactName" value="<?php echo $firstContactName; ?>"  class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="firstContactNumber" value="<?php echo $firstContactNumber; ?>" class="CNSContactInput" require /><br/><br/>SUPPORT AREA *<br/>
-                                    <input type="text" <?php echo $isDisable; ?> name="secondContactName" value="<?php echo $secondContactName; ?>" class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
+                                    <input type="text" <?php echo $isDisable; ?> name="supportLocation" value="<?php echo $supportLocation; ?>" class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="secondContactNumber" value="<?php echo $secondContactNumber; ?>" class="CNSContactInput" require />
                             </div>
                             <div class="CNSPriceInfo">
@@ -230,24 +234,24 @@
                                         <div class="CNSSpace" id="empty"></div>
                                         <div id="NoHouseTypeSelected">
                                             <div>MINIMUM PAYMENT</div>
-                                            <input type="text" class="CNSMinimumPaymentInput" require />
+                                            <input type="text" name="mimPayment" value="<?php echo $minimumPrice; ?>" class="CNSMinimumPaymentInput" require />
                                         </div>
                                         <div id="HouseTypeSelected">
                                             <div class="Condo">
                                                 <div>CONDO</div>
-                                                <input type="text" />
+                                                <input name="condoPrice" value="<?php echo $pricePerCondo; ?>" type="text" />
                                             </div>
                                             <div class="Townhouse">
                                                 <div>TOWNHOUSE</div>
-                                                <input type="text" />
+                                                <input name="townPrice" value="<?php echo $pricePerTownhouse; ?>" type="text" />
                                             </div>
                                             <div class="Semi">
                                                 <div>SEMI</div>
-                                                <input type="text" />
+                                                <input name="semiPrice" value="<?php echo $pricePerSemi; ?>" type="text" />
                                             </div>
                                             <div class="Detached">
                                                 <div>DETACHED</div>
-                                                <input type="text" />
+                                                <input name="detachedPrice" value="<?php echo $pricePerHouse; ?>" type="text" />
                                             </div>
                                         </div>
                                     </div>

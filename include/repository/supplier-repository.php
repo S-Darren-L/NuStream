@@ -22,10 +22,9 @@
             $otherPaymentTerm = $createSupplierArray['otherPaymentTerm'];
         else
             $otherPaymentTerm = null;
-        $sql = "INSERT INTO suppliers (SupplierName, SupplierType, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, 
-                SecondContactNumber, SupportLocation, HSTNumber, PaymentTerm, OtherPaymentTerm, MinimumPrice, PricePerCondo, PricePerHouse, PricePerSemi, PricePerTownhouse )
-                        VALUES ('$supplierName', '$supplierType', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$secondContactNumber', 
-                        '$supportLocation', '$HSTNumber', '$paymentTerm', '$otherPaymentTerm', '$mimPayment', '$condoPrice', '$detachedPrice', '$semiPrice', '$townPrice')";
+        $sql = "INSERT INTO suppliers (SupplierName, SupplierType, PriceUnit, PricePerUnit, FirstContactName, FirstContactNumber, SupportLocation,
+                SecondContactNumber, HSTNumber, PaymentTerm, OtherPaymentTerm, MinimumPrice, PricePerCondo, PricePerHouse, PricePerSemi, PricePerTownhouse )
+                        VALUES ('$supplierName', '$supplierType', '$priceUnit', '$pricePerUnit', '$firstContactName', '$firstContactNumber', '$supportArea', '$secondContactNumber', '$HSTNumber', '$paymentTerm', '$otherPaymentTerm', '$mimPayment', '$condoPrice', '$detachedPrice', '$semiPrice', '$townPrice')";
 
         // Require SQL Connection
         require_once(__DIR__ . '/mysql-connect.php');
@@ -86,8 +85,6 @@
     function edit_supplier_request($updateSupplierArray)
     {
         $supplierID = $updateSupplierArray['supplierID'];
-        $supplierName = $updateSupplierArray['supplierName'];
-        $supplierType = $updateSupplierArray['supplierType'];
         $priceUnit = $updateSupplierArray['priceUnit'];
         $pricePerUnit = $updateSupplierArray['pricePerUnit'];
         $firstContactName = $updateSupplierArray['firstContactName'];
@@ -97,13 +94,17 @@
         $supportLocation = $updateSupplierArray['supportLocation'];
         $HSTNumber = $updateSupplierArray['HSTNumber'];
         $paymentTerm = $updateSupplierArray['paymentTerm'];
+        $mimPayment = $updateSupplierArray['mimPayment'];
+        $condoPrice = $updateSupplierArray['condoPrice'];
+        $townPrice = $updateSupplierArray['townPrice'];
+        $semiPrice = $updateSupplierArray['semiPrice'];
+        $detachedPrice = $updateSupplierArray['detachedPrice'];
         if($paymentTerm === 'OTHER')
             $otherPaymentTerm = $updateSupplierArray['otherPaymentTerm'];
         else
             $otherPaymentTerm = null;
 
-        $sql = "UPDATE suppliers SET SupplierName = '$supplierName', 
-                    SupplierType = '$supplierType',
+        $sql = "UPDATE suppliers SET 
                     PriceUnit = '$priceUnit',
                     PricePerUnit = '$pricePerUnit', 
                     FirstContactName = '$firstContactName', 
@@ -113,7 +114,12 @@
                     SupportLocation = '$supportLocation',
                     HSTNumber = '$HSTNumber',
                     PaymentTerm = '$paymentTerm',
-                    OtherPaymentTerm = '$otherPaymentTerm'
+                    OtherPaymentTerm = '$otherPaymentTerm',
+                    MinimumPrice = '$mimPayment',
+                    PricePerCondo = '$condoPrice',
+                    PricePerTownhouse = '$townPrice',
+                    PricePerSemi = '$semiPrice',
+                    PricePerHouse = '$detachedPrice'
                     WHERE SupplierID = '$supplierID'";
 
         // Require SQL Connection
