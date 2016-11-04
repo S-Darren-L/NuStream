@@ -127,7 +127,6 @@
 	}
 
 	function navigate_back(){
-		echo "na";
         header('Location: ' . get_home_url() . '/supplier-info');
 	}
 ?>

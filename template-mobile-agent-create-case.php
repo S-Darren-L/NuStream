@@ -44,7 +44,7 @@ Template Name: Agent Mobile Create Case
         $houseSize =test_input($_POST['houseSize']);
     //        $landSize = test_input($_POST['landSize']);
         $listingPrice = test_input($_POST['listingPrice']);
-        $coStaffID = test_input($isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID']);
+    //        $coStaffID = test_input($isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID']);
     //        $ownerName = test_input($_POST['ownerName']);
     //        $contactNumber = test_input($_POST['contactNumber']);
         $commissionRate = test_input($_POST['commissionRate']);
@@ -52,7 +52,7 @@ Template Name: Agent Mobile Create Case
         global $errorMessage;
         global $isError;
         if (empty($MLSNumber) || empty($propertyType) || empty($address) || empty($houseSize) ||
-            empty($listingPrice) || empty($coStaffID) || empty($commissionRate)) {
+            empty($listingPrice) || empty($commissionRate)) {
             $errorMessage = "Mandatory fields are empty";
             $isError = true;
             return false;
@@ -81,13 +81,19 @@ Template Name: Agent Mobile Create Case
                 $uploadResult = move_uploaded_file($caseImageTmp, $uploadPath . $caseImageName);
             }
         }
-        if(empty($_POST['landSize'])){
-            $landSize = 0;
+        if(empty($_POST['landSize']) || is_null($_POST['landSize']) || $_POST['landSize'] === ''){
+            $landSize = '0';
+        }else{
+            $landSize = $_POST['landSize'];
+        }
+        $coStaffID = $isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID'];
+        if(is_null($coStaffID) || empty($coStaffID)){
+            $coStaffID = $_SESSION['AccountID'];
         }
         $createCaseArray = array (
             "MLSNumber" => $_POST['MLSNumber'],
             "staffID" => $_SESSION['AccountID'],
-            "coStaffID" => $isCoListingDisabled === true ? $teamLeaderID : $_POST['coStaffID'],
+            "coStaffID" => $coStaffID ,
             "address" => $_POST['address'],
             "landSize" => $landSize,
             "houseSize" => $_POST['houseSize'],
