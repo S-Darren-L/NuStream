@@ -160,16 +160,16 @@ Template Name: Agent Mobile Create Case
                     <input class="newInputStyle" name="houseSize" id="houseSizeInput" placeholder='HOUSE SIZE *' type='number' size="30">
                 </div>
                 <div class='newInputPart'>
-                    <input class="newInputStyle" name="landSize" id="landSizeInput" placeholder='LAND SIZE *' type='number' size="30">
+                    <input class="newInputStyle" name="landSize" id="landSizeInput" placeholder='LAND SIZE ' type='number' size="30">
                 </div>
                 <div class='newInputPart'>
                     <input class="newInputStyle" name="listingPrice" id="listingPriceInput" placeholder='LISTING PRICE *' type='number' size="30">
                 </div>
                 <div class='newInputPart'>
-                    <input class="newInputStyle" name="ownerName" id="owerNameInput" placeholder="OWNER'S NAME *" type='text' size="30">
+                    <input class="newInputStyle" name="ownerName" id="owerNameInput" placeholder="OWNER'S NAME " type='text' size="30">
                 </div>
                 <div class='newInputPart'>
-                    <input class="newInputStyle" name="contactNumber" id="contactNmuberInput" placeholder='CONTACT NUMBER *' type='text' size="30">
+                    <input class="newInputStyle" name="contactNumber" id="contactNmuberInput" placeholder='CONTACT NUMBER ' type='text' size="30">
                 </div>
                 <div class="secondInput contactNumberInput">
                     <input class="newInputStyle" name="commissionRate" id="commissionRate" placeholder='SELLING LISTING RATE *' type="number" size="30" />

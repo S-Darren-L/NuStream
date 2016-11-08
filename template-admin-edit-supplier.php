@@ -78,8 +78,8 @@
 		global $errorMessage;
 		global $isError;
 		if (empty($firstContactName) || empty($firstContactNumber) ||
-			empty($supportLocation) || empty($priceUnit) || empty($ricePerUnit) || empty($paymentTerm) ||
-			($paymentTerm === 'OTHER' && empty($otherPaymentTerm)) || empty($supportLocation)) {
+			empty($supportLocation) || empty($priceUnit) || ($priceUnit !== 'BYHOUSETYPE' && empty($ricePerUnit)) || empty($paymentTerm) || ($paymentTerm === 'OTHER' && empty($otherPaymentTerm)) ||
+			($paymentTerm === 'OTHER' && empty($otherPaymentTerm))) {
 			$errorMessage = "Mandatory fields are empty";
 			$isError = true;
 			return false;
@@ -98,9 +98,11 @@
 			"HSTNumber" => $_POST['HSTNumber'],
 			"firstContactName" => $_POST['firstContactName'],
 			"firstContactNumber" => $_POST['firstContactNumber'],
+			"secondContactNumber" => $_POST['secondContactNumber'],
 			"priceUnit" => $_POST['priceUnit'],
 			"pricePerUnit" => $_POST['pricePerUnit'],
 			"paymentTerm" => $_POST['paymentTerm'],
+			"otherPaymentTerm" => $_POST['otherPaymentTerm'],
 			"supportLocation" => $_POST['supportLocation'],
 			"mimPayment" => $_POST['mimPayment'],
 			"condoPrice" => $_POST['condoPrice'],
@@ -201,18 +203,18 @@
 										?>
 				</select>    
                             </div>
-                            <div class="CNSHSTNumberPart">HST NUMBER *<br/>
+                            <div class="CNSHSTNumberPart">HST NUMBER <br/>
                                 <input type="text" <?php echo $isDisable; ?> name="HSTNumber" value="<?php echo $HSTNumber; ?>" class="CNSHSTNumber" require/>
                             </div>
                         </div>
                         <div class="CNSOneLineDiv">
                             <div class="CNSContantInfo">
                                 <div class="subTitle">
-                                    <h5>CONTACT INFOTMATION</h5> 
+                                    <h5>CONTACT INFORMATION</h5>
                                 </div>CONTACT PERSON 1 *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="firstContactName" value="<?php echo $firstContactName; ?>"  class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="firstContactNumber" value="<?php echo $firstContactNumber; ?>" class="CNSContactInput" require /><br/><br/>SUPPORT AREA *<br/>
-                                    <input type="text" <?php echo $isDisable; ?> name="supportLocation" value="<?php echo $supportLocation; ?>" class="CNSContactInput" require /><br/>CONTACT NUMBER *<br/>
+                                    <input type="text" <?php echo $isDisable; ?> name="supportLocation" value="<?php echo $supportLocation; ?>" class="CNSContactInput" require /><br/>SPECIAL INFO<br/>
                                     <input type="text" <?php echo $isDisable; ?> name="secondContactNumber" value="<?php echo $secondContactNumber; ?>" class="CNSContactInput" require />
                             </div>
                             <div class="CNSPriceInfo">
@@ -260,7 +262,7 @@
                                 </div>
                                 <!--<div style="height:110px;"></div>-->
                                 <div class="ESAPriceInfoLineOne ESALastSpace">
-                                    <div class="ESASelectPaymentTeamPart ">PAYMENT TEAM *<br/>
+                                    <div class="ESASelectPaymentTeamPart ">PAYMENT TERM *<br/>
                                         <select class="ESASelectPaymentTeam" name="paymentTerm" <?php echo $isDisable; ?>  id="payment-term-drop-down" onchange="paymentTermChanged()">
 										<?php
 											foreach ($paymentTerms as $paymentTermItem){

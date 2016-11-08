@@ -167,7 +167,7 @@ Template Name: Agent Create Case
                             <div class="inputContent houseSizeInput">
                                 <input type="number" step="any" name="houseSize" id="houseSize" placeholder="&nbsp;&nbsp;SQF" style="font-size:12px; height:30px;" size="20" require />
                             </div>
-                            <div class="requireTitle secondTitle landSizeTitle">LAND SIZE* </div>
+                            <div class="requireTitle secondTitle landSizeTitle">LAND SIZE </div>
                             <div class="secondInput landSizeInput">
                                 <input type="number" step="any" name="landSize" id="landSize" placeholder="&nbsp;&nbsp;FT" style="font-size:12px; height:30px;margin-left:10px;" size="23" require />
                             </div>
@@ -191,7 +191,7 @@ Template Name: Agent Create Case
                             </div>-->
                         </div>
                         <div class="oneLineDiv">
-                            <div class="requireTitle owenweNameTitle">OWNER'S NAME*</div>
+                            <div class="requireTitle owenweNameTitle">OWNER'S NAME</div>
                             <div class="inputContent owenweNameInput">
                                 <input type="text" name="ownerName" id="ownerName" style="font-size:12px; height:30px;" size="20" require />
                             </div>
@@ -213,7 +213,7 @@ Template Name: Agent Create Case
                             </div> -->
                         </div>
                         <div class="oneLineDiv">
-                            <div class="requireTitle contactNumberTitle">CONTACT NUMBER*</div>
+                            <div class="requireTitle contactNumberTitle">CONTACT NUMBER</div>
                             <div class="inputContent contactNumberInput">
                                 <input type="text" name="contactNumber" id="contactNumber" style="font-size:12px; height:30px;" size="20" require />
                             </div>
@@ -238,7 +238,7 @@ Template Name: Agent Create Case
                             <div class="inputContent contactNumberInput">
                                 <input type="number" step="any" name="commissionRate" id="commissionRate" style="font-size:12px; height:30px;" size="20" require/>
                             </div>-->
-                            <div class="requireTitle photoUploadTitle">PHOTO UPLOAD*</div>
+                            <div class="requireTitle photoUploadTitle">PHOTO UPLOAD</div>
                             <div id="UploadID" class="" style="width: 150px;
     display: inline-block;
     border: 1px #a9a9a9 solid;

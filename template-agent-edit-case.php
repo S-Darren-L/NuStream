@@ -81,7 +81,7 @@ Template Name: Agent Edit Case
 
         global $errorMessage;
         global $isError;
-        if (empty($MLSNumber) || empty($propertyType) || empty($address) || empty($houseSize) ||
+        if (empty($propertyType) || empty($address) || empty($houseSize) ||
             empty($listingPrice) || empty($commissionRate)) {
             $errorMessage = "Mandatory fields are empty";
             $isError = true;
@@ -434,7 +434,7 @@ Template Name: Agent Edit Case
                 <div class="form-group inputPart">
                     <div class="requireTitle mlsNumberTitle">MLS NUMBER* </div>
                     <div class="inputContent">
-                        <input type="text" name="MLSNumber" value="<?php echo $MLS; ?>" id="MLSNumber" placeholder="MLS NUMBER*" style="font-size:11px; height:30px;" size="20" require/>
+                        <input type="text" name="MLSNumber" value="<?php echo $MLS; ?>" id="MLSNumber" disabled="disabled" placeholder="MLS NUMBER*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle propertyTypeTitle">PROPERTY TYPE*</div>
                     <div class="selectPropertyType">
@@ -458,9 +458,9 @@ Template Name: Agent Edit Case
                     <div class="inputContent houseSizeInput">
                         <input type="number" step="any" name="houseSize" value="<?php echo $houseSize; ?>" id="houseSize" placeholder="HOUSE SIZE*" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
-                    <div class="requireTitle landSizeTitle">LAND SIZE*</div>
+                    <div class="requireTitle landSizeTitle">LAND SIZE</div>
                     <div class="inputContent landSizeInput">
-                        <input type="number" step="any" name="landSize" value="<?php echo $landSize; ?>" id="landSize" placeholder="LAND SIZE*" style="font-size:11px; height:30px;" size="23" require/>
+                        <input type="number" step="any" name="landSize" value="<?php echo $landSize; ?>" id="landSize" placeholder="LAND SIZE" style="font-size:11px; height:30px;" size="23" require/>
                     </div>
                     <div class="requireTitle listingPriceTitle">LISTING PRICE*</div>
                     <div class="inputContent listingPriceInput">
@@ -470,9 +470,9 @@ Template Name: Agent Edit Case
                     <div class="selectTeam">
                         <a style="font-size:11px; height:30px;" size="20" require><?php echo $teamLeaderName;?></a>
                     </div>
-                    <div class="requireTitle owenweNameTitle">OWNER'S NAME*</div>
+                    <div class="requireTitle owenweNameTitle">OWNER'S NAME</div>
                     <div class="inputContent owenweNameInput">
-                        <input type="text" name="ownerName" value="<?php echo $ownerName; ?>"id="ownerName" placeholder="OWNER'S NAME*" style="font-size:11px; height:30px;" size="20" require/>
+                        <input type="text" name="ownerName" value="<?php echo $ownerName; ?>"id="ownerName" placeholder="OWNER'S NAME" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="selectTeamMember">
                         <div class="dropdown" >
@@ -488,9 +488,9 @@ Template Name: Agent Edit Case
                             ?>
                         </div>
                     </div>
-                    <div class="requireTitle contactNumberTitle">CONTACT NUMBER*</div>
+                    <div class="requireTitle contactNumberTitle">CONTACT NUMBER</div>
                     <div class="inputContent contactNumberInput">
-                        <input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" id="contactNumber" placeholder="CONTACT NUMBER*" style="font-size:11px; height:30px;" size="20" require/>
+                        <input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" id="contactNumber" placeholder="CONTACT NUMBER" style="font-size:11px; height:30px;" size="20" require/>
                     </div>
                     <div class="requireTitle contactNumberTitle">COMMISSION RATE*</div>
                     <div class="inputContent contactNumberInput">

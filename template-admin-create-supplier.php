@@ -28,8 +28,8 @@
 		global $errorMessage;
 		global $isError;
 		if (empty($supplierName) || empty($supplierType) || empty($firstContactName) || empty($firstContactNumber) ||
-            empty($supportLocation) || empty($priceUnit) || empty($ricePerUnit) || empty($paymentTerm) ||
-            ($paymentTerm === 'OTHER' && empty($otherPaymentTerm)) || empty($supportLocation)) {
+            empty($supportLocation) || empty($priceUnit) || ($priceUnit !== 'BYHOUSETYPE' && empty($ricePerUnit)) || empty($paymentTerm) ||
+            ($paymentTerm === 'OTHER' && empty($otherPaymentTerm))) {
 			$errorMessage = "Mandatory fields are empty";
 			$isError = true;
 			return false;
@@ -148,14 +148,14 @@
                                 </select>
                             </div>
                             <div class="CNSHSTNumberPart">
-                                HST NUMBER *<br />
+                                HST NUMBER <br />
                                 <input type="text" name="HSTNumber" class="CNSHSTNumber" require />
                             </div>
                         </div>
                         <div class="CNSOneLineDiv">
                             <div class="CNSContantInfo">
                                 <div class="subTitle">
-                                    <h5>CONTACT INFOTMATION</h5>
+                                    <h5>CONTACT INFORMATION</h5>
                                 </div>
                                 CONTACT PERSON 1 *<br />
                                 <input type="text" name="firstContactName" class="CNSContactInput" require />
@@ -163,7 +163,7 @@
                                 <input type="text" name="firstContactNumber" class="CNSContactInput" require /><br />
                                 <br />SUPPORT AREA *<br />
                                 <input type="text" name="supportArea" class="CNSContactInput" require />
-                                <br />CONTACT NUMBER *<br />
+                                <br />SPECIAL INFO <br />
                                 <input type="text" name="secondContactNumber" class="CNSContactInput" require />
                             </div>
                             <div class="CNSPriceInfo">
@@ -201,7 +201,7 @@
                                         </div>
                                     </div>
 
-                                    <div id="paymentteam">PAYMENT TEAM *</div>
+                                    <div id="paymentteam">PAYMENT TERM *</div>
                                     <select class="CNSPriceUnitSelect" name="paymentTerm" id="payment-term-drop-down" onchange="paymentTermChanged()">
                                         <?php
                                         foreach ($paymentTerms as $paymentTermItem){
@@ -212,7 +212,7 @@
                                     </select>
                                 </div>
                                 <div class="CNSPricePerUnit">
-                                    PRICE PER UNIT *
+                                    PRICE PER UNIT
                                     <input type="text" name="pricePerUnit" class="CNSPricePerUintInput" require />
                                     <div class="CNSSpace"></div>
 
