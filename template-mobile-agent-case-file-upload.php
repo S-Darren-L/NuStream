@@ -527,7 +527,7 @@
 
 <html>
 <head>
-    <title>Project</title>
+    <title>NuStream 新勢力地產</title>
     <script src="<?php bloginfo('template_url');?>/lib/jquery-3.1.1.min.js"></script>
     <script src="<?php bloginfo('template_url');?>/lib/angular-1.5.0/angular.js"></script>
     <script src="<?php bloginfo('template_url');?>/SiteScripts/App.js"></script>

@@ -478,7 +478,7 @@ Template Name: Agent Mobile Case Details
 ?>
 <html>
 <head>
-    <title>Project</title>
+    <title>NuStream 新勢力地產</title>
     <script src="<?php bloginfo('template_url');?>/lib/angular-1.5.0/angular.js"></script>
     <script src="<?php bloginfo('template_url');?>/CaseDetailSiteScripts/CaseDetailApp.js"></script>
     <script src="<?php bloginfo('template_url');?>/CaseDetailSiteScripts/CaseDetailController.js"></script>

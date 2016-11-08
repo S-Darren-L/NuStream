@@ -85,6 +85,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/pcStyles.css">
+    <title>NuStream 新勢力地產</title>
     <style>
         #NoHouseTypeSelected {
             margin-bottom: 17px;
