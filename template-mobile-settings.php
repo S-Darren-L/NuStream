@@ -8,6 +8,7 @@ Template Name: Mobile Settings
 */
 
     // Init Date
+$menuURL = get_home_url() . "/mobile-menu";
     $accountID = $_SESSION['AccountID'];
 
     // Reset Password
@@ -79,10 +80,11 @@ Template Name: Mobile Settings
     </style>
 </head>
 <body data-gr-c-s-loaded="true">
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:white;">', '<<', '</a>'; ?></span>
     <div ng-app="App" ng-controller="myController" class="ng-scope settingPage">
         <form method="post">
             <div class="goBack">
-                <span style="color:white;"><<</span>
             </div>
             <div class="settingResetPasswordPart">
                 <p class="settingTitleStyle">RESET PASSWORD</p>

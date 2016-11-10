@@ -8,6 +8,7 @@ Template Name: Agent Mobile My Cases
 */
 
 $homeURL = get_home_url();
+$menuURL = $homeURL . "/mobile-menu";
 $mainPath = $homeURL . "/wp-content/themes/NuStream/";
 $goBackImagePath = $mainPath . "img/goBack.png";
 
@@ -61,7 +62,8 @@ $goBackImagePath = $mainPath . "img/goBack.png";
     </style>
 </head>
 <body  data-gr-c-s-loaded="true">
-<span style="color:white;"><<</span>
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:white;">', '<<', '</a>'; ?></span>
 <div cng-app="App" ng-controller="myController" class="ng-scope myCasePage">
     <!--<div class="goBack">
         <?php

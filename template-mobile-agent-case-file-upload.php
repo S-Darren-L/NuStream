@@ -14,6 +14,7 @@
     $PageURL = get_home_url() . '/agent-mobile-case-file-upload';
     $houseImageURL =  get_home_url() . "/wp-content/themes/NuStream/Upload/case/" . $MLS . "/HouseImage/";
     $defaultHouseImageURL =  get_home_url() . "/wp-content/themes/NuStream/img/house.jpg";
+$menuURL = get_home_url() . "/mobile-menu";
 
     // Init Date
     // Get Case Statuses
@@ -542,6 +543,8 @@
     </style>
 </head>
 <body>
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:black;">', '<<', '</a>'; ?></span>
     <div ng-app="App" ng-controller="myController">
         <div class="Back">
         </div>

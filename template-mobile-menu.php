@@ -26,6 +26,11 @@ $infoCenterCenterURL = get_home_url() . "/agent-mobile-supplier-info";
 $myCaseURL = get_home_url() . "/agent-mobile-my-cases";
 $estimationURL = get_home_url() . "/agent-mobile-case-estimation";
 
+// Logout User
+if(isset($_GET['logout'])) {
+    logoutUser();
+}
+
 ?>
 <html class="gr__nustreamtoronto_com">
 <head>
@@ -105,7 +110,7 @@ $estimationURL = get_home_url() . "/agent-mobile-case-estimation";
                 <div class="logOutContentPart">
                     <h6>
                         <?php
-                        echo '<a href="#">&nbsp;&nbsp;Log Out</a>';
+                        echo '<a href="?logout">&nbsp;&nbsp;Log Out</a>';
                         ?>
                     </h6>
                 </div>

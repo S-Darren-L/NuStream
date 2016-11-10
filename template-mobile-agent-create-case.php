@@ -8,6 +8,7 @@ Template Name: Agent Mobile Create Case
 */
 
     // Init Date
+$menuURL = get_home_url() . "/mobile-menu";
     $propertyTypes = get_property_types();
     $uploadBasePath = "wp-content/themes/NuStream/Upload/case/";
     $teamID = $_SESSION['TeamID'];
@@ -130,7 +131,8 @@ Template Name: Agent Mobile Create Case
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
 </head>
 <body>
-<span style="color:white;"><<</span>
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:white;">', '<<', '</a>'; ?></span>
     <div class='newPage'>
         <div class="goBack">
         </div>

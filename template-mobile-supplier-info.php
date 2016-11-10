@@ -11,6 +11,7 @@
 	$subMenuURL = get_home_url() . "/supplier-info/?SType=";
 
 	$homeURL = get_home_url();
+$menuURL = $homeURL . "/mobile-menu";
 	$mainPath = $homeURL . "/wp-content/themes/NuStream/";
 	$goBackImagePath = $mainPath . "img/goBack.png";
 
@@ -103,7 +104,8 @@
     </style>
 </head>
 <body>
-<span><<</span>
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:black;">', '<<', '</a>'; ?></span>
     <div class=''>
         <div class="">
         </div>

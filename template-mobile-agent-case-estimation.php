@@ -16,6 +16,7 @@ $propertyTypes = get_property_types();
 
 $homeURL = get_home_url();
 $mainPath = $homeURL . "/wp-content/themes/NuStream/";
+$menuURL = $homeURL . "/mobile-menu";
 $goBackImagePath = $mainPath . "img/goBack.png";
 
 if(isset($_POST['submit'])){
@@ -38,7 +39,8 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
 </head>
 <body>
-<span style="color:white;"><<</span>
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:white;">', '<<', '</a>'; ?></span>
 <div class='estimationPage'>
     <form method="post">
     <div class="goBack">

@@ -9,6 +9,7 @@ Template Name: Agent Mobile Case Estimation 2
 
 // Init Data
 
+$menuURL = get_home_url() . "/mobile-menu";
 $houseSize = $_GET['HS'];
 $propertyType = $_GET['HP'];
 $propertyTypes = get_property_types();
@@ -44,6 +45,8 @@ $storageEstimatePrice = default_storage_price_estimate();
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
 </head>
 <body>
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:white;">', '<<', '</a>'; ?></span>
     <div class='estimationTwoPage'>
         <div class="goBack">
         </div>

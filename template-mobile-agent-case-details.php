@@ -7,6 +7,7 @@ session_start();
 Template Name: Agent Mobile Case Details
 */
 
+$menuURL = get_home_url() . "/mobile-menu";
     // Get Case ID
     $MLS = $_GET['CID'];
     $isRefreshPage = $_GET['RF'];
@@ -487,6 +488,8 @@ Template Name: Agent Mobile Case Details
 
 </head>
 <body>
+<span style="color:white;">
+    <?php echo '<a href="' . $menuURL . '" style="color:black;">', '<<', '</a>'; ?></span>
 <div ng-app="CaseDetailApp" ng-controller="CaseDetailController" class="CaseDetailContainer">
     <form method="post">
         <div class="Back">
