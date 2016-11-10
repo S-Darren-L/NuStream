@@ -1683,9 +1683,9 @@ Template Name: Agent Case File Upload
                                         if(!empty($yardWorkImageFilesArray['AfterBackYard']["FileName"]))
                                         echo '<img up="yara2" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['AfterBackYard']["FileName"] . '" class="FAImage">';
                                         else
-                                        echo '<label up="yarb1" class="uploadLabel">BACK YARD</label>';
+                                        echo '<label up="yara2" class="uploadLabel">BACK YARD</label>';
                                         ?>
-                                        <img upimg="yarb1" src=""  class="largeimg"/>
+                                        <img upimg="yara2" src=""  class="largeimg"/>
                                     </td>
                                 </tr>
                                 <tr>
