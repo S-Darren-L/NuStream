@@ -398,6 +398,7 @@ $menuURL = get_home_url() . "/mobile-menu";
         $caseStatus = $_POST['case_status'];
         update_case_status_and_final_price($MLS, $totalCost, $caseStatus);
 
+        save_session();
         // Generate Final Report
         if($caseStatus === 'CLOSED'){
             $reportFromArray = array(
@@ -438,7 +439,6 @@ $menuURL = get_home_url() . "/mobile-menu";
             generate_case_report($reportFromArray, $reportInvoicesArray);
         }
 
-        save_session();
         header('Location: ' . get_home_url() . '/agent-mobile-case-details/?CID=' . $MLS . '&'  . 'RF=true');
         exit;
     }

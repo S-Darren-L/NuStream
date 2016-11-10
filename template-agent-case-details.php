@@ -393,6 +393,7 @@ function get_estimate_service_price(){
         $photographyRealCost = $_POST['photographyRealCost'];
         update_service_info($isPhotographyEnabled, $photographySupplierID, $photographyServiceID, $photographyRealCost);
 
+        save_session();
         // Update Case Status And Final Price
         $caseStatus = $_POST['case_status'];
 
@@ -468,7 +469,6 @@ function get_estimate_service_price(){
         }
 
 
-        save_session();
     }
 
     // Estimate
