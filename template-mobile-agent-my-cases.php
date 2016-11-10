@@ -61,12 +61,13 @@ $goBackImagePath = $mainPath . "img/goBack.png";
     </style>
 </head>
 <body  data-gr-c-s-loaded="true">
+<span style="color:white;"><<</span>
 <div cng-app="App" ng-controller="myController" class="ng-scope myCasePage">
-    <div class="goBack">
+    <!--<div class="goBack">
         <?php
                             echo '<img class="goBackButton" src="' . $goBackImagePath . '" />';
                             ?>
-    </div></br>
+    </div></br>-->
     <div class="infoPart"><?php
         for($i = 0; $i < count($CasesBriefInfoArray); $i++)
         {

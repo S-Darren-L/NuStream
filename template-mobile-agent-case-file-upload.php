@@ -118,7 +118,7 @@
         $touchUpImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
             "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "1/")),
-            "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "2/")),
+            "Before2" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "2/")),
             "Before3" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "3/")),
             "Before4" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "4/")),
             "Before5" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "5/")),
@@ -351,8 +351,8 @@
         $after1UploadTmp = $_FILES['upload_touch_up_after_1']['tmp_name'];
         $after1UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_1']['name']);
 
-        $before2UploadTmp = $_FILES['upload_touch_up_after_2']['tmp_name'];
-        $before2UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_2']['name']);
+        $after2UploadTmp = $_FILES['upload_touch_up_after_2']['tmp_name'];
+        $after2UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_2']['name']);
 
         $after3UploadTmp = $_FILES['upload_touch_up_after_3']['tmp_name'];
         $after3UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_3']['name']);

@@ -179,8 +179,32 @@ body .settingIconPart {
 
 }
 
+body .mainPageSettingIconPart {
+  float: left;
+  margin-left: 50%;
+  width: 5%;
+}
+
 body .settingIconPart img{
   width: 100%;
+}
+
+body .mainPageSettingIconPart img{
+  width: 100%;
+}
+
+body .logOutIconPart {
+  float: left;
+  width: 5%;
+  margin-left: 5%;
+}
+
+body .logOutIconPart img{
+  width: 100%;
+}
+
+body .mainPageSettingContentPart {
+  float: left;
 }
 
 

@@ -118,7 +118,7 @@ Template Name: Agent Case File Upload
         $touchUpImageFilesArray = array(
             "Invoice" => mysqli_fetch_array(download_file_by_path($uploadPath . "Invoice/")),
             "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "1/")),
-            "Before1" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "2/")),
+            "Before2" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "2/")),
             "Before3" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "3/")),
             "Before4" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "4/")),
             "Before5" => mysqli_fetch_array(download_file_by_path($uploadPath . "Before/" . "5/")),
@@ -351,8 +351,8 @@ Template Name: Agent Case File Upload
         $after1UploadTmp = $_FILES['upload_touch_up_after_1']['tmp_name'];
         $after1UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_1']['name']);
 
-        $before2UploadTmp = $_FILES['upload_touch_up_after_2']['tmp_name'];
-        $before2UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_2']['name']);
+        $after2UploadTmp = $_FILES['upload_touch_up_after_2']['tmp_name'];
+        $after2UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_2']['name']);
 
         $after3UploadTmp = $_FILES['upload_touch_up_after_3']['tmp_name'];
         $after3UploadName = preg_replace("#[^a-z0-9.]#i", "", time() . '_' . $_FILES['upload_touch_up_after_3']['name']);
@@ -985,7 +985,7 @@ Template Name: Agent Case File Upload
         height: 70px;
         width: 80px;
         border: 1px blue dashed;
-        margin: 0 10px;
+        margin: 0 25px;
     }
 
     .FAImageYardWork {
@@ -1190,6 +1190,18 @@ Template Name: Agent Case File Upload
     .imgsmall{
         width:80px;
     }
+    
+    .largeimg{
+        width:130px;
+        height:70px;
+        margin:0 25px;
+    }
+    
+    .smallimg{
+        width:80px;
+        height:70px;
+        margin:0 25px;
+    }
 </style>
 <head>
     <meta charset="utf-8">
@@ -1297,6 +1309,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="stagingb1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
+                                        <img upimg="stagingb1" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1305,6 +1318,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="stagingb2" class="uploadLabel">DINING ROOM</label>';
                                         ?>
+                                        <img upimg="stagingb2" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1313,6 +1327,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="stagingb3" class="uploadLabel">MASTER ROOM</label>';
                                         ?>
+                                        <img upimg="stagingb3" src="" class="largeimg" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -1334,6 +1349,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="staa1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
+                                        <img upimg="staa1" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1342,6 +1358,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="staa2" class="uploadLabel">DINING ROOM</label>';
                                         ?>
+                                        <img upimg="staa2" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1350,6 +1367,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="staa3" class="uploadLabel">MASTER ROOM</label>';
                                         ?>
+                                        <img upimg="staa3" src="" class="largeimg" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -1390,6 +1408,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="cleb1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
+                                        <img upimg="cleb1" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1398,6 +1417,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="cleb2" class="uploadLabel">KITCHEN</label>';
                                         ?>
+                                        <img upimg="cleb2" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1406,6 +1426,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="cleb3" class="uploadLabel">WASHROOM</label>';
                                         ?>
+                                        <img upimg="cleb3" src="" class="largeimg" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -1427,6 +1448,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="clea1" class="uploadLabel">LIVING ROOM</label>';
                                         ?>
+                                        <img upimg="clea1" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1435,6 +1457,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="clea2" class="uploadLabel">KITCHEN</label>';
                                         ?>
+                                        <img upimg="clea2" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1443,6 +1466,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="clea3" class="uploadLabel">WASHROOM</label>';
                                         ?>
+                                        <img upimg="clea3" src="" class="largeimg" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -1483,6 +1507,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toub1" class="uploadLabel imgsmall">1</label>';
                                         ?>
+                                        <img upimg="toub1" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1491,6 +1516,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toub2" class="uploadLabel imgsmall">2</label>';
                                         ?>
+                                        <img upimg="toub2" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1499,6 +1525,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toub3" class="uploadLabel imgsmall">3</label>';
                                         ?>
+                                        <img upimg="toub3" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1507,6 +1534,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toub4" class="uploadLabel imgsmall">4</label>';
                                         ?>
+                                        <img upimg="toub4" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1515,6 +1543,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toub5" class="uploadLabel imgsmall">5</label>';
                                         ?>
+                                        <img upimg="toub5" src="" class="smallimg" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -1538,6 +1567,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toua1" class="uploadLabel imgsmall">1</label>';
                                         ?>
+                                        <img upimg="toua1" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1546,6 +1576,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toua2" class="uploadLabel imgsmall">2</label>';
                                         ?>
+                                        <img upimg="toua2" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1554,6 +1585,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toua3" class="uploadLabel imgsmall">3</label>';
                                         ?>
+                                        <img upimg="toua3" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1562,6 +1594,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toua4" class="uploadLabel imgsmall">4</label>';
                                         ?>
+                                        <img upimg="toua4" src="" class="smallimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1570,6 +1603,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="toua5" class="uploadLabel imgsmall">5</label>';
                                         ?>
+                                        <img upimg="toua5" src="" class="smallimg" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -1612,6 +1646,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="yarb1" class="uploadLabel">FRONT YARD</label>';
                                         ?>
+                                        <img upimg="yarb1" src=""  class="largeimg"/>
                                     </td>
                                     <td>
                                         <?php
@@ -1620,6 +1655,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="yarb2" class="uploadLabel">BACK YARD</label>';
                                         ?>
+                                        <img upimg="yarb2" src="" class="largeimg" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -1640,6 +1676,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="yara1" class="uploadLabel">FRONT YARD</label>';
                                         ?>
+                                        <img upimg="yara1" src="" class="largeimg" />
                                     </td>
                                     <td>
                                         <?php
@@ -1648,6 +1685,7 @@ Template Name: Agent Case File Upload
                                         else
                                         echo '<label up="yarb1" class="uploadLabel">BACK YARD</label>';
                                         ?>
+                                        <img upimg="yarb1" src=""  class="largeimg"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1732,10 +1770,54 @@ Template Name: Agent Case File Upload
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         $('img').on('click', function (evt) {
+            if(!!this.attributes.up)
             $('#' + this.attributes.up.value).click();
+
+        if(!!this.attributes.upimg)
+            $('#' + this.attributes.upimg.value).click();
         });
         $('.uploadLabel').on('click', function (evt) {
             $('#' + this.attributes.up.value).click();
+        });
+
+
+        $('.largeimg').hide();
+        $('.smallimg').hide();
+
+
+
+        $('input[type=file]').on('change',function(evt,a,b){
+                var id = this.id;
+                var label = $('label[up='+id+']');
+                var serverimg = $('img[up='+id+']');
+                var me = this;
+                if(label.length > 0){
+                    var img = $('img[upimg='+id+']');
+                    if (me.files && me.files[0] && img.length>0) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            img.show();
+                            label.hide();
+                            img.attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(me.files[0]);
+                    }
+                }else if(serverimg.length>0){
+                   var img = $('img[upimg='+id+']');
+                    if (me.files && me.files[0] && img.length>0) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            serverimg.hide();
+                            img.show();
+                            img.attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(me.files[0]);
+                    } 
+                }
         });
     </script>
 </body>

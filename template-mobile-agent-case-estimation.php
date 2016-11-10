@@ -34,10 +34,11 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NuStream 新勢力地產</title>
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">
+    <!--<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">-->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
 </head>
 <body>
+<span style="color:white;"><<</span>
 <div class='estimationPage'>
     <form method="post">
     <div class="goBack">

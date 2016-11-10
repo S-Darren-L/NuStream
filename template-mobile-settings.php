@@ -82,6 +82,7 @@ Template Name: Mobile Settings
     <div ng-app="App" ng-controller="myController" class="ng-scope settingPage">
         <form method="post">
             <div class="goBack">
+                <span style="color:white;"><<</span>
             </div>
             <div class="settingResetPasswordPart">
                 <p class="settingTitleStyle">RESET PASSWORD</p>

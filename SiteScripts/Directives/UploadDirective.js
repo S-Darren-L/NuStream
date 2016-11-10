@@ -16,9 +16,16 @@ angular.module('App').directive('upload', ['$timeout',function($timeout) {
 		if(!!scope.src && scope.src != "http://www.nustreamtoronto.com/"){
 			scope.hasImage = true;
 		}
+
+		element.find('input').click(function (e) {
+		    e.stopPropagation();
+		});
+
     	scope.onFileClick = function(){
 
     		$timeout(function(){
+				console.log('onFileClick_name: '+scope.name);
+				console.log('onFileClick_label: '+scope.label);
                 if(scope.ableToClick){
 					scope.ableToClick = false;
 					element.find('input')[0].click();
@@ -34,6 +41,8 @@ angular.module('App').directive('upload', ['$timeout',function($timeout) {
 		
 		scope.fileNameChanged=function($event)
 		{
+			console.log('namechange_name: '+scope.name);
+			console.log('namechange_label: '+scope.label);
             scope.ableToClick = true;
 		    var fr = new FileReader();
 

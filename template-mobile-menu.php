@@ -15,6 +15,7 @@ $infoCenterIconImagePath = $mainPath . "img/Open Folder-50.png";
 $mycaseIconImagePath = $mainPath . "img/Briefcase-50.png";
 $estimationImagePath = $mainPath . "img/Pencil-50.png";
 $logo1ImagePath = $mainPath . "img/logo.png";
+$logOutIconImagePath = $mainPath . "img/Exit-52.png";
 
 $UserName = $_SESSION['FirstName'] . " " . $_SESSION['LastName'];
 
@@ -84,15 +85,27 @@ $estimationURL = get_home_url() . "/agent-mobile-case-estimation";
     <body data-gr-c-s-loaded="true">
         <div ng-app="App" ng-controller="myController" class="ng-scope">
             <div class='menu_setting'>
-                <div class='settingIconPart'>
+                <div class='mainPageSettingIconPart'>
                     <?php
                     echo '<img src="' . $settingIconImagePath . '" />';
                     ?>
                 </div>
-                <div class="settingContentPart">
-                    <h6>
+                <div class="mainPageSettingContentPart">
+                    <h6 style="margin:0px;">
                         <?php
                         echo '<a href="' .$settingURL . '">&nbsp;&nbsp;Settings</a>';
+                        ?>
+                    </h6>
+                </div>
+                <div class="logOutIconPart">
+                    <?php
+                    echo '<img src="' . $logOutIconImagePath . '" />';
+                    ?>
+                </div>
+                <div class="logOutContentPart">
+                    <h6>
+                        <?php
+                        echo '<a href="#">&nbsp;&nbsp;Log Out</a>';
                         ?>
                     </h6>
                 </div>

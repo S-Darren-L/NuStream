@@ -126,14 +126,16 @@ Template Name: Agent Mobile Create Case
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NuStream 新勢力地產</title>
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">
+    <!--<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/default.css">-->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/css/styles.css">
 </head>
 <body>
+<span style="color:white;"><<</span>
     <div class='newPage'>
         <div class="goBack">
         </div>
         <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
+            
             <div class="newTitlePart">
                 <h2>NEW LISTING</h2>
             </div>
