@@ -109,7 +109,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "UPDATE services SET ImagePath = '$uploadPath', RealCost = '', IsActivate = '0'
+        $sql = "UPDATE services SET ImagePath = '$uploadPath'
                         WHERE ServiceID = '$serviceID'";
         $result = mysqli_query($conn, $sql);
 

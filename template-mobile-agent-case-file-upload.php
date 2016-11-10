@@ -327,7 +327,7 @@
 
     if(isset($_POST['submit_touch_up'])){
         global $PageURL;
-        $serviceID = $touchUpImageFilesArray['ServiceID'];
+        $serviceID = $touchUpServiceArray['ServiceID'];
         $uploadPath = $uploadBasePath . "/TouchUp/";
 
         $invoiceUploadTmp = $_FILES['upload_touch_up_invoice']['tmp_name'];
@@ -461,7 +461,7 @@
 
     if(isset($_POST['submit_inspection'])){
         global $PageURL;
-        $serviceID = $yardWorkServiceArray['ServiceID'];
+        $serviceID = $inspectionServiceArray['ServiceID'];
         $uploadPath = $uploadBasePath . "/Inspection/";
 
         $reportUploadTmp = $_FILES['upload_inspection_report']['tmp_name'];
@@ -486,7 +486,7 @@
 
     if(isset($_POST['submit_storage'])) {
         global $PageURL;
-        $serviceID = $storageImageFilesArray['ServiceID'];
+        $serviceID = $storageServiceArray['ServiceID'];
         $uploadPath = $uploadBasePath . "/Storage/";
 
         $invoiceUploadTmp = $_FILES['upload_storage_invoice']['tmp_name'];
@@ -504,7 +504,7 @@
 
     if (isset($_POST['submit_relocate_home'])) {
         global $PageURL;
-        $serviceID = $relocateHomeImageFilesArray['ServiceID'];
+        $serviceID = $relocateHomeServiceArray['ServiceID'];
         $uploadPath = $uploadBasePath . "/RelocateHome/";
 
         $invoiceUploadTmp = $_FILES['upload_relocate_home_invoice']['tmp_name'];
