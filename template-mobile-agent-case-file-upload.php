@@ -633,7 +633,7 @@ $menuURL = get_home_url() . "/mobile-menu";
                     <label for="file-upload1" class="custom-file-upload">
                         Upload
                     </label>
-                    <input id="file-upload1" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <input id="file-upload1" type="file" accept="image/*;capture=camera" name="upload_clean_up_invoice" class="UploadInvoice" />
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
                     <?php echo '<upload name="upload_clean_up_before_living_room" label="LIVING ROOM" src="' . get_home_url() . "/" . $cleanUpImageFilesArray['BeforeLivingRoom']["FileName"] . '"></upload>'; ?>
@@ -653,7 +653,7 @@ $menuURL = get_home_url() . "/mobile-menu";
                     <label for="file-upload2" class="custom-file-upload">
                         Upload
                     </label>
-                    <input id="file-upload2" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <input id="file-upload2" type="file" accept="image/*;capture=camera" name="upload_touch_up_invoice" class="UploadInvoice" />
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
                     <?php echo '<upload name="upload_touch_up_before_1" label="1" src="' . get_home_url() . "/" . $touchUpImageFilesArray['Before1']["FileName"] . '"></upload>'; ?>
@@ -679,7 +679,7 @@ $menuURL = get_home_url() . "/mobile-menu";
                     <label for="file-upload3" class="custom-file-upload">
                         Upload
                     </label>
-                    <input id="file-upload3" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
+                    <input id="file-upload3" type="file" accept="image/*;capture=camera" name="upload_yard_work_invoice" class="UploadInvoice" />
                     <label class="BeforeAfterLabel">Before</label>
                     <label class="BeforeAfterLabel">After</label>
                     <?php echo '<upload name="upload_yard_work_before_front" label="FRONT YARD" src="' . get_home_url() . "/" . $yardWorkImageFilesArray['BeforeFrontYard']["FileName"] . '"></upload>'; ?>
@@ -691,13 +691,13 @@ $menuURL = get_home_url() . "/mobile-menu";
                 </form>
             </div>
 
-            <div ng-show="vm.showInspection" class="Innspection">
+            <div ng-show="vm.showInspection" class="Inspection">
                 <form method="post" enctype="multipart/form-data" name="FileUploadFrom">
                     <label for="file-upload4" class="custom-file-upload">
                         Upload
                     </label>
-                    <input id="file-upload4" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
-                    <input type="submit" style="display:none" name="upload_inspection_report" class="SubmitButton" />
+                    <input id="file-upload4" type="file" accept="image/*;capture=camera" name="upload_inspection_invoice" class="UploadInvoice" />
+                    <input type="submit" style="display:none" name="submit_inspection" class="SubmitButton" />
                 </form>
             </div>
 
@@ -706,8 +706,8 @@ $menuURL = get_home_url() . "/mobile-menu";
                     <label for="file-upload5" class="custom-file-upload">
                         Upload
                     </label>
-                    <input id="file-upload5" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
-                    <input type="submit" style="display:none" name="upload_storage_invoice" class="SubmitButton" />
+                    <input id="file-upload5" type="file" accept="image/*;capture=camera" name="upload_storage_invoice" class="UploadInvoice" />
+                    <input type="submit" style="display:none" name="submit_storage" class="SubmitButton" />
                 </form>
             </div>
 
@@ -716,8 +716,8 @@ $menuURL = get_home_url() . "/mobile-menu";
                     <label for="file-upload6" class="custom-file-upload">
                         Upload
                     </label>
-                    <input id="file-upload6" type="file" accept="image/*;capture=camera" name="upload_staging_invoice" class="UploadInvoice" />
-                    <input type="submit" style="display:none" name="upload_relocate_home_invoice" class="SubmitButton" />
+                    <input id="file-upload6" type="file" accept="image/*;capture=camera" name="upload_relocate_home_invoice" class="UploadInvoice" />
+                    <input type="submit" style="display:none" name="submit_relocate_home" class="SubmitButton" />
                 </form>
             </div>
 

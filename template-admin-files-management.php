@@ -88,7 +88,7 @@ Template Name: Admin Files Management
         <div class="formPart">
             <div class="FATitle"><p class="titleSize"><strong>FILES MANAGEMENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <?php
-                    echo '<a class="FASubTitle" href="' . $subMenuURL . '' . '">All Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Pending" . '">&nbsp;&nbsp;Pending Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Approved" . '">&nbsp;&nbsp;Approved Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Final" . '">&nbsp;&nbsp;Final Reports&nbsp;&nbsp;</a>';
+                    echo '<a class="FASubTitle" href="' . $subMenuURL . '' . '">All Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "New" . '">New&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Pending" . '">&nbsp;&nbsp;Pending Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Approved" . '">&nbsp;&nbsp;Approved Files&nbsp;&nbsp;</a>|<a class="FASubTitle" href="' . $subMenuURL . "Final" . '">&nbsp;&nbsp;Final Reports&nbsp;&nbsp;</a>';
                 ?></strong></p>
             </div>
             <section ng-app="app" ng-controller="MainCtrl">

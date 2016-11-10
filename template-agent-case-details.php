@@ -411,8 +411,6 @@ function get_estimate_service_price(){
             $canClose = '0';
         if($isStorageEnabled === '1' && $storageServiceArray['InvoiceStatus'] !== 'APPROVED')
             $canClose = '0';
-        if($isPhotographyEnabled === '1' && $photographyServiceArray['InvoiceStatus'] !== 'APPROVED')
-            $canClose = '0';
 
         global $errorMessage;
         global $isError;
@@ -1077,7 +1075,7 @@ function get_estimate_service_price(){
                         </td>
                         <td style="text-align:center;"><?php echo $photographyEstimatePrice; ?></td>
                         <td><?php echo '<input type="text" name="photographyRealCost" value="' . $photographyServiceArray['RealCost'] . '"/>'; ?></td>
-                        <td><?php echo $photographyServiceArray['InvoiceStatus']; ?></td>
+                        <td>--</td>
                     </tr>
                     </tbody>
                 </table>

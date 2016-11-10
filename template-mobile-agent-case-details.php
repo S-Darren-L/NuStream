@@ -764,7 +764,7 @@ $menuURL = get_home_url() . "/mobile-menu";
                         echo '</select>';
                         ?>
                     </div>
-                    <label class="Status"><?php echo $photographyServiceArray['InvoiceStatus']; ?></label>
+                    <label class="Status">--</label>
                 </div>
                 <div class="SecondLine">
                     <label class="Est">EST</label>
