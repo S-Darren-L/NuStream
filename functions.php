@@ -102,7 +102,7 @@
         $message = 'Hello ' . $firstName . " " . $lastName . ", \r\n \r\n" .
             "You have registered with NuStream successfully. Your password is " . $password .
             ". To change your password, visit the following address: http://www.nustreamtoronto.com/ \r\n \r\n" .
-            "sincerely,  \r\n " . "NuStream";
+            "sincerely,  \r\n" . "NuStream";
         $headers = 'From: NuStream';
 
         $sendEmailResult = mail($to, $subject, $message, $headers);

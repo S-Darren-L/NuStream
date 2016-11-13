@@ -48,7 +48,7 @@
         require_once(__DIR__ . '/mysql-connect.php');
         $conn = mysqli_connection();
 
-        $sql = "SELECT MLS, StartDate, PropertyType, Address, CaseStatus FROM cases WHERE StaffID='$agentAccountID' ORDER BY StartDate";
+        $sql = "SELECT MLS, StartDate, PropertyType, Address, CaseStatus FROM cases WHERE StaffID='$agentAccountID' || CoStaffID='$agentAccountID' ORDER BY StartDate";
 
         $result = mysqli_query($conn, $sql);
 

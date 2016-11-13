@@ -175,10 +175,10 @@ Template Name: Admin Case Details
             update_service_status($stagingServiceArray['ServiceID'], $_POST['stagingStatus']);
         }
         if($touchUpServiceArray['IsActivate'] === '1'){
-            update_service_status($touchUpServiceArray['ServiceID'], $_POST['cleanUpStatus']);
+            update_service_status($touchUpServiceArray['ServiceID'], $_POST['touchUpStatus']);
         }
         if($cleanUpServiceArray['IsActivate'] === '1'){
-            update_service_status($cleanUpServiceArray['ServiceID'], $_POST['touchUpStatus']);
+            update_service_status($cleanUpServiceArray['ServiceID'], $_POST['cleanUpStatus']);
         }
         if($yardWorkServiceArray['IsActivate'] === '1'){
             update_service_status($yardWorkServiceArray['ServiceID'], $_POST['yardWorkStatus']);
